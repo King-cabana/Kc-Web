@@ -103,7 +103,7 @@ const Home = () => {
       </ASContentSection>
       
       <SponsorSection>
-        <h4 style={{fontSize:'26px'}}>Leverage for being an Event sponsor</h4>
+        <h4>Leverage for being an Event sponsor</h4>
         <p>As a sponsor, these are some of the opportunities you would get.</p>
         <SponsorSectionInner>
           <SponsorCard>

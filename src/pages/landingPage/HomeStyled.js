@@ -267,8 +267,13 @@ export const SponsorSection = styled.div`
     justify-content: space-between;
     align-items: center;
 
-    @media screen and (max-width: 480px){
+    h4{
+        font-size:26px;
+        font-weight: 400;
+        text-align: center;
+    }
 
+    @media screen and (max-width: 480px){
         height: fit-content;
 
         h4{
