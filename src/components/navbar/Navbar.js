@@ -4,7 +4,7 @@ import times from '../../images/times.svg'
 import { BiSearch } from 'react-icons/bi';
 import {IconContext} from 'react-icons/lib'
 import {Nav, NavLogo, LogoLink, NavContent, NavItems, NavMobile, NavBarLink,
-        NavButton, NavButtonLink, NavSearchHolder} from './Navbar.styled'
+        NavButtonLink, NavSearchHolder, AccessButton} from './Navbar.styled'
 import Logo from '../../images/kingCabanaLogo.svg'
 import { NavGroup } from './Navbar.styled';
 // import SignIn from '../../pages/authentication/signIn/SignIn';
@@ -69,16 +69,16 @@ const Navbar = () => {
             <li><NavBarLink to="/aboutUs">About Us </NavBarLink></li>
             {/* </NavItemsInner> */}
             <NavGroup>
-            <NavSearchHolder>
+            {/* <NavSearchHolder>
             <BiSearch size={20} cursor='pointer' style={{marginRight:'10%'}}/>
-            </NavSearchHolder>
+            </NavSearchHolder> */}
             {button ? (
-                <NavButtonLink to="/logIn">
-                  <NavButton>Log In</NavButton>
+                <NavButtonLink to="/waitlist">
+                  <AccessButton>Get early access</AccessButton>
                 </NavButtonLink>
               ) : (
-                <NavButtonLink to="/logIn">
-                  <NavButton>Log In</NavButton>
+                <NavButtonLink to="/waitlist">
+                  <AccessButton>Get early access</AccessButton>
                 </NavButtonLink>
               )}
             </NavGroup>

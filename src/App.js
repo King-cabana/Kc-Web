@@ -2,6 +2,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from './pages/landingPage/Home'
 import NoPage from './pages/noPage/NoPage'
 import GoToTop from "./GoToTop"
+import './App.css'
+import Waitlist from "./pages/waitlist/WaitlistForm";
 
 
 
@@ -29,6 +31,7 @@ function App() {
           <Route path="/continue" element={<ContinueModal/>} />
           <Route path='/eventmanagement' element={<Event/>} />
           <Route path="/verifyOtp" element={<VerifyOTP/>} /> */}
+          <Route path="/waitlist" element={<Waitlist/>} />
         <Route path="*" element={<NoPage />} />
       </Routes>
 

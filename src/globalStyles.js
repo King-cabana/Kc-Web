@@ -56,8 +56,20 @@ export const Form = styled.form`
     label{
         font-weight: 500;
         font-size: 12px;
-        margin-top: 2%;
+        margin-top: 3%;
     }
+
+    textarea{
+    height: 16vh;
+    outline: 1px solid #C4C4C4;
+    border-radius: 4px;
+    padding: 3%;
+    border: transparent;
+
+    }
+
+
+
 `
 
 export const InputFieldWrapper = styled.div`
@@ -94,19 +106,20 @@ export const AnimationContainer = styled.div`
     
 `
 export const CardHolder = styled.div`
-    display:flex; 
     justify-content:space-between; 
     padding-left:8%; 
     padding-top:1%;
     width:90vw;
-  
-
+    display:inline-flex;
+    flex-wrap:wrap;
+    gap:3% 1%;
+    
     @media screen and (max-width: 960px) {
         /* display: inline-block; */
-        overflow: scroll;
-        scroll-snap-type: x mandatory;
-        margin-left:8%;
-        gap: 3%;
+        display: block;
+        /* margin-left:2%; */
+        padding-left: 4% ;
+        row-gap: 2%;
         }
 `
 

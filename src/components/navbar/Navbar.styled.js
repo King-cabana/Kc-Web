@@ -187,7 +187,7 @@ export const NavButtonLink = styled(Link)`
 `
 
 export const NavButton = styled.button`
-        width: 8vw;
+        width: 10vw;
         height: 7vh;
         border: 1.5px solid #FF2957;
         background-color: transparent;
@@ -203,7 +203,19 @@ export const NavButton = styled.button`
         }
 
         @media screen and (max-width: 960px){
-    
-        width: 35vw; 
+        width: 40vw;
+        margin-bottom: 5% ;
     }
 `
+
+export const AccessButton = styled(NavButton)`
+    width:12vw;
+    background-color: #FF2957;
+    color: white;
+    font-weight: 400;
+
+    @media screen and (max-width: 960px){
+        width: 40vw;
+        margin-bottom: 5% ;
+`
+

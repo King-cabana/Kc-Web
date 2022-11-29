@@ -3,10 +3,10 @@ import styled from "styled-components";
 export const FooterBody = styled.div`
     width: 100vw;
     height: 65vh;
-    background-color: #200B51;
+    background-color: #45346E;
     padding: 6% 9%;
 
-    @media screen and (min-width: 320px)and (max-width: 480px){
+    @media screen and (max-width: 480px){
        display: flex;
         flex-direction: column;
         width:fit-content;
@@ -18,11 +18,11 @@ export const FooterBody = styled.div`
         text-align: center;
     }
 
-    @media screen and (min-width: 320px)and (max-width: 480px){
-       display: flex;
+    @media screen and (min-width: 481px)and (max-width: 960px){
+        display: flex;
         flex-direction: column;
         width:fit-content;
-        height:max-content;
+        height:fit-content;
         justify-content: center;
         align-items: center;
         justify-items: center;
@@ -30,17 +30,6 @@ export const FooterBody = styled.div`
         text-align: center;
     }
 
-    @media screen and (min-width: 481px)and (max-width: 820px){
-       display: flex;
-        flex-direction: column;
-        width:fit-content;
-        height:max-content;
-        justify-content: center;
-        align-items: center;
-        justify-items: center;
-        align-content: center;
-        text-align: center;
-    }
 `
 
 export const FooterContent = styled.div`
@@ -63,10 +52,10 @@ export const FooterContent = styled.div`
         position: relative;
     }
 
-    @media screen and (min-width: 481px)and (max-width: 820px){
+    @media screen and (min-width: 481px)and (max-width: 960px){
         flex-direction: column;
         width:fit-content;
-        height:max-content;
+        height:fit-content;
         justify-content: center;
         align-items: center;
         justify-items: center;
@@ -95,7 +84,7 @@ export const FooterInner = styled.div`
     }
 
 
-    @media screen and (max-width: 960px){
+    @media screen and (max-width: 480px){
         width: inherit;
         align-items: center;
         align-content: center;
@@ -103,6 +92,11 @@ export const FooterInner = styled.div`
         justify-items: center;
         display: flex;
         flex-direction: column;
+    }
+
+    @media screen and (min-width: 481px) and (max-width: 960px){
+       width: inherit;
+       height: fit-content;
     }
 
 
@@ -115,8 +109,13 @@ export const IconHolder = styled.div`
     margin-top:5%;
    
 
-    @media screen and (max-width: 960px){
+    @media screen and (max-width: 480px){
         width: 42vw;
+    }
+
+    @media screen and(min-width: 481px) and (max-width: 960px){
+        width: 42vw;
+
     }
     
     
@@ -159,9 +158,15 @@ export const FooterLinksHolder = styled.div`
         font-size:14px;
     }
 
-    @media screen and (max-width: 960px){
+    @media screen and (max-width: 480px){
         width: inherit;
         margin-top: 5%;
+    }
+
+    @media screen and (max-width: 481px) and (max-width: 960px){
+        width: inherit;
+        margin-top: 5%;
+        height: fit-content;
     }
 `
 
