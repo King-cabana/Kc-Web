@@ -6,6 +6,7 @@
     background-image: url("/src/images/arrowleft.svg");
     height: 48px;
     width: 49px;
+
 }
 
 .swiper-button-next{
@@ -24,12 +25,23 @@
 }
 
 .swiperSlide{
-    width: fit-content;
-    background-position: center;
+    width: 380px;
+    height: 380px;
+    /* background-position: center;
     background-size: cover;
     max-width: fit-content;
     background-repeat: no-repeat;
-    border-radius: 5px;
+    border-radius: 5px; */
+    }
+    
+    @media (max-width: 480px) {
+    .swiper-button-prev{
+      display: none;
+    }
+     
+    .swiper-button-next{
+      display: none;
+    }
     }
     
     @media (max-width: 768px) {

@@ -4,7 +4,7 @@ import { Link, NavLink } from "react-router-dom";
 
 export const Nav = styled.div`
     height: 4vh;
-    width: 100vw;
+    width: 100%;
     display: flex;
     padding: 3% 8%;
     align-items: center;
@@ -74,7 +74,7 @@ export const NavItems = styled.ul`
         text-decoration: none;
         color: black;
         font-weight: 600 ;
-        font-size: small;
+        font-size: 14px;
         cursor: pointer;
         text-align: center;
 
@@ -187,19 +187,23 @@ export const NavButtonLink = styled(Link)`
 `
 
 export const NavButton = styled.button`
-        width: 10vw;
-        height: 7vh;
-        border: 1.5px solid #FF2957;
-        background-color: transparent;
-        border-radius: 3px;
-        color: #FF2957;
+        height: 8vh;
+        width: 11vw;
+        border: 1.5px none;
+        border-radius: 8px;
+        background-color: #FF2957;
+        color: white;
         cursor: pointer;
         font-weight: 600;
         
-
-        &:hover{
+        /* &:hover{
             background-color: #FF2957;
             color: white;
+        } */
+
+        &:hover{
+        background-color: rgba(255, 41, 87, 0.8);
+        color: white;
         }
 
         @media screen and (max-width: 960px){
@@ -212,10 +216,16 @@ export const AccessButton = styled(NavButton)`
     width:12vw;
     background-color: #FF2957;
     color: white;
-    font-weight: 400;
+    font-weight: 600;
+
+    &:hover{
+        background-color:white;
+        color: #FF2957;
+    }
 
     @media screen and (max-width: 960px){
         width: 40vw;
         margin-bottom: 5% ;
+    }
 `
 

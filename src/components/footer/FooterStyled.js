@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const FooterBody = styled.div`
-    width: 100vw;
+    width: 100%;
     height: 65vh;
     background-color: #45346E;
     padding: 6% 9%;

@@ -12,12 +12,12 @@ const Waitlist = () => {
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
   const [email, setEmail] = useState('')
-  const [textContent, setTextContent] = useState('')
+  const [comment, setComment] = useState('')
 
   const dispatch = useDispatch();
-  const handleForgotPassword = () => {
+  const handleJoinWaitlist = () => {
     console.log(email)
-    dispatch(apiFetch({ apiName: 'forgotPassword', body: { firstName, lastName, email, textContent }, method: 'post', url: 'forgot-password' }))
+    dispatch(apiFetch({ apiName: '', body: { firstName, lastName, email, comment }, method: 'post', url: '/subscribe/register' }))
   }
   
   return (
@@ -26,8 +26,8 @@ const Waitlist = () => {
         <WaitListBody>
           <WaitListContent>
           <img src={Logo} alt='King Cabana Logo'/>
-          <h3>Get early access</h3>
-          <p>Our team is waiting to attend to you.</p>
+          <h3 style={{fontSize:'24px', fontWeight:'700'}}>Get early access</h3>
+          <p style={{fontSize:'14px'}}>Our team is waiting to attend to you.</p>
 
           <Form>
           <label>First Name</label>
@@ -52,10 +52,10 @@ const Waitlist = () => {
 
           <Form>
           <label>Leave a comment (Optional)</label>
-          <textarea placeholder='What will you like us to provide you?' value={textContent} onChange={(e) => setTextContent(e.target.value)}></textarea>
+          <textarea placeholder='What will you like us to provide you?' value={comment} onChange={(e) => setComment(e.target.value)}></textarea>
           </Form>
 
-          <LongButton type='button' onClick={handleForgotPassword}>Join Waitlist</LongButton>
+          <LongButton type='button' onClick={handleJoinWaitlist}>Join Waitlist</LongButton>
           </Form>
           <SignInLink to="/logIn">Remember password? <span>Sign In</span></SignInLink>
           </WaitListContent>

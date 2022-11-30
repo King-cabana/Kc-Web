@@ -13,7 +13,7 @@ import { HomePageButton, NPInner } from './NoPageStyled';
 const NoPage = () => {
   return (
     <>
-    <div style={{width:'100vw', height:'100vh', display:'flex', flexDirection:'column',
+    <div style={{width:'100%', height:'100vh', display:'flex', flexDirection:'column',
                   justifyContent:'center', alignItems:'center', textAlign:'center'}}>
        <AnimationContainer style={{width:'300px', height:'100px'}}>
       <Lottie 

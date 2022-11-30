@@ -18,7 +18,7 @@ const initialState = {
 //     })
 //     return await res.json();
 // })
-export const apiFetch = createAsyncThunk('apiKing', async ({ body, method, url }) => {
+export const apiFetch = createAsyncThunk('apiFetch', async ({ body, method, url }) => {
     const res = await fetch('https://kingcabana-event.herokuapp.com/' + url, {
         method: method,
         headers: {
