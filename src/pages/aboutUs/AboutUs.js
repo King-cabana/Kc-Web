@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useState, useEffect } from "react";
 import Navbar from "../../components/navbar/Navbar";
 import Footer from "../../components/footer/Footer";
@@ -170,3 +171,16 @@ const AboutUs = () => {
 };
 
 export default AboutUs;
+=======
+import React from 'react'
+
+const AboutUs = () => {
+  return (
+    <div>
+        <h1>Josiah</h1>
+    </div>
+  )
+}
+
+export default AboutUs
+>>>>>>> 7c163be40e987619518f65372e1d5b47c936dee2

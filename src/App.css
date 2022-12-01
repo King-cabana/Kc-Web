@@ -6,6 +6,10 @@
     background-image: url("/src/images/arrowleft.svg");
     height: 48px;
     width: 49px;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 7c163be40e987619518f65372e1d5b47c936dee2
 }
 
 .swiper-button-next{
@@ -24,12 +28,32 @@
 }
 
 .swiperSlide{
+<<<<<<< HEAD
     width: fit-content;
     background-position: center;
     background-size: cover;
     max-width: fit-content;
     background-repeat: no-repeat;
     border-radius: 5px;
+=======
+    width: 380px;
+    height: 380px;
+    /* background-position: center;
+    background-size: cover;
+    max-width: fit-content;
+    background-repeat: no-repeat;
+    border-radius: 5px; */
+    }
+    
+    @media (max-width: 480px) {
+    .swiper-button-prev{
+      display: none;
+    }
+     
+    .swiper-button-next{
+      display: none;
+    }
+>>>>>>> 7c163be40e987619518f65372e1d5b47c936dee2
     }
     
     @media (max-width: 768px) {
