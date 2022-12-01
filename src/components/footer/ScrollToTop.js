@@ -46,7 +46,7 @@ const TopButton = styled.div`
 	height: 45px;
    }
 
-   @media screen and (max-width: 960px){
+   @media screen and (max-width: 480px){
 		position: absolute;
 		margin-left: 130%;
 		margin-bottom: 300%;

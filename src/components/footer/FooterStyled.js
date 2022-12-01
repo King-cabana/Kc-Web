@@ -28,6 +28,7 @@ export const FooterBody = styled.div`
         justify-items: center;
         align-content: center;
         text-align: center;
+        padding: 2%;
     }
 
 `
@@ -35,11 +36,11 @@ export const FooterBody = styled.div`
 export const FooterContent = styled.div`
     display:flex;
     justify-content:space-between;
-    width:82vw;
+    width:100%;
     height:35vh;
 
     
-    @media screen and (min-width: 320px)and (max-width: 480px){
+    @media screen and (max-width: 480px){
         display: flex;
         flex-direction: column;
         width:fit-content;
@@ -53,10 +54,10 @@ export const FooterContent = styled.div`
     }
 
     @media screen and (min-width: 481px)and (max-width: 960px){
-        flex-direction: column;
-        width:fit-content;
+        /* flex-direction: column; */
+        width:100%;
         height:fit-content;
-        justify-content: center;
+        justify-content: space-between;
         align-items: center;
         justify-items: center;
         align-content: center;
@@ -95,8 +96,11 @@ export const FooterInner = styled.div`
     }
 
     @media screen and (min-width: 481px) and (max-width: 960px){
-       width: inherit;
+       width: fit-content;
        height: fit-content;
+       text-align: left;
+       padding: 1%;
+       line-height: 1.5em;
     }
 
 
@@ -163,10 +167,12 @@ export const FooterLinksHolder = styled.div`
         margin-top: 5%;
     }
 
-    @media screen and (max-width: 481px) and (max-width: 960px){
-        width: inherit;
-        margin-top: 5%;
-        height: fit-content;
+    @media screen and (min-width: 481px) and (max-width: 960px){
+        padding-top: 3vh;
+        text-align: left;
+        padding-left: 2%;
+
+
     }
 `
 
@@ -176,11 +182,17 @@ export const EventButtonHolder = styled.div`
     padding-top:3%;
     line-height:4em;
 
-    @media screen and (max-width: 960px){
+    @media screen and (max-width: 480px){
        width: fit-content;
        margin-right: 10%;
-       
-    
+    }
+
+    @media screen and (min-width: 481px) and (max-width: 960px){
+       width: 25%;
+       justify-content: center;
+       align-items: flex-end;
+       display: flex;
+       flex-direction: column;
     }
 `
 export const EventButton = styled.button`
@@ -215,11 +227,11 @@ export const EventButton = styled.button`
 `
 
 export const FooterLine = styled.hr`
-        width:82vw;
+        width:100vw;
         border:1px solid white;
         background:white;
-        margin-right:auto;        
-
+        margin-right:auto;    
+        
 `
 
 export const BottomLogo = styled.div`
@@ -227,12 +239,16 @@ export const BottomLogo = styled.div`
         align-items:center;
         margin-top:1%;
         display:flex;
-        /* margin-left:5%; */
-        width:12vw;
+        width:20vw;
         height:10vh;
         justify-content:space-between;
 
-        @media screen and (max-width: 960px){
+        @media screen and (max-width: 480px){
             width:40vw;  
         }
+
+        @media screen and(min-width: 481px) and (max-width: 960px){
+            width:40vw;  
+        }
+
 `
