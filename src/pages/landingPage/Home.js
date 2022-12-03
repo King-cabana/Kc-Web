@@ -10,7 +10,7 @@ import {
   CardHolder, HeaderFont, ImageDisplayOverlay,ImageDisplayOverlayB,
 } from '../../globalStyles'
 import Footer from '../../components/footer/Footer'
-import { NavButton } from '../../components/navbar/Navbar.styled'
+import { NavButton, NavButtonLink } from '../../components/navbar/Navbar.styled'
 import Navbar from '../../components/navbar/Navbar'
 import { Typewriter } from 'react-simple-typewriter'
 import Img from '../../images/Business.jpg'
@@ -21,6 +21,13 @@ import Bulb from '../../images/Frame 21613bulb.svg'
 import Speaker from '../../images/speaker.svg'
 import Subscribe from '../../images/computer.jpg'
 import Testimonial from '../../components/testimonials/Testimonial'
+import Food from '../../images/Food.jpg'
+import Business from '../../images/BusinessB.jpg'
+import Art from '../../images/Arts.jpg'
+import Weddings from '../../images/Wedding.jpg'
+import Concert from '../../images/Concert.jpg'
+import Sports from '../../images/Sport.jpg'
+
 
 
 
@@ -52,9 +59,14 @@ const Home = () => {
             </h1>
             <BodyFont>Connecting People | Creating Memories | 
               Capturing Value</BodyFont>
+            
             <BtnHolder>
+              <NavButtonLink to="/waitlist"> 
               <EventButton>Create Event</EventButton>
+              </NavButtonLink>
+              <NavButtonLink to="/waitlist"> 
               <EventButton style={{ background: 'transparent', border: '1.5px solid #FF2957' }}>Sponsor Events</EventButton>
+              </NavButtonLink>
             </BtnHolder>
           </ContentHolder>
         </BgOverlay>
@@ -69,27 +81,29 @@ const Home = () => {
 
         }}>Explore the most trending</BodyFont>
         <CardHolder>
-          <EventCard img={Img}>
+          <EventCard img={Business}>
             <ImageDisplayOverlay>Business</ImageDisplayOverlay>
           </EventCard>
-          <EventCard img={Img}>
+          <EventCard img={Weddings}>
             <ImageDisplayOverlay>Weddings</ImageDisplayOverlay>
           </EventCard>
-          <EventCard img={Img}>
+          <EventCard img={Concert}>
             <ImageDisplayOverlay>Concert/Parties</ImageDisplayOverlay>
           </EventCard>
-          <EventCard img={Img}>
+          <EventCard img={Sports}>
             <ImageDisplayOverlay>Sports & Fitness</ImageDisplayOverlay>
           </EventCard>
-          <EventCard img={Img}>
+          <EventCard img={Art}>
             <ImageDisplayOverlay>Art Exhibition</ImageDisplayOverlay>
           </EventCard>
-          <EventCard img={Img}>
+          <EventCard img={Food}>
             <ImageDisplayOverlay>Food & Drinks</ImageDisplayOverlay>
           </EventCard>
         </CardHolder>
         <NavButtonHolder>
+        <NavButtonLink to="/waitlist">
           <NavButton style={{backgroundColor:'transparent',color: 'black', border: '1.5px solid #FF2957' }}>Explore More</NavButton>
+        </NavButtonLink>
         </NavButtonHolder>
       </ContentSection>
 
@@ -103,7 +117,9 @@ const Home = () => {
           <BodyFont style={{marginTop:'10%', marginBottom:'8%'
             }}>Publicize your events and business here and experience potential 
             customers seek you out in record time.</BodyFont>
+          <NavButtonLink to="/waitlist"> 
           <EventButton style={{marginTop:'4%'}}>Get in touch</EventButton>
+          </NavButtonLink>
           </ASContentInner>
         </ASContent>
         <ASImage img={Img}/>
@@ -128,12 +144,16 @@ const Home = () => {
           </SponsorCard>
         </SponsorSectionInner>           
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width:'100vw' }}>
+        <NavButtonLink to="/waitlist"> 
         <NavButton>Get Started</NavButton>
+        </NavButtonLink>
         </div>
       </SponsorSection>
 
       <TestimonialSection>
-        <HeaderFont style={{marginBottom:'3%', textAlign:'center', fontSize:'24px', fontWeight:'600', color:'#484848'}}>Testimonials</HeaderFont>
+        <HeaderFont style={{marginBottom:'3%', textAlign:'center', fontSize:'24px', 
+                            fontWeight:'600', color:'#484848'
+                            }}>Testimonials</HeaderFont>
         <Testimonial/>
       </TestimonialSection>
       
@@ -144,7 +164,9 @@ const Home = () => {
           <div style={{width:'inherit', justifyContent:'flex-start'}}>
           <HeaderFont>Ready to be sponsored? .</HeaderFont>
           <BodyFont>Enter your email with King Cabana now!</BodyFont>
+          <NavButtonLink to="/waitlist">
           <NavButton>Get Started</NavButton>
+          </NavButtonLink>
           </div>
         </ASContent>
       </ReadySection>

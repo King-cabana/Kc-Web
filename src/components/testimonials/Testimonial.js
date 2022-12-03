@@ -21,7 +21,7 @@ const Testimonial = () => {
       navigation
       effect={"coverflow"}
       centeredSlides={true}
-      slidesPerView={window.innerWidth < 768 ? 1 : 'auto'}
+      slidesPerView={window.innerWidth < 768 ? 1 : "auto"}
       loop={true}
       autoplay={{delay:1500}}
       coverflowEffect={{
@@ -76,6 +76,15 @@ export const SwiperSlideInner = styled.div`
   flex-direction:column;
   justify-content:center;
   align-items:center;
+
+  @media screen and (min-width: 1600px) and (max-width: 1920px){
+
+    width:380px;
+    height:380px;
+    /* width:400vw;
+    height:400px; */
+    
+  }
 
 `
 

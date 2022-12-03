@@ -102,9 +102,11 @@ export const BtnHolder = styled.div`
         width: max-content;
         flex-direction: column;
         justify-content: center;
-        align-content: center;
-        justify-items: center ;
+        align-content: center !important;
+        justify-items: center !important ;
+        margin: auto;
         
+
         
         
     }
@@ -128,8 +130,8 @@ export const EventButton = styled.button`
 
         @media screen and (max-width: 960px){
             width: 40vw;
-            /* margin-bottom: 10%; */
-            margin: 7% 55%;
+            margin-bottom: 10%;
+            
            
         }
     
@@ -311,8 +313,8 @@ export const ASContentInner = styled.div`
     @media screen and (max-width: 480px){
         display: flex;
         flex-direction: column;
-        align-items: center;
-        justify-content:center;
+        align-items: center !important;
+        justify-content:center !important;
         padding: 4%;
 
         h4{
@@ -472,7 +474,6 @@ export const SponsorCard = styled.div`
     }
     @media screen and (min-width: 481px)and (max-width: 960px){
         width: 80vw;
-        height: 15vh;
         margin-bottom: 5%;
         padding: 2%;
     }
@@ -494,7 +495,7 @@ export const NavButtonHolder = styled.div`
 
 export const TestimonialSection = styled.div`
     width: 100%;
-    height: 100vh;
+    height: max-content;
     padding: 4% 8%;
     justify-content: space-between;
     align-items: center;

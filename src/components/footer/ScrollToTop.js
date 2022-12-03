@@ -39,7 +39,7 @@ const TopButton = styled.div`
    font-size: 3rem;
    cursor: pointer;
    color: white;
-   margin-top: 13%;
+   margin-top: 5%;
 
    svg{
 	width: 45px;
@@ -49,9 +49,7 @@ const TopButton = styled.div`
    @media screen and (max-width: 480px){
 		position: absolute;
 		margin-left: 130%;
-		margin-bottom: 300%;
-		
-		
+		margin-bottom: 350%;
 
    }
 `
