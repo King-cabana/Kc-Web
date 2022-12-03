@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/landingPage/Home";
+import AboutUs from "./pages/aboutUs/AboutUs";
 import NoPage from "./pages/noPage/NoPage";
 import GoToTop from "./GoToTop";
 import "./App.css";
@@ -16,7 +17,7 @@ function App() {
         {/* <Route path="/sponsors" element={<Sponsors />} /> */}
         {/* <Route path="/organizers" element={<Organizers />} /> */}
         {/* <Route path="/contactUs" element={<ContactUs />} /> */}
-        {/* <Route path="/aboutUs" element={<AboutUs />} /> */}
+        <Route path="/aboutUs" element={<AboutUs />} />
         {/* <Route path="/logIn" element={<SignIn />} /> */}
         {/* <Route path="/forgotPassword" element={<ForgotPassword />} />
           <Route path="/resetPassword" element={<ResetPassword />} />

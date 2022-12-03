@@ -12,6 +12,7 @@ export const HeroSection = styled.div`
 
   @media screen and (max-width: 960px) {
     background-size: cover;
+    background-position: right;
   }
 `;
 

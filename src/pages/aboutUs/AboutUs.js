@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "../../components/navbar/Navbar";
 import Footer from "../../components/footer/Footer";
 import {
@@ -31,7 +30,7 @@ const AboutUs = () => {
   const [state, setState] = useState(1);
 
   useEffect(() => {
-    const interval = setInterval(() => {
+    setTimeout(() => {
       if (state === 1) {
         setState(2);
       } else if (state === 2) {
@@ -39,9 +38,9 @@ const AboutUs = () => {
       } else {
         setState(1);
       }
-    }, 5000);
-    // return () => clearInterval(interval);
-  }, []);
+    }, 2000);
+    return clearInterval();
+  }, [state]);
 
   return (
     <>
@@ -136,21 +135,22 @@ const AboutUs = () => {
 
       <VisionSectionContainer>
         <VisionSectionContent>
-          <img src={bulb} alt="" />
+          <img className="bulb" src={bulb} alt="" />
           <section>
-            <h3>Our Vision</h3>
-            <p>Mark Milestones</p>
+            <h3 className="visionH3">Our Vision</h3>
+            <p className="vision">Mark Milestones</p>
           </section>
         </VisionSectionContent>
+
         <VisionSectionContent>
-          <section>
-            <h3>Our Mission</h3>
+          <section className="missionComp">
+            <h3 className="missionH3">Our Mission</h3>
             <p className="mission">
               To be Africa's event intelligence system, enabling event
               stakeholders to achieve set goals.
             </p>
           </section>
-          <img src={skyscrapper} alt="" />
+          <img className="skyscrapper" src={skyscrapper} alt="" />
         </VisionSectionContent>
       </VisionSectionContainer>
 
@@ -171,16 +171,3 @@ const AboutUs = () => {
 };
 
 export default AboutUs;
-=======
-import React from 'react'
-
-const AboutUs = () => {
-  return (
-    <div>
-        <h1>Josiah</h1>
-    </div>
-  )
-}
-
-export default AboutUs
->>>>>>> 7c163be40e987619518f65372e1d5b47c936dee2
