@@ -23,6 +23,7 @@ export const ContentHolder = styled.div`
   line-height: 1.2;
   align-items: center;
   transition: 0.5s all;
+
   h1 {
     color: #ffffff;
     font-weight: 400;
@@ -30,7 +31,6 @@ export const ContentHolder = styled.div`
     line-height: 137.5%;
     color: #ffffff;
   }
-
   .subheading {
     color: #ffffff;
     font-size: 24px;
@@ -39,7 +39,6 @@ export const ContentHolder = styled.div`
     padding-top: 2%;
     margin-bottom: 24px;
   }
-
   .typewriter {
     color: #ffbc15;
     font-weight: 800;
@@ -47,13 +46,13 @@ export const ContentHolder = styled.div`
     line-height: 68.24px;
     margin-bottom: 5rem;
   }
+
   @media screen and (max-width: 663px) {
     padding-top: 10rem;
     h1 {
       font-size: 30px;
     }
   }
-
   @media screen and (max-width: 556px) {
     h1 {
       font-size: 20px;
@@ -66,7 +65,6 @@ export const ContentHolder = styled.div`
       line-height: 50px;
     }
   }
-
   @media screen and (max-width: 425px) {
     padding-top: 8rem;
     h1 {
@@ -136,6 +134,7 @@ export const StorySectionContainer = styled.div`
 
 export const StorySectionContent = styled.div`
   height: auto;
+
   h2 {
     font-weight: 600;
     font-size: 40px;
@@ -144,7 +143,6 @@ export const StorySectionContent = styled.div`
     color: #484848;
     margin-bottom: 24px;
   }
-
   p {
     font-weight: 400;
     font-size: 20px;
@@ -179,7 +177,7 @@ export const StorySectionContent = styled.div`
 `;
 
 export const AllAboutSectionContainer = styled.div`
-  padding: 4rem;
+  padding: 3rem;
   width: 100%;
   height: 100%;
   background: rgba(210, 206, 220, 0.2);
@@ -195,11 +193,9 @@ export const AllAboutSectionContainer = styled.div`
     @media screen and (max-width: 1300px) {
       font-size: 26px;
     }
-
     @media screen and (max-width: 1300px) {
       font-size: 22px;
     }
-
     @media screen and (max-width: 630px) {
       font-size: 20px;
     }
@@ -210,7 +206,6 @@ export const AllAboutSectionContainer = styled.div`
       font-size: 12px;
     }
   }
-
   @media screen and (max-width: 630px) {
     padding: 1rem;
   }
@@ -223,6 +218,11 @@ export const AllAboutInfo = styled.div`
 
   @media screen and (max-width: 960px) {
     flex-direction: column;
+    padding: 0 3rem;
+  }
+  @media screen and (max-width: 400px) {
+    flex-direction: column;
+    padding: 0;
   }
 `;
 
@@ -230,7 +230,6 @@ export const AllAboutSectionContent = styled.div`
   color: #484848;
   width: 100%;
   height: 100%;
-  /* transition: 0.5s color; */
 
   .switch {
     display: flex;
@@ -238,16 +237,15 @@ export const AllAboutSectionContent = styled.div`
     flex-direction: column;
     padding: 10px 3em;
     margin-bottom: 2rem;
-    width: 100%;
+    width: 80%;
 
-    @media screen and (max-width: 630px) {
-      margin-bottom: 1rem;
+    @media screen and (max-width: 960px) {
+      width: 100%;
+      padding: 5px 1rem;
     }
-
     @media screen and (max-width: 630px) {
       padding: 5px 1em;
     }
-
     @media screen and (max-width: 282px) {
       padding: 2px 1em;
     }
@@ -262,6 +260,33 @@ export const AllAboutSectionContent = styled.div`
       transition: ease-in-out all 0.2s;
     }
   }
+  img {
+    display: none;
+  }
+  .change {
+    @media screen and (max-width: 960px) {
+      display: flex;
+      width: 45%;
+      height: 40%;
+      margin-left: 10rem;
+      border-radius: 32px;
+      box-shadow: -20px 20px 0.5px #f6e9ec;
+      margin-bottom: 3rem;
+    }
+    @media screen and (max-width: 768px) {
+      margin-left: 8rem;
+    }
+    @media screen and (max-width: 520px) {
+      margin-left: 6rem;
+    }
+    @media screen and (max-width: 390px) {
+      margin-left: 4rem;
+      box-shadow: -10px 10px 0.5px #f6e9ec;
+    }
+    @media screen and (max-width: 300px) {
+      margin-left: 2rem;
+    }
+  }
   h3 {
     width: 100%;
     height: 100%;
@@ -272,13 +297,12 @@ export const AllAboutSectionContent = styled.div`
     @media screen and (max-width: 1300px) {
       font-size: 24px;
     }
-
     @media screen and (max-width: 960px) {
       font-size: 18px;
     }
   }
   p {
-    width: 70%;
+    width: 100%;
     height: 100%;
     font-weight: 400;
     font-size: 20px;
@@ -286,9 +310,8 @@ export const AllAboutSectionContent = styled.div`
     @media screen and (max-width: 1300px) {
       font-size: 16px;
     }
-
-    @media screen and (max-width: 1100px) {
-      width: 100%;
+    @media screen and (max-width: 960px) {
+      font-size: 18px;
     }
     @media screen and (max-width: 520px) {
       font-size: 12px;
@@ -300,40 +323,39 @@ export const AllAboutSectionContent = styled.div`
 `;
 
 export const AllAboutImages = styled.div`
-  padding-right: 4rem;
+  margin-right: 7em;
 
+  @media screen and (max-width: 1100px) {
+    margin-right: 1em;
+  }
   @media screen and (max-width: 960px) {
     padding-right: 5rem;
     padding-left: 5rem;
     padding-top: 2rem;
     padding-bottom: 3rem;
   }
-
   @media screen and (max-width: 550px) {
     padding: 1em;
   }
 
   img {
-    width: 600px;
-    height: 450px;
+    display: none;
+  }
+  .next {
+    display: flex;
+    width: 800px;
+    height: 500px;
     border-radius: 32px;
     box-shadow: -40px 40px 0.5px #f6e9ec;
     margin-bottom: 7rem;
 
     @media screen and (max-width: 1330px) {
-      width: 80%;
-      height: 80%;
+      width: 100%;
+      height: 100%;
       margin-left: 2rem;
     }
     @media screen and (max-width: 960px) {
-      width: 80%;
-      height: 80%;
-      margin-left: 2rem;
-    }
-
-    @media screen and (max-width: 550px) {
-      box-shadow: -10px 10px 0.5px #f6e9ec;
-      margin-bottom: 2rem;
+      display: none;
     }
   }
 `;
@@ -362,7 +384,6 @@ export const PromiseSectionContent = styled.div`
     color: #484848;
     margin-bottom: 42px;
   }
-
   p {
     font-weight: 400;
     font-size: 20px;
@@ -372,6 +393,7 @@ export const PromiseSectionContent = styled.div`
     width: 100%;
     height: 100%;
   }
+
   @media screen and (max-width: 512px) {
     h2 {
       font-size: 24px;
@@ -380,7 +402,6 @@ export const PromiseSectionContent = styled.div`
       font-size: 16px;
     }
   }
-
   @media screen and (max-width: 282px) {
     h2 {
       font-size: 24px;
@@ -401,7 +422,6 @@ export const VisionSectionContainer = styled.div`
   @media screen and (max-width: 1300px) {
     padding: 4rem 9rem;
   }
-
   @media screen and (max-width: 960px) {
     padding: 2rem 0;
   }
@@ -427,7 +447,6 @@ export const VisionSectionContent = styled.div`
       width: 40%;
       height: 40%;
     }
-
     @media screen and (max-width: 960px) {
       width: 50%;
       height: 50%;
@@ -470,7 +489,6 @@ export const VisionSectionContent = styled.div`
       margin-top: 16px;
       text-align: center;
     }
-
     @media screen and (max-width: 333px) {
       font-size: 16px;
     }
@@ -487,7 +505,6 @@ export const VisionSectionContent = styled.div`
       margin-bottom: 16px;
       text-align: center;
     }
-
     @media screen and (max-width: 333px) {
       font-size: 12px;
       margin-bottom: 8px;
@@ -574,7 +591,6 @@ export const InfoButton = styled.button`
   background: #ff2957;
   border-radius: 8px;
   border: none;
-
   font-weight: 600;
   font-size: 16px;
   line-height: 18px;

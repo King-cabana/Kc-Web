@@ -19,10 +19,11 @@ import {
   InfoSectionContainer,
   InfoSectionContent,
   InfoButton,
-  Item,
 } from "./AboutUsStyled";
 import { Typewriter } from "react-simple-typewriter";
 import community from "../../images/community.png";
+import meeting from "../../images/meeting.png";
+import party from "../../images/party.png";
 import bulb from "../../images/bulb.png";
 import skyscrapper from "../../images/skyscrapper.png";
 
@@ -72,7 +73,6 @@ const AboutUs = () => {
           </BtnHolder>
         </ContentHolder>
       </HeroSection>
-
       <StorySectionContainer>
         <StorySectionContent>
           <h2>Our Story</h2>
@@ -87,7 +87,6 @@ const AboutUs = () => {
           </p>
         </StorySectionContent>
       </StorySectionContainer>
-
       <AllAboutSectionContainer>
         <h2>At King Cabana, we are all about;</h2>
         <AllAboutInfo>
@@ -99,6 +98,11 @@ const AboutUs = () => {
                 humanity. A society where everyone has a sense of belonging.
               </p>
             </section>
+            <img
+              src={community}
+              className={` ${state === 1 && "change"}`}
+              alt="community"
+            />
             <section className={`switch ${state === 2 && "active"}`}>
               <h3>Capturing Value</h3>
               <p>
@@ -107,6 +111,11 @@ const AboutUs = () => {
                 the end that value is created and sustained.
               </p>
             </section>
+            <img
+              src={meeting}
+              alt="meeting"
+              className={` ${state === 2 && "change"}`}
+            />
             <section className={`switch ${state === 3 && "active"}`}>
               <h3>Fulfilling Memories</h3>
               <p>
@@ -116,9 +125,28 @@ const AboutUs = () => {
                 reflect the present and shape future outcomes.
               </p>
             </section>
+            <img
+              src={party}
+              alt="party"
+              className={` ${state === 3 && "change"}`}
+            />
           </AllAboutSectionContent>
           <AllAboutImages>
-            <img src={community} />
+            <img
+              src={community}
+              className={` ${state === 1 && "next"}`}
+              alt="community"
+            />
+            <img
+              src={meeting}
+              className={` ${state === 2 && "next"}`}
+              alt="meeting"
+            />
+            <img
+              src={party}
+              className={` ${state === 3 && "next"}`}
+              alt="party"
+            />
           </AllAboutImages>
         </AllAboutInfo>
       </AllAboutSectionContainer>
@@ -132,7 +160,6 @@ const AboutUs = () => {
           </p>
         </PromiseSectionContent>
       </PromiseSectionContainer>
-
       <VisionSectionContainer>
         <VisionSectionContent>
           <img className="bulb" src={bulb} alt="" />
@@ -153,7 +180,6 @@ const AboutUs = () => {
           <img className="skyscrapper" src={skyscrapper} alt="" />
         </VisionSectionContent>
       </VisionSectionContainer>
-
       <InfoSectionContainer>
         <InfoSectionContent>
           <h2>Excited as we are to explore?</h2>
@@ -164,7 +190,6 @@ const AboutUs = () => {
           <InfoButton>Get early access</InfoButton>
         </InfoSectionContent>
       </InfoSectionContainer>
-
       <Footer />
     </>
   );
