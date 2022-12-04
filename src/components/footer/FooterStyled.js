@@ -37,7 +37,7 @@ export const FooterContent = styled.div`
     display:flex;
     justify-content:space-between;
     width:100%;
-    height:35vh;
+    height:fit-content;
 
     
     @media screen and (max-width: 480px){
@@ -136,11 +136,11 @@ export const SocialIcon = styled.a`
         display:flex;
         justify-content:center;
         align-content:center;
-        /* background-color: rgba(255,255,255, 0.3); */
+        background-color: rgba(255,255,255, 0.2);
     }
 
     img{
-        /* filter:invert(100%) sepia(100%) saturate(0%) hue-rotate(95deg) brightness(103%) contrast(105%); */
+        filter:invert(100%) sepia(100%) saturate(0%) hue-rotate(95deg) brightness(150%) contrast(105%);
         width:20px;
         height:15px;
         margin:auto;
@@ -151,15 +151,18 @@ export const FooterLinksHolder = styled.div`
     color:white;
     width:20vw;
     height:20vh;
+   
 
     p{
-        font-size:20px;
-        font-weight:500;
+        font-size:14px;
+        color: #E2DFD2;
+        margin-bottom: 5%;
     }
     ul{
         list-style:none;
         line-height:2em;
         font-size:14px;
+        cursor: pointer;
     }
 
     @media screen and (max-width: 480px){
@@ -179,8 +182,7 @@ export const FooterLinksHolder = styled.div`
 export const EventButtonHolder = styled.div`
     width:15vw;
     height:20vh;
-    padding-top:3%;
-    line-height:4em;
+    
 
     @media screen and (max-width: 480px){
        width: fit-content;
@@ -193,18 +195,25 @@ export const EventButtonHolder = styled.div`
        align-items: flex-end;
        display: flex;
        flex-direction: column;
+
+       p{
+        align-self: flex-start;
+    }
     }
 `
 export const EventButton = styled.button`
-        height: 8vh;
-        width: 11vw;
+        height: 6vh;
+        width: 8vw;
         border: 1.5px none;
-        border-radius: 3px;
+        border-radius: 6px;
         background-color: #FF2957;
         color: white;
         cursor: pointer;
-        font-weight: 600;
+        font-weight: 500;
         display: inline-block;
+        margin-top: 3%;
+        margin-bottom: 3%;
+        font-size: 12px;
       
 
         img{
@@ -228,27 +237,40 @@ export const EventButton = styled.button`
 
 export const FooterLine = styled.hr`
         width:100vw;
-        border:1px solid white;
-        background:white;
-        margin-right:auto;    
+        margin-right:auto; 
+        margin-left: auto;
+        border-width: 0.5px; 
+        border-color: white;
+        margin-top: 2%;
+        margin-bottom: 1%;
+
+        @media screen and (max-width: 480px) {
+            margin-top: 6%;
+            
+        }
         
 `
 
 export const BottomLogo = styled.div`
         color:white;
         align-items:center;
-        margin-top:1%;
+        /* margin-top:1%; */
         display:flex;
-        width:20vw;
-        height:10vh;
+        width:15%;
+        height:5vh;
         justify-content:space-between;
+        margin: auto;
 
         @media screen and (max-width: 480px){
             width:40vw;  
         }
 
         @media screen and(min-width: 481px) and (max-width: 960px){
-            width:40vw;  
+            width:20vw;  
+        }
+        @media screen and (min-width:1281px){
+            width: 10%;
+            
         }
 
 `

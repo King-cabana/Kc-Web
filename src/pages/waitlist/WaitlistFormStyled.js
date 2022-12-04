@@ -20,8 +20,12 @@ export const WaitListBody = styled.div`
     @media screen and (max-width: 960px) {
 
         height: 90vh;
-        width: 85vw;
+        width: 90%;
         border-radius: 3px;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        flex-direction: column;
         
 
         /* h3,p{

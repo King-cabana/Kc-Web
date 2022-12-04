@@ -27,7 +27,7 @@ export const NPInner = styled.div`
         font-size: 20px;
     }
 
-    @media screen and (max-width: 960px){
+    @media screen and (max-width: 480px){
             margin-top: 30%;
             
             p{
@@ -35,4 +35,10 @@ export const NPInner = styled.div`
             }
            
         }
+
+    @media screen and (min-width: 481px) and (max-width: 960px){
+            margin-top: 20%;
+            
+           
+        }    
 `

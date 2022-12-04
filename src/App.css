@@ -21,6 +21,15 @@
   display: none;
 }
 
+/* .swiper-container {
+  width: 95%;
+  height: auto;
+} */
+/* .swiper {
+  height:auto !important;
+  width:100%
+} */
+
 .swiperSlide {
   width: 380px;
   height: 380px;

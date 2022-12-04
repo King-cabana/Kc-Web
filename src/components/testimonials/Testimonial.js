@@ -90,6 +90,13 @@ export const SwiperSlideInner = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  @media screen and (min-width: 1600px) and (max-width: 1920px) {
+    width: 380px;
+    height: 380px;
+    /* width:400vw;
+    height:400px; */
+  }
 `;
 
 export default Testimonial;

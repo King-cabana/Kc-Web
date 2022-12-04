@@ -62,7 +62,7 @@ export const SignInLink = styled(Link)`
     text-decoration: none;
     display: block;
     text-align: center;
-    margin-top: 5%;
+    margin-top: 2%;
     
     span{
         text-decoration: underline;
@@ -138,7 +138,7 @@ export const CardHolder = styled.div`
     
     @media screen and (max-width: 960px) {
         display: block;
-        padding-left: 5% ;
+        /* padding-left: 5% ; */
         row-gap: 2%;
         }
 `
@@ -212,7 +212,8 @@ export const ImageDisplay = styled.div`
 export const ImageDisplayOverlay = styled.div`
     width:inherit;
     height:inherit;
-    background:rgba(58, 45, 28, 0.6);
+    /* background:rgba(58, 45, 28, 0.6); */
+    background:  rgba(9, 12, 255, 0.3);
     border-radius:7px;
     display: flex;
     align-items: center;

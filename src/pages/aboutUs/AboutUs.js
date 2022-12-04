@@ -56,9 +56,9 @@ const AboutUs = () => {
           >
             <Typewriter
               words={[
-                "Create Memories",
-                "Secure Sponsorships",
-                "Assess Target Markets",
+                "Connecting People",
+                "Capturing Value",
+                "Fulfilling Memories",
               ]}
               loop={Infinity}
               cursor

@@ -192,7 +192,7 @@ export const NavButton = styled.button`
 `;
 
 export const AccessButton = styled(NavButton)`
-  width: 12vw;
+  width: 14vw;
   background-color: #ff2957;
   color: white;
   font-weight: 600;
