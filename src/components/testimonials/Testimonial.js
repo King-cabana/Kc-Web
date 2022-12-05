@@ -1,17 +1,22 @@
-import React from 'react'
-import {Swiper, SwiperSlide} from 'swiper/react'
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-import 'swiper/css/scrollbar';
-import 'swiper/css/autoplay'
-import SwipeCore, {EffectCoverflow, Pagination, Navigation, Autoplay} from "swiper/core"
-import Condueet from '../../images/Condueet_ImgID1.png'
-import Onhova from '../../images/Onhova_ImgID1.png'
-import StoryBay from '../../images/Storybay_ImgID1.png'
-import styled from 'styled-components';
+import React from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/scrollbar";
+import "swiper/css/autoplay";
+import SwipeCore, {
+  EffectCoverflow,
+  Pagination,
+  Navigation,
+  Autoplay,
+} from "swiper/core";
+import Condueet from "../../images/Condueet_ImgID1.png";
+import Onhova from "../../images/Onhova_ImgID1.png";
+import StoryBay from "../../images/Storybay_ImgID1.png";
+import styled from "styled-components";
 
-SwipeCore.use([EffectCoverflow,Pagination,Navigation, Autoplay])
+SwipeCore.use([EffectCoverflow, Pagination, Navigation, Autoplay]);
 
 const Testimonial = () => {
   return (
@@ -23,7 +28,7 @@ const Testimonial = () => {
       centeredSlides={true}
       slidesPerView={window.innerWidth < 768 ? 1 : "auto"}
       loop={true}
-      autoplay={{delay:1500}}
+      autoplay={{ delay: 1500 }}
       coverflowEffect={{
         rotate: 1,
         stretch: -42,
@@ -32,60 +37,66 @@ const Testimonial = () => {
         slideShadows: false,
       }}
     >
-      <SwiperSlide className='swiperSlide'>
+      <SwiperSlide className="swiperSlide">
         <SwiperSlideInner>
-            <img style={{width:'150px', height:'40px'}} src={Condueet} alt=''/>
-            <p style={{marginTop:'10%'}}>I will always give a thumbs up to King Cabana for their top-notch 
-                organization and sponsor matching. They are professionals indeed 
-                and always a delight to work with.
-            </p>
+          <img
+            style={{ width: "150px", height: "40px" }}
+            src={Condueet}
+            alt=""
+          />
+          <p style={{ marginTop: "10%" }}>
+            I will always give a thumbs up to King Cabana for their top-notch
+            organization and sponsor matching. They are professionals indeed and
+            always a delight to work with.
+          </p>
         </SwiperSlideInner>
       </SwiperSlide>
-      <SwiperSlide className='swiperSlide'>
-      <SwiperSlideInner>
-            <img style={{width:'150px', height:'50px'}}src={Onhova} alt=''/>
-            <p style={{marginTop:'10%'}}>I will always give a thumbs up to King Cabana for their top-notch 
-                organization and sponsor matching. They are professionals indeed 
-                and always a delight to work with.
-            </p>
+      <SwiperSlide className="swiperSlide">
+        <SwiperSlideInner>
+          <img style={{ width: "150px", height: "50px" }} src={Onhova} alt="" />
+          <p style={{ marginTop: "10%" }}>
+            I will always give a thumbs up to King Cabana for their top-notch
+            organization and sponsor matching. They are professionals indeed and
+            always a delight to work with.
+          </p>
         </SwiperSlideInner>
       </SwiperSlide>
-      <SwiperSlide className='swiperSlide'>
-      <SwiperSlideInner>
-            <img style={{width:'150px', height:'80px'}} src={StoryBay} alt=''/>
-            <p style={{marginTop:'10%'}}>I will always give a thumbs up to King Cabana for their top-notch 
-                organization and sponsor matching. They are professionals indeed 
-                and always a delight to work with.
-            </p>
+      <SwiperSlide className="swiperSlide">
+        <SwiperSlideInner>
+          <img
+            style={{ width: "150px", height: "80px" }}
+            src={StoryBay}
+            alt=""
+          />
+          <p style={{ marginTop: "10%" }}>
+            I will always give a thumbs up to King Cabana for their top-notch
+            organization and sponsor matching. They are professionals indeed and
+            always a delight to work with.
+          </p>
         </SwiperSlideInner>
       </SwiperSlide>
-     
     </Swiper>
-
-  )
-}
+  );
+};
 
 export const SwiperSlideInner = styled.div`
-  width:380px;
-  height:380px;
-  border-radius:5px;
-  background-color:white;
-  text-align:center;
-  padding:5%;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
+  width: 380px;
+  height: 380px;
+  border-radius: 5px;
+  background-color: white;
+  text-align: center;
+  padding: 5%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
-  @media screen and (min-width: 1600px) and (max-width: 1920px){
-
-    width:380px;
-    height:380px;
+  @media screen and (min-width: 1600px) and (max-width: 1920px) {
+    width: 380px;
+    height: 380px;
     /* width:400vw;
     height:400px; */
-    
   }
+`;
 
-`
-
-export default Testimonial
+export default Testimonial;
