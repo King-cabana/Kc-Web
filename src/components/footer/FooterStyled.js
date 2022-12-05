@@ -186,11 +186,12 @@ export const EventButtonHolder = styled.div`
 
     @media screen and (max-width: 480px){
        width: fit-content;
-       margin-right: 10%;
+       justify-content: center;
+       align-items: center;
     }
 
     @media screen and (min-width: 481px) and (max-width: 960px){
-       width: 25%;
+       width: 22%;
        justify-content: center;
        align-items: flex-end;
        display: flex;
@@ -224,15 +225,24 @@ export const EventButton = styled.button`
             margin:auto;
         }
     
-        @media screen and (max-width: 960px){
-            padding: 1em 2.1em 1.1em;
+        @media screen and (max-width: 480px){
+            padding: 1em;
             object-fit: contain;
             display: flex;
             margin: 6%;
-            height: 8vh;
-            line-height: 5vh;
-            width: 40vw;
+            height: 7vh;
+            line-height: 4vh;
+            width: 30vw;
         }
+
+        @media screen and (min-width:481px) and (max-width: 960px){
+            width: 20vw;
+            align-self: start;
+        }
+
+
+
+
 `
 
 export const FooterLine = styled.hr`
