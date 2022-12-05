@@ -3,19 +3,40 @@ import { Link } from 'react-router-dom'
 import people from "./images/people.jpg"
 import computer from "./images/computer.jpg"
 
+
+//root & global styling
 const GlobalStyle = createGlobalStyle`
 *, body, html {
     box-sizing: border-box;
     margin: 0;
     padding: 0 ;
     font-family: 'Poppins', sans-serif;
-    
+    max-width: 100%;
+
 }
 `
 
-export const ModalOverlay = styled.div`
+//Fonts
+export const HeaderFont = styled.h4`
+    font-size: 26px;
+`
 
-    width: 100vw;
+export const BodyFont = styled.p`
+    font-size: 16px;
+`
+
+
+//Buttons
+export const PrimaryButtons = styled.button`
+
+`
+
+export const AlternativeButtons = styled.button`
+
+`
+
+export const ModalOverlay = styled.div`
+    width: 100%;
     height: 100vh;
     background: rgba(49,49,49,0.8);
     position: fixed;
@@ -41,7 +62,7 @@ export const SignInLink = styled(Link)`
     text-decoration: none;
     display: block;
     text-align: center;
-    margin-top: 5%;
+    margin-top: 2%;
     
     span{
         text-decoration: underline;
@@ -65,11 +86,10 @@ export const Form = styled.form`
     border-radius: 4px;
     padding: 3%;
     border: transparent;
+    font-size: 10px;
+    opacity: 50%;
 
     }
-
-
-
 `
 
 export const InputFieldWrapper = styled.div`
@@ -86,6 +106,8 @@ export const InputFieldWrapper = styled.div`
         outline: transparent;
         padding: 3%;
         background-color: transparent;
+        font-size: 10px;
+        opacity: 50%;
     }
 
     @media screen and (max-width: 960px){
@@ -115,10 +137,8 @@ export const CardHolder = styled.div`
     gap:3% 1%;
     
     @media screen and (max-width: 960px) {
-        /* display: inline-block; */
         display: block;
-        /* margin-left:2%; */
-        padding-left: 4% ;
+        /* padding-left: 5% ; */
         row-gap: 2%;
         }
 `
@@ -192,7 +212,8 @@ export const ImageDisplay = styled.div`
 export const ImageDisplayOverlay = styled.div`
     width:inherit;
     height:inherit;
-    background:rgba(58, 45, 28, 0.6);
+    /* background:rgba(58, 45, 28, 0.6); */
+    background:  rgba(9, 12, 255, 0.3);
     border-radius:7px;
     display: flex;
     align-items: center;
@@ -263,7 +284,7 @@ export const ImageDisplayB = styled.div`
 `
 
 export const ImageDisplayOverlayB = styled.div`
-    width:inherit; 
+    /* width: inherit;  */
     height:inherit;
     background: rgba(9, 12, 255, 0.6);
     border-radius:7px;
@@ -384,8 +405,5 @@ align-items: center;
 }
 
 `
-
-
-
 
 export default GlobalStyle;

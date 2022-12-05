@@ -28,6 +28,7 @@ export const FooterBody = styled.div`
         justify-items: center;
         align-content: center;
         text-align: center;
+        padding: 2%;
     }
 
 `
@@ -35,11 +36,11 @@ export const FooterBody = styled.div`
 export const FooterContent = styled.div`
     display:flex;
     justify-content:space-between;
-    width:82vw;
-    height:35vh;
+    width:100%;
+    height:fit-content;
 
     
-    @media screen and (min-width: 320px)and (max-width: 480px){
+    @media screen and (max-width: 480px){
         display: flex;
         flex-direction: column;
         width:fit-content;
@@ -53,10 +54,10 @@ export const FooterContent = styled.div`
     }
 
     @media screen and (min-width: 481px)and (max-width: 960px){
-        flex-direction: column;
-        width:fit-content;
+        /* flex-direction: column; */
+        width:100%;
         height:fit-content;
-        justify-content: center;
+        justify-content: space-between;
         align-items: center;
         justify-items: center;
         align-content: center;
@@ -95,8 +96,11 @@ export const FooterInner = styled.div`
     }
 
     @media screen and (min-width: 481px) and (max-width: 960px){
-       width: inherit;
+       width: fit-content;
        height: fit-content;
+       text-align: left;
+       padding: 1%;
+       line-height: 1.5em;
     }
 
 
@@ -132,11 +136,11 @@ export const SocialIcon = styled.a`
         display:flex;
         justify-content:center;
         align-content:center;
-        /* background-color: rgba(255,255,255, 0.3); */
+        background-color: rgba(255,255,255, 0.2);
     }
 
     img{
-        /* filter:invert(100%) sepia(100%) saturate(0%) hue-rotate(95deg) brightness(103%) contrast(105%); */
+        filter:invert(100%) sepia(100%) saturate(0%) hue-rotate(95deg) brightness(150%) contrast(105%);
         width:20px;
         height:15px;
         margin:auto;
@@ -147,15 +151,18 @@ export const FooterLinksHolder = styled.div`
     color:white;
     width:20vw;
     height:20vh;
+   
 
     p{
-        font-size:20px;
-        font-weight:500;
+        font-size:14px;
+        color: #E2DFD2;
+        margin-bottom: 5%;
     }
     ul{
         list-style:none;
         line-height:2em;
         font-size:14px;
+        cursor: pointer;
     }
 
     @media screen and (max-width: 480px){
@@ -163,38 +170,51 @@ export const FooterLinksHolder = styled.div`
         margin-top: 5%;
     }
 
-    @media screen and (max-width: 481px) and (max-width: 960px){
-        width: inherit;
-        margin-top: 5%;
-        height: fit-content;
+    @media screen and (min-width: 481px) and (max-width: 960px){
+        padding-top: 3vh;
+        text-align: left;
+        padding-left: 2%;
+
+
     }
 `
 
 export const EventButtonHolder = styled.div`
     width:15vw;
     height:20vh;
-    padding-top:3%;
-    line-height:4em;
-
-    @media screen and (max-width: 960px){
-       width: fit-content;
-       margin-right: 10%;
-       /* margin-top: 50%; */
-       
     
+
+    @media screen and (max-width: 480px){
+       width: fit-content;
+       justify-content: center;
+       align-items: center;
+    }
+
+    @media screen and (min-width: 481px) and (max-width: 960px){
+       width: 22%;
+       justify-content: center;
+       align-items: flex-end;
+       display: flex;
+       flex-direction: column;
+
+       p{
+        align-self: flex-start;
+    }
     }
 `
 export const EventButton = styled.button`
-        height: 8vh;
-        width: 11vw;
+        height: 6vh;
+        width: 8vw;
         border: 1.5px none;
-        border-radius: 3px;
+        border-radius: 6px;
         background-color: #FF2957;
         color: white;
         cursor: pointer;
-        font-weight: 600;
+        font-weight: 500;
         display: inline-block;
-        margin-bottom:15px;
+        margin-top: 3%;
+        margin-bottom: 3%;
+        font-size: 12px;
       
 
         img{
@@ -205,37 +225,63 @@ export const EventButton = styled.button`
             margin:auto;
         }
     
-        @media screen and (max-width: 960px){
-            padding: 1em 2.1em 1.1em;
+        @media screen and (max-width: 480px){
+            padding: 1em;
             object-fit: contain;
             display: flex;
             margin: 6%;
-            height: 8vh;
-            line-height: 5vh;
-            width: 40vw;
+            height: 7vh;
+            line-height: 4vh;
+            width: 30vw;
         }
+
+        @media screen and (min-width:481px) and (max-width: 960px){
+            width: 20vw;
+            align-self: start;
+        }
+
+
+
+
 `
 
 export const FooterLine = styled.hr`
-        width:82vw;
-        border:1px solid white;
-        background:white;
-        margin-right:auto;        
+        width:100vw;
+        margin-right:auto; 
+        margin-left: auto;
+        border-width: 0.5px; 
+        border-color: white;
+        margin-top: 2%;
+        margin-bottom: 1%;
 
+        @media screen and (max-width: 480px) {
+            margin-top: 6%;
+            
+        }
+        
 `
 
 export const BottomLogo = styled.div`
         color:white;
         align-items:center;
-        margin-top:1%;
+        /* margin-top:1%; */
         display:flex;
-        /* margin-left:5%; */
-        width:12vw;
-        height:10vh;
+        width:15%;
+        height:5vh;
         justify-content:space-between;
+        margin: auto;
 
-        @media screen and (max-width: 960px){
+        @media screen and (max-width: 480px){
             width:40vw;  
             margin-bottom:50px;
         }
+
+        @media screen and(min-width: 481px) and (max-width: 960px){
+            width:20vw;  
+        }
+        @media screen and (min-width:1281px){
+            width: 10%;
+            
+        }
+
 `

@@ -3,13 +3,14 @@ import {
   BgOverlay, HeroSection,
   ContentHolder, BtnHolder,
   EventButton, ContentSection,
-  ContentSectionHeader, ContentSectionParagraph, EventCard, NavButtonHolder
+  EventCard, NavButtonHolder
 } from './HomeStyled'
 import {
-  CardHolder, ImageDisplayOverlay,ImageDisplayOverlayB,
+  BodyFont,
+  CardHolder, HeaderFont, ImageDisplayOverlay,ImageDisplayOverlayB,
 } from '../../globalStyles'
 import Footer from '../../components/footer/Footer'
-import { NavButton } from '../../components/navbar/Navbar.styled'
+import { NavButton, NavButtonLink } from '../../components/navbar/Navbar.styled'
 import Navbar from '../../components/navbar/Navbar'
 import { Typewriter } from 'react-simple-typewriter'
 import Img from '../../images/Business.jpg'
@@ -20,6 +21,13 @@ import Bulb from '../../images/Frame 21613bulb.svg'
 import Speaker from '../../images/speaker.svg'
 import Subscribe from '../../images/computer.jpg'
 import Testimonial from '../../components/testimonials/Testimonial'
+import Food from '../../images/Food.jpg'
+import Business from '../../images/BusinessB.jpg'
+import Art from '../../images/Arts.jpg'
+import Weddings from '../../images/Wedding.jpg'
+import Concert from '../../images/Concert.jpg'
+import Sports from '../../images/Sport.jpg'
+
 
 
 
@@ -27,14 +35,14 @@ import Testimonial from '../../components/testimonials/Testimonial'
 const Home = () => {
   return (
     <>
-      <Navbar />
+      <Navbar/>
+
       <HeroSection>
         <BgOverlay>
           <ContentHolder>
-
-            <h1 style={{ margin: 'auto 0', fontWeight: 'bold', }}>
+            <h1 style={{ margin: 'auto 0'}}>
               Dreams do come true.<br />{' '}
-              <span style={{ color: '#FFBC15', fontWeight: 'bold' }}>
+              <span style={{color: '#FFBC15', fontWeight: 'bold' }}>
                 <Typewriter
                   words={['Create Memories',
                     'Secure Sponsorships',
@@ -49,42 +57,53 @@ const Home = () => {
                 />
               </span>
             </h1>
-
-            <p>Connecting People | Creating Memories | <br />
-              Capturing Value</p>
+            <BodyFont>Connecting People | Creating Memories | 
+              Capturing Value</BodyFont>
+            
             <BtnHolder>
+              <NavButtonLink to="/waitlist"> 
               <EventButton>Create Event</EventButton>
-              <EventButton style={{ background: 'transparent', border: '1.5px solid white' }}>Sponsor Events</EventButton>
+              </NavButtonLink>
+              <NavButtonLink to="/waitlist"> 
+              <EventButton style={{ background: 'transparent', border: '1.5px solid #FF2957' }}>Sponsor Events</EventButton>
+              </NavButtonLink>
             </BtnHolder>
           </ContentHolder>
         </BgOverlay>
       </HeroSection>
 
       <ContentSection>
-        <ContentSectionHeader>Event Categories</ContentSectionHeader>
-        <ContentSectionParagraph>Explore the most trending</ContentSectionParagraph>
+        <HeaderFont style={{textAlign:'center', marginTop:'6%', color:'#484848', 
+                          fontSize:'26px', fontWeight: '600', marginBottom:' 4%'
+                          }}>Event Categories</HeaderFont>
+        <BodyFont style={{ color:'#484848', marginLeft:'8%', fontWeight:'500', 
+                           fontSize:'14px', alignSelf: 'flex-start', textAlign:'left'                        
+
+        }}>Explore the most trending</BodyFont>
         <CardHolder>
-          <EventCard img={Img}>
+          <EventCard img={Business}>
             <ImageDisplayOverlay>Business</ImageDisplayOverlay>
           </EventCard>
-          <EventCard img={Img}>
+          <EventCard img={Weddings}>
             <ImageDisplayOverlay>Weddings</ImageDisplayOverlay>
           </EventCard>
-          <EventCard img={Img}>
+          <EventCard img={Concert}>
             <ImageDisplayOverlay>Concert/Parties</ImageDisplayOverlay>
           </EventCard>
-          <EventCard img={Img}>
+          <EventCard img={Sports}>
             <ImageDisplayOverlay>Sports & Fitness</ImageDisplayOverlay>
           </EventCard>
-          <EventCard img={Img}>
+          <EventCard img={Art}>
             <ImageDisplayOverlay>Art Exhibition</ImageDisplayOverlay>
           </EventCard>
-          <EventCard img={Img}>
+          <EventCard img={Food}>
             <ImageDisplayOverlay>Food & Drinks</ImageDisplayOverlay>
           </EventCard>
         </CardHolder>
         <NavButtonHolder>
-          <NavButton style={{color: 'black' }}>Explore More</NavButton>
+        <NavButtonLink to="/waitlist">
+          <NavButton style={{backgroundColor:'transparent',color: 'black', border: '1.5px solid #FF2957' }}>Explore More</NavButton>
+        </NavButtonLink>
         </NavButtonHolder>
       </ContentSection>
 
@@ -92,10 +111,15 @@ const Home = () => {
         <ASSectionInner>
         <ASContent>
           <ASContentInner>
-          <p style={{fontSize:'26px'}}>Advertise your events on our platform.</p>
-          <p>Publicize your events and business here and experience potential 
-            customers seek you out in record time.</p>
+            <HeaderFont>
+              Advertise your events on our platform.
+            </HeaderFont>
+          <BodyFont style={{marginTop:'10%', marginBottom:'8%'
+            }}>Publicize your events and business here and experience potential 
+            customers seek you out in record time.</BodyFont>
+          <NavButtonLink to="/waitlist"> 
           <EventButton style={{marginTop:'4%'}}>Get in touch</EventButton>
+          </NavButtonLink>
           </ASContentInner>
         </ASContent>
         <ASImage img={Img}/>
@@ -103,40 +127,46 @@ const Home = () => {
       </ASContentSection>
       
       <SponsorSection>
-        <h4>Leverage for being an Event sponsor</h4>
-        <p>As a sponsor, these are some of the opportunities you would get.</p>
+        <HeaderFont>Leverage for being an Event sponsor</HeaderFont>
+        <BodyFont>As a sponsor, these are some of the opportunities you would get.</BodyFont>
         <SponsorSectionInner>
           <SponsorCard>
             <img src={Search} alt=''/>
-            <p>Assess target markets.</p>
+            <BodyFont style={{marginTop:'10%'}}>Assess target markets.</BodyFont>
           </SponsorCard>
           <SponsorCard>
             <img src={Bulb} alt=''/>
-            <p>Enhance connection with target markets.</p>
+            <BodyFont  style={{marginTop:'10%'}}>Enhance connection with target markets.</BodyFont>
           </SponsorCard>
           <SponsorCard>
             <img src={Speaker} alt=''/>
-            <p>Promote your brand through experiential marketing.</p>
+            <BodyFont  style={{marginTop:'10%'}}>Promote your brand through experiential marketing.</BodyFont>
           </SponsorCard>
         </SponsorSectionInner>           
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width:'100vw' }}>
-        <NavButton style={{backgroundColor:'#FF2957', color:'white'}}>Get Started</NavButton>
+        <NavButtonLink to="/waitlist"> 
+        <NavButton>Get Started</NavButton>
+        </NavButtonLink>
         </div>
       </SponsorSection>
 
       <TestimonialSection>
-        <p style={{marginBottom:'3%', textAlign:'center'}}>Testimonials</p>
+        <HeaderFont style={{marginBottom:'3%', textAlign:'center', fontSize:'24px', 
+                            fontWeight:'600', color:'#484848'
+                            }}>Testimonials</HeaderFont>
         <Testimonial/>
       </TestimonialSection>
       
 
-      <ReadySection style={{ padding: '4% 10%'}}>
+      <ReadySection>
       <ASImage img={Subscribe}><ImageDisplayOverlayB/></ASImage>
-        <ASContent>
+        <ASContent >
           <div style={{width:'inherit', justifyContent:'flex-start'}}>
-          <p style={{fontSize:'26px'}}>Ready to be sponsored? .</p>
-          <p>Enter your email with King Cabana now!</p>
-          <NavButton style={{marginTop:'4%', backgroundColor:'#FF2957', color:'white'}}>Get Started</NavButton>
+          <HeaderFont>Ready to be sponsored? .</HeaderFont>
+          <BodyFont>Enter your email with King Cabana now!</BodyFont>
+          <NavButtonLink to="/waitlist">
+          <NavButton>Get Started</NavButton>
+          </NavButtonLink>
           </div>
         </ASContent>
       </ReadySection>

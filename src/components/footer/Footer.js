@@ -1,11 +1,11 @@
 import React from 'react'
 import LogoWhite from '../../images/KingCabanaLogoWhite.svg'
 import Facebook from '../../images/facebook-svgrepo-com (1).svg'
-import Linkedin from '../../images/linkedin-logo-2430.svg'
-import Twitter from '../../images/twitter-logo-2429.svg'
-import Instagram from '../../images/instagram-svgrepo-com.svg'
+import Linkedin from '../../images/linkedin-svgrepo-com.svg'
+import Twitter from '../../images/twitter-svgrepo-com.svg'
+import Instagram from '../../images/instagram-svgrepo-com (1).svg'
 import Playstore from '../../images/logo-google-playstore-svgrepo-com.svg'
-import TikTok from '../../images/tiktok-logo-logo-svgrepo-com.svg'
+import TikTok from '../../images/tiktok-svgrepo-com.svg'
 import apple from '../../images/apple-svgrepo-com.svg'
 import {FooterBody, EventButton,
         FooterContent, FooterInner, 
@@ -23,7 +23,7 @@ const Footer = () => {
       <FooterBody>
               <FooterContent>
                 <FooterInner>
-                  <img src={LogoWhite} alt='King Cabana Logo'/>
+                  <img src={LogoWhite} alt='King Cabana Logo' style={{width:'120px'}}/>
                     <p>371, Borno Way, Alagomeji</p>
                     <p>(+234) 808 831 118 8</p>
                     <a href="info@kingcabana.com">info@kingcabana.com</a>
@@ -77,6 +77,7 @@ const Footer = () => {
                 </FooterLinksHolder> */}
                 <EventButtonHolder> 
                 
+                  <p style={{color:'white', fontSize:'14px', marginBottom:'5%'}}>Download app on</p>
                   <EventButton><img width='40px' height='40px'src={Playstore} alt=''/>
                       Playstore </EventButton>
                   <EventButton><img width='40px' height='40px'src={apple} alt=''style={{verticalAlign:'middle',filter:'invert(100%) sepia(100%) saturate(0%) hue-rotate(95deg) brightness(450%) contrast(105%)', width:'20px', height:'20px', margin:'auto'}}/>
