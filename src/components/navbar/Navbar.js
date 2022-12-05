@@ -63,8 +63,8 @@ const Navbar = () => {
         <NavItems onClick={handleClick} click={click}>
             {/* <NavItemsInner> */}
             <li><NavBarLink  to="/">Home</NavBarLink></li>
-            <li><NavBarLink to="/sponsors">For Sponsors</NavBarLink></li>
-            <li><NavBarLink to="/organizers">For Organizer</NavBarLink></li>
+           {/*  <li><NavBarLink to="/sponsors">For Sponsors</NavBarLink></li>*/} 
+           {/*  <li><NavBarLink to="/organizers">For Organizer</NavBarLink></li> */} 
             <li><NavBarLink to="/contactUs">Contact Us</NavBarLink></li>
             <li><NavBarLink to="/aboutUs">About Us </NavBarLink></li>
             {/* </NavItemsInner> */}
