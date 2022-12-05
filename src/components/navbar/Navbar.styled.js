@@ -30,7 +30,6 @@ export const NavLogo = styled.div`
         height: 35;
         width: 35;
     }
-
 `
 
 export const NavContent = styled.div`
