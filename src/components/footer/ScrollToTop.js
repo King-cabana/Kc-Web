@@ -34,12 +34,13 @@ return (
 }
 
 const TopButton = styled.div`
+   position:relative;
    width: 4vw;
    height: 20px;
    font-size: 3rem;
    cursor: pointer;
    color: white;
-   margin-top: 13%;
+   margin-top: 100px;
 
    svg{
 	width: 45px;
@@ -47,9 +48,9 @@ const TopButton = styled.div`
    }
 
    @media screen and (max-width: 960px){
-		position: absolute;
-		margin-left: 130%;
-		margin-bottom: 300%;
+		position: relative;
+		margin-left: 170%;
+		margin-bottom: 20%;
 		
 		
 

@@ -4,6 +4,7 @@ import NoPage from './pages/noPage/NoPage'
 import GoToTop from "./GoToTop"
 import './App.css'
 import Waitlist from "./pages/waitlist/WaitlistForm";
+import ContactUs from "./pages/contactUs/ContactUs";
 
 
 
@@ -19,7 +20,7 @@ function App() {
         <Route path="/" element={<Home />}></Route>
         {/* <Route path="/sponsors" element={<Sponsors />} /> */}
         {/* <Route path="/organizers" element={<Organizers />} /> */}
-        {/* <Route path="/contactUs" element={<ContactUs />} /> */}
+        <Route path="/contactUs" element={<ContactUs />} />
         {/* <Route path="/aboutUs" element={<AboutUs />} /> */}
         {/* <Route path="/logIn" element={<SignIn />} /> */}
         {/* <Route path="/forgotPassword" element={<ForgotPassword />} />

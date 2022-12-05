@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const FooterBody = styled.div`
-    width: 100vw;
+    width: 100%;
     height: 65vh;
     background-color: #45346E;
     padding: 6% 9%;
@@ -179,6 +179,7 @@ export const EventButtonHolder = styled.div`
     @media screen and (max-width: 960px){
        width: fit-content;
        margin-right: 10%;
+       /* margin-top: 50%; */
        
     
     }
@@ -193,6 +194,7 @@ export const EventButton = styled.button`
         cursor: pointer;
         font-weight: 600;
         display: inline-block;
+        margin-bottom:15px;
       
 
         img{
@@ -234,5 +236,6 @@ export const BottomLogo = styled.div`
 
         @media screen and (max-width: 960px){
             width:40vw;  
+            margin-bottom:50px;
         }
 `

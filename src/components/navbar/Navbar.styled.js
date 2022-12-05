@@ -4,7 +4,7 @@ import { Link, NavLink } from "react-router-dom";
 
 export const Nav = styled.div`
     height: 4vh;
-    width: 100vw;
+    width: 100%;
     display: flex;
     padding: 3% 8%;
     align-items: center;

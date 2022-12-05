@@ -72,8 +72,11 @@ const Footer = () => {
                     <li>Help center</li>
                   </ul>
                 </FooterLinksHolder>
-
+                {/* <FooterLinksHolder>
+                <p>Download app on</p>
+                </FooterLinksHolder> */}
                 <EventButtonHolder> 
+                
                   <EventButton><img width='40px' height='40px'src={Playstore} alt=''/>
                       Playstore </EventButton>
                   <EventButton><img width='40px' height='40px'src={apple} alt=''style={{verticalAlign:'middle',filter:'invert(100%) sepia(100%) saturate(0%) hue-rotate(95deg) brightness(450%) contrast(105%)', width:'20px', height:'20px', margin:'auto'}}/>
