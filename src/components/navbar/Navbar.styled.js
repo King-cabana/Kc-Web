@@ -24,19 +24,12 @@ export const NavLogo = styled.div`
   width: 12vw;
   cursor: pointer;
 
-<<<<<<< HEAD
-    img{
-        height: 35;
-        width: 35;
-    }
-`
-=======
   img {
     height: 35;
     width: 35;
   }
 `;
->>>>>>> dd1233f6e85e0f64fa352e2b0be1182288e3f8f9
+
 
 export const NavContent = styled.div`
   width: 60vw;
