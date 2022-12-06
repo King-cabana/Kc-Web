@@ -85,8 +85,7 @@ export const NavItems = styled.ul`
       cursor: pointer;
     }
 
-    &:focus,
-    :active {
+    &.active {
       color: #ff2957;
       font-weight: 600;
     }
