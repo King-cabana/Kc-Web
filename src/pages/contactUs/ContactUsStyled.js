@@ -1,21 +1,16 @@
 import styled from "styled-components";
 
 
-// export const Body =styled.div`
-// /* flex-direction: column; */
-// width: 100%;
-// height: 100vh;
 
 export const Container =styled.div`
 width: 100%;
-height: 100%;
-border: 5px solid black;
-padding:2% 30%;
+/* height: 100%; */
+/* border: 5px solid black; */
+padding:0% 20%;
+margin-bottom:30px;
 
-@media screen and (max-width: 960px){
-       display: flex;
-        flex-direction: column;
-        margin-top:25px;
+@media screen and (max-width: 768px){
+    padding:2% 2%;
     }
 `
 export const ContainerBox =styled.div`
@@ -36,9 +31,9 @@ height: 137px;
 `
 
 export const ContactBody = styled.div`
-width: 100%;
-border: 5px solid red;
-padding:1% 10%;
+/* width: 100%; */
+/* border: 5px solid red; */
+/* padding:1% 5%; */
 margin-bottom:10px;
 display: flex;
 
@@ -46,42 +41,55 @@ display: flex;
 @media screen and (max-width: 960px){
        display: flex;
         flex-direction: column;
-        margin-top:25px;
+        padding:1% 2%;
     }
 
 `;
 
 export const ContactRight = styled.div`
 width:60%;
-
-/* background-color: black; */
-padding: 10% 10%;
+padding: 1% 5%;
+@media screen and (max-width: 768px) {
+    width:100%;
+    padding: 5% 0%;
+}
 
 `;
 
 export const ContactHeader = styled.h1`
 font-family: 'Poppins';
 font-weight: 900;
-font-size: 80px;
+font-size: 70px;
 color: #484848;
+width:100%;
 margin-bottom: 50px;
+
+@media screen and (max-width: 760px) {
+    font-size: 60px;
+}
+@media screen and (max-width: 576px) {
+    font-size: 40px;
+}
+
 `;
 
 export const ContactParagraph = styled.p`
 font-family: 'Poppins';
 font-style: normal;
 font-weight: 400;
-font-size: 28px;
-/* line-height:50px; */
+font-size: 25px;
 letter-spacing:2px;
 color: #484848;
 margin-bottom: 50px;
+
+@media screen and (max-width: 768px){
+    font-size: 20px;
+}
 `;
 
 export const ContactLogoBody = styled.div`
 width: auto;
 height: auto;
-/* line-height: 20px; */
 
 `
 export const EmailBody = styled.div`
@@ -90,26 +98,28 @@ align-items: center;
 padding: 0px;
 margin-bottom: 30px;
 
-@media screen and (max-width: 960px){
-display: flex;
-flex-direction: row;
-align-items: center;
-padding: 0px;
+@media screen and (max-width: 768px){
 width: 100%;
 }
 
 `;
 
 export const EmailIcon = styled.div`
-width: 70px;
-height: 70px;
+width: 50px;
+height: 50px;
 border-radius: 50%;
 background-color: #F6E9EC;
 display: flex;
 justify-content: center;
 align-items: center;
-margin-right: 30px;
+margin-right: 20px;
 color: #FFBC15;
+
+@media screen and (max-width: 768px) {
+    width: 40px;
+    height:40px;
+    margin-right:10px;
+}
 `;
 
 export const EmailText = styled.p`
@@ -119,17 +129,25 @@ font-weight: 600;
 font-size: 25px;
 line-height: 18px;
 color: #FFBC15;
-margin-right: 30px;
-/* width: 100%; */
+margin-right: 20px;
+
+@media screen and (max-width: 768px) {
+    font-size: 13px;
+    margin-right:10px;
+}
 `;
 
 export const EmailIconArrow = styled.div`
 color: #FFBC15;
 height: 22px;
+@media screen and (max-width: 768px){
+    margin-bottom:7px;
+}
 `;
+
 export const PhoneLogo = styled.div`
-width: 70px;
-height: 70px;
+width: 50px;
+height: 50px;
 border-radius: 50%;
 background-color: #F6E9EC;
 display: flex;
@@ -137,13 +155,21 @@ justify-content: center;
 align-items: center;
 margin-right: 30px;
 color: #FFBC15;
+
+@media screen and (max-width: 768px) {
+    width: 40px;
+    height:40px;
+    margin-right: 10px;
+}
 `;
 export const PhoneBody = styled.div`
 display: flex;
-/* justify-content: center; */
 align-items: center;
 padding: 0px;
 margin-bottom: 30px;
+@media screen and (max-width:768px){
+    width: 100%;
+}
 `
 
 export const PhoneText = styled.p`
@@ -154,12 +180,22 @@ font-size: 25px;
 line-height: 18px;
 color: #FFBC15;
 margin-right: 30px;
-/* width:100%; */
+
+@media screen and (max-width: 768px) {
+    font-size: 13px;
+    margin-right: 10px;
+    align-items: center;
+    }
 `
 
 export const PhoneIconArrow = styled.div`
 color: #FFBC15;
 height: 22px;
+@media screen and (max-width: 768px) {
+    height:15px;
+    /* padding: 0% 2%; */
+    margin-bottom:15px;
+}
 `;
 
 export const ContactLeft = styled.div`
@@ -208,6 +244,10 @@ align-items: center;
 letter-spacing: -0.001em;
 color: #000000;
 
+@media screen and (max-width: 768px) {
+    font-size:17px;
+}
+
 `
 export const ContactInfoBody = styled.div`
 display: flex;
@@ -243,6 +283,10 @@ letter-spacing: -0.003em;
 text-transform: capitalize;
 color: #000000;
 margin-bottom:10px;
+
+@media screen and (max-width: 768px) {
+    font-size: 24px;
+}
 };
 
 button{
@@ -255,7 +299,7 @@ button{
     cursor: pointer;
     width:100%;
 }
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 768px) {
 width: 100%;
 }
 
@@ -263,10 +307,9 @@ width: 100%;
 export const AnimationContainer = styled.div`
 width: 40%;
 padding: 1% 10%;
-@media screen and (max-width: 960px){
-       display: flex;
-        flex-direction: column;
-        margin-top:25px;
+@media screen and (max-width: 768px){
+       width: 100%;
+       padding: 1% 0%;
     }
 
 `;
@@ -287,6 +330,11 @@ width: 100%;
 height: 80px;
 border: 1px solid rgba(72, 72, 72, 0.1);
 border-radius: 10px;
+
+@media screen and (max-width: 768px) {
+    width:100%;
+    height:60px;
+}
 }
 
 textarea{
@@ -302,7 +350,7 @@ border: 1px solid rgba(72, 72, 72, 0.1);
 border-radius: 10px;
 }
 textarea::placeholder{
-    font-size:20px;
+    font-size: 20px;
 }
 `;
 
@@ -370,6 +418,10 @@ font-weight: 600;
 font-size: 45px;
 line-height: 54px;
 color: #484848;
+
+@media screen and (max-width: 768px) {
+    font-size: 35px;
+}
 `;
 
 export const BoxParagraph = styled.p`
@@ -379,6 +431,10 @@ font-weight: 400;
 font-size: 25px;
 line-height: 36px;
 color: #484848;
+
+@media screen and (max-width: 768px) {
+    font-size:15px;
+}
 `;
 
 export const BoxLogo = styled.div`
@@ -390,13 +446,10 @@ export const IconHolder = styled.div`
     width:12%;
     justify-content:space-between;
     margin-top:5%;
-    @media screen and (max-width: 480px){
-        width: 42vw;
+    @media screen and (max-width: 768px){
+        width: 100%;
     }
-    @media screen and(min-width: 481px) and (max-width: 960px){
-        width: 42vw;
-        /* margin-bottom: 10px; */
-    }
+   
 `;
 
 export const SocialIcon = styled.a`
@@ -434,6 +487,10 @@ flex-direction: column;
 align-items: center;
 gap: 25px;
 padding: 120px;
+
+@media screen and (max-width: 768px) {
+    width:100%;
+}
 /* left: 563px;
 top: 2681px;  */
 `
@@ -444,6 +501,10 @@ font-weight: 600;
 font-size: 48px;
 line-height: 72px;
 top: 2681px; 
+
+@media screen and (max-width: 768px) {
+    font-size:38px;
+}
 `;
 
 export const LocationText = styled.p`
@@ -451,6 +512,10 @@ font-family: 'Poppins';
 font-weight: 400;
 font-size: 24px;
 line-height: 30px;
+
+@media screen and (max-width: 768px) {
+    font-size: 14px;
+}
 `
 
 

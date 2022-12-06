@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/landingPage/Home";
 import AboutUs from "./pages/aboutUs/AboutUs";
 import NoPage from "./pages/noPage/NoPage";
+import ContactUs from "./pages/contactUs/ContactUs";
 import GoToTop from "./GoToTop";
 import "./App.css";
 import Waitlist from "./pages/waitlist/WaitlistForm";

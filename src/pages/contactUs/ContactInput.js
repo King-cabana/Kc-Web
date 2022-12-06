@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Container, Form, ContactInfoBody, ContactInfo, ContactText, InputInfo, InputBoxLabel, InputBox, Button } from "./ContactUsStyled";
+import { Container, Form, ContactInfo, ContactText, InputInfo, InputBoxLabel, InputBox } from "./ContactUsStyled";
 
 const ContactInput = () => {
     const [firstName, setFirstName] = useState('')

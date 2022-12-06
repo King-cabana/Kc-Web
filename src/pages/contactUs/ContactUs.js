@@ -11,7 +11,7 @@ import animationData from '../../lotties/lf30_editor_meubo9a6.json';
 // import Gif from '../../images/Rectangle.gif';
 import {  ContactBody, ContactRight, ContainerBox, ContactHeader, AnimationContainer, ContactParagraph, ContactLogoBody,
           EmailBody, EmailText, EmailIcon, EmailIconArrow, PhoneBody, LocationCenter,
-          PhoneLogo, PhoneText, PhoneIconArrow, Box, BoxBody, BoxHeader, ContactMobile, 
+          PhoneLogo, PhoneText, PhoneIconArrow, Box, BoxBody, BoxHeader,  
           BoxParagraph, IconHolder, SocialIcon, Location, LocationHeader, LocationText
 } from "./ContactUsStyled"
 import Navbar from '../../components/navbar/Navbar';
@@ -23,18 +23,16 @@ const ContactUs = () => {
     <Navbar />
       <ContactBody>
         <ContactRight>
-          <ContactMobile>
         <ContactHeader>Get in touch</ContactHeader>
         <ContactParagraph>We'd be thrilled to hear from you. Our staff is always available to<br/>ease your journey.</ContactParagraph>
-        </ContactMobile>
         <ContactLogoBody>
           <EmailBody>
-            <EmailIcon><HiOutlineMail size={40}/></EmailIcon>
+            <EmailIcon><HiOutlineMail size={35}/></EmailIcon>
             <EmailText>Email: info@kingcabana.com</EmailText>
             <EmailIconArrow><HiChevronRight size={30}/></EmailIconArrow>
           </EmailBody>
           <PhoneBody>
-            <PhoneLogo> <HiOutlinePhone size={40}/> </PhoneLogo>
+            <PhoneLogo> <HiOutlinePhone size={35}/> </PhoneLogo>
             <PhoneText>Phone: (+234) 808 831 118 8</PhoneText>
             <PhoneIconArrow><HiChevronRight size={30}/></PhoneIconArrow>
           </PhoneBody>
