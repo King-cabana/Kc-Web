@@ -2,15 +2,22 @@ import styled from "styled-components";
 import { Link, NavLink } from "react-router-dom";
 
 export const Nav = styled.div`
-  height: 4vh;
-  width: 100%;
-  display: flex;
-  padding: 3% 8%;
-  align-items: center;
-  justify-content: space-between;
-  top: 0;
-  background-color: white;
-  z-index: 1;
+    height: 4vh;
+    width: 100%;
+    display: flex;
+    padding: 3% 8%;
+    align-items: center;
+    justify-content: space-between; 
+    top: 0;
+    background-color: white;
+    z-index: 1;
+    
+    @media (max-width: 960px){
+        position: sticky;
+        height: 10vh;
+        box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+        z-index: 1;
+    }
 
   @media (max-width: 960px) {
     position: sticky;
@@ -24,9 +31,12 @@ export const NavLogo = styled.div`
   width: 12vw;
   cursor: pointer;
 
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> 75483f8dd9db8532a22badc3603cd11367d82b59
   img {
     height: 35;
     width: 35;
@@ -81,8 +91,7 @@ export const NavItems = styled.ul`
       cursor: pointer;
     }
 
-    &:focus,
-    :active {
+    &.active {
       color: #ff2957;
       font-weight: 600;
     }
@@ -141,6 +150,7 @@ export const NavGroup = styled.div`
   @media screen and (max-width: 960px) {
     justify-content: center;
     height: 50vh;
+    width: 100%;
   }
 `;
 
@@ -204,6 +214,7 @@ export const AccessButton = styled(NavButton)`
   &:hover {
     background-color: white;
     color: #ff2957;
+    border: 1.5px solid  #ff2957;
   }
 
   @media screen and (max-width: 960px) {
