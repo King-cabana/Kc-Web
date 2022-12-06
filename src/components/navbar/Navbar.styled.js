@@ -145,6 +145,7 @@ export const NavGroup = styled.div`
   @media screen and (max-width: 960px) {
     justify-content: center;
     height: 50vh;
+    width: 100%;
   }
 `;
 
