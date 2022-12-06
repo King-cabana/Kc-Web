@@ -209,6 +209,7 @@ export const AccessButton = styled(NavButton)`
   &:hover {
     background-color: white;
     color: #ff2957;
+    border: 1.5px solid  #ff2957;
   }
 
   @media screen and (max-width: 960px) {
