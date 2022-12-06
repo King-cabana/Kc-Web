@@ -1,10 +1,10 @@
-import React, { useDispatch, useState } from 'react';
+import React, {  useState } from 'react';
 import OtpInput from 'react-otp-input';
 import { ModalOverlay, AnimationContainer, LongButton, Form } from '../../../globalStyles'
 import { ResetBody } from '../resetPassword/ResetPasswordStyled'
 import Lottie from "lottie-react";
 import animationData from '../../../lotties/76040-change-passwords.json';  
-import { apiFetch } from '../../../redux/authSlice';
+// import { apiFetch } from '../../../redux/authSlice';
 
 const VerifyOTP = () => {
     
@@ -12,9 +12,9 @@ const VerifyOTP = () => {
 
     const handleChange = value => setOtp(value)
 
-    const sendOtp = () => {
+    // const sendOtp = () => {
     
-    }
+    // }
 
     // const dispatch = useDispatch();
     // dispatch(apiFetch({ apiName: 'verify', body: { otp }, method: 'get', url: 'forgot-password/otp?otp' }))

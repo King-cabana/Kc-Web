@@ -2,15 +2,22 @@ import styled from "styled-components";
 import { Link, NavLink } from "react-router-dom";
 
 export const Nav = styled.div`
-  height: 4vh;
-  width: 100%;
-  display: flex;
-  padding: 3% 8%;
-  align-items: center;
-  justify-content: space-between;
-  top: 0;
-  background-color: white;
-  z-index: 1;
+    height: 4vh;
+    width: 100%;
+    display: flex;
+    padding: 3% 8%;
+    align-items: center;
+    justify-content: space-between; 
+    top: 0;
+    background-color: white;
+    z-index: 1;
+    
+    @media (max-width: 960px){
+        position: sticky;
+        height: 10vh;
+        box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+        z-index: 1;
+    }
 
   @media (max-width: 960px) {
     position: sticky;

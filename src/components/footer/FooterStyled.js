@@ -273,6 +273,7 @@ export const BottomLogo = styled.div`
 
         @media screen and (max-width: 480px){
             width:40vw;  
+            margin-bottom:50px;
         }
 
         @media screen and(min-width: 481px) and (max-width: 960px){
