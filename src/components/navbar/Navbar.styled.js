@@ -85,8 +85,7 @@ export const NavItems = styled.ul`
       cursor: pointer;
     }
 
-    &:focus,
-    :active {
+    &.active {
       color: #ff2957;
       font-weight: 600;
     }
@@ -161,13 +160,6 @@ export const NavSearchHolder = styled.div`
 `;
 
 export const NavButtonLink = styled(Link)`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-decoration: none;
-  padding: 4px 8px;
-  border: none;
-  outline: none;
 
   @media screen and (max-width: 960px) {
     height: 10vh;
@@ -209,6 +201,7 @@ export const AccessButton = styled(NavButton)`
   &:hover {
     background-color: white;
     color: #ff2957;
+    border: 1.5px solid  #ff2957;
   }
 
   @media screen and (max-width: 960px) {
