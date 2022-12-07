@@ -18,6 +18,13 @@ export const Nav = styled.div`
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
     z-index: 1;
   }
+
+  @media (max-width: 960px) {
+    position: sticky;
+    height: 10vh;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+    z-index: 1;
+  }
 `;
 
 export const NavLogo = styled.div`
@@ -77,8 +84,7 @@ export const NavItems = styled.ul`
       cursor: pointer;
     }
 
-    &:focus,
-    :active {
+    &.active {
       color: #ff2957;
       font-weight: 600;
     }
@@ -137,6 +143,7 @@ export const NavGroup = styled.div`
   @media screen and (max-width: 960px) {
     justify-content: center;
     height: 50vh;
+    width: 100%;
   }
 `;
 
@@ -152,14 +159,6 @@ export const NavSearchHolder = styled.div`
 `;
 
 export const NavButtonLink = styled(Link)`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-decoration: none;
-  padding: 4px 8px;
-  border: none;
-  outline: none;
-
   @media screen and (max-width: 960px) {
     height: 10vh;
   }
@@ -200,6 +199,7 @@ export const AccessButton = styled(NavButton)`
   &:hover {
     background-color: white;
     color: #ff2957;
+    border: 1.5px solid #ff2957;
   }
 
   @media screen and (max-width: 960px) {
