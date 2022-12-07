@@ -4,7 +4,7 @@ import Footer from "../../components/footer/Footer";
 import {
   HeroSection,
   ContentHolder,
-  BtnHolder,
+  BtnHolderLink,
   EventButton,
   StorySectionContainer,
   StorySectionContent,
@@ -18,6 +18,7 @@ import {
   VisionSectionContent,
   InfoSectionContainer,
   InfoSectionContent,
+  InfoBtnHolderLink,
   InfoButton,
 } from "./AboutUsStyled";
 import { Typewriter } from "react-simple-typewriter";
@@ -68,9 +69,9 @@ const AboutUs = () => {
               delaySpeed={1000}
             />
           </p>
-          <BtnHolder>
-            <EventButton to="/waitlist">Join us today</EventButton>
-          </BtnHolder>
+          <BtnHolderLink to="/waitlist">
+            <EventButton>Join us today</EventButton>
+          </BtnHolderLink>
         </ContentHolder>
       </HeroSection>
       <StorySectionContainer>
@@ -187,7 +188,9 @@ const AboutUs = () => {
             {" "}
             Enter your email with King Cabana now!
           </p>
-          <InfoButton to="/waitlist">Get early access</InfoButton>
+          <InfoBtnHolderLink to="/waitlist">
+            <InfoButton>Get early access</InfoButton>
+          </InfoBtnHolderLink>
         </InfoSectionContent>
       </InfoSectionContainer>
       <Footer />

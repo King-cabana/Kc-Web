@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import aboutUs from "../../images/aboutUs.png";
+import { Link } from "react-router-dom";
 
 export const HeroSection = styled.div`
   width: 100%;
@@ -81,9 +82,11 @@ export const ContentHolder = styled.div`
   }
 `;
 
-export const BtnHolder = styled.div`
+export const BtnHolderLink = styled(Link)`
   display: flex;
   width: 24%;
+  text-decoration: none;
+  outline: none;
 
   @media screen and (max-width: 425px) {
     width: max-content;
@@ -120,7 +123,7 @@ export const EventButton = styled.button`
 
 export const StorySectionContainer = styled.div`
   width: 100%;
-  height: 60vh;
+  height: 40vh;
   padding: 5rem;
   display: flex;
   align-items: center;
@@ -141,7 +144,6 @@ export const StorySectionContent = styled.div`
     line-height: 72px;
     text-align: center;
     color: #484848;
-    margin-bottom: 24px;
   }
   p {
     font-weight: 400;
@@ -266,7 +268,7 @@ export const AllAboutSectionContent = styled.div`
   .change {
     @media screen and (max-width: 960px) {
       display: flex;
-      width: 45%;
+      width: 60%;
       height: 40%;
       margin-left: 10rem;
       border-radius: 32px;
@@ -287,6 +289,19 @@ export const AllAboutSectionContent = styled.div`
       margin-left: 2rem;
     }
   }
+
+  /* @media screen and (max-width: 1300px) {
+      width: 40%;
+      height: 40%;
+    }
+    @media screen and (max-width: 960px) {
+      width: 60%;
+      height: 50%;
+    }
+    @media screen and (max-width: 376px) {
+      width: 85%;
+      height: 50%;
+    } */
   h3 {
     width: 100%;
     height: 100%;
@@ -362,8 +377,8 @@ export const AllAboutImages = styled.div`
 
 export const PromiseSectionContainer = styled.div`
   width: 100%;
-  height: 60vh;
-  padding: 5rem;
+  height: 40vh;
+  padding: 1rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -382,7 +397,6 @@ export const PromiseSectionContent = styled.div`
     font-size: 40px;
     text-align: center;
     color: #484848;
-    margin-bottom: 42px;
   }
   p {
     font-weight: 400;
@@ -396,6 +410,7 @@ export const PromiseSectionContent = styled.div`
 
   @media screen and (max-width: 512px) {
     h2 {
+      margin-bottom: 16px;
       font-size: 24px;
     }
     p {
@@ -448,29 +463,32 @@ export const VisionSectionContent = styled.div`
       height: 40%;
     }
     @media screen and (max-width: 960px) {
-      width: 50%;
+      width: 60%;
+      height: 50%;
+    }
+    @media screen and (max-width: 376px) {
+      width: 85%;
       height: 50%;
     }
   }
   .skyscrapper {
     @media screen and (max-width: 960px) {
       order: 1;
-      margin-bottom: 3rem;
     }
   }
   .bulb {
     margin-bottom: 9rem;
 
     @media screen and (max-width: 960px) {
-      margin-top: 4rem;
-      margin-bottom: 3rem;
+      margin-top: 2rem;
+      margin-bottom: 0;
     }
   }
 
   .missionComp {
     @media screen and (max-width: 960px) {
       order: 2;
-      width: 50%;
+      width: 80%;
     }
   }
   section {
@@ -489,13 +507,16 @@ export const VisionSectionContent = styled.div`
       margin-top: 16px;
       text-align: center;
     }
+    @media screen and (max-width: 380px) {
+      font-size: 28px;
+    }
     @media screen and (max-width: 333px) {
-      font-size: 16px;
+      font-size: 22px;
     }
   }
   p {
     height: 36px;
-    font-weight: 500;
+    font-weight: 400;
     font-size: 20px;
     line-height: 36px;
 
@@ -508,7 +529,6 @@ export const VisionSectionContent = styled.div`
     @media screen and (max-width: 333px) {
       font-size: 12px;
       margin-bottom: 8px;
-      margin-top: 8px;
     }
   }
 
@@ -538,14 +558,14 @@ export const VisionSectionContent = styled.div`
     @media screen and (max-width: 960px) {
       margin-left: 0;
       width: 100%;
-      margin-bottom: 4rem;
+      margin-bottom: 3rem;
     }
   }
 `;
 
 export const InfoSectionContainer = styled.div`
   width: 100%;
-  height: 60vh;
+  height: 40vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -555,8 +575,8 @@ export const InfoSectionContainer = styled.div`
 
 export const InfoSectionContent = styled.div`
   h2 {
-    margin-bottom: 16px;
-    width: 520px;
+    margin-bottom: 14px;
+    width: 100%;
     height: 30px;
     font-weight: 500;
     font-size: 36px;
@@ -564,7 +584,11 @@ export const InfoSectionContent = styled.div`
 
     @media screen and (max-width: 520px) {
       font-size: 24px;
-      margin-bottom: 42px;
+      margin-bottom: 8px;
+    }
+    @media screen and (max-width: 350px) {
+      line-height: 24px;
+      margin-bottom: 28px;
     }
   }
   p {
@@ -572,15 +596,21 @@ export const InfoSectionContent = styled.div`
     font-weight: 400;
     font-size: 20px;
     line-height: 30px;
-    margin-bottom: 54px;
+    margin-bottom: 30px;
 
     @media screen and (max-width: 520px) {
       font-size: 16px;
+      margin-bottom: 12px;
     }
     @media screen and (max-width: 333px) {
       font-size: 12px;
     }
   }
+`;
+
+export const InfoBtnHolderLink = styled(Link)`
+  text-decoration: none;
+  outline: none;
 `;
 
 export const InfoButton = styled.button`
