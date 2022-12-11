@@ -19,85 +19,103 @@ export const HeroSection = styled.div`
 
 export const ContentHolder = styled.div`
   width: 90%;
-  align-content: center;
-  padding: 12% 8%;
+  display: flex;
+  flex-direction: column;
+  padding: 14% 8%;
   line-height: 1.2;
-  align-items: center;
+  align-items: flex-start;
+  justify-content: center;
   transition: 0.5s all;
 
-  h1 {
-    color: #ffffff;
-    font-weight: 400;
-    font-size: 36px;
-    line-height: 137.5%;
-    color: #ffffff;
-  }
   .subheading {
     color: #ffffff;
     font-size: 24px;
     font-weight: 400;
-    line-height: 33px;
-    padding-top: 2%;
-    margin-bottom: 24px;
+    line-height: 32px;
+    margin-bottom: 1.5rem;
   }
   .typewriter {
     color: #ffbc15;
     font-weight: 800;
     font-size: 48px;
-    line-height: 68.24px;
-    margin-bottom: 5rem;
+    line-height: 142.16%;
+    margin-bottom: 1rem;
+  }
+  h1 {
+    color: #ffffff;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 32px;
+    color: #ffffff;
+    margin-bottom: 3rem;
   }
 
-  @media screen and (max-width: 663px) {
+  @media screen and (max-width: 960px) {
     padding-top: 10rem;
-    h1 {
-      font-size: 30px;
-    }
+    align-items: center;
   }
-  @media screen and (max-width: 556px) {
-    h1 {
-      font-size: 20px;
-    }
+  @media screen and (max-width: 663px) {
     .subheading {
       font-size: 16px;
+      margin-bottom: 0.5rem;
     }
     .typewriter {
-      font-size: 36px;
-      line-height: 50px;
+      margin-left: 10rem;
+      width: 100%;
+      font-size: 32px;
+      margin-bottom: 0;
     }
-  }
-  @media screen and (max-width: 425px) {
-    padding-top: 8rem;
     h1 {
       font-size: 16px;
+      margin-bottom: 2rem;
     }
+  }
+  @media screen and (max-width: 585px) {
+    .typewriter {
+      margin-left: 5rem;
+    }
+  }
+  @media screen and (max-width: 465px) {
+    .typewriter {
+      margin-left: 2rem;
+      font-size: 26px;
+      margin-right: 0;
+    }
+  }
+  @media screen and (max-width: 360px) {
+    .typewriter {
+      margin-left: 0;
+      font-size: 24px;
+    }
+  }
+  @media screen and (max-width: 287px) {
     .subheading {
-      font-size: 16px;
+      font-size: 14px;
       margin-bottom: 0px;
     }
     .typewriter {
-      font-size: 24px;
+      font-size: 18px;
       line-height: 1.5em;
+      margin-left: 2rem;
+    }
+    h1 {
+      font-size: 14px;
     }
   }
 `;
 
 export const BtnHolderLink = styled(Link)`
-  display: flex;
   width: 24%;
   text-decoration: none;
   outline: none;
 
-  @media screen and (max-width: 425px) {
+  @media screen and (max-width: 960px) {
     width: max-content;
-    text-align: center;
-  }
-  @media screen and (max-width: 620px) {
-    width: 500px;
   }
 `;
 
 export const EventButton = styled.button`
+  font-size: 16px;
   height: 65px;
   width: 200px;
   border: none;
@@ -123,14 +141,17 @@ export const EventButton = styled.button`
 
 export const StorySectionContainer = styled.div`
   width: 100%;
-  height: 40vh;
+  height: 50vh;
   padding: 5rem;
   display: flex;
   align-items: center;
   justify-content: center;
 
+  @media screen and (max-width: 1200px) {
+    height: 60vh;
+  }
   @media screen and (max-width: 960px) {
-    padding: 2em;
+    padding: 4em 1rem;
     height: 100%;
   }
 `;
@@ -140,14 +161,15 @@ export const StorySectionContent = styled.div`
 
   h2 {
     font-weight: 600;
-    font-size: 40px;
-    line-height: 72px;
+    font-size: 48px;
+    line-height: 60px;
     text-align: center;
     color: #484848;
+    margin-bottom: 2rem;
   }
   p {
     font-weight: 400;
-    font-size: 20px;
+    font-size: 24px;
     line-height: 36px;
     text-align: center;
     color: #484848;
@@ -158,9 +180,8 @@ export const StorySectionContent = styled.div`
   @media screen and (max-width: 650px) {
     h2 {
       font-weight: 600;
-      font-size: 32px;
+      font-size: 36px;
       line-height: 48px;
-      margin-bottom: 12px;
     }
     p {
       font-size: 16px;
@@ -186,26 +207,23 @@ export const AllAboutSectionContainer = styled.div`
 
   h2 {
     left: 50px;
-    font-weight: 300;
-    font-size: 24px;
-    line-height: 30px;
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 38px;
     width: 100%;
-    margin-bottom: 20px;
+    margin-bottom: 4rem;
 
     @media screen and (max-width: 1300px) {
       font-size: 26px;
     }
-    @media screen and (max-width: 1300px) {
-      font-size: 22px;
-    }
     @media screen and (max-width: 630px) {
-      font-size: 20px;
+      font-size: 24px;
+      font-weight: 400;
+      margin-bottom: 1rem;
     }
-    @media screen and (max-width: 520px) {
-      font-size: 16px;
-    }
-    @media screen and (max-width: 520px) {
-      font-size: 12px;
+    @media screen and (max-width: 330px) {
+      font-size: 18px;
+      font-weight: 400;
     }
   }
   @media screen and (max-width: 630px) {
@@ -222,9 +240,8 @@ export const AllAboutInfo = styled.div`
     flex-direction: column;
     padding: 0 3rem;
   }
-  @media screen and (max-width: 400px) {
-    flex-direction: column;
-    padding: 0;
+  @media screen and (max-width: 630px) {
+    padding: 0.5rem;
   }
 `;
 
@@ -273,7 +290,7 @@ export const AllAboutSectionContent = styled.div`
       margin-left: 10rem;
       border-radius: 32px;
       box-shadow: -20px 20px 0.5px #f6e9ec;
-      margin-bottom: 3rem;
+      margin-bottom: 1rem;
     }
     @media screen and (max-width: 768px) {
       margin-left: 8rem;
@@ -290,37 +307,23 @@ export const AllAboutSectionContent = styled.div`
     }
   }
 
-  /* @media screen and (max-width: 1300px) {
-      width: 40%;
-      height: 40%;
-    }
-    @media screen and (max-width: 960px) {
-      width: 60%;
-      height: 50%;
-    }
-    @media screen and (max-width: 376px) {
-      width: 85%;
-      height: 50%;
-    } */
   h3 {
     width: 100%;
     height: 100%;
     font-weight: 600;
-    font-size: 30px;
+    font-size: 36px;
     margin-bottom: 12px;
+    margin-top: 2rem;
 
     @media screen and (max-width: 1300px) {
       font-size: 24px;
-    }
-    @media screen and (max-width: 960px) {
-      font-size: 18px;
     }
   }
   p {
     width: 100%;
     height: 100%;
     font-weight: 400;
-    font-size: 20px;
+    font-size: 18px;
 
     @media screen and (max-width: 1300px) {
       font-size: 16px;
@@ -359,7 +362,7 @@ export const AllAboutImages = styled.div`
   .next {
     display: flex;
     width: 800px;
-    height: 500px;
+    height: 550px;
     border-radius: 32px;
     box-shadow: -40px 40px 0.5px #f6e9ec;
     margin-bottom: 7rem;
@@ -378,7 +381,6 @@ export const AllAboutImages = styled.div`
 export const PromiseSectionContainer = styled.div`
   width: 100%;
   height: 40vh;
-  padding: 1rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -386,35 +388,38 @@ export const PromiseSectionContainer = styled.div`
   @media screen and (max-width: 1024px) {
     padding: 5rem;
   }
-  @media screen and (max-width: 512px) {
-    padding: 5rem 2rem;
+  @media screen and (max-width: 630px) {
+    padding: 10rem 2rem;
   }
 `;
 
 export const PromiseSectionContent = styled.div`
   h2 {
     font-weight: 600;
-    font-size: 40px;
+    font-size: 48px;
     text-align: center;
     color: #484848;
+    line-height: 60px;
+    margin-bottom: 2rem;
   }
   p {
     font-weight: 400;
-    font-size: 20px;
-    line-height: 36px;
+    font-size: 24px;
+    line-height: 32px;
     text-align: center;
     color: #484848;
     width: 100%;
     height: 100%;
   }
 
-  @media screen and (max-width: 512px) {
+  @media screen and (max-width: 630px) {
     h2 {
       margin-bottom: 16px;
-      font-size: 24px;
+      font-size: 36px;
     }
     p {
-      font-size: 16px;
+      font-size: 18px;
+      line-height: 28px;
     }
   }
   @media screen and (max-width: 282px) {
@@ -429,7 +434,7 @@ export const PromiseSectionContent = styled.div`
 `;
 
 export const VisionSectionContainer = styled.div`
-  padding: 5rem 15rem;
+  padding: 4.5rem 15rem;
   width: 100%;
   height: 100%;
   background: #fef5f7;
@@ -444,7 +449,7 @@ export const VisionSectionContainer = styled.div`
 
 export const VisionSectionContent = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   color: #484848;
   width: 100%;
@@ -454,25 +459,21 @@ export const VisionSectionContent = styled.div`
     flex-direction: column;
   }
   img {
-    height: 40%;
-    width: 40%;
+    height: 48%;
+    width: 48%;
     border-radius: 20px;
-
-    @media screen and (max-width: 1300px) {
-      width: 40%;
-      height: 40%;
-    }
     @media screen and (max-width: 960px) {
       width: 60%;
       height: 50%;
     }
-    @media screen and (max-width: 376px) {
-      width: 85%;
+    @media screen and (max-width: 630px) {
+      width: 70%;
       height: 50%;
     }
   }
   .skyscrapper {
     @media screen and (max-width: 960px) {
+      margin-top: 1rem;
       order: 1;
     }
   }
@@ -486,39 +487,43 @@ export const VisionSectionContent = styled.div`
   }
 
   .missionComp {
+    margin-right: 3rem;
     @media screen and (max-width: 960px) {
+      margin-right: 0;
       order: 2;
       width: 80%;
     }
   }
   section {
-    width: 50%;
+    width: 100%;
     height: 50%;
   }
   h3 {
     font-weight: 600;
-    font-size: 40px;
-    margin-bottom: 16px;
+    font-size: 48px;
+    margin-bottom: 2rem;
     line-height: 3rem;
 
     @media screen and (max-width: 960px) {
       font-size: 32px;
-      margin-bottom: 16px;
-      margin-top: 16px;
+      margin-bottom: 0.5rem;
+      margin-top: 2rem;
       text-align: center;
     }
-    @media screen and (max-width: 380px) {
-      font-size: 28px;
+    @media screen and (max-width: 630px) {
+      font-size: 36px;
+      font-weight: 700;
     }
     @media screen and (max-width: 333px) {
-      font-size: 22px;
+      font-size: 28px;
+      font-weight: 600;
     }
   }
   p {
     height: 36px;
     font-weight: 400;
-    font-size: 20px;
-    line-height: 36px;
+    font-size: 24px;
+    line-height: 32px;
 
     @media screen and (max-width: 960px) {
       font-size: 16px;
@@ -527,13 +532,13 @@ export const VisionSectionContent = styled.div`
       text-align: center;
     }
     @media screen and (max-width: 333px) {
-      font-size: 12px;
+      font-size: 16px;
       margin-bottom: 8px;
     }
   }
 
   .mission {
-    width: 80%;
+    width: 100%;
     height: 50%;
 
     @media screen and (max-width: 960px) {
@@ -543,7 +548,7 @@ export const VisionSectionContent = styled.div`
   }
   .visionH3 {
     width: 100%;
-    margin-left: 10rem;
+    margin-left: 3rem;
 
     @media screen and (max-width: 960px) {
       margin-left: 0;
@@ -553,7 +558,8 @@ export const VisionSectionContent = styled.div`
   .vision {
     width: 80%;
     height: 50%;
-    margin-left: 10rem;
+    margin-left: 3rem;
+    margin-bottom: 10rem;
 
     @media screen and (max-width: 960px) {
       margin-left: 0;
@@ -565,44 +571,60 @@ export const VisionSectionContent = styled.div`
 
 export const InfoSectionContainer = styled.div`
   width: 100%;
-  height: 40vh;
+  height: 50vh;
   display: flex;
   align-items: center;
   justify-content: center;
   color: #484848;
   text-align: center;
+
+  @media screen and (max-width: 698px) {
+    height: 70vh;
+  }
+  @media screen and (max-width: 630px) {
+    height: 50vh;
+  }
 `;
 
 export const InfoSectionContent = styled.div`
   h2 {
-    margin-bottom: 14px;
+    margin-bottom: 2rem;
     width: 100%;
     height: 30px;
-    font-weight: 500;
-    font-size: 36px;
-    line-height: 30px;
+    font-weight: 600;
+    font-size: 48px;
+    line-height: 60px;
 
-    @media screen and (max-width: 520px) {
-      font-size: 24px;
-      margin-bottom: 8px;
+    @media screen and (max-width: 698px) {
+      margin-bottom: 8rem;
     }
-    @media screen and (max-width: 350px) {
-      line-height: 24px;
-      margin-bottom: 28px;
+    @media screen and (max-width: 630px) {
+      font-size: 36px;
+      font-weight: 600;
+      line-height: 44px;
+      margin-bottom: 2rem;
+    }
+    @media screen and (max-width: 524px) {
+      padding: 0 1rem;
+      margin-bottom: 4.5rem;
+    }
+    @media screen and (max-width: 360px) {
+      font-size: 28px;
     }
   }
   p {
     height: 30px;
     font-weight: 400;
-    font-size: 20px;
-    line-height: 30px;
-    margin-bottom: 30px;
+    font-size: 24px;
+    line-height: 32px;
+    margin-bottom: 3rem;
 
-    @media screen and (max-width: 520px) {
+    @media screen and (max-width: 630px) {
       font-size: 16px;
-      margin-bottom: 12px;
+      line-height: 40px;
+      margin-bottom: 2rem;
     }
-    @media screen and (max-width: 333px) {
+    @media screen and (max-width: 360px) {
       font-size: 12px;
     }
   }

@@ -49,7 +49,6 @@ const AboutUs = () => {
       <Navbar />
       <HeroSection>
         <ContentHolder>
-          <h1 style={{ margin: "auto 0" }}>People || Value || Memories</h1>
           <p className="subheading">We are all about</p>
           <p
             className="typewriter"
@@ -69,6 +68,7 @@ const AboutUs = () => {
               delaySpeed={1000}
             />
           </p>
+          <h1>People || Value || Memories</h1>
           <BtnHolderLink to="/waitlist">
             <EventButton>Join us today</EventButton>
           </BtnHolderLink>
@@ -76,7 +76,7 @@ const AboutUs = () => {
       </HeroSection>
       <StorySectionContainer>
         <StorySectionContent>
-          <h2>Our Story</h2>
+          <h2>Our story</h2>
           <p>
             Ours is a story of raising a new generation of men and women,
             intentional about telling their stories ceaselessly. Individual and
