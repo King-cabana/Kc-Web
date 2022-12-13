@@ -100,9 +100,9 @@ const Waitlist = () => {
               Join Waitlist
             </LongButton>
           </Form>
-          <SignInLink to="/logIn">
+          {/* <SignInLink to="/logIn">
             Remember password? <span>Sign In</span>
-          </SignInLink>
+          </SignInLink> */}
         </WaitListContent>
         <WaitListImage />
       </WaitListBody>
