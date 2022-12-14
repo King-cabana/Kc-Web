@@ -31,9 +31,9 @@ export const ContentHolder = styled.div`
 
   h1 {
     color: white;
-    font-size: 40px;
+    font-size: 48px;
     padding-top: 5%;
-    font-weight: normal;
+    font-weight: bold;
   }
 
   span {
