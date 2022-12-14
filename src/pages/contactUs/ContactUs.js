@@ -11,7 +11,7 @@ import animationData from '../../lotties/lf30_editor_meubo9a6.json';
 // import Gif from '../../images/Rectangle.gif';
 import {  ContactBody, ContactRight, ContainerBox, ContactHeader, AnimationContainer, ContactParagraph, ContactLogoBody,
           EmailBody, EmailText, EmailIcon, EmailIconArrow, PhoneBody, LocationCenter,
-          PhoneLogo, PhoneText, PhoneIconArrow, Box, BoxBody, BoxHeader,  
+          PhoneLogo, PhoneText, PhoneIconArrow, Box, BoxBody, BoxHeader, BoxContainer,
           BoxParagraph, IconHolder, SocialIcon, Location, LocationHeader, LocationText
 } from "./ContactUsStyled"
 import Navbar from '../../components/navbar/Navbar';
@@ -27,21 +27,21 @@ const ContactUs = () => {
         <ContactParagraph>We'd be thrilled to hear from you. Our staff is always available to<br/>ease your journey.</ContactParagraph>
         <ContactLogoBody>
           <EmailBody>
-            <EmailIcon><HiOutlineMail size={35}/></EmailIcon>
+            <EmailIcon><HiOutlineMail size={25}/></EmailIcon>
             <EmailText>Email: info@kingcabana.com</EmailText>
-            <EmailIconArrow><HiChevronRight size={30}/></EmailIconArrow>
+            <EmailIconArrow><HiChevronRight size={25}/></EmailIconArrow>
           </EmailBody>
           <PhoneBody>
-            <PhoneLogo> <HiOutlinePhone size={35}/> </PhoneLogo>
+            <PhoneLogo> <HiOutlinePhone size={25}/> </PhoneLogo>
             <PhoneText>Phone: (+234) 808 831 118 8</PhoneText>
-            <PhoneIconArrow><HiChevronRight size={30}/></PhoneIconArrow>
+            <PhoneIconArrow><HiChevronRight size={25}/></PhoneIconArrow>
           </PhoneBody>
         </ContactLogoBody>
         </ContactRight>
         <AnimationContainer>
         <Lottie 
         animationData={animationData} 
-        loop={true}  style={{width:'100%', height:'100%'}}
+        loop={true}  style={{width:'400px', height:'400px'}}
         />
       </AnimationContainer>
       </ContactBody>
@@ -49,6 +49,7 @@ const ContactUs = () => {
       <ContactInput />
       </ContainerBox>
       <Box>
+        <BoxContainer>
         <img src={Rectangle} alt='Rectangle'/>
         <BoxBody>
           <BoxHeader>
@@ -80,6 +81,7 @@ const ContactUs = () => {
                         </SocialIcon> 
           </IconHolder> 
         </BoxBody>
+        </BoxContainer>
       </Box>
       <Location>
         <LocationCenter>
