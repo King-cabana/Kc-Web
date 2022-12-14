@@ -4,7 +4,7 @@ import Footer from "../../components/footer/Footer";
 import {
   HeroSection,
   ContentHolder,
-  BtnHolder,
+  BtnHolderLink,
   EventButton,
   StorySectionContainer,
   StorySectionContent,
@@ -18,6 +18,7 @@ import {
   VisionSectionContent,
   InfoSectionContainer,
   InfoSectionContent,
+  InfoBtnHolderLink,
   InfoButton,
 } from "./AboutUsStyled";
 import { Typewriter } from "react-simple-typewriter";
@@ -48,7 +49,6 @@ const AboutUs = () => {
       <Navbar />
       <HeroSection>
         <ContentHolder>
-          <h1 style={{ margin: "auto 0" }}>People || Value || Memories</h1>
           <p className="subheading">We are all about</p>
           <p
             className="typewriter"
@@ -68,14 +68,15 @@ const AboutUs = () => {
               delaySpeed={1000}
             />
           </p>
-          <BtnHolder>
+          <h1>People || Value || Memories</h1>
+          <BtnHolderLink to="/waitlist">
             <EventButton>Join us today</EventButton>
-          </BtnHolder>
+          </BtnHolderLink>
         </ContentHolder>
       </HeroSection>
       <StorySectionContainer>
         <StorySectionContent>
-          <h2>Our Story</h2>
+          <h2>Our story</h2>
           <p>
             Ours is a story of raising a new generation of men and women,
             intentional about telling their stories ceaselessly. Individual and
@@ -187,7 +188,9 @@ const AboutUs = () => {
             {" "}
             Enter your email with King Cabana now!
           </p>
-          <InfoButton>Get early access</InfoButton>
+          <InfoBtnHolderLink to="/waitlist">
+            <InfoButton>Get early access</InfoButton>
+          </InfoBtnHolderLink>
         </InfoSectionContent>
       </InfoSectionContainer>
       <Footer />
