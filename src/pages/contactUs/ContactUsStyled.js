@@ -33,15 +33,16 @@ height: 137px;
 export const ContactBody = styled.div`
 /* width: 100%; */
 /* border: 5px solid red; */
-/* padding:1% 5%; */
+/* padding:1% 1%; */
+padding-left: 50px;
 margin-bottom:10px;
 display: flex;
 
 
 @media screen and (max-width: 960px){
-       display: flex;
+        display: flex;
         flex-direction: column;
-        padding:1% 2%;
+        padding-left: 20px;
     }
 
 `;
@@ -58,17 +59,17 @@ padding: 1% 5%;
 
 export const ContactHeader = styled.h1`
 font-family: 'Poppins';
-font-weight: 900;
-font-size: 70px;
+font-weight: 600;
+font-size: 48px;
 color: #484848;
 width:100%;
 margin-bottom: 50px;
 
 @media screen and (max-width: 760px) {
-    font-size: 60px;
+    font-size: 32px;
 }
 @media screen and (max-width: 576px) {
-    font-size: 40px;
+    font-size: 35px;
 }
 
 `;
@@ -77,13 +78,14 @@ export const ContactParagraph = styled.p`
 font-family: 'Poppins';
 font-style: normal;
 font-weight: 400;
-font-size: 25px;
+font-size: 24px;
 letter-spacing:2px;
 color: #484848;
 margin-bottom: 50px;
 
 @media screen and (max-width: 768px){
-    font-size: 20px;
+    font-weight: 400;
+    font-size: 16px;
 }
 `;
 
@@ -105,8 +107,8 @@ width: 100%;
 `;
 
 export const EmailIcon = styled.div`
-width: 50px;
-height: 50px;
+width: 36px;
+height: 36px;
 border-radius: 50%;
 background-color: #F6E9EC;
 display: flex;
@@ -126,13 +128,14 @@ export const EmailText = styled.p`
 font-family: 'Poppins';
 font-style: normal;
 font-weight: 600;
-font-size: 25px;
+font-size: 16px;
 line-height: 18px;
 color: #FFBC15;
+text-align: center;
 margin-right: 20px;
 
 @media screen and (max-width: 768px) {
-    font-size: 13px;
+    font-size: 10px;
     margin-right:10px;
 }
 `;
@@ -146,14 +149,14 @@ height: 22px;
 `;
 
 export const PhoneLogo = styled.div`
-width: 50px;
-height: 50px;
+width: 36px;
+height: 36px;
 border-radius: 50%;
 background-color: #F6E9EC;
 display: flex;
 justify-content: center;
 align-items: center;
-margin-right: 30px;
+margin-right: 20px;
 color: #FFBC15;
 
 @media screen and (max-width: 768px) {
@@ -166,7 +169,7 @@ export const PhoneBody = styled.div`
 display: flex;
 align-items: center;
 padding: 0px;
-margin-bottom: 30px;
+margin-bottom: 20px;
 @media screen and (max-width:768px){
     width: 100%;
 }
@@ -176,15 +179,16 @@ export const PhoneText = styled.p`
 font-family: 'Poppins';
 font-style: normal;
 font-weight: 600;
-font-size: 25px;
+font-size: 16px;
 line-height: 18px;
+text-align: center;
 color: #FFBC15;
 margin-right: 30px;
 
 @media screen and (max-width: 768px) {
-    font-size: 13px;
+    font-size: 10px;
     margin-right: 10px;
-    align-items: center;
+    text-align: center;
     }
 `
 
@@ -216,7 +220,9 @@ display: flex;
 flex-direction: column;
 align-items: center;
 gap: 40px;
-width: 100%;
+margin-left: 150px;
+margin-right: 150px;
+/* width: 100%; */
 
 @media screen and (max-width:1000px){
 width:100%;
@@ -228,7 +234,7 @@ export const ContactInfo = styled.h1`
 font-family: 'Poppins';
 font-style: normal;
 font-weight: 600;
-font-size: 50px;
+font-size: 48px;
 line-height: 54px;
 color: #484848;
 `;
@@ -236,12 +242,12 @@ color: #484848;
 export const ContactText = styled.p`
 font-family: 'Poppins';
 font-style: normal;
-font-weight: 350;
-font-size: 25px;
+font-weight: 400;
+font-size: 24px;
 line-height: 21px;
 display: flex;
 align-items: center;
-letter-spacing: -0.001em;
+letter-spacing: -0.3%;
 color: #000000;
 
 @media screen and (max-width: 768px) {
@@ -269,23 +275,27 @@ width: 100%;
 height: 1042px;
 
 input::placeholder{
-    font-size: 20px;
+    font-size: 16px;
+    line-height: 21px;
+    letter-spacing:-0.3%;
+    @media screen and (max-width:768px){
+        font-size: 12px;
+    }
 }
 label{
 font-family: 'Poppins';
 font-style: normal;
 font-weight: 400;
-font-size: 34px;
+font-size: 24px;
 line-height: 21px;
 display: flex;
 align-items: center;
-letter-spacing: -0.003em;
-text-transform: capitalize;
+letter-spacing: -0.3%;
 color: #000000;
 margin-bottom:10px;
 
 @media screen and (max-width: 768px) {
-    font-size: 24px;
+    font-size: 16px;
 }
 };
 
@@ -361,23 +371,38 @@ height: 100%;
 background: #FEF5F7;
 justify-content: center;
 align-items: center;
-gap: 125px;
-padding:2% 10%;
+@media screen and (max-width: 768px) {
+    width: 100%;
+}
+
+`;
+export const BoxContainer = styled.div`
+display: flex;
+width:100%;
+justify-content: center;
+align-items: center;
+margin-top:40px;
+margin-bottom:40px;
+margin-left:150px;
+margin-right:150px;
+gap:125px;
 
 img{
-width: 500px;
-height: 500px;
+width: 600px;
+height: 600px;
 border-radius: 20px;
-margin-left: 30px;
+/* margin-left: 30px; */
 
-@media screen and (max-width: 960px){
-    width: 300px;
-    height:300px;
-    
+@media screen and (max-width: 768px){
+    width: 250px;
+    height:250px;
+    margin-top:10px;
 }
 }
 
 @media screen and (max-width: 960px){
+    width:100%;
+    height: 100%;
        display: flex;
         flex-direction: column;
         height:max-content;
@@ -387,17 +412,22 @@ margin-left: 30px;
         align-content: center;
         text-align: center;
         margin-top:25px;
-    }
+        margin-left:30px;
+        margin-right: 30px;
+    };
+`
 
-`;
 export const BoxBody = styled.div`
 display: flex;
 flex-direction: column;
 align-items: flex-start;
-padding: 0px;
-gap: 56px;
-width: 80%;
-height: 80%;
+gap: 20px;
+margin-left: 100px;
+margin-right: 100px;
+
+/* padding:0% 8%; */
+width: 100%;
+/* height: 80%; */
 
 @media screen and (max-width: 960px){
        display: flex;
@@ -415,12 +445,12 @@ export const BoxHeader = styled.h1`
 font-family: 'Poppins';
 font-style: normal;
 font-weight: 600;
-font-size: 45px;
+font-size: 48px;
 line-height: 54px;
 color: #484848;
 
 @media screen and (max-width: 768px) {
-    font-size: 35px;
+    font-size: 32px;
 }
 `;
 
@@ -434,6 +464,8 @@ color: #484848;
 
 @media screen and (max-width: 768px) {
     font-size:15px;
+    margin-left:10px;
+    margin-right:10px;
 }
 `;
 
@@ -447,7 +479,10 @@ export const IconHolder = styled.div`
     justify-content:space-between;
     margin-top:5%;
     @media screen and (max-width: 768px){
-        width: 100%;
+        /* width: 100%; */
+        /* margin-left:50px; */
+        margin-right:120px;
+        
     }
    
 `;
@@ -456,10 +491,11 @@ export const SocialIcon = styled.a`
     color:black;
     text-decoration:none;
     margin-right:10px;
+    margin-bottom:20px;
     
     div{
-        width:38px;
-        height:38px; 
+        width:34.88px;
+        height:33.88px; 
         border-radius:50%;
         border: 1.125px solid #484848;
         display:flex;
@@ -469,8 +505,8 @@ export const SocialIcon = styled.a`
     }
 
     img{
-        width:35px;
-        height:35px;
+        width:16px;
+        height:24px;
         margin:auto;
     }
 `;
@@ -478,21 +514,20 @@ export const SocialIcon = styled.a`
 export const Location = styled.div`
 
 width: 100%;
-height: 100%;
+height: 30vh;
 
 `;
 export const LocationCenter = styled.div`
+padding-top: 70px;
 display: flex;
 flex-direction: column;
 align-items: center;
-gap: 25px;
-padding: 120px;
+/* gap: 25px; */
 
 @media screen and (max-width: 768px) {
     width:100%;
 }
-/* left: 563px;
-top: 2681px;  */
+
 `
 
 export const LocationHeader = styled.h1`
@@ -503,7 +538,7 @@ line-height: 72px;
 top: 2681px; 
 
 @media screen and (max-width: 768px) {
-    font-size:38px;
+    font-size:32px;
 }
 `;
 
@@ -511,10 +546,11 @@ export const LocationText = styled.p`
 font-family: 'Poppins';
 font-weight: 400;
 font-size: 24px;
-line-height: 30px;
+line-height: 36px;
 
 @media screen and (max-width: 768px) {
-    font-size: 14px;
+    font-size: 16px;
+    line-height: 30px;
 }
 `
 
