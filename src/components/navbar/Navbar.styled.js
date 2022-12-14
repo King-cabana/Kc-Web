@@ -166,13 +166,6 @@ export const NavSearchHolder = styled.div`
 `;
 
 export const NavButtonLink = styled(Link)`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-decoration: none;
-  padding: 4px 8px;
-  border: none;
-  outline: none;
 
   @media screen and (max-width: 960px) {
     height: 10vh;

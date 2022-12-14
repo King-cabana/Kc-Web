@@ -6,16 +6,12 @@ import man from "../../images/pexels-vlada-karpovich-4939626.jpg"
 export const WaitListBody = styled.div`
     height: 95vh;
     width: 60vw;
-    margin: auto;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
     background-color: white;
     border-radius: 10px;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     display: flex;
+    align-items: center;
+    justify-content: center;
 
     @media screen and (max-width: 960px) {
 
@@ -26,6 +22,7 @@ export const WaitListBody = styled.div`
         align-items: center;
         display: flex;
         flex-direction: column;
+        margin: 10% 5%;
         
 
         /* h3,p{

@@ -39,11 +39,9 @@ export const ModalOverlay = styled.div`
     width: 100%;
     height: 100vh;
     background: rgba(49,49,49,0.8);
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    align-items: center;
+    justify-content: center;
+    display: flex;
 `
 
 export const LongButton = styled.button`
