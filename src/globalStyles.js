@@ -18,7 +18,7 @@ const GlobalStyle = createGlobalStyle`
 
 //Fonts
 export const HeaderFont = styled.h4`
-    font-size: 26px;
+    font-size: 48px;
 `
 
 export const BodyFont = styled.p`

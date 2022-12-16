@@ -43,7 +43,7 @@ export const ContentHolder = styled.div`
 
   p {
     color: white;
-    font-size: 14px;
+    /* font-size: 14px; */
     /* padding-top:2%; */
   }
 
@@ -320,8 +320,10 @@ export const ASContentInner = styled.div`
 `;
 
 export const ASImage = styled.div`
-  width: 45%;
-  height: 65vh;
+  /* width: 45%;
+  height: 65vh; */
+  width: 500px;
+  height: 500px;
   background: ${(props) => `url(${props.img})`};
   background-position: center;
   background-size: cover;
@@ -510,3 +512,27 @@ export const ReadySection = styled.div`
     height: fit-content;
   }
 `;
+
+
+export const TestButton = styled.button`
+  width: 143px;
+  height: 56px;
+  border-radius: 8px;
+  background-color:  #ff2957;
+  color: white;
+  border: 1px solid transparent;
+  outline: none;
+  cursor: pointer;
+  font-weight: 600;
+
+  &:hover{
+    background-color: white;
+    color: #ff2957;
+    border: 1.5px solid #ff2957;
+  }
+
+  &:disabled{
+    background-color: rgba(255, 41, 87, 0.);
+    color: white;
+  }
+`

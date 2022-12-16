@@ -3,7 +3,7 @@ import {
   BgOverlay, HeroSection,
   ContentHolder, BtnHolder,
   EventButton, ContentSection,
-  EventCard, NavButtonHolder
+  EventCard, NavButtonHolder, TestButton
 } from './HomeStyled'
 import {
   BodyFont,
@@ -27,6 +27,8 @@ import Art from '../../images/Arts.jpg'
 import Weddings from '../../images/Wedding.jpg'
 import Concert from '../../images/Concert.jpg'
 import Sports from '../../images/Sport.jpg'
+import { TextButton } from '../../components/button/button'
+import { KBDisplayL, KBDisplayM, KBDisplayXs, KBTextL, KBTextXl } from '../../components/fonts/fontSize'
 
 
 
@@ -40,7 +42,7 @@ const Home = () => {
       <HeroSection>
         <BgOverlay>
           <ContentHolder>
-            <h1 style={{ margin: 'auto 0'}}>
+            <KBDisplayL style={{ margin: 'auto 0'}}>
               Dreams do come true.<br />{' '}
               <span style={{color: '#FFBC15', fontWeight: 'bold' }}>
                 <Typewriter
@@ -56,9 +58,9 @@ const Home = () => {
                   delaySpeed={1000}
                 />
               </span>
-            </h1>
-            <BodyFont>Connecting People | Creating Memories | 
-              Capturing Value</BodyFont>
+            </KBDisplayL>
+            <KBDisplayXs>Connecting People | Creating Memories | 
+              Capturing Value</KBDisplayXs>
             
             <BtnHolder>
               <NavButtonLink to="/waitlist"> 
@@ -73,13 +75,13 @@ const Home = () => {
       </HeroSection>
 
       <ContentSection>
-        <HeaderFont style={{textAlign:'center', marginTop:'6%', color:'#484848', 
+        <KBDisplayM style={{textAlign:'center', marginTop:'6%', color:'#484848', 
                           fontSize:'26px', fontWeight: '600', marginBottom:' 4%'
-                          }}>Event Categories</HeaderFont>
-        <BodyFont style={{ color:'#484848', marginLeft:'8%', fontWeight:'500', 
+                          }}>Event Categories</KBDisplayM>
+        <KBTextL style={{ color:'#484848', marginLeft:'8%', fontWeight:'500', 
                            fontSize:'14px', alignSelf: 'flex-start', textAlign:'left'                        
 
-        }}>Explore the most trending</BodyFont>
+        }}>Explore the most trending</KBTextL>
         <CardHolder>
           <EventCard img={Business}>
             <ImageDisplayOverlay>Business</ImageDisplayOverlay>
@@ -111,12 +113,12 @@ const Home = () => {
         <ASSectionInner>
         <ASContent>
           <ASContentInner>
-            <HeaderFont>
+            <KBDisplayL fontWeight='500'>
               Advertise your events on our platform.
-            </HeaderFont>
-          <BodyFont style={{marginTop:'10%', marginBottom:'8%'
+            </KBDisplayL>
+          <KBTextXl style={{marginTop:'10%', marginBottom:'8%'
             }}>Publicize your events and business here and experience potential 
-            customers seek you out in record time.</BodyFont>
+            customers seek you out in record time.</KBTextXl>
           <NavButtonLink to="/waitlist"> 
           <EventButton style={{marginTop:'4%'}}>Get in touch</EventButton>
           </NavButtonLink>
@@ -127,8 +129,8 @@ const Home = () => {
       </ASContentSection>
       
       <SponsorSection>
-        <HeaderFont>Leverage for being an Event sponsor</HeaderFont>
-        <BodyFont>As a sponsor, these are some of the opportunities you would get.</BodyFont>
+        <KBDisplayM>Leverage for being an Event sponsor</KBDisplayM>
+        <KBTextL>As a sponsor, these are some of the opportunities you would get.</KBTextL>
         <SponsorSectionInner>
           <SponsorCard>
             <img src={Search} alt=''/>
@@ -145,15 +147,17 @@ const Home = () => {
         </SponsorSectionInner>           
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width:'100vw' }}>
         <NavButtonLink to="/waitlist"> 
-        <NavButton>Get Started</NavButton>
+        {/* <NavButton>Get Started</NavButton> */}
+        {/* <TestButton>Get Started</TestButton> */}
+        <TextButton>Get Started</TextButton>
         </NavButtonLink>
         </div>
       </SponsorSection>
 
       <TestimonialSection>
-        <HeaderFont style={{marginBottom:'3%', textAlign:'center', fontSize:'24px', 
+        <KBDisplayM style={{marginBottom:'3%', textAlign:'center', fontSize:'24px', 
                             fontWeight:'600', color:'#484848'
-                            }}>Testimonials</HeaderFont>
+                            }}>Testimonials</KBDisplayM>
         <Testimonial/>
       </TestimonialSection>
       
@@ -162,8 +166,8 @@ const Home = () => {
       <ASImage img={Subscribe}><ImageDisplayOverlayB/></ASImage>
         <ASContent >
           <div style={{width:'inherit', justifyContent:'flex-start'}}>
-          <HeaderFont>Ready to be sponsored? .</HeaderFont>
-          <BodyFont>Enter your email with King Cabana now!</BodyFont>
+          <KBDisplayM>Ready to be sponsored? .</KBDisplayM>
+          <KBTextL>Enter your email with King Cabana now!</KBTextL>
           <NavButtonLink to="/waitlist">
           <NavButton>Get Started</NavButton>
           </NavButtonLink>
@@ -171,6 +175,7 @@ const Home = () => {
         </ASContent>
       </ReadySection>
       <Footer />
+     
     </>
   )
 }
