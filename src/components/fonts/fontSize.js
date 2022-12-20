@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const KBDisplay2xl = styled.p`
+export const KBDisplay2xl = styled.h1`
 font-size: 72px;
 line-height: 90px;
 font-weight:${props => props.fontWeight};
@@ -16,7 +16,7 @@ color: ${props => props.color};
 `;
 
 
-export const KBDisplayL = styled.p`
+export const KBDisplayL = styled.h1`
 font-size: 48px;
 line-height: 60px;
 font-weight:${props => props.fontWeight};

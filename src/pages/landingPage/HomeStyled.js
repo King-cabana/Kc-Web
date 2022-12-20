@@ -31,20 +31,17 @@ export const ContentHolder = styled.div`
 
   h1 {
     color: white;
-    font-size: 48px;
-    padding-top: 5%;
+    padding-top: 70px;
     font-weight: bold;
+    line-height: 1.5;
   }
 
   span {
     color: #ffbc15;
-    font-size: 48px;
   }
 
   p {
     color: white;
-    /* font-size: 14px; */
-    /* padding-top:2%; */
   }
 
   @media screen and (max-width: 480px) {
@@ -86,7 +83,7 @@ export const ContentHolder = styled.div`
 
 export const BtnHolder = styled.div`
   display: flex;
-  padding-top: 10%;
+  padding-top: 5%;
   width: 24vw;
   justify-content: space-between;
 
@@ -207,7 +204,7 @@ export const ASContentSection = styled.div`
 `;
 
 export const ASContent = styled.div`
-  width: 35vw;
+  width: 40vw;
   height: 60vh;
   padding: 2%;
   display: flex;
@@ -271,12 +268,12 @@ export const ASSectionInner = styled.div`
 export const ASContentInner = styled.div`
   width: inherit;
 
-  h4 {
+  /* h4 {
     width: inherit;
     font-size: 32px;
     font-weight: 600;
     color: #484848;
-  }
+  } */
   p {
     margin-top: 10%;
     margin-bottom: 8%;
@@ -322,8 +319,8 @@ export const ASContentInner = styled.div`
 export const ASImage = styled.div`
   /* width: 45%;
   height: 65vh; */
-  width: 500px;
-  height: 500px;
+  width: 45%;
+  height: 70vh;
   background: ${(props) => `url(${props.img})`};
   background-position: center;
   background-size: cover;
@@ -348,7 +345,7 @@ export const SponsorSection = styled.div`
   justify-content: space-between;
   align-items: center;
 
-  h4 {
+  /* h4 {
     font-size: 26px;
     font-weight: 600;
     text-align: center;
@@ -360,7 +357,7 @@ export const SponsorSection = styled.div`
     align-self: flex-start;
     text-align: left;
     margin-left: 5%;
-  }
+  } */
 
   @media screen and (max-width: 480px) {
     height: fit-content;

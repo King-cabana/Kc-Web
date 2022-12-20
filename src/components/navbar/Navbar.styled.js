@@ -174,11 +174,6 @@ export const NavButton = styled.button`
   cursor: pointer;
   font-weight: 600;
 
-  /* &:hover{
-            background-color: #FF2957;
-            color: white;
-        } */
-
   &:hover {
     background-color: rgba(255, 41, 87, 0.8);
     color: white;

@@ -3,44 +3,41 @@ import styled from "styled-components";
 
 //medium buttons (for the regular webpage)
 export const PrimaryButton = styled.button`
-  width: 143px;
-  height: 56px;
+  width: 150px;
+  height: 50px;
   border-radius: 8px;
   background-color:  #ff2957;
   color: white;
   border: 1px solid transparent;
   outline: none;
   cursor: pointer;
-  font-weight:${props => props.fontWeight};
+  font-weight:600;
   
 
   &:hover{
-    background-color: white;
-    color: #ff2957;
-    border: 1.5px solid #ff2957;
+    background-color: rgba(255, 41, 87, 0.8);
+    color: white;
   }
 
   &:disabled{
-    background-color: rgba(255, 41, 87, 0.6);
-    color: white;
+    background-color: rgba(255, 41, 87, 0.3);
+    color: rgba(255, 255, 255, 0.3);
   }
 `
 
 
 export const AlternativeButton = styled.button`
-  width: 143px;
-  height: 56px;
+  width: 150px;
+  height: 50px;
   border-radius: 8px;
-  background-color:  white;
-  color: #ff2957;
-  border: 1.5px solid #ff2957;
+  background-color:  transparent;
+  color: ${props => props.color ? props.color : 'white'};
+  border: 2px solid #ff2957;
   cursor: pointer;
   font-weight:${props => props.fontWeight};
 
   &:hover{
-    background-color: white;
     color: #ff2957;
-    border: 1.5px solid white;
   }
 
   &:disabled{
@@ -49,6 +46,7 @@ export const AlternativeButton = styled.button`
     border: 1.5px solid rgba(255, 41, 87, 0.6);
   }
 `
+
 
 export const TextButton = styled.button`
   color: #ff2957;
