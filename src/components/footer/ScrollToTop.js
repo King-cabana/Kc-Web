@@ -41,9 +41,9 @@ const TopButton = styled.div`
   color: white;
   margin-top: 5%;
 
-  svg {
-    width: 45px;
-    height: 45px;
+  img {
+    max-width: 40px;
+    height: 40px;
   }
 
   @media screen and (max-width: 480px) {

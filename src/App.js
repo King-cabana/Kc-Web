@@ -6,6 +6,7 @@ import ContactUs from "./pages/contactUs/ContactUs";
 import GoToTop from "./GoToTop";
 import "./App.css";
 import Waitlist from "./pages/waitlist/WaitlistForm";
+import Event from "./event/Event"
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
           <Route path='/eventmanagement' element={<Event/>} />
           <Route path="/verifyOtp" element={<VerifyOTP/>} /> */}
         <Route path="/waitlist" element={<Waitlist />} />
+        <Route path="/event" element={<Event />} />
         <Route path="*" element={<NoPage />} />
       </Routes>
     </BrowserRouter>
