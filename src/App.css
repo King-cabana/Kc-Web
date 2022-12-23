@@ -43,3 +43,23 @@
     height: auto;
   }
 }
+
+
+.MenuItem{
+  background-color: white;
+}
+
+.MenuItem:hover{
+  color: #ff2957;
+  background-color: #FEF5F7;
+}
+
+.MenuItem:active{
+  border-right: 4px solid #ff2957;
+  background-color: white;
+}
+
+.SubMenu:active{
+  color: #ff2957;
+  border-right: none;
+}
