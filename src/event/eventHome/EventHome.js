@@ -1,12 +1,3 @@
-// const EventHome = () => {
-//     return (
-//         <>
-//         <div style={{width:'80%', backgroundColor:'#FEF5F7',
-//         height:'90vh', marginLeft:'20%', marginTop:'-44%', position:'absolute' }}>Home</div>
-//         </>
-//       )
-// }
-
 import React, { useState } from "react";
 import {
   OverallContainer,
@@ -36,7 +27,6 @@ import {
 // import { PrimaryButton } from "./components/button/button";
 import click from "../../images/click.png";
 import "./EventHome.css";
-import Event from "../Event";
 
 const EventHome = () => {
   const [state, setState] = useState(true);
@@ -74,14 +64,14 @@ const EventHome = () => {
 
           <ButtonsContainer>
             <JointContainer>
-              <ButtonLink to="/NoEvent">
+              <ButtonLink to="/event/create">
                 <AlternativeButton2
                   style={{
                     color: "#FF2957",
                     fontWeight: "600",
                   }}
                 >
-                  Add event
+                  Add event history
                 </AlternativeButton2>
               </ButtonLink>
 
@@ -99,7 +89,7 @@ const EventHome = () => {
               </div>
             </JointContainer>
 
-            <ButtonLink to="/NoEvent">
+            <ButtonLink to="/event/create">
               <PrimaryButton> Create event</PrimaryButton>
             </ButtonLink>
           </ButtonsContainer>
@@ -154,7 +144,7 @@ const EventHome = () => {
                   Create an event right away.
                 </ChecklistSubHeading>
               </Wrapper>
-              <ButtonLink to="/NoEvent">
+              <ButtonLink to="/event/create">
                 <PrimaryButton2>Start here</PrimaryButton2>
               </ButtonLink>
             </ItemsContainer>

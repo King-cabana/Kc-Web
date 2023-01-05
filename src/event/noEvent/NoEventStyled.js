@@ -6,18 +6,17 @@ export const OverallContainer = styled.section`
   height: 100%;
   display: flex;
   justify-content: flex-end;
-  margin-top: 8vh;
+  /* margin-top: 8vh; */
 `;
 
 export const NoEventContainer = styled.div`
   padding: 8.5rem 2rem;
   background-color: #fffdfd;
-  width: 80%;
-  height: 92vh;
+  width: 100%;
+  height: 100%;
 
   @media screen and (max-width: 769px) {
     padding: 5rem 1rem;
-    width: 100%;
   }
 `;
 

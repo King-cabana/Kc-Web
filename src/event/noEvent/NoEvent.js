@@ -10,7 +10,6 @@ import {
   LottieWrapper,
   PrimaryButton,
 } from "./NoEventStyled";
-// import { PrimaryButton } from "./components/button/button";
 
 const NoEvent = () => {
   return (

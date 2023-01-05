@@ -2,12 +2,12 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 export const OverallContainer = styled.section`
-  width: 80%;
-  /* backgroundColor:'#FEF5F7', */
+  width: 100%;
+  /* background-color: #fef5f7; */
   /* height:'90vh',  */
-  margin-left: 20%;
-  margin-top: -44%;
-  position: absolute;
+  /* margin-left: 20%; */
+  /* margin-top: -44%; */
+  /* position: absolute; */
   /* width: 100%; */
   height: 100%;
   display: flex;
