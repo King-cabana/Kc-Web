@@ -16,25 +16,6 @@ const GlobalStyle = createGlobalStyle`
 }
 `
 
-//Fonts
-export const HeaderFont = styled.h4`
-    font-size: 48px;
-`
-
-export const BodyFont = styled.p`
-    font-size: 16px;
-`
-
-
-//Buttons
-export const PrimaryButtons = styled.button`
-
-`
-
-export const AlternativeButtons = styled.button`
-
-`
-
 export const ModalOverlay = styled.div`
     width: 100%;
     height: 100vh;
@@ -71,6 +52,7 @@ export const SignInLink = styled(Link)`
 export const Form = styled.form`
     display: flex;
     flex-direction: column;
+    
 
     label{
         font-weight: 500;
@@ -95,7 +77,7 @@ export const InputFieldWrapper = styled.div`
     height: 6vh;
     outline: 1px solid #C4C4C4;
     border-radius: 4px;
-    margin-top: 2%;
+    /* margin-top: 2%; */
 
     input{
         height: inherit;

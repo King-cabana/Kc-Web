@@ -188,7 +188,7 @@ const AboutUs = () => {
             {" "}
             Enter your email with King Cabana now!
           </p>
-          <InfoBtnHolderLink to="/Welcome">
+          <InfoBtnHolderLink to="/EventHome">
             <InfoButton>Get early access</InfoButton>
           </InfoBtnHolderLink>
         </InfoSectionContent>

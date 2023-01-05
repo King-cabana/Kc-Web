@@ -28,7 +28,7 @@ import Weddings from '../../images/Wedding.jpg'
 import Concert from '../../images/Concert.jpg'
 import Sports from '../../images/Sport.jpg'
 import { AlternativeButton, PrimaryButton} from '../../components/button/button'
-import { KBDisplayL, KBDisplayM, KBTextL} from '../../components/fonts/fontSize'
+import { KBDisplayL, KBDisplayM, KBTextL, KBTextM} from '../../components/fonts/fontSize'
 
 
 
@@ -113,10 +113,10 @@ const Home = () => {
         <ASSectionInner>
         <ASContent>
           <ASContentInner>
-            <KBDisplayM fontWeight='500'>
+            <KBDisplayM fontWeight='600'>
               Advertise your events on our platform.
             </KBDisplayM>
-          <KBTextL style={{marginTop:'10%', marginBottom:'8%'
+          <KBTextL style={{marginTop:'5%', marginBottom:'4%'
             }}>Publicize your events and business here and experience potential 
             customers seek you out in record time.</KBTextL>
           <NavButtonLink to="/waitlist"> 
@@ -134,15 +134,15 @@ const Home = () => {
         <SponsorSectionInner>
           <SponsorCard>
             <img src={Search} alt=''/>
-            <BodyFont style={{marginTop:'10%'}}>Assess target markets.</BodyFont>
+            <KBTextM style={{marginTop:'10%'}}>Assess target markets.</KBTextM>
           </SponsorCard>
           <SponsorCard>
             <img src={Bulb} alt=''/>
-            <BodyFont  style={{marginTop:'10%'}}>Enhance connection with target markets.</BodyFont>
+            <KBTextM  style={{marginTop:'10%'}}>Enhance connection with target markets.</KBTextM>
           </SponsorCard>
           <SponsorCard>
             <img src={Speaker} alt=''/>
-            <BodyFont  style={{marginTop:'10%'}}>Promote your brand through experiential marketing.</BodyFont>
+            <KBTextM  style={{marginTop:'10%'}}>Promote your brand through experiential marketing.</KBTextM>
           </SponsorCard>
         </SponsorSectionInner>           
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width:'100vw' }}>
