@@ -20,7 +20,7 @@ export const SidebarLink = styled(Link)`
   }
 
 &:active{
-    background-color: #FEF5F7;
+    background-color: white;
     border-right: 4px solid #ff2957;
     color: #ff2957;
 }

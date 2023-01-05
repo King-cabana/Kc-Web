@@ -24,5 +24,5 @@ export const ContentBody = styled.div`
   justify-content:center;
   align-items:center;
   font-size:60px;
-  width: 100%;
+  width: 80%;
 `
