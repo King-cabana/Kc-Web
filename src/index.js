@@ -4,7 +4,7 @@ import App from './App';
 import GlobalStyle from './globalStyles'
 import { Provider } from "react-redux";
 import store from "./store";
-import { ProSidebarProvider } from 'react-pro-sidebar';
+import GoToTop from "./GoToTop";
 import { BrowserRouter } from 'react-router-dom';
 
 
@@ -13,11 +13,10 @@ root.render(
   <React.StrictMode>
     <Provider store={store}>
     <GlobalStyle/>
-    <ProSidebarProvider>
     <BrowserRouter>
+    <GoToTop /> 
     <App />
     </BrowserRouter>
-    </ProSidebarProvider>
     </Provider>
   </React.StrictMode>
 );
