@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import {
   ModalOverlay,
   LongButton,
-  SignInLink,
+  // SignInLink,
   Form,
   InputFieldWrapper,
 } from "../../globalStyles";

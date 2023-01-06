@@ -41,7 +41,7 @@ const ContactUs = () => {
         <AnimationContainer>
         <Lottie 
         animationData={animationData} 
-        loop={true}  style={{width:'400px', height:'400px'}}
+        loop={true}  style={{width:'400px', height:'400px', paddingRight: '15px'}}
         />
       </AnimationContainer>
       </ContactBody>

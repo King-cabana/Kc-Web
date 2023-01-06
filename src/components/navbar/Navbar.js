@@ -1,10 +1,10 @@
 import React, {useState, useEffect} from 'react'
 import hb from '../../images/hb.svg'
 import times from '../../images/times.svg'
-import { BiSearch } from 'react-icons/bi';
+// import { BiSearch } from 'react-icons/bi';
 import {IconContext} from 'react-icons/lib'
 import {Nav, NavLogo, LogoLink, NavContent, NavItems, NavMobile, NavBarLink,
-        NavButtonLink, NavSearchHolder, AccessButton} from './Navbar.styled'
+        NavButtonLink, AccessButton} from './Navbar.styled'
 import Logo from '../../images/kingCabanaLogo.svg'
 import { NavGroup } from './Navbar.styled';
 // import SignIn from '../../pages/authentication/signIn/SignIn';

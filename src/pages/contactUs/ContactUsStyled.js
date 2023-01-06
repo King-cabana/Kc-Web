@@ -52,7 +52,7 @@ width:60%;
 padding: 1% 5%;
 @media screen and (max-width: 768px) {
     width:100%;
-    padding: 5% 0%;
+    padding: 5% 2%;
 }
 
 `;
@@ -278,10 +278,11 @@ input::placeholder{
     font-size: 16px;
     line-height: 21px;
     letter-spacing:-0.3%;
-    @media screen and (max-width:768px){
+@media screen and (max-width:768px){
         font-size: 12px;
-    }
-}
+    };
+};
+
 label{
 font-family: 'Poppins';
 font-style: normal;
@@ -360,7 +361,7 @@ border: 1px solid rgba(72, 72, 72, 0.1);
 border-radius: 10px;
 }
 textarea::placeholder{
-    font-size: 20px;
+    font-size: 12px;
 }
 `;
 
