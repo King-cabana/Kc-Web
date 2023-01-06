@@ -21,6 +21,11 @@ font-size: 48px;
 line-height: 60px;
 font-weight:${props => props.fontWeight};
 color: ${props => props.color};
+
+@media screen and (max-width: 480px) {
+    font-size: 36px;
+    
+}
 `;
 
 
@@ -29,6 +34,11 @@ font-size: 36px;
 line-height: 44px;
 font-weight:${props => props.fontWeight};
 color: ${props => props.color};
+
+@media screen and (max-width: 480px) {
+    font-size: 30px;
+    
+}
 `;
 
 
@@ -61,6 +71,10 @@ font-size: 18px;
 line-height: 28px;
 font-weight:${props => props.fontWeight};
 color: ${props => props.color};
+
+@media screen and (max-width: 480px) {
+    font-size: 14px;
+}
 `;
 
 

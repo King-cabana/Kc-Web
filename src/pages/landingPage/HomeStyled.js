@@ -53,9 +53,6 @@ export const ContentHolder = styled.div`
     justify-content: center;
     line-height: 1.3;
 
-    h1 {
-      font-size: 30px;
-    }
 
     p {
       font-size: 14px;
@@ -63,7 +60,7 @@ export const ContentHolder = styled.div`
 
     span {
       color: #ffbc15;
-      font-size: 44px;
+      font-size: 36px;
     }
   }
 
@@ -268,12 +265,7 @@ export const ASSectionInner = styled.div`
 export const ASContentInner = styled.div`
   width: inherit;
 
-  /* h4 {
-    width: inherit;
-    font-size: 32px;
-    font-weight: 600;
-    color: #484848;
-  } */
+
   p {
     margin-top: 10%;
     margin-bottom: 8%;
@@ -296,14 +288,6 @@ export const ASContentInner = styled.div`
       align-items: center !important;
       justify-content: center !important;
       padding: 4%;
-
-      h4 {
-        font-size: 22px;
-      }
-
-      p {
-        font-size: medium;
-      }
     }
   }
 

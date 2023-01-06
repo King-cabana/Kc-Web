@@ -2,7 +2,7 @@ import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import { Table, TableContent,TableRow, TableHeader, SmallItem, SmallButton,
-         MenuList, TableBox, TableBorder, Item, ItemBlue, ItemInside, ItemS,
+         TableBox, TableBorder, Item, ItemL, ItemBlue, ItemInside, ItemS,
         ButtonBox } from "./EventDetailsStyled";
 import { BsThreeDotsVertical } from 'react-icons/bs'
 import { PrimaryButton} from '../../components/button/button'
@@ -21,8 +21,8 @@ const EventDetails = () => {
             <TableContent>
                 <TableRow>
                     <Item>Name and Date</Item>
-                    <Item>Last Updated</Item>
-                    <Item>Status</Item>
+                    <ItemL>Last Updated</ItemL>
+                    <ItemL>Status</ItemL>
                 </TableRow>
             </TableContent>
 

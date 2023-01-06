@@ -41,6 +41,7 @@ flex-grow: 0;
 `;
 
 export const TableRow = styled.div`
+width:100%;
 display: flex;
 justify-content: space-between;
 `;
@@ -80,6 +81,7 @@ font-weight: 500;
 font-size: 20px;
 line-height: 30px;
 margin-top:15px;
+margin-left: 1rem;
 
 `
 
@@ -114,13 +116,27 @@ border-radius: 8px;
 
 
 export const Item = styled.p`
+width:100%;
 font-family: 'Poppins';
 font-style: normal;
 font-weight: 400;
 font-size: 14px;
 line-height: 20px;
 color: black;
-margin-right: 200px;
+margin-right: 3rem;
+margin-left: 1rem;
+`
+export const ItemL = styled.p`
+width: 100%;
+/* text-align: center; */
+font-family: 'Poppins';
+font-style: normal;
+font-weight: 400;
+font-size: 14px;
+line-height: 20px;
+color: black;
+margin-right: 2rem;
+margin-left: 1.5rem;
 `
 export const SmallItem = styled.p`
 font-size: 12px;
@@ -131,7 +147,8 @@ font-style: normal;
 font-weight: 400;
 font-size: 16px;
 line-height: 20px;
-margin-right:25px;
+margin-right: 4.5rem;
+margin-left: 1rem;
 justify-content: center;
 margin-bottom: 5px;
 `;
@@ -142,7 +159,7 @@ font-style: normal;
 font-weight: 400;
 font-size: 14px;
 line-height: 20px;
-margin-right:208px;
+margin-right:13.9rem;
 `;
 
 export const ItemBlue = styled.p`
@@ -151,7 +168,7 @@ font-style: normal;
 font-weight: 400;
 font-size: 14px;
 line-height: 20px;
-margin-right: 70px;
+margin-right: 6rem;
 color: blue;
 `;
 

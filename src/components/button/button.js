@@ -55,6 +55,7 @@ export const TextButton = styled.button`
   border: transparent;
   outline: transparent;
   background-color: transparent;
+  cursor: pointer;
   
 
   &:hover{

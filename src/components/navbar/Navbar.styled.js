@@ -32,8 +32,15 @@ export const NavLogo = styled.div`
   cursor: pointer;
 
   img {
-    height: 35;
     width: 35;
+  }
+
+  @media screen and (max-width: 480px){
+
+    img{
+      max-width: 100px;
+    }
+
   }
 `;
 
@@ -115,9 +122,7 @@ export const LogoLink = styled(Link)`
 `;
 
 export const NavBarLink = styled(NavLink)`
-  /* &:active{
-        color: #FF2957;
-        } */
+ 
 
   @media screen and (max-width: 960px) {
     text-align: center;
@@ -129,10 +134,6 @@ export const NavBarLink = styled(NavLink)`
       color: #ff2957;
     }
 
-    /* &:active{
-        color: #FF2957;
-        } */
-  }
 `;
 
 export const NavGroup = styled.div`
