@@ -12,6 +12,7 @@ import SponsorEvent from "./event/pages/SponsorEvent";
 import EventHistory from "./event/pages/EventHistory"
 import EventAnalytics from "./event/pages/EventAnalytics"
 import Settings from "./event/pages/Settings"
+import Test from "./event/pages/Test"
 
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
           <Route path="/aboutUs" element={<AboutUs />} />
           <Route path="/waitlist" element={<Waitlist />} />
           <Route path="*" element={<NoPage />} />
+          <Route path="/test" element={<Test />} />
           
           <Route path="/home" element={<Sidebar> <DashboardHome /> </Sidebar>} />
           <Route path="/event/create" element={<Sidebar> <CreateEvent /> </Sidebar>} />

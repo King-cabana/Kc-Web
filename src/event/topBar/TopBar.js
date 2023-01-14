@@ -32,10 +32,10 @@ const TopBar = () => {
           <ProfilePicture>
             <img src={Profile} alt='pp'/>
           </ProfilePicture>
-          <RiArrowDownSLine 
+         <RiArrowDownSLine 
           style={{
             cursor: 'pointer'
-          }}/>
+          }}/> 
           </div> 
         </ItemsHolderInner>
       </ItemsHolder>

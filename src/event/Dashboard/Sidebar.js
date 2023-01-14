@@ -3,19 +3,27 @@ import * as FaIcons from 'react-icons/fa';
 import * as AiIcons from 'react-icons/ai';
 import { SidebarData } from './SidebarData';
 import SubMenu from './SubMenu';
-import { IconContext } from 'react-icons/lib';
 import TopBar from '../topBar/TopBar';
-import { ContentBody, SidebarNav, SidebarWrap } from './Sidebar.Styled';
+import { ContentBody, SidebarNav, SidebarWrap, Nav, NavIcon, DisplayMode } from './Sidebar.Styled';
 
 const Sidebar = ({children}) => {
 
+  const [sidebar, setSidebar] = useState(false);
+
+  const showSidebar = () => setSidebar(!sidebar);
+
   return (
     <>
-        <TopBar/>    
-        <div style={{display:'flex'}}>
-        <SidebarNav>
+        <TopBar/>  
+        <Nav>
+          <NavIcon to='#'>
+            <FaIcons.FaBars onClick={showSidebar} />
+          </NavIcon>
+        </Nav>   
+        <DisplayMode>
+         
+        <SidebarNav sidebar={sidebar}>
           <SidebarWrap>
-           
             {SidebarData.map((item, index) => {
               return <SubMenu item={item} key={index} />;
             })}
@@ -25,7 +33,7 @@ const Sidebar = ({children}) => {
         <ContentBody>
         {children}
         </ContentBody>
-        </div>
+        </DisplayMode>
     
     </>
   );

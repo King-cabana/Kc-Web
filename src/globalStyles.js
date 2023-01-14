@@ -70,6 +70,7 @@ export const Form = styled.form`
     opacity: 50%;
 
     }
+    
 `
 
 export const InputFieldWrapper = styled.div`
@@ -96,6 +97,36 @@ export const InputFieldWrapper = styled.div`
         }
     }
 `
+
+export const RadioButtonWrapper = styled.div`
+    display: flex;
+    height: 6vh;
+    outline: 1px solid #C4C4C4;
+    border-radius: 4px;
+    align-items: center;
+    padding: 1%;
+    line-height: 2rem;
+    margin: 1%;
+
+
+`
+export const RadioButton = styled.input.attrs({ 
+  type: 'radio',
+//   value: 'Submit'
+    name: 'name',   
+})
+`
+&:hover{
+    
+}
+
+
+`
+
+export const ChechkBox = styled.input.attrs({
+    type: 'checkbox'
+})
+``
 
 export const AnimationContainer = styled.div`  
     width: 150px;

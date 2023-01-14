@@ -8,6 +8,11 @@ export const TopBarContainer = styled.div`
     align-items: center;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
   ;
+
+  @media screen and (max-width: 480px){
+    width: 100%;
+
+  }
 `
 
 export const TopBarLogo = styled.div`
@@ -17,6 +22,13 @@ export const TopBarLogo = styled.div`
     justify-content: center;
     align-items: center;
 
+@media screen and (max-width: 480px) {
+    width: 20%;
+    img{
+        width: 30px;
+        height: 30px;
+    }
+}
 `
 
 export const TopBarItemHolder = styled.div`
@@ -26,6 +38,10 @@ export const TopBarItemHolder = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    @media screen and (max-width: 480px) {
+        /* width: 10%; */
+    }
 `
 
 export const ItemsHolder = styled.div`
@@ -34,6 +50,10 @@ export const ItemsHolder = styled.div`
     width: 304px;
     justify-content: center;
     align-items: center;
+
+    @media screen and (max-width: 480px){
+        justify-content: space-between;
+    }
 `
 
 export const ItemsHolderInner = styled.div`
@@ -42,6 +62,10 @@ export const ItemsHolderInner = styled.div`
     display: flex;
     justify-content: space-around;
     align-items: center;
+
+    @media screen and (max-width:480px) {
+        width: inherit;
+    }
 `
 
 export const ProfilePicture = styled.div`

@@ -45,7 +45,7 @@ export const ContentHolder = styled.div`
   }
 
   @media screen and (max-width: 480px) {
-    padding-top: 30%;
+    padding-top: 20%;
     display: block;
     width: 100vw;
     text-align: center;

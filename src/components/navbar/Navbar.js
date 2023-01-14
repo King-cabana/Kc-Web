@@ -61,17 +61,12 @@ const Navbar = () => {
           {click ? <img src={times} alt=''/> : <img src={hb} alt=''/> }
         </NavMobile>
         <NavItems onClick={handleClick} click={click}>
-            {/* <NavItemsInner> */}
             <li><NavBarLink  to="/">Home</NavBarLink></li>
             <li><NavBarLink to="/sponsors">For Sponsors</NavBarLink></li>
             <li><NavBarLink to="/organizers">For Organizer</NavBarLink></li>
             <li><NavBarLink to="/contactUs">Contact Us</NavBarLink></li>
             <li><NavBarLink to="/aboutUs">About Us </NavBarLink></li>
-            {/* </NavItemsInner> */}
             <NavGroup>
-            {/* <NavSearchHolder>
-            <BiSearch size={20} cursor='pointer' style={{marginRight:'10%'}}/>
-            </NavSearchHolder> */}
             {button ? (
                 <NavButtonLink to="/waitlist">
                   <AccessButton>Get early access</AccessButton>
