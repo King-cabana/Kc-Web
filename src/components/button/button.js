@@ -21,6 +21,49 @@ export const PrimaryButton = styled.button`
     background-color: rgba(255, 41, 87, 0.3);
     color: rgba(255, 255, 255, 0.3);
   }
+
+  @media screen and (max-width: 960px) {
+    font-size: 10px;
+    line-height: 12px;
+    padding: 0.2rem 0.5rem;
+    height: 35px;
+    width: auto;
+    /* height: max-content; */
+  }
+`;
+export const PrimaryButton3 = styled.button`
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  /////////////////////////////
+  ////////////////////////////
+  width: 100%;
+  height: 40px;
+  border-radius: 8px;
+  background-color: #ff2957;
+  color: white;
+  border: 1px solid transparent;
+  outline: none;
+  cursor: pointer;
+  font-weight: 600;
+  margin-top: -0.35rem;
+  /* font-size: 16px;
+  line-height: 24px; */
+
+  &:hover {
+    background-color: rgba(255, 41, 87, 0.8);
+    color: white;
+  }
+
+  &:disabled {
+    background-color: rgba(255, 41, 87, 0.3);
+    color: rgba(255, 255, 255, 0.3);
+  }
+  @media screen and (max-width: 960px) {
+    font-size: 10px;
+    line-height: 18px;
+  }
 `;
 
 export const AlternativeButton = styled.button`
@@ -62,6 +105,14 @@ export const AlternativeButton2 = styled.button`
     background-color: white;
     color: white;
     border: 1.5px solid rgba(255, 41, 87, 0.6);
+  }
+
+  @media screen and (max-width: 960px) {
+    font-size: 10px;
+    line-height: 12px;
+    padding: 0.2rem 0.5rem;
+    height: 35px;
+    width: auto;
   }
 `;
 

@@ -7,11 +7,15 @@ import "./App.css";
 import Waitlist from "./pages/waitlist/WaitlistForm";
 import Sidebar from "./event/Dashboard/Sidebar";
 import DashboardHome from "./event/pages/DashboardHome";
-import CreateEvent from "./event/pages/CreateEvent";
+import EmptyEvent from "./event/pages/NoEvent";
+// import CreateEvent from "./event/pages/CreateEvent";
 import SponsorEvent from "./event/pages/SponsorEvent";
 import EventHistory from "./event/pages/EventHistory";
 import EventAnalytics from "./event/pages/EventAnalytics";
 import Settings from "./event/pages/Settings";
+// Budget createEvent form
+import Budget from "./event/budgetInventory/Budget";
+import Inventory from "./event/budgetInventory/Inventory";
 
 function App() {
   return (
@@ -22,6 +26,9 @@ function App() {
           <Route path="/contactUs" element={<ContactUs />} />
           <Route path="/aboutUs" element={<AboutUs />} />
           <Route path="/waitlist" element={<Waitlist />} />
+          {/* Budget createEvent Route */}
+          <Route path="/budget" element={<Budget />} />
+          <Route path="/inventory" element={<Inventory />} />
           <Route path="*" element={<NoPage />} />
 
           <Route
@@ -32,11 +39,21 @@ function App() {
               </Sidebar>
             }
           />
-          <Route
+          {/* <Route
             path="/event/create"
             element={
               <Sidebar>
                 <CreateEvent />
+              </Sidebar>
+            }
+          /> */}
+
+          {/* noEvent in dashboard route */}
+          <Route
+            path="/event/noEvent"
+            element={
+              <Sidebar>
+                <EmptyEvent />
               </Sidebar>
             }
           />

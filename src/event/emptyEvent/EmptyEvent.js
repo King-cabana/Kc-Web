@@ -9,9 +9,9 @@ import {
   ButtonLink,
   LottieWrapper,
   PrimaryButton,
-} from "./NoEventStyled";
+} from "./EmptyEventStyled";
 
-const NoEvent = () => {
+const EmptyEvent = () => {
   return (
     <>
       <OverallContainer>
@@ -35,4 +35,4 @@ const NoEvent = () => {
   );
 };
 
-export default NoEvent;
+export default EmptyEvent;

@@ -1,13 +1,7 @@
 import React from "react";
-import NoEvent from "../noEvent/NoEvent";
 
 const CreateEvent = () => {
-  return (
-    <>
-      {/* Create Event */}
-      <NoEvent />
-    </>
-  );
+  return <>Create Event</>;
 };
 
 export default CreateEvent;

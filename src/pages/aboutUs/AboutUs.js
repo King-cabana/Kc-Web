@@ -69,7 +69,7 @@ const AboutUs = () => {
             />
           </p>
           <h1>People || Value || Memories</h1>
-          <BtnHolderLink to="/waitlist">
+          <BtnHolderLink to="/budget">
             <EventButton>Join us today</EventButton>
           </BtnHolderLink>
         </ContentHolder>
@@ -188,7 +188,7 @@ const AboutUs = () => {
             {" "}
             Enter your email with King Cabana now!
           </p>
-          <InfoBtnHolderLink to="/waitlist">
+          <InfoBtnHolderLink to="/inventory">
             <InfoButton>Get early access</InfoButton>
           </InfoBtnHolderLink>
         </InfoSectionContent>
