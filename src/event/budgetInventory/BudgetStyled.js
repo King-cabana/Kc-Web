@@ -135,7 +135,7 @@ export const ButtonContainer = styled.footer`
   height: 107px;
   border: 1px solid #d2cedc;
   box-sizing: border-box;
-  z-index: 99;
+  z-index: 7;
   position: fixed;
   bottom: 0;
   left: 0;

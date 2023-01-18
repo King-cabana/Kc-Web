@@ -12,6 +12,7 @@ import {
 } from "./BudgetStyled";
 import {
   PrimaryButton,
+  ModalPrimaryButton,
   AlternativeButton2,
 } from "../../components/button/button";
 import {
@@ -22,11 +23,19 @@ import {
   CheckLabel,
   CheckDetails,
   CheckSummary,
+  PopUpOverlay,
+  BtnHolderLink,
+  PopUpComponent,
+  ModalText,
+  ModalButtonContainer,
 } from "./InventoryStyled";
 import "../../App.css";
+import "../../modal.css";
 import { BsChevronRight, BsChevronDown } from "react-icons/bs";
 
 const Inventory = () => {
+  // discard button modal
+  const [modal, setModal] = useState(false);
   // checkstates
   const [exclusive, setExclusive] = useState(false);
   const [otherOnline, setOtherOnline] = useState(false);
@@ -56,12 +65,11 @@ const Inventory = () => {
   const handleFirstCheck = (e) => {
     var updatedList = [...firstChecked];
     if (e.target.checked) {
-      updatedList = [...firstChecked, e.target.value];
+      updatedList = [[...firstChecked], e.target.value];
     } else {
       updatedList.splice(firstChecked.indexOf(e.target.value), 1);
     }
     setFirstChecked(updatedList);
-    setIsDisabled(false);
   };
   const handleSecondCheck = (e) => {
     var updatedList = [...secondChecked];
@@ -145,10 +153,18 @@ const Inventory = () => {
     setTenthChecked(updatedList);
   };
 
+  // Modal Contitions
+  if (modal) {
+    document.body.classList.add("active-modal");
+  } else {
+    document.body.classList.remove("active-modal");
+  }
+  const showModal = !modal && "notShown";
+
   // Submission handling
   const handleSubmit = async function (e) {
     e.preventDefault();
-    const items = {
+    const items = [
       firstChecked,
       secondChecked,
       thirdChecked,
@@ -159,12 +175,13 @@ const Inventory = () => {
       eightChecked,
       ninthChecked,
       tenthChecked,
-    };
+    ];
     console.log(items);
   };
 
   return (
     <>
+      {modal && <PopUpOverlay></PopUpOverlay>}
       <BudgetInventoryContainer>
         <BudgetInventoryHeader>
           <BudgetTitle1>Budget & Take Inventory</BudgetTitle1>
@@ -838,8 +855,40 @@ const Inventory = () => {
               </CheckDetails>
             </InventorySection>
 
+            <div className={`${showModal}`}>
+              {/* <div> */}
+              <PopUpComponent>
+                <ModalText>
+                  This is going to disrupt all saved documents. Are you sure you
+                  want to continue?
+                </ModalText>
+
+                <ModalButtonContainer>
+                  <BtnHolderLink>
+                    <AlternativeButton2
+                      onClick={() => setModal(!modal)}
+                      style={{
+                        // width: "70px",
+                        // height: "30px",
+                        // fontSize: "10px",
+                        color: "#FF2957",
+                        // fontWeight: "600",
+                      }}
+                    >
+                      Cancel
+                    </AlternativeButton2>
+                  </BtnHolderLink>
+
+                  <BtnHolderLink to="/home">
+                    <ModalPrimaryButton>Yes, Discard</ModalPrimaryButton>
+                  </BtnHolderLink>
+                </ModalButtonContainer>
+              </PopUpComponent>
+            </div>
+
             <ButtonContainer>
               <AlternativeButton2
+                onClick={() => setModal(!modal)}
                 style={{
                   color: "#FF2957",
                   fontWeight: "600",

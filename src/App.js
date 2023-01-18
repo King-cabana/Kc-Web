@@ -16,6 +16,7 @@ import Settings from "./event/pages/Settings";
 // Budget createEvent form
 import Budget from "./event/budgetInventory/Budget";
 import Inventory from "./event/budgetInventory/Inventory";
+import ContactInfo from "./event/budgetInventory/ContactInfo";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
           {/* Budget createEvent Route */}
           <Route path="/budget" element={<Budget />} />
           <Route path="/inventory" element={<Inventory />} />
+          <Route path="/contactInfo" element={<ContactInfo />} />
           <Route path="*" element={<NoPage />} />
 
           <Route

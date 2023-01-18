@@ -26,7 +26,7 @@ import {
 } from "./EventHomeStyled";
 // import { PrimaryButton } from "./components/button/button";
 import click from "../../images/click.png";
-import "./EventHome.css";
+import "../../modal.css";
 
 const EventHome = () => {
   const [state, setState] = useState(true);

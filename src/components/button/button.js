@@ -31,6 +31,15 @@ export const PrimaryButton = styled.button`
     /* height: max-content; */
   }
 `;
+
+export const ModalPrimaryButton = styled(PrimaryButton)`
+  margin-left: 1.5rem;
+
+  @media screen and (max-width: px) {
+    /*wi */
+  }
+`;
+
 export const PrimaryButton3 = styled.button`
   position: absolute;
   top: 0;
