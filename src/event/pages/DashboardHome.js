@@ -1,11 +1,7 @@
-import React from 'react';
+import React from "react";
 
 const DashboardHome = () => {
-  return (
-    <>
-      Home
-    </>
-  );
+  return <>Home</>;
 };
 
 export default DashboardHome;

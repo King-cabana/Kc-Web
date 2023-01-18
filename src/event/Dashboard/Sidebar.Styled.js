@@ -1,13 +1,13 @@
-import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const DisplayMode = styled.div`
   display: flex;
 
-  @media screen and (max-width: 480px){
+  @media screen and (max-width: 480px) {
     display: block;
   }
-`
+`;
 
 export const SidebarNav = styled.nav`
   background: white;
@@ -16,12 +16,12 @@ export const SidebarNav = styled.nav`
   height: 90vh;
   display: flex;
   justify-content: center;
-  left: ${({ sidebar }) => (sidebar ? '0' : '-100%')};
+  left: ${({ sidebar }) => (sidebar ? "0" : "-100%")};
   transition: 350ms;
   z-index: 10;
   padding-top: 2%;
 
-  @media screen and (max-width: 480px){
+  @media screen and (max-width: 480px) {
     width: 100%;
     position: sticky;
     z-index: 1;
@@ -31,35 +31,34 @@ export const SidebarNav = styled.nav`
 export const SidebarWrap = styled.div`
   width: 100%;
 
-   @media screen and (max-width: 480px){
+  @media screen and (max-width: 480px) {
     width: 100%;
   }
 `;
 
 export const ContentBody = styled.div`
-  height:90vh;
-  background-color:#FEF5F7;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  font-size:60px;
+  height: 90vh;
+  background-color: #fef5f7;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 60px;
   width: 80%;
 
-   @media screen and (max-width: 480px){
+  @media screen and (max-width: 480px) {
     width: 100%;
   }
-`
+`;
 
 export const Nav = styled.div`
   height: 40px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
- 
 
-  @media screen and (max-width:'480px') {
+  @media screen and (max-width: "480px") {
     /* display: block; */
-    }
+  }
 `;
 
 export const NavIcon = styled(Link)`
@@ -72,8 +71,7 @@ export const NavIcon = styled(Link)`
   color: black;
   z-index: 10;
 
-  @media screen and (max-width: 480px){
+  @media screen and (max-width: 480px) {
     font-size: 1rem;
   }
-  
 `;

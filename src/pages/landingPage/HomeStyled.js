@@ -53,7 +53,6 @@ export const ContentHolder = styled.div`
     justify-content: center;
     line-height: 1.3;
 
-
     p {
       font-size: 14px;
     }
@@ -264,7 +263,6 @@ export const ASSectionInner = styled.div`
 
 export const ASContentInner = styled.div`
   width: inherit;
-
 
   p {
     margin-top: 10%;
@@ -494,26 +492,25 @@ export const ReadySection = styled.div`
   }
 `;
 
-
 export const TestButton = styled.button`
   width: 143px;
   height: 56px;
   border-radius: 8px;
-  background-color:  #ff2957;
+  background-color: #ff2957;
   color: white;
   border: 1px solid transparent;
   outline: none;
   cursor: pointer;
   font-weight: 600;
 
-  &:hover{
+  &:hover {
     background-color: white;
     color: #ff2957;
     border: 1.5px solid #ff2957;
   }
 
-  &:disabled{
-    background-color: rgba(255, 41, 87, 0.);
+  &:disabled {
+    background-color: rgba(255, 41, 87, 0);
     color: white;
   }
-`
+`;

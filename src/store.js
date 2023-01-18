@@ -1,14 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
-import authSlice from "./redux/authSlice"
-
+import authSlice from "./redux/authSlice";
 
 const store = configureStore({
   reducer: {
     user: authSlice,
   },
-})
+});
 
-export default store
+export default store;
 
 // import { configureStore, compose, applyMiddleware, combineReducers } from 'redux';
 // import thunk from 'redux-thunk';
@@ -25,7 +24,6 @@ export default store
 // const reducer = combineReducers({
 //   userSignin: userSigninReducer,
 // })
-
 
 // const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 // const store = configureStore(

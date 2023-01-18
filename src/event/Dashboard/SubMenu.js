@@ -1,7 +1,5 @@
-import React, { useState } from 'react';
-import { SidebarLink, SidebarLabel, DropdownLink } from './SubMenu.Styled';
-
-
+import React, { useState } from "react";
+import { SidebarLink, SidebarLabel, DropdownLink } from "./SubMenu.Styled";
 
 const SubMenu = ({ item }) => {
   const [subnav, setSubnav] = useState(false);

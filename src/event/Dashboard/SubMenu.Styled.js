@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom';
-import styled from 'styled-components';
+import { Link } from "react-router-dom";
+import styled from "styled-components";
 
 export const SidebarLink = styled(Link)`
   display: flex;
@@ -13,17 +13,17 @@ export const SidebarLink = styled(Link)`
   font-size: 18px;
 
   &:hover {
-    background: #FEF5F7;
+    background: #fef5f7;
     color: #ff2957;
     cursor: pointer;
     font-weight: 500;
   }
 
-&:active{
+  &:active {
     background-color: white;
     border-right: 4px solid #ff2957;
     color: #ff2957;
-}
+  }
 `;
 
 export const SidebarLabel = styled.span`
@@ -44,7 +44,7 @@ export const DropdownLink = styled(Link)`
     cursor: pointer;
   }
 
-  &:active{
+  &:active {
     color: #ff2957;
     cursor: pointer;
   }

@@ -34,12 +34,10 @@ export const NavLogo = styled.div`
     width: 35;
   }
 
-  @media screen and (max-width: 480px){
-
-    img{
+  @media screen and (max-width: 480px) {
+    img {
       max-width: 100px;
     }
-
   }
 `;
 

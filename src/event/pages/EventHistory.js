@@ -1,11 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const EventHistory = () => {
-  return (
-    <>
-      Event History
-    </>
-  )
-}
+  return <>Event History</>;
+};
 
-export default EventHistory
+export default EventHistory;

@@ -24,7 +24,6 @@
 .swiperSlide {
   width: 380px;
   height: 380px;
-
 }
 
 @media (max-width: 480px) {
@@ -44,22 +43,21 @@
   }
 }
 
-
-.MenuItem{
+.MenuItem {
   background-color: white;
 }
 
-.MenuItem:hover{
+.MenuItem:hover {
   color: #ff2957;
-  background-color: #FEF5F7;
+  background-color: #fef5f7;
 }
 
-.MenuItem:active{
+.MenuItem:active {
   border-right: 4px solid #ff2957;
   background-color: white;
 }
 
-.SubMenu:active{
+.SubMenu:active {
   color: #ff2957;
   border-right: none;
 }
