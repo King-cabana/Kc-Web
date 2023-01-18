@@ -1,13 +1,13 @@
 import React from 'react'
-import { LogoLink } from '../../components/navbar/Navbar.styled'
+import { LogoLink } from '../../../components/navbar/Navbar.styled'
 import { TopBarContainer, TopBarLogo, 
          TopBarItemHolder, ItemsHolder,
          ItemsHolderInner, ProfilePicture } from './TopBar.styled'
-import Logo from "../../images/KCLogo.svg"
-import SearchBar from '../../components/searchBar/SearchBar'
-import { TextButton } from '../../components/button/button'
+import Logo from "../../../images/KCLogo.svg"
+import SearchBar from '../../../components/searchBar/SearchBar'
+import { TextButton } from '../../../components/button/button'
 import {SlBell} from 'react-icons/sl'
-import Profile from '../../images/pexels-george-ikwegbu-2379429.jpg'
+import Profile from '../../../images/pexels-george-ikwegbu-2379429.jpg'
 import {RiArrowDownSLine} from 'react-icons/ri'
 
 const TopBar = () => {
@@ -27,7 +27,7 @@ const TopBar = () => {
             style={{
               cursor: 'pointer'  
             }}/>
-          <div style={{width:'fit-content', display:'flex', 
+          <div style={{width:'max-content', display:'flex', gap:'10px', 
                       justifyContent:'center', alignItems:'center'}}>
           <ProfilePicture>
             <img src={Profile} alt='pp'/>

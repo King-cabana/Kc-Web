@@ -6,7 +6,6 @@ import {
   EventCard, NavButtonHolder
 } from './HomeStyled'
 import {
-  BodyFont,
   CardHolder,ImageDisplayOverlay,ImageDisplayOverlayB,
 } from '../../globalStyles'
 import Footer from '../../components/footer/Footer'

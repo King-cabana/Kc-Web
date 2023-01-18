@@ -1,44 +1,46 @@
-import React, { useState, useEffect } from 'react'
-import { LogoLink } from '../../components/navbar/Navbar.styled'
-import { ProfilePicture, TopBarContainer, TopBarLogo } from '../topBar/TopBar.styled'
-import Logo from "../../images/KCLogo.svg"
-import Profile from '../../images/pexels-george-ikwegbu-2379429.jpg'
-import { RiArrowDownSLine } from 'react-icons/ri'
+import React, { useState, useEffect } from "react";
 import {
-    ProgressBarHolder, ProgressBar, ProgressStep1,
-    ProgressStep2, ProgressStep3, NumberHolder
-} from './TestStyled'
-import { ChechkBox, Form, RadioButton, RadioButtonWrapper } from '../../globalStyles'
-import { KBTextXl, KBDisplayXs } from '../../components/fonts/fontSize'
+  ChechkBox,
+  Form,
+  RadioButton,
+  RadioButtonWrapper,
+} from "../../globalStyles";
+import { KBTextXl, KBDisplayXs } from "../../components/fonts/fontSize";
+import CreateEventTopBar from "../topBar/CreateEventTopBar/CreateEventTopBar";
+import ProgressBar from "../progressBar/ProgressBar";
+import { BodyHolder, WavyBackground } from "./TestStyled";
+import Layout from "../../components/layoutComponent/Layout";
+import DefineAudience from "./DefineAudience";
 
-const Test = () => {
-    const [progress, setProgress] = useState(0)
-    const [age, setAge] = useState()
-    const [incomeRange, setIncomeRange] = useState(null)
-    const [gender, setGender] = useState({ male: false, female: false, other: { state: false, text: '' } })
+const Test = ({ children }) => {
+  // const [progress, setProgress] = useState(0)
+  // const [age, setAge] = useState()
+  // const [incomeRange, setIncomeRange] = useState(null)
+  // const [gender, setGender] = useState({ male: false, female: false, other: { state: false, text: '' } })
 
-    useEffect(() => {
-        const checkProgress = [age, incomeRange]
-        setProgress(checkProgress.filter(x => x && x).length)
-    }, [age])
-    return (
-        <>
-            <TopBarContainer>
-                <TopBarLogo style={{ width: '10%' }}>
-                    <LogoLink to="/">
-                        <img src={Logo} alt='King Cabana Logo' />
-                    </LogoLink>
-                </TopBarLogo>
-                <div style={{ width: '10%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                    <ProfilePicture>
-                        <img src={Profile} alt='pp' />
-                    </ProfilePicture>
-                    <RiArrowDownSLine
-                        style={{
-                            cursor: 'pointer'
-                        }} />
-                </div>
-            </TopBarContainer>
+  // useEffect(() => {
+  //     const checkProgress = [age, incomeRange]
+  //     setProgress(checkProgress.filter(x => x && x).length)
+  // }, [age, incomeRange])
+
+  const [active, setActive] = useState("details");
+  return (
+    <>
+      <WavyBackground>
+        <CreateEventTopBar />
+        <ProgressBar setActive={setActive} />
+        <Layout>
+          {active === "details" ? (
+            <DefineAudience />
+          ) : active === "audience" ? (
+            <span>audience</span>
+          ) : (
+            "budget"
+          )}
+        </Layout>
+      </WavyBackground>
+
+      {/* <ProgressBar/>
             <ProgressBarHolder>
                 <div>
                     <ProgressBar>
@@ -76,7 +78,7 @@ const Test = () => {
                             </div>
                         </ProgressStep3>
                     </ProgressBar>
-                </div>
+                </div> 
             </ProgressBarHolder>
 
             <div style={{ backgroundColor: '#F3F0F0   ', width: '100%', padding: '2% 8%', display: 'flex', flexDirection: 'column', alignItmes: 'center', justifyContent: 'center' }}>
@@ -88,12 +90,12 @@ const Test = () => {
                 <div style={{ width: '100%', height: '70vh', backgroundColor: 'white', overflowY: 'scroll', padding: '4%', marginTop: '3%' }}>
 
                     <div>
-                        <KBTextXl fontWeight={500}>Age {age} </KBTextXl>
+                        <KBTextXl fontWeight={500}>Age  {age} </KBTextXl>
                         <p>What age range best describes your community?</p>
                         <Form>
                             <div style={{ marginTop: '2%' }}>
                                 <RadioButtonWrapper>
-                                    <div style={{ height: 'inherit', width: '15%', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                                    <div style={{ height: 'inherit', width: 'fit-content', gap:'10px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                                         <RadioButton onChange={(e) => setAge(e.target.value)} value={'17 and younger'} />
                                         17 and younger
                                     </div>
@@ -135,7 +137,7 @@ const Test = () => {
                         <Form>
                             <div style={{ marginTop: '2%' }}>
                                 <RadioButtonWrapper>
-                                    <RadioButton />
+                                    <RadioButton  onChange={(e) => setIncomeRange(e.target.value)} value={'0 - 49,999'}/>
                                     0 - 49,999
                                 </RadioButtonWrapper>
                                 <RadioButtonWrapper>
@@ -168,7 +170,7 @@ const Test = () => {
                                     Others
                                 </RadioButtonWrapper>
                                 <RadioButtonWrapper>
-                                    <input style={{ outline: 'transparent', border: 'transparent', width: '100%' }}  placeholder='Specify for others' />
+                                    <input style={{ outline: 'transparent', border: 'transparent', width: '100%' }} placeholder='Specify for others' />
                                 </RadioButtonWrapper>
                             </div>
                         </Form>
@@ -300,9 +302,9 @@ const Test = () => {
 
 
                 </div>
-            </div>
-        </>
-    )
-}
+            </div> */}
+    </>
+  );
+};
 
-export default Test
+export default Test;

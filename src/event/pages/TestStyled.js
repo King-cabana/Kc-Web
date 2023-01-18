@@ -1,4 +1,18 @@
 import styled from "styled-components";
+import BudgetBackground from "../../images/budgetBackground.jpg"
+
+export const WavyBackground = styled.div`
+  width: 100%;
+  background-repeat: no-repeat;
+  background: url(${BudgetBackground});
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: max-content;
+  `
+
+  export const BodyHolder = styled.div`
+  
+  `
 
 export const ProgressBarHolder = styled.div`
     width: 100%;

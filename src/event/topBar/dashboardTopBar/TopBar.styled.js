@@ -7,6 +7,7 @@ export const TopBarContainer = styled.div`
     justify-content: space-between;
     align-items: center;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+    
   ;
 
   @media screen and (max-width: 480px){
@@ -69,8 +70,8 @@ export const ItemsHolderInner = styled.div`
 `
 
 export const ProfilePicture = styled.div`
-    height: 40px;
-    width: 40px;
+    height: 35px;
+    width: 35px;
     border-radius: 50%;
     
     img{

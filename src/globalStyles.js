@@ -108,7 +108,6 @@ export const RadioButtonWrapper = styled.div`
     line-height: 2rem;
     margin: 1%;
 
-
 `
 export const RadioButton = styled.input.attrs({ 
   type: 'radio',
@@ -127,6 +126,29 @@ export const ChechkBox = styled.input.attrs({
     type: 'checkbox'
 })
 ``
+
+export const Details = styled.div`
+    display: flex;
+    height: 6vh;
+    outline: 1px solid #C4C4C4;
+    border-radius: 4px;
+    align-items: center;
+    padding: 1%;
+    line-height: 2rem;
+    margin: 1%;
+
+    summary{
+        display: flex;
+        height: 6vh;
+        outline: 1px solid #C4C4C4;
+        border-radius: 4px;
+        align-items: center;
+        padding: 1%;
+        line-height: 2rem;
+        margin: 1%;
+    }
+
+`
 
 export const AnimationContainer = styled.div`  
     width: 150px;

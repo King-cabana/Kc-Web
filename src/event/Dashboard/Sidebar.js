@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import * as FaIcons from 'react-icons/fa';
-import * as AiIcons from 'react-icons/ai';
 import { SidebarData } from './SidebarData';
 import SubMenu from './SubMenu';
-import TopBar from '../topBar/TopBar';
+import TopBar from '../topBar/dashboardTopBar/TopBar';
 import { ContentBody, SidebarNav, SidebarWrap, Nav, NavIcon, DisplayMode } from './Sidebar.Styled';
 
 const Sidebar = ({children}) => {
