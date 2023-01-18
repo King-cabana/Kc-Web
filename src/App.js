@@ -5,8 +5,8 @@ import NoPage from "./pages/noPage/NoPage";
 import ContactUs from "./pages/contactUs/ContactUs";
 import "./App.css";
 import Waitlist from "./pages/waitlist/WaitlistForm";
-// import EventDetails from "./event/eventDetails/EventDetails";
-// import CreateEvent from "./components/createEvent/CreateEvent";
+import SecondCreateEvent from "./components/createEvent/SecondCreateEvent";
+import FirstCreateEvent from "./components/createEvent/FirstCreateEvent";
 import Sidebar from "./event/Dashboard/Sidebar";
 import DashboardHome from "./event/pages/DashboardHome";
 import CreateEvent from "./event/pages/CreateEvent"
@@ -14,6 +14,7 @@ import SponsorEvent from "./event/pages/SponsorEvent";
 import EventHistory from "./event/pages/EventHistory"
 import EventAnalytics from "./event/pages/EventAnalytics"
 import Settings from "./event/pages/Settings"
+import TimeLineEvent from "./components/createEvent/TimeLineEvent";
 
 
 function App() {
@@ -26,6 +27,9 @@ function App() {
           <Route path="/aboutUs" element={<AboutUs />} />
           <Route path="/waitlist" element={<Waitlist />} />
           <Route path="*" element={<NoPage />} />
+          <Route path="/firstCreateEvent" element={<FirstCreateEvent />} />
+          <Route path="/secondCreateEvent" element={<SecondCreateEvent />} />
+          <Route path="/timeLineEvent" element={<TimeLineEvent />} />
           
           <Route path="/home" element={<Sidebar> <DashboardHome /> </Sidebar>} />
           <Route path="/event/create" element={<Sidebar> <CreateEvent /> </Sidebar>} />

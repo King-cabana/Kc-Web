@@ -76,7 +76,7 @@ export const SmallButton = styled.button`
   }
 `;
 export const TableHeader = styled.h6`
-font-family: 'Poppins';
+/* font-family: 'Poppins'; */
 font-weight: 500;
 font-size: 20px;
 line-height: 30px;
@@ -117,8 +117,8 @@ border-radius: 8px;
 
 export const Item = styled.p`
 width:100%;
-font-family: 'Poppins';
-font-style: normal;
+/* font-family: 'Poppins';
+font-style: normal; */
 font-weight: 400;
 font-size: 14px;
 line-height: 20px;
@@ -129,46 +129,48 @@ margin-left: 1rem;
 export const ItemL = styled.p`
 width: 100%;
 /* text-align: center; */
-font-family: 'Poppins';
-font-style: normal;
+/* font-family: 'Poppins';
+font-style: normal; */
 font-weight: 400;
 font-size: 14px;
 line-height: 20px;
 color: black;
-margin-right: 2rem;
-margin-left: 1.5rem;
+/* margin-right: 2rem; */
+margin-left: 5rem;
 `
 export const SmallItem = styled.p`
 font-size: 12px;
 `
 export const ItemInside = styled.p`
-font-family: 'Poppins';
-font-style: normal;
+/* font-family: 'Poppins';
+font-style: normal; */
+width:100%;
 font-weight: 400;
 font-size: 16px;
 line-height: 20px;
-margin-right: 4.5rem;
+/* margin-right: 4.5rem; */
 margin-left: 1rem;
 justify-content: center;
 margin-bottom: 5px;
 `;
 
 export const ItemS = styled.p`
-font-family: 'Poppins';
-font-style: normal;
+/* font-family: 'Poppins';
+font-style: normal; */
 font-weight: 400;
+width:50%;
 font-size: 14px;
 line-height: 20px;
-margin-right:13.9rem;
+margin-right:8rem;
 `;
 
 export const ItemBlue = styled.p`
-font-family: 'Poppins';
-font-style: normal;
+/* font-family: 'Poppins';
+font-style: normal; */
 font-weight: 400;
 font-size: 14px;
 line-height: 20px;
-margin-right: 6rem;
+margin-right: 4rem;
 color: blue;
 `;
 
@@ -178,6 +180,5 @@ flex-direction: row;
 align-items: center;
 gap: 25px;
 margin-bottom:15px;
-/* width: 107px;
-height: 34px; */
+margin-right:2rem;
 `;
