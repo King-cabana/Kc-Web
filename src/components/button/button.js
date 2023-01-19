@@ -65,16 +65,15 @@ export const PrimaryButton3 = styled.button`
   }
 
   &:disabled {
-  &:disabled {
     background-color: rgba(255, 41, 87, 0.3);
     color: rgba(255, 255, 255, 0.3);
   }
+  
   @media screen and (max-width: 960px) {
     font-size: 10px;
     line-height: 18px;
   }
-`;
-`;
+`
 
 export const AlternativeButton = styled.button`
   width: 150px;
