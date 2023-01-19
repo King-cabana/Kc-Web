@@ -9,11 +9,12 @@ export const DisplayMode = styled.div`
   }
 `;
 
+
 export const SidebarNav = styled.nav`
   background: white;
-  width: 275px;
+  width: 20%;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
-  height: 90vh;
+  height: 100vh;
   display: flex;
   justify-content: center;
   left: ${({ sidebar }) => (sidebar ? "0" : "-100%")};
@@ -37,12 +38,12 @@ export const SidebarWrap = styled.div`
 `;
 
 export const ContentBody = styled.div`
-  height: 90vh;
+  /* height: 90vh;
   background-color: #fef5f7;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 60px;
+  font-size: 60px; */
   width: 80%;
 
   @media screen and (max-width: 480px) {
@@ -74,4 +75,5 @@ export const NavIcon = styled(Link)`
   @media screen and (max-width: 480px) {
     font-size: 1rem;
   }
+
 `;

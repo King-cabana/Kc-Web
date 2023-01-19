@@ -22,7 +22,7 @@ export const SidebarData = [
     subNav: [
       {
         title: "Create",
-        path: "/event/create",
+        path: "/event/noEvent",
         icon: <BsIcons.BsDot />,
         cName: "sub-nav",
       },

@@ -7,12 +7,24 @@ import "./App.css";
 import Waitlist from "./pages/waitlist/WaitlistForm";
 import Sidebar from "./event/Dashboard/Sidebar";
 import DashboardHome from "./event/pages/DashboardHome";
+
 import CreateEvent from "./event/pages/CreateEvent";
+
+import EmptyEvent from "./event/pages/NoEvent";
+
 import SponsorEvent from "./event/pages/SponsorEvent";
 import EventHistory from "./event/pages/EventHistory";
 import EventAnalytics from "./event/pages/EventAnalytics";
 import Settings from "./event/pages/Settings";
+
+
 import Test from "./event/pages/Test";
+
+// Budget createEvent form
+import Budget from "./event/budgetInventory/Budget";
+import Inventory from "./event/budgetInventory/Inventory";
+import ContactInfo from "./event/budgetInventory/ContactInfo";
+
 
 function App() {
   return (
@@ -23,15 +35,19 @@ function App() {
           <Route path="/contactUs" element={<ContactUs />} />
           <Route path="/aboutUs" element={<AboutUs />} />
           <Route path="/waitlist" element={<Waitlist />} />
+          {/* Budget createEvent Route */}
+          <Route path="/budget" element={<Budget />} />
+          <Route path="/inventory" element={<Inventory />} />
+          <Route path="/contactInfo" element={<ContactInfo />} />
           <Route path="*" element={<NoPage />} />
+
           <Route path="/test" element={<Test />} />
 
           <Route
             path="/home"
             element={
               <Sidebar>
-                {" "}
-                <DashboardHome />{" "}
+                <DashboardHome />
               </Sidebar>
             }
           />
@@ -41,6 +57,25 @@ function App() {
               <Sidebar>
                 {" "}
                 <CreateEvent />{" "}
+                <DashboardHome />
+              </Sidebar>
+            }
+          />
+          {/* <Route
+            path="/event/create"
+            element={
+              <Sidebar>
+                <CreateEvent />
+              </Sidebar>
+            }
+          /> */}
+
+          {/* noEvent in dashboard route */}
+          <Route
+            path="/event/noEvent"
+            element={
+              <Sidebar>
+                <EmptyEvent />
               </Sidebar>
             }
           />
@@ -48,8 +83,7 @@ function App() {
             path="/event/sponsor"
             element={
               <Sidebar>
-                {" "}
-                <SponsorEvent />{" "}
+                <SponsorEvent />
               </Sidebar>
             }
           />
@@ -57,8 +91,7 @@ function App() {
             path="/report/eventhistory"
             element={
               <Sidebar>
-                {" "}
-                <EventHistory />{" "}
+                <EventHistory />
               </Sidebar>
             }
           />
@@ -66,8 +99,7 @@ function App() {
             path="/report/eventanalytics"
             element={
               <Sidebar>
-                {" "}
-                <EventAnalytics />{" "}
+                <EventAnalytics />
               </Sidebar>
             }
           />
@@ -75,8 +107,7 @@ function App() {
             path="/settings"
             element={
               <Sidebar>
-                {" "}
-                <Settings />{" "}
+                <Settings />
               </Sidebar>
             }
           />

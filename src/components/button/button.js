@@ -6,6 +6,7 @@ export const PrimaryButton = styled.button`
   height: 50px;
   border-radius: 8px;
   background-color: #ff2957;
+  background-color: #ff2957;
   color: white;
   border: 1px solid transparent;
   outline: none;
@@ -21,12 +22,66 @@ export const PrimaryButton = styled.button`
     background-color: rgba(255, 41, 87, 0.3);
     color: rgba(255, 255, 255, 0.3);
   }
+
+  @media screen and (max-width: 960px) {
+    font-size: 10px;
+    line-height: 12px;
+    padding: 0.2rem 0.5rem;
+    height: 35px;
+    width: auto;
+    /* height: max-content; */
+  }
+`;
+
+export const ModalPrimaryButton = styled(PrimaryButton)`
+  margin-left: 1.5rem;
+
+  @media screen and (max-width: px) {
+    /*wi */
+  }
+`;
+
+export const PrimaryButton3 = styled.button`
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 100%;
+  height: 40px;
+  border-radius: 8px;
+  background-color: #ff2957;
+  color: white;
+  border: 1px solid transparent;
+  outline: none;
+  cursor: pointer;
+  font-weight: 600;
+  margin-top: -0.35rem;
+  /* font-size: 16px;
+  line-height: 24px; */
+
+  &:hover {
+    background-color: rgba(255, 41, 87, 0.8);
+    color: white;
+  }
+
+  &:disabled {
+  &:disabled {
+    background-color: rgba(255, 41, 87, 0.3);
+    color: rgba(255, 255, 255, 0.3);
+  }
+  @media screen and (max-width: 960px) {
+    font-size: 10px;
+    line-height: 18px;
+  }
+`;
 `;
 
 export const AlternativeButton = styled.button`
   width: 150px;
   height: 50px;
   border-radius: 8px;
+  background-color: transparent;
+  color: ${(props) => (props.color ? props.color : "white")};
   background-color: transparent;
   color: ${(props) => (props.color ? props.color : "white")};
   border: 2px solid #ff2957;
@@ -41,6 +96,35 @@ export const AlternativeButton = styled.button`
     background-color: white;
     color: white;
     border: 1.5px solid rgba(255, 41, 87, 0.6);
+  }
+`;
+export const AlternativeButton2 = styled.button`
+  width: 150px;
+  height: 50px;
+  border-radius: 8px;
+  background-color: transparent;
+  color: ${(props) => (props.color ? props.color : "white")};
+  border: 1.5px solid #ff2957;
+  cursor: pointer;
+  font-weight: ${(props) => props.fontWeight};
+
+  &:hover {
+    color: #ff2957;
+    border: 1.5px solid #f4d5dc;
+  }
+
+  &:disabled {
+    background-color: white;
+    color: white;
+    border: 1.5px solid rgba(255, 41, 87, 0.6);
+  }
+
+  @media screen and (max-width: 960px) {
+    font-size: 10px;
+    line-height: 12px;
+    padding: 0.2rem 0.5rem;
+    height: 35px;
+    width: auto;
   }
 `;
 
@@ -58,7 +142,7 @@ export const TextButton = styled.button`
     text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
   }
 
-  &:disabled {
+  &:disabled  {
     color: rgba(255, 41, 87, 0.6);
   }
 `;
