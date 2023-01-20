@@ -97,7 +97,7 @@ export const InputFieldWrapper = styled.div`
 export const RadioButtonWrapper = styled.div`
   display: flex;
   height: 6vh;
-  outline: 1px solid #c4c4c4;
+  outline: 1px solid rgba(0, 104, 255, 0.1);
   border-radius: 4px;
   align-items: center;
   padding: 1%;

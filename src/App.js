@@ -44,7 +44,7 @@ function App() {
           <Route path="/test" element={<Test />} />
 
           <Route
-            path="/home"
+            path="/dashboard"
             element={
               <Sidebar>
                 <DashboardHome />
@@ -55,8 +55,6 @@ function App() {
             path="/event/create"
             element={
               <Sidebar>
-                {" "}
-                <CreateEvent />{" "}
                 <DashboardHome />
               </Sidebar>
             }

@@ -14,7 +14,7 @@ export const SidebarNav = styled.nav`
   background: white;
   width: 20%;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
-  height: 100vh;
+  /* height: 100vh; */
   display: flex;
   justify-content: center;
   left: ${({ sidebar }) => (sidebar ? "0" : "-100%")};
@@ -38,12 +38,12 @@ export const SidebarWrap = styled.div`
 `;
 
 export const ContentBody = styled.div`
-  /* height: 90vh;
+  /* height: 100%; */
   background-color: #fef5f7;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 60px; */
+  font-size: 60px; 
   width: 80%;
 
   @media screen and (max-width: 480px) {
@@ -53,7 +53,7 @@ export const ContentBody = styled.div`
 
 export const Nav = styled.div`
   height: 40px;
-  display: flex;
+  display: hidden;
   justify-content: flex-start;
   align-items: center;
 

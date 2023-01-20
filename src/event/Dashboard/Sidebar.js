@@ -20,11 +20,11 @@ const Sidebar = ({ children }) => {
   return (
     <>
       <TopBar />
-      <Nav>
+      {/* <Nav>
         <NavIcon to="#">
           <FaIcons.FaBars onClick={showSidebar} />
         </NavIcon>
-      </Nav>
+      </Nav> */}
       <DisplayMode>
         <SidebarNav sidebar={sidebar}>
           <SidebarWrap>
@@ -40,3 +40,6 @@ const Sidebar = ({ children }) => {
 };
 
 export default Sidebar;
+
+
+
