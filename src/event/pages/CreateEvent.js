@@ -1,7 +1,12 @@
-import React from "react";
+import React from 'react';
+import EventDetails from '../eventDetails/EventDetails';
 
 const CreateEvent = () => {
-  return <>Create Event</>;
-};
+  return (
+    <>
+      <EventDetails />
+    </>
+  )
+}
 
 export default CreateEvent;

@@ -43,12 +43,13 @@ export const ContactBody = styled.div`
 `;
 
 export const ContactRight = styled.div`
-  width: 60%;
-  padding: 1% 5%;
-  @media screen and (max-width: 768px) {
-    width: 100%;
+width:60%;
+padding: 1% 5%;
+@media screen and (max-width: 768px) {
+    width:100%;
     padding: 5% 0%;
-  }
+}
+
 `;
 
 export const ContactHeader = styled.h1`
@@ -267,22 +268,22 @@ export const InputInfo = styled.div`
   input::placeholder {
     font-size: 16px;
     line-height: 21px;
-    letter-spacing: -0.3%;
-    @media screen and (max-width: 768px) {
-      font-size: 12px;
+    letter-spacing:-0.3%;
+    @media screen and (max-width:768px){
+        font-size: 12px;
     }
-  }
-  label {
-    font-family: "Poppins";
-    font-style: normal;
-    font-weight: 400;
-    font-size: 24px;
-    line-height: 21px;
-    display: flex;
-    align-items: center;
-    letter-spacing: -0.3%;
-    color: #000000;
-    margin-bottom: 10px;
+}
+label{
+font-family: 'Poppins';
+font-style: normal;
+font-weight: 400;
+font-size: 24px;
+line-height: 21px;
+display: flex;
+align-items: center;
+letter-spacing: -0.3%;
+color: #000000;
+margin-bottom:10px;
 
     @media screen and (max-width: 768px) {
       font-size: 16px;
@@ -335,21 +336,21 @@ export const InputBox = styled.div`
     }
   }
 
-  textarea {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    padding: 15px;
-    gap: 10px;
-    width: 100%;
-    height: 190px;
-    background: #ffffff;
-    border: 1px solid rgba(72, 72, 72, 0.1);
-    border-radius: 10px;
-  }
-  textarea::placeholder {
+textarea{
+display: flex;
+flex-direction: row;
+align-items: flex-start;
+padding: 15px;
+gap: 10px;
+width: 100%;
+height: 190px;
+background: #FFFFFF;
+border: 1px solid rgba(72, 72, 72, 0.1);
+border-radius: 10px;
+}
+textarea::placeholder{
     font-size: 20px;
-  }
+}
 `;
 
 export const Box = styled.div`

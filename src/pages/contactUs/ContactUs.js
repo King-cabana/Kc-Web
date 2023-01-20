@@ -75,12 +75,11 @@ const ContactUs = () => {
           </ContactLogoBody>
         </ContactRight>
         <AnimationContainer>
-          <Lottie
-            animationData={animationData}
-            loop={true}
-            style={{ width: "400px", height: "400px" }}
-          />
-        </AnimationContainer>
+        <Lottie 
+        animationData={animationData} 
+        loop={true}  style={{width:'400px', height:'400px', paddingRight: '15px'}}
+        />
+      </AnimationContainer>
       </ContactBody>
       <ContainerBox>
         <ContactInput />

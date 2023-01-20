@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
 //medium buttons (for the regular webpage)
+
+
 export const PrimaryButton = styled.button`
   width: 150px;
   height: 50px;
@@ -75,6 +77,7 @@ export const PrimaryButton3 = styled.button`
   }
 `
 
+
 export const AlternativeButton = styled.button`
   width: 150px;
   height: 50px;
@@ -135,8 +138,8 @@ export const TextButton = styled.button`
   outline: transparent;
   background-color: transparent;
   cursor: pointer;
-
-  &:hover {
+  
+  &:hover{
     color: white;
     text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
   }
