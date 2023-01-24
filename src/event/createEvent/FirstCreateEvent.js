@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { BsChevronDown, BsChevronRight } from "react-icons/bs";
-// import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { DownButtonBox, DownBtn, DownButtonFull, } from './SecondCreateEventStyled';
 import { CreateEventContainer, CreateEventHeader, EventHeader1, EventText, CreateEventSection, EventSubSection,EventSetText} from '../createEvent/TimeLineEventsStyled';
 import { FormContainer, FileWrapper, CustomWrapper, Input, CheckBoxContainer,CheckBoxInput, InputSection, FormImage,Supported, InputText, SmallText,
@@ -16,6 +16,7 @@ const FirstCreateEvent = () => {
     const [isSuccess, setIsSuccess] = useState(false);
     const [isDisabled, setIsDisabled] = useState(true);
 
+const navigate= useNavigate();
 
     const handleFileChange = (e) => {
       if (e.target.files) {
@@ -51,6 +52,7 @@ const FirstCreateEvent = () => {
   
     const handleSubmit = async function (e) {
       e.preventDefault();
+      navigate("/secondCreateEvent");
       console.log(file);
     };
   
@@ -136,7 +138,10 @@ const FirstCreateEvent = () => {
       </CreateEventContainer>
           <DownButtonBox>
               <DownBtn>
-                      <DownButtonFull onClick={handleSubmit} disabled={isDisabled}>Save & Continue</DownButtonFull>
+                     
+                    <DownButtonFull onClick={handleSubmit} 
+                    // disabled={isDisabled}
+                    >Save & Continue</DownButtonFull>
               </DownBtn>
           </DownButtonBox>
     </>

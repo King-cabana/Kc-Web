@@ -26,7 +26,7 @@ import Test from "./event/pages/Test";
 // Budget createEvent form
 import Budget from "./event/budgetInventory/Budget";
 import Inventory from "./event/budgetInventory/Inventory";
-import ContactInfo from "./event/budgetInventory/ContactInfo";
+import ContactInfo from "./event/createEvent/ContactInfo";
 
 import TimeLineEvent from "./event/createEvent/TimeLineEvent";
 
@@ -44,7 +44,6 @@ function App() {
           {/* Budget createEvent Route */}
           <Route path="/budget" element={<Budget />} />
           <Route path="/inventory" element={<Inventory />} />
-          <Route path="/contactInfo" element={<ContactInfo />} />
           <Route path="*" element={<NoPage />} />
 
           <Route path="/test" element={<Test />} />
@@ -119,6 +118,7 @@ function App() {
           <Route path="/firstCreateEvent" element={<FirstCreateEvent />} />
           <Route path="/secondCreateEvent" element={<SecondCreateEvent />} />
           <Route path="/timeLineEvent" element={<TimeLineEvent />} />
+          <Route path="/contactInfo" element={<ContactInfo />} />
           
           <Route path="/home" element={<Sidebar> <DashboardHome /> </Sidebar>} />
           <Route path="/event/create" element={<Sidebar> <CreateEvent /> </Sidebar>} />
