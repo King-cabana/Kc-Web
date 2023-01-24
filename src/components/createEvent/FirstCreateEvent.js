@@ -120,14 +120,14 @@ const FirstCreateEvent = () => {
       {/* input section  */}
            <EventSubSection>
             <InputText>Estimated Attendance</InputText>
-            <Input type='text' placeholder='estimated attendance to be presented'/>
+            <Input type='text' placeholder='estimated attendance to be present'/>
            </EventSubSection>
       {/* input section  */}
            <EventSubSection>
             <InputText>Event description <br/>
             <SmallText>What is the purpose of this event</SmallText>    
             </InputText>
-            <MyTextArea type='textarea' row='6' placeholder='be described and concise'/>
+            <MyTextArea type='textarea' row='6' placeholder='Be descriptive and concise'/>
             <Number>0/140</Number>
            </EventSubSection>
 
