@@ -43,7 +43,8 @@ export const ContentBody = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 60px; 
+  /* font-size: 60px;  */
+  width: 80%;
 
   @media screen and (max-width: 480px) {
     width: 100%;

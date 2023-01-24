@@ -3,6 +3,8 @@ import {
   KCProgressBarHolder,
   KCProgressBar,
   ProgressStages,
+  ProgressStages2,
+  ProgressStages3,
   NumberHolder,
   ProgressStageInner,
   ProgressStageCounter,
@@ -16,8 +18,8 @@ const ProgressBar = ({ setActive }) => {
       <KCProgressBar>
         <ProgressStages
           onClick={() => setActive("details")}
-          bblr={"5px"}
-          btlr={"5px"}
+          // bblr={"5px"}
+          // btlr={"5px"}
         >
           <ProgressStageInner>
             <ProgressStageCounter>
@@ -28,7 +30,7 @@ const ProgressBar = ({ setActive }) => {
           </ProgressStageInner>
         </ProgressStages>
 
-        <ProgressStages onClick={() => setActive("audience")}>
+        <ProgressStages2 onClick={() => setActive("audience")}>
           <ProgressStageInner>
             <ProgressStageCounter>
               <NumberHolder>2</NumberHolder>
@@ -36,12 +38,12 @@ const ProgressBar = ({ setActive }) => {
             </ProgressStageCounter>
             {progress}/1
           </ProgressStageInner>
-        </ProgressStages>
-
-        <ProgressStages
+        </ProgressStages2>
+        
+        <ProgressStages3
           onClick={() => setActive("budget")}
-          btrr={"5px"}
-          bbrr={"5px"}
+          // btrr={"5px"}
+          // bbrr={"5px"}
         >
           <ProgressStageInner>
             <ProgressStageCounter>
@@ -50,7 +52,7 @@ const ProgressBar = ({ setActive }) => {
             </ProgressStageCounter>
             {progress}/2
           </ProgressStageInner>
-        </ProgressStages>
+        </ProgressStages3>
       </KCProgressBar>
     </KCProgressBarHolder>
   );

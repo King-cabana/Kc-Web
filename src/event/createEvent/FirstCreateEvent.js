@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { BsChevronDown, BsChevronRight } from "react-icons/bs";
 // import { Link } from "react-router-dom";
 import { DownButtonBox, DownBtn, DownButtonFull, } from './SecondCreateEventStyled';
-import { CreateEventContainer, CreateEventHeader, EventHeader1, EventText, CreateEventSection, EventSubSection,EventSetText} from './TimeLineEventsStyled';
+import { CreateEventContainer, CreateEventHeader, EventHeader1, EventText, CreateEventSection, EventSubSection,EventSetText} from '../createEvent/TimeLineEventsStyled';
 import { FormContainer, FileWrapper, CustomWrapper, Input, CheckBoxContainer,CheckBoxInput, InputSection, FormImage,Supported, InputText, SmallText,
          MyTextArea, Number, CheckHeader, InputBoxOther, UploadBtn,} from './FirstCreateEventStyled'
 

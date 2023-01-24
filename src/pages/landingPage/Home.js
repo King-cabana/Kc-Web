@@ -34,7 +34,7 @@ import Search from "../../images/search.svg";
 import Bulb from "../../images/Frame 21613bulb.svg";
 import Speaker from "../../images/speaker.svg";
 import Subscribe from "../../images/computer.jpg";
-import Testimonial from "../../components/testimonials/Testimonial";
+// import Testimonial from "../../components/testimonials/Testimonial";
 import Food from "../../images/Food.jpg";
 import Business from "../../images/BusinessB.jpg";
 import Art from "../../images/Arts.jpg";
@@ -217,7 +217,7 @@ const Home = () => {
         >
           Testimonials
         </KBDisplayM>
-        <Testimonial />
+        {/* <Testimonial /> */}
       </TestimonialSection>
 
       <ReadySection>

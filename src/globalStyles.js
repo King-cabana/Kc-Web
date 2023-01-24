@@ -113,31 +113,35 @@ export const RadioButton = styled.input.attrs({
   }
 `;
 
+export const Valueholder = styled.div`
+  height: inherit;
+  width: fit-content;
+  gap: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`
+
 export const ChechkBox = styled.input.attrs({
   type: "checkbox",
 })``;
 
-export const Details = styled.div`
-  display: flex;
-  height: 6vh;
-  outline: 1px solid #c4c4c4;
-  border-radius: 4px;
-  align-items: center;
-  padding: 1%;
-  line-height: 2rem;
-  margin: 1%;
 
-  summary {
-    display: flex;
-    height: 6vh;
-    outline: 1px solid #c4c4c4;
-    border-radius: 4px;
-    align-items: center;
-    padding: 1%;
-    line-height: 2rem;
-    margin: 1%;
-  }
+export const InputOthers = styled.input`
+  display: ${(props) => (props.display ? props.display : "none")};
+  border: 1px solid rgba(0, 104, 255, 0.1);
+  border-radius: 5px;
+  padding: 10px;
+  margin-top: 0.5rem;
+  height: inherit;
+  outline: transparent;
+  width: 98%;
+  font-size: 12px;
+  margin-left: 1%;
+  
+
 `;
+
 
 export const AnimationContainer = styled.div`
   width: 150px;

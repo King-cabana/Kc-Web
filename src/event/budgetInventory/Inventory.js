@@ -32,6 +32,8 @@ import {
 import "../../App.css";
 import "../../modal.css";
 import { BsChevronRight, BsChevronDown } from "react-icons/bs";
+import CreateEventTopBar from "../topBar/CreateEventTopBar/CreateEventTopBar";
+import ProgressBar from "../progressBar/ProgressBar";
 
 const Inventory = () => {
   // discard button modal

@@ -21,6 +21,8 @@ import {
   PrimaryButton,
   AlternativeButton2,
 } from "../../components/button/button";
+import CreateEventTopBar from "../topBar/CreateEventTopBar/CreateEventTopBar";
+import ProgressBar from "../progressBar/ProgressBar";
 
 const ContactInfo = () => {
   // form states

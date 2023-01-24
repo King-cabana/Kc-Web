@@ -5,8 +5,8 @@ import NoPage from "./pages/noPage/NoPage";
 import ContactUs from "./pages/contactUs/ContactUs";
 import "./App.css";
 import Waitlist from "./pages/waitlist/WaitlistForm";
-import SecondCreateEvent from "./components/createEvent/SecondCreateEvent";
-import FirstCreateEvent from "./components/createEvent/FirstCreateEvent";
+import SecondCreateEvent from "./event/createEvent/SecondCreateEvent";
+import FirstCreateEvent from "./event/createEvent/FirstCreateEvent";
 import Sidebar from "./event/Dashboard/Sidebar";
 import DashboardHome from "./event/pages/DashboardHome";
 
@@ -28,7 +28,7 @@ import Budget from "./event/budgetInventory/Budget";
 import Inventory from "./event/budgetInventory/Inventory";
 import ContactInfo from "./event/budgetInventory/ContactInfo";
 
-import TimeLineEvent from "./components/createEvent/TimeLineEvent";
+import TimeLineEvent from "./event/createEvent/TimeLineEvent";
 
 
 
