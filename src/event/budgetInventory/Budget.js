@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import {
   PrimaryButton,
   PrimaryButton3,
@@ -23,6 +25,8 @@ import {
 } from "./BudgetStyled";
 
 const Budget = () => {
+  const navigate = useNavigate();
+
   const [file, setFile] = useState("");
   const [errorMsg, setErrorMsg] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -63,6 +67,7 @@ const Budget = () => {
 
   const handleSubmit = async function (e) {
     e.preventDefault();
+    navigate("/inventory");
     console.log(file);
   };
 
