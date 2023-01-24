@@ -1,11 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const EventAnalytics = () => {
-  return (
-    <>
-      Event Analytics
-    </>
-  )
-}
+  return <>Event Analytics</>;
+};
 
-export default EventAnalytics
+export default EventAnalytics;

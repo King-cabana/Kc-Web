@@ -5,7 +5,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import CrossTime from '../../images/CrossTime.png';
 import { CreateEventContainer, CreateEventHeader, EventHeader1, EventText, CreateEventSection, EventSubSection, EventTagText,
          InputTagBox, InputTag, AddButton, ErrorText, EventButton, EventSetText, InputBox,AddOtherBox, BlueText} from './TimeLineEventsStyled';
-import { DownButtonBox, DownButtonOutline, DownBtn, DownButtonFull, } from './SecondCreateEventStyled';
+import { DownButtonBox, DownButtonOutline, DownBtn, DownButtonFull, } from '../createEvent/SecondCreateEventStyled';
 
 const TimeLineEvent = () => {
     const [startDate, setStartDate] = useState(new Date());

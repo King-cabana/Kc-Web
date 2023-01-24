@@ -1,11 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const SponsorEvent = () => {
-  return (
-    <>
-      Sponsor Event
-    </>
-  )
-}
+  return <>Sponsor Event</>;
+};
 
-export default SponsorEvent
+export default SponsorEvent;

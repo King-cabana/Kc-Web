@@ -19,12 +19,11 @@ export const Nav = styled.div`
     z-index: 1;
   }
 
-  @media (max-width: 960px) {
-    position: sticky;
-    height: 10vh;
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
-    z-index: 1;
-  }
+  /* @media screen and (max-width: 1920px){
+    width: 100%;
+    padding-left: 10% ;
+    padding-right: 10%;
+  } */
 `;
 
 export const NavLogo = styled.div`
@@ -35,12 +34,10 @@ export const NavLogo = styled.div`
     width: 35;
   }
 
-  @media screen and (max-width: 480px){
-
-    img{
+  @media screen and (max-width: 480px) {
+    img {
       max-width: 100px;
     }
-
   }
 `;
 

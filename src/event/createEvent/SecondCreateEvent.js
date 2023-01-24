@@ -5,7 +5,7 @@ import { BsChevronDown, BsChevronRight } from "react-icons/bs";
 import { EventBox, EventTitle, EventOccurence, EventInputBox,EventInput, EventLink, ButtonBox,ButtonOutline, EventPhysical, LeftInputBox,RightInputBox,
          DownButtonBox, DownButtonOutline, DownBtn, DownButtonFull, DayBox, TimeText, WeekBox,} from './SecondCreateEventStyled';
 import { InputSection } from './FirstCreateEventStyled';
-import { CreateEventContainer, CreateEventHeader, EventHeader1, EventText, CreateEventSection, EventSubSection } from './TimeLineEventsStyled';
+import { CreateEventContainer, CreateEventHeader, EventHeader1, EventText, CreateEventSection, EventSubSection } from '../createEvent/TimeLineEventsStyled';
 
 const SecondCreateEvent = () => {
   
