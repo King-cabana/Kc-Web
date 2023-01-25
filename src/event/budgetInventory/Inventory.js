@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   BudgetInventoryContainer,
   BudgetInventoryHeader,
@@ -36,6 +37,7 @@ import CreateEventTopBar from "../topBar/CreateEventTopBar/CreateEventTopBar";
 import ProgressBar from "../progressBar/ProgressBar";
 
 const Inventory = () => {
+  const navigate = useNavigate();
   // discard button modal
   const [modal, setModal] = useState(false);
   // checkstates
@@ -62,7 +64,7 @@ const Inventory = () => {
   const [ninthChecked, setNinthChecked] = useState([]);
   const [tenthChecked, setTenthChecked] = useState([]);
 
-  const [isDisabled, setIsDisabled] = useState(true);
+  // const [isDisabled, setIsDisabled] = useState(true);
 
   const handleFirstCheck = (e) => {
     var updatedList = [...firstChecked];
@@ -156,12 +158,12 @@ const Inventory = () => {
   };
 
   // Modal Contitions
-  if (modal) {
-    document.body.classList.add("active-modal");
-  } else {
-    document.body.classList.remove("active-modal");
-  }
-  const showModal = !modal && "notShown";
+  // if (modal) {
+  //   document.body.classList.add("active-modal");
+  // } else {
+  //   document.body.classList.remove("active-modal");
+  // }
+  // const showModal = !modal && "notShown";
 
   // Submission handling
   const handleSubmit = async function (e) {
@@ -179,11 +181,12 @@ const Inventory = () => {
       tenthChecked,
     ];
     console.log(items);
+    navigate("/submitted");
   };
 
   return (
     <>
-      {modal && <PopUpOverlay></PopUpOverlay>}
+      {/* {modal && <PopUpOverlay></PopUpOverlay>} */}
       <BudgetInventoryContainer>
         <BudgetInventoryHeader>
           <BudgetTitle1>Budget & Take Inventory</BudgetTitle1>
@@ -857,8 +860,7 @@ const Inventory = () => {
               </CheckDetails>
             </InventorySection>
 
-            <div className={`${showModal}`}>
-              {/* <div> */}
+            {/* <div className={`${showModal}`}>
               <PopUpComponent>
                 <ModalText>
                   This is going to disrupt all saved documents. Are you sure you
@@ -886,21 +888,25 @@ const Inventory = () => {
                   </BtnHolderLink>
                 </ModalButtonContainer>
               </PopUpComponent>
-            </div>
+            </div> */}
 
             <ButtonContainer>
               <AlternativeButton2
-                onClick={() => setModal(!modal)}
+                // onClick={() => setModal(!modal)}
+                onClick={() => navigate(-1)}
                 style={{
                   color: "#FF2957",
                   fontWeight: "600",
                   marginRight: "2rem",
                 }}
               >
-                Discard
+                Back
               </AlternativeButton2>
-              <PrimaryButton onClick={handleSubmit} disabled={isDisabled}>
-                Submit & Preview
+              <PrimaryButton
+                onClick={handleSubmit}
+                // disabled={isDisabled}
+              >
+                Save & Submit
               </PrimaryButton>
             </ButtonContainer>
           </BudgetUpload>
