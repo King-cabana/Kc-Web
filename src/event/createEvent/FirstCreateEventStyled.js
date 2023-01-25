@@ -154,6 +154,7 @@ font-size: 20px;
 line-height: 30px;
 align-items: center;
 color: #484848;
+margin-bottom:1rem;
 
 @media screen and (max-width: 960px) {
   font-size: 15px;
