@@ -30,6 +30,11 @@ import ContactInfo from "./event/budgetInventory/ContactInfo";
 import TimeLineEvent from "./event/createEvent/TimeLineEvent";
 import Submitted from "./event/budgetInventory/Submitted";
 
+// Set Up Profile
+import CreateProfile from "./profile/createProfile/CreateProfile";
+import ManageProfile from "./profile/manageProfile/ManageProfile";
+import OrganiserProfile from "./profile/organiserProfile/OrganiserProfile";
+
 function App() {
   return (
     <>
@@ -43,6 +48,10 @@ function App() {
           <Route path="/budget" element={<Budget />} />
           <Route path="/inventory" element={<Inventory />} />
           <Route path="/submitted" element={<Submitted />} />
+          <Route path="/createProfile" element={<CreateProfile />} />
+          <Route path="/manageProfile" element={<ManageProfile />} />
+          <Route path="/organiserProfile" element={<OrganiserProfile />} />
+
           <Route path="*" element={<NoPage />} />
 
           <Route path="/test" element={<Test />} />
