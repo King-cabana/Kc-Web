@@ -20,17 +20,20 @@ import EventHistory from "./event/pages/EventHistory";
 import EventAnalytics from "./event/pages/EventAnalytics";
 import Settings from "./event/pages/Settings";
 
-
 import Test from "./event/pages/Test";
 
 // Budget createEvent form
 import Budget from "./event/budgetInventory/Budget";
 import Inventory from "./event/budgetInventory/Inventory";
-import ContactInfo from "./event/budgetInventory/ContactInfo";
+import ContactInfo from "./event/createEvent/ContactInfo";
 
 import TimeLineEvent from "./event/createEvent/TimeLineEvent";
+import Submitted from "./event/budgetInventory/Submitted";
 
-
+// Set Up Profile
+import CreateProfile from "./profile/createProfile/CreateProfile";
+import ManageProfile from "./profile/manageProfile/ManageProfile";
+import OrganiserProfile from "./profile/organiserProfile/OrganiserProfile";
 
 function App() {
   return (
@@ -44,7 +47,11 @@ function App() {
           {/* Budget createEvent Route */}
           <Route path="/budget" element={<Budget />} />
           <Route path="/inventory" element={<Inventory />} />
-          <Route path="/contactInfo" element={<ContactInfo />} />
+          <Route path="/submitted" element={<Submitted />} />
+          <Route path="/createProfile" element={<CreateProfile />} />
+          <Route path="/manageProfile" element={<ManageProfile />} />
+          <Route path="/organiserProfile" element={<OrganiserProfile />} />
+
           <Route path="*" element={<NoPage />} />
 
           <Route path="/test" element={<Test />} />
@@ -118,14 +125,63 @@ function App() {
 
           <Route path="/firstCreateEvent" element={<FirstCreateEvent />} />
           <Route path="/secondCreateEvent" element={<SecondCreateEvent />} />
+          <Route path="/contactInfo" element={<ContactInfo />} />
           <Route path="/timeLineEvent" element={<TimeLineEvent />} />
-          
-          <Route path="/home" element={<Sidebar> <DashboardHome /> </Sidebar>} />
-          <Route path="/event/create" element={<Sidebar> <CreateEvent /> </Sidebar>} />
-          <Route path="/event/sponsor" element={<Sidebar> <SponsorEvent /> </Sidebar>} />
-          <Route path="/report/eventhistory" element={<Sidebar> <EventHistory /> </Sidebar>} />
-          <Route path="/report/eventanalytics" element={<Sidebar> <EventAnalytics /> </Sidebar>} />
-          <Route path="/settings" element={<Sidebar> <Settings /> </Sidebar>} />
+
+          <Route
+            path="/home"
+            element={
+              <Sidebar>
+                {" "}
+                <DashboardHome />{" "}
+              </Sidebar>
+            }
+          />
+          <Route
+            path="/event/create"
+            element={
+              <Sidebar>
+                {" "}
+                <CreateEvent />{" "}
+              </Sidebar>
+            }
+          />
+          <Route
+            path="/event/sponsor"
+            element={
+              <Sidebar>
+                {" "}
+                <SponsorEvent />{" "}
+              </Sidebar>
+            }
+          />
+          <Route
+            path="/report/eventhistory"
+            element={
+              <Sidebar>
+                {" "}
+                <EventHistory />{" "}
+              </Sidebar>
+            }
+          />
+          <Route
+            path="/report/eventanalytics"
+            element={
+              <Sidebar>
+                {" "}
+                <EventAnalytics />{" "}
+              </Sidebar>
+            }
+          />
+          <Route
+            path="/settings"
+            element={
+              <Sidebar>
+                {" "}
+                <Settings />{" "}
+              </Sidebar>
+            }
+          />
         </Routes>
       </>
     </>

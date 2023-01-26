@@ -1,26 +1,10 @@
 import React, { useState } from "react";
-import { ButtonContainer } from "./BudgetStyled";
-import {
-  ContactInfoContainer,
-  ContactInfoHeader,
-  ContactInfoTitle1,
-  ContactInfoSubtitle,
-  ContactInfoSection,
-  ContactInfoTitle2,
-  ContactInfoUpload,
-  ContactInfoLabel,
-  ContactInfoInput,
-  ContactInfoPadding,
-  Radio,
-  RadioInput,
-  RadioLabel,
-  OthersInput,
-} from "./ContactInfoStyled";
+import { ButtonContainer } from "../budgetInventory/BudgetStyled";
+import {ContactInfoContainer,ContactInfoHeader,ContactInfoTitle1,ContactInfoSubtitle,ContactInfoSection,ContactInfoTitle2,ContactInfoUpload,
+        ContactInfoLabel,ContactInfoInput, ContactInfoPadding,Radio,RadioInput,RadioLabel,OthersInput,} from "./ContactInfoStyled";
+  import {PopUpOverlay,BtnHolderLink,PopUpComponent,ModalText,ModalButtonContainer,} from "../budgetInventory/InventoryStyled";
+import { PrimaryButton,ModalPrimaryButton,AlternativeButton2,} from "../../components/button/button";
 import "../../App.css";
-import {
-  PrimaryButton,
-  AlternativeButton2,
-} from "../../components/button/button";
 import CreateEventTopBar from "../topBar/CreateEventTopBar/CreateEventTopBar";
 import ProgressBar from "../progressBar/ProgressBar";
 
@@ -36,28 +20,24 @@ const ContactInfo = () => {
   const [secOfficeAddress, setSecOfficeAddress] = useState("");
   const [secPhoneNumber, setSecPhoneNumber] = useState("");
   const [secEmailAddress, setSecEmailAddress] = useState("");
-
+  const [modal, setModal] = useState(false);
   ///////////////
   const [others, setOthers] = useState(false);
 
+   // Modal Contitions
+   if (modal) {document.body.classList.add("active-modal");} else {document.body.classList.remove("active-modal");}
+  const showModal = !modal && "notShown";
+
   const handleSubmit = async function (e) {
     e.preventDefault();
-    const contactInformation = {
-      pryFullName,
-      pryPhoneNumber,
-      pryEmailAddress,
-      secRole,
-      secFullName,
-      secCompanyName,
-      secJobRole,
-      secOfficeAddress,
-      secPhoneNumber,
-      secEmailAddress,
-    };
-    console.log(contactInformation);
-  };
+
+  const contactInformation = {pryFullName,pryPhoneNumber,pryEmailAddress,secRole,secFullName,secCompanyName,secJobRole,secOfficeAddress,
+                              secPhoneNumber,secEmailAddress,};
+    console.log(contactInformation);};
+
   return (
     <>
+    {modal && <PopUpOverlay></PopUpOverlay>}
       <ContactInfoContainer>
         <ContactInfoHeader>
           <ContactInfoTitle1>Create Event</ContactInfoTitle1>
@@ -194,8 +174,38 @@ const ContactInfo = () => {
               />
             </ContactInfoPadding>
 
+            <div className={`${showModal}`}>
+              {/* <div> */}
+              <PopUpComponent>
+                <ModalText>
+                  This is going to disrupt all saved documents. Are you sure you
+                  want to continue?
+                </ModalText>
+
+                <ModalButtonContainer>
+                  <BtnHolderLink>
+                    <AlternativeButton2
+                      onClick={() => setModal(!modal)}
+                      style={{
+                        // width: "70px",
+                        // height: "30px",
+                        // fontSize: "10px",
+                        color: "#FF2957",// fontWeight: "600",
+                      }}>
+                      Cancel
+                    </AlternativeButton2>
+                  </BtnHolderLink>
+
+                  <BtnHolderLink to="/home">
+                    <ModalPrimaryButton>Yes, Discard</ModalPrimaryButton>
+                  </BtnHolderLink>
+                </ModalButtonContainer>
+              </PopUpComponent>
+            </div>
+
             <ButtonContainer>
               <AlternativeButton2
+              onClick={() => setModal(!modal)}
                 style={{
                   color: "#FF2957",
                   fontWeight: "600",

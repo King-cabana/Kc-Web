@@ -141,6 +141,7 @@ export const AlternativeButton2 = styled.button`
   border: 1.5px solid #ff2957;
   cursor: pointer;
   font-weight: ${(props) => props.fontWeight};
+  font-size: 14px;
 
   @media screen and (max-width: 769px) {
     font-size: 10px;
@@ -169,6 +170,7 @@ export const PrimaryButton = styled.button`
   outline: none;
   cursor: pointer;
   font-weight: 600;
+  font-size: 14px;
 
   @media screen and (max-width: 769px) {
     font-size: 10px;
