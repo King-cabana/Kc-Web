@@ -17,6 +17,9 @@ const OrganiserProfile = () => {
 
     const navigateNext = ()=>{
       navigate('/manageProfile')
+    };
+    const navigateBack = ()=>{
+      navigate('/createProfile')
     }
 
   const handleFileChange = (e) => {
@@ -116,7 +119,7 @@ const OrganiserProfile = () => {
       </ProfileContent>
       <SaveBox>
             <ButtonSave>
-              <TransparentButton color="#FF2957" fontWeight={600} >Back</TransparentButton>
+              <TransparentButton color="#FF2957" fontWeight={600} onClick={navigateBack}>Back</TransparentButton>
               <PrimaryButton onClick={navigateNext}>Next</PrimaryButton>
             </ButtonSave>
         </SaveBox>
