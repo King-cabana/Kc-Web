@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
-import {
-  PrimaryButton,
-  TransparentButton,
-} from "../../components/button/button";
+
 import {
   Input,
   InputText,
@@ -14,6 +11,7 @@ import {
   UploadBtn,
   Supported,
 } from "../../event/createEvent/FirstCreateEventStyled";
+import { DownButtonFull } from "../../event/createEvent/SecondCreateEventStyled";
 import {
   EventHeader1,
   EventText,
@@ -28,7 +26,7 @@ import {
   ProfileSection,
   ShapedBackground,
 } from "../createProfile/CreateProfileStyled";
-import { InputSeg, SaveBox, ButtonSave } from "./OrganiserProfileStyled";
+import { InputSeg, SaveBox, ButtonSave, TransparentButton } from "./OrganiserProfileStyled";
 
 const OrganiserProfile = () => {
   const [isSuccess, setIsSuccess] = useState(false);
@@ -143,14 +141,8 @@ const OrganiserProfile = () => {
         </ProfileContent>
         <SaveBox>
           <ButtonSave>
-            <TransparentButton
-              color="#FF2957"
-              fontWeight={600}
-              onClick={navigateBack}
-            >
-              Back
-            </TransparentButton>
-            <PrimaryButton onClick={navigateNext}>Next</PrimaryButton>
+            <TransparentButton onClick={navigateBack}>Back</TransparentButton>
+            <DownButtonFull onClick={navigateNext}>Next</DownButtonFull>
           </ButtonSave>
         </SaveBox>
       </ProfileContainer>

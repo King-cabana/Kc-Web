@@ -7,13 +7,32 @@ width: 100%;
 margin-bottom: 2rem;
 `;
 
+export const TransparentButton = styled.button`
+  border: none;
+  width: 150px;
+  height: 50px;
+  align-items: center;
+  border-radius: 8px;
+  background-color: transparent;
+  cursor: pointer;
+  padding: 8px 2px;
+  color: #FF2957;
+  font-weight: 600;
+  margin-top: 5px;
+
+  &:hover {
+    color: #f4d5dc;
+
+  }
+`;
+
 export const SaveBox = styled.div`
 display: flex;
 flex-direction: row;
 justify-content: flex-end;
 align-items: center;
 width: 100%;
-height: 10vh;
+height: 12vh;
 background-color:#ffff;
 box-sizing: border-box;
 z-index: 999;
