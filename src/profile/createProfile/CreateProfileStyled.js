@@ -32,6 +32,7 @@ export const ProfileContent = styled.section`
   top: 60%;
   left: 50%;
   transform: translate(-50%, -50%);
+  /* display: flex; */
   /* top: 0; */
   /* position: fixed; */
 `;
@@ -55,17 +56,23 @@ export const ProfileProgress = styled.p`
   font-size: 14px;
   line-height: 20px;
   color: #ffbc15;
+
+  @media screen and (max-width: 768px) {
+    font-size: 10px;
+    line-height: 20px;
+    }
 `;
 
 export const ProfileSection = styled.section`
   /* border: 2px solid green; */
-  height: 75%;
+  height: 50%;
   width: 85%;
   overflow-y: auto;
   position: fixed;
   transform: translate(-50%, -50%);
   top: 55%;
   left: 50%;
+  margin-bottom: 1rem;
   /* hide scrollbar*/
   -ms-overflow-style: none;
   scrollbar-width: none;

@@ -1,20 +1,37 @@
 import React, { useState} from "react";
+import { useNavigate } from 'react-router';
 import { BsChevronDown, BsChevronRight } from "react-icons/bs";
 import { AlternativeButton, TransparentButton } from "../../components/button/button";
+import kingCabanaLogo from '../../images/kingCabanaLogo.svg';
 import { InputText, Input, InputSection, CheckBoxContainer, CheckBoxInput, InputBoxOther } from "../../event/createEvent/FirstCreateEventStyled";
 import { LeftInputBox, RightInputBox } from "../../event/createEvent/SecondCreateEventStyled";
 import { CreateEventSection, EventHeader1,EventText } from "../../event/createEvent/TimeLineEventsStyled";
 import { ButtonSave, InputSeg, SaveBox } from "../organiserProfile/OrganiserProfileStyled";
 import { ManageBox, LongButton1 } from './ManageProfileStyled';
+import { KCLogo, LogoDiv, ProfileContainer, ProfileContent, ProfileProgress, ProfileSection, ShapedBackground } from "../createProfile/CreateProfileStyled";
 
 const ManageProfile = () => {
 
   const [isDisplay, setIsDisplay] = useState(false);
   const[visibility, setVisibility] = useState(false);
+  
+  const navigate = useNavigate();
+
+  const navigateBack = () => {
+    navigate('/organiserProfile');
+  };
 
   return (
     <>
-     <CreateEventSection>
+    <ProfileContainer>
+      <ShapedBackground />
+      <ProfileContent>
+        <LogoDiv>
+            <KCLogo src={kingCabanaLogo} alt='kcLogo'/>
+          </LogoDiv> 
+        <ProfileSection>
+             
+            <ProfileProgress>Step 1 of 3</ProfileProgress> 
         <EventHeader1>Manage organizer(s)</EventHeader1>
         <EventText>lorem ipsum dolor sit amet consectetur</EventText>
 
@@ -45,15 +62,17 @@ const ManageProfile = () => {
         </InputSeg>
         <AlternativeButton color='#ff2957'>Add another </AlternativeButton>
 
+        
+
+</ProfileSection>
+</ProfileContent>
+</ProfileContainer>
         <SaveBox>
             <ButtonSave>
-              <TransparentButton color="#FF2957" fontWeight={600}>Back</TransparentButton>
+              <TransparentButton color="#FF2957" fontWeight={600} onClick={navigateBack}>Back</TransparentButton>
               <LongButton1>proceed to Dashboard</LongButton1>
             </ButtonSave>
         </SaveBox>
-
-     </CreateEventSection>
-
     </>
   );
 };

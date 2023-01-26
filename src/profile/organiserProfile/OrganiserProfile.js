@@ -1,15 +1,23 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from 'react-router';
 import { PrimaryButton, TransparentButton } from "../../components/button/button";
 import { Input, InputText, MyTextArea, FormContainer, FileWrapper, CustomWrapper,UploadBtn, Supported  } from "../../event/createEvent/FirstCreateEventStyled";
 import { CreateEventSection, EventHeader1, EventText } from "../../event/createEvent/TimeLineEventsStyled";
-import { LongButton } from "../../globalStyles";
-import { InputSeg, SaveBox, ButtonSave } from './OrganiserProfileStyled';
+import kingCabanaLogo from '../../images/kingCabanaLogo.svg';
+import { KCLogo, LogoDiv, ProfileContainer, ProfileContent, ProfileHeader, ProfileProgress, ProfileSection, ShapedBackground } from "../createProfile/CreateProfileStyled";
+import { InputSeg, SaveBox, ButtonSave, OrganiserSection } from './OrganiserProfileStyled';
 
 const OrganiserProfile = () => {
   const [isSuccess, setIsSuccess] = useState(false);
   const [file, setFile] = useState("");
     const [errorMsg, setErrorMsg] = useState(false);
     const [correctFileSize, setCorrectFileSize] = useState(false);
+
+    const navigate = useNavigate();
+
+    const navigateNext = ()=>{
+      navigate('/manageProfile')
+    }
 
   const handleFileChange = (e) => {
     if (e.target.files) {
@@ -42,7 +50,15 @@ const OrganiserProfile = () => {
 
   return (
     <div>
-      <CreateEventSection>
+     <ProfileContainer>
+      <ShapedBackground />
+      <ProfileContent>
+        <LogoDiv>
+            <KCLogo src={kingCabanaLogo} alt='kcLogo'/>
+          </LogoDiv> 
+        <ProfileSection>
+             
+            <ProfileProgress>Step 1 of 3</ProfileProgress> 
 
         <EventHeader1>Set up your Event Organizer's Profile</EventHeader1>
         <EventText>lorem ipsum dolor sit amet consectetur</EventText>
@@ -95,14 +111,17 @@ const OrganiserProfile = () => {
                   {isSuccess ? (<p style={{ color: "green" }}>Validation successful</p>) : null}
                 </FormContainer>
         </InputSeg>
-
-        <SaveBox>
+    
+      </ProfileSection>
+      </ProfileContent>
+      <SaveBox>
             <ButtonSave>
-              <TransparentButton color="#FF2957" fontWeight={600}>Back</TransparentButton>
-              <PrimaryButton>Next</PrimaryButton>
+              <TransparentButton color="#FF2957" fontWeight={600} >Back</TransparentButton>
+              <PrimaryButton onClick={navigateNext}>Next</PrimaryButton>
             </ButtonSave>
         </SaveBox>
-      </CreateEventSection>
+      </ProfileContainer> 
+      
     </div>
   );
 };
