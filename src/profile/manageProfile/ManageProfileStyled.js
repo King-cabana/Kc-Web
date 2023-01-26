@@ -24,7 +24,10 @@ export const LongButton1 = styled.button`
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  
+  margin-top:5px;
+  font-size: 16px;
+
+
   @media screen and (max-width: 768px){
     font-size: 12px;
   }

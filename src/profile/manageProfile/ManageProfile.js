@@ -3,7 +3,6 @@ import { useNavigate } from "react-router";
 import { BsChevronDown, BsChevronRight } from "react-icons/bs";
 import {
   AlternativeButton,
-  TransparentButton,
 } from "../../components/button/button";
 import kingCabanaLogo from "../../images/kingCabanaLogo.svg";
 import {
@@ -25,7 +24,7 @@ import {
 import {
   ButtonSave,
   InputSeg,
-  SaveBox,
+  SaveBox, TransparentButton,
 } from "../organiserProfile/OrganiserProfileStyled";
 import { ManageBox, LongButton1 } from "./ManageProfileStyled";
 import {
@@ -109,13 +108,7 @@ const ManageProfile = () => {
       </ProfileContainer>
       <SaveBox>
         <ButtonSave>
-          <TransparentButton
-            color="#FF2957"
-            fontWeight={600}
-            onClick={navigateBack}
-          >
-            Back
-          </TransparentButton>
+          <TransparentButton onClick={navigateBack}>Back</TransparentButton>
           <LongButton1>proceed to Dashboard</LongButton1>
         </ButtonSave>
       </SaveBox>
