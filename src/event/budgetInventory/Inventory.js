@@ -13,7 +13,7 @@ import {
 } from "./BudgetStyled";
 import {
   PrimaryButton,
-  ModalPrimaryButton,
+  // ModalPrimaryButton,
   AlternativeButton2,
 } from "../../components/button/button";
 import {
@@ -24,22 +24,22 @@ import {
   CheckLabel,
   CheckDetails,
   CheckSummary,
-  PopUpOverlay,
-  BtnHolderLink,
-  PopUpComponent,
-  ModalText,
-  ModalButtonContainer,
+  // PopUpOverlay,
+  // BtnHolderLink,
+  // PopUpComponent,
+  // ModalText,
+  // ModalButtonContainer,
 } from "./InventoryStyled";
 import "../../App.css";
 import "../../modal.css";
 import { BsChevronRight, BsChevronDown } from "react-icons/bs";
-import CreateEventTopBar from "../topBar/CreateEventTopBar/CreateEventTopBar";
-import ProgressBar from "../progressBar/ProgressBar";
+// import CreateEventTopBar from "../topBar/CreateEventTopBar/CreateEventTopBar";
+// import ProgressBar from "../progressBar/ProgressBar";
 
 const Inventory = () => {
   const navigate = useNavigate();
   // discard button modal
-  const [modal, setModal] = useState(false);
+  // const [modal, setModal] = useState(false);
   // checkstates
   const [exclusive, setExclusive] = useState(false);
   const [otherOnline, setOtherOnline] = useState(false);
@@ -893,7 +893,7 @@ const Inventory = () => {
             <ButtonContainer>
               <AlternativeButton2
                 // onClick={() => setModal(!modal)}
-                onClick={() => navigate(-1)}
+                onClick={() => navigate("/budget")}
                 style={{
                   color: "#FF2957",
                   fontWeight: "600",

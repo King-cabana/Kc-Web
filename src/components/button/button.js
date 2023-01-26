@@ -130,6 +130,16 @@ export const AlternativeButton2 = styled.button`
   }
 `;
 
+export const TransparentButton = styled(AlternativeButton)`
+  border: none;
+
+  &:hover {
+    /* border: 2px solid #FF2957; */
+    color: #f4d5dc;
+
+  }
+`;
+
 export const TextButton = styled.button`
   color: #ff2957;
   font-size: 16px;

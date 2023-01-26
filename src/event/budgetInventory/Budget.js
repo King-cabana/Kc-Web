@@ -6,8 +6,8 @@ import {
   PrimaryButton3,
   AlternativeButton2,
 } from "../../components/button/button";
-import ProgressBar from "../progressBar/ProgressBar";
-import CreateEventTopBar from "../topBar/CreateEventTopBar/CreateEventTopBar";
+// import ProgressBar from "../progressBar/ProgressBar";
+// import CreateEventTopBar from "../topBar/CreateEventTopBar/CreateEventTopBar";
 import {
   BudgetInventoryContainer,
   BudgetInventoryHeader,

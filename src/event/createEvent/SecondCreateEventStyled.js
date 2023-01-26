@@ -136,7 +136,7 @@ flex-direction: column;
 align-items: flex-start;
 gap: 15px;
 width: 100%;
-height: 100%;
+/* height: 100%; */
 `;
 
 export const DayBox = styled.div`
@@ -209,7 +209,7 @@ flex-direction: column;
 align-items: flex-start;
 gap: 15px;
 width: 100%;
-height: 100%;
+/* height: 100%; */
 `;
 
 export const EventLink = styled.div`

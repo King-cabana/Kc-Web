@@ -43,6 +43,7 @@ const CreateProfile = () => {
             <ProfileOption
               onMouseEnter={() => setArrow(1)}
               onMouseLeave={() => setArrow("")}
+              onClick={() => navigate("/organiserProfile")}
             >
               <LottieWrapper>
                 <Lottie

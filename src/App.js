@@ -25,7 +25,7 @@ import Test from "./event/pages/Test";
 // Budget createEvent form
 import Budget from "./event/budgetInventory/Budget";
 import Inventory from "./event/budgetInventory/Inventory";
-import ContactInfo from "./event/budgetInventory/ContactInfo";
+import ContactInfo from "./event/createEvent/ContactInfo";
 
 import TimeLineEvent from "./event/createEvent/TimeLineEvent";
 import Submitted from "./event/budgetInventory/Submitted";

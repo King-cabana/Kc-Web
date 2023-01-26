@@ -19,7 +19,8 @@ height: 100%;
 
 export const EventText = styled.p`
 width: 100%;
-height: 100%;
+margin-bottom: 1rem;
+/* height: 100%; */
 
 @media screen and (max-width:960px){
   font-size: 15px;
@@ -29,10 +30,14 @@ height: 100%;
 
 export const EventHeader1 = styled.h1`
 width: 100%;
-height: 100%;
 font-weight: 700;
 font-size: 24px;
 line-height: 32px;
+margin-bottom: 1rem;
+
+@media screen and (max-width: 768px){
+    font-size: 18px;
+}
 `;
 
 export const CreateEventSection = styled.section`

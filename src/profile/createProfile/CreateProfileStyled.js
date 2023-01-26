@@ -67,6 +67,7 @@ export const ProfileSection = styled.section`
   transform: translate(-50%, -50%);
   top: 55%;
   left: 50%;
+  margin-bottom: 1rem;
   /* hide scrollbar*/
   -ms-overflow-style: none;
   scrollbar-width: none;
