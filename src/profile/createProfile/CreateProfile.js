@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router";
 import Lottie from "lottie-react";
 import calendarEvent from "../../lotties/calendarEvent.json";
 import coinStack from "../../lotties/coinStack.json";
 import vendor from "../../lotties/vendor.json";
+import kingCabanaLogo from "../../images/kingCabanaLogo.svg";
+import rightArrow from "../../images/rightArrow.png";
 import {
   ProfileContainer,
   ShapedBackground,
   ProfileContent,
-  ProfileHeader,
   LogoDiv,
   KCLogo,
   ProfileProgress,
@@ -17,58 +19,89 @@ import {
   ProfileOptionsContainer,
   ProfileOption,
   ProfileText,
+  LottieWrapper,
 } from "./CreateProfileStyled";
-import kingCabanaLogo from "../../images/kingCabanaLogo.svg";
-import shakingCalendar from "../../images/shakingCalendar.svg";
 
 const CreateProfile = () => {
+  const navigate = useNavigate();
+  const [arrow, setArrow] = useState("");
   return (
     <ProfileContainer>
       <ShapedBackground />
       <ProfileContent>
-        <ProfileHeader>
-          <LogoDiv>
-            <KCLogo src={kingCabanaLogo} alt="kcLogo" />
-          </LogoDiv>
-          <ProfileSection>
-            {/* edit here below */}
-            <ProfileProgress>Step 1 of 3</ProfileProgress>
-            <ProfileTitle>Create your Profile</ProfileTitle>
-            <ProfileSubtitle>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            </ProfileSubtitle>
-
-            <ProfileOptionsContainer>
-              <ProfileOption>
+        <LogoDiv>
+          <KCLogo src={kingCabanaLogo} alt="kcLogo" />
+        </LogoDiv>
+        <ProfileSection>
+          {/* edit here below */}
+          <ProfileProgress>Step 1 of 3</ProfileProgress>
+          <ProfileTitle>Create your Profile</ProfileTitle>
+          <ProfileSubtitle>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          </ProfileSubtitle>
+          <ProfileOptionsContainer>
+            <ProfileOption
+              onMouseEnter={() => setArrow(1)}
+              onMouseLeave={() => setArrow("")}
+            >
+              <LottieWrapper>
                 <Lottie
                   animationData={calendarEvent}
                   loop={true}
                   style={{ width: "120px", height: "120px" }}
                 />
-                <ProfileText>Create event</ProfileText>
-              </ProfileOption>
-              <ProfileOption height="300px" width="300px">
-                {" "}
+              </LottieWrapper>
+              <ProfileText>Create event</ProfileText>
+              <img
+                src={rightArrow}
+                className={`${arrow === 1 && "first"}`}
+                alt=""
+              />
+            </ProfileOption>
+
+            <ProfileOption
+              height="300px"
+              width="300px"
+              onMouseEnter={() => setArrow(2)}
+              onMouseLeave={() => setArrow("")}
+            >
+              <LottieWrapper>
                 <Lottie
                   animationData={vendor}
                   loop={true}
                   style={{ width: "120px", height: "120px" }}
                 />
-                <ProfileText>Provide vendor services</ProfileText>
-              </ProfileOption>
-              <ProfileOption>
+              </LottieWrapper>
+              <ProfileText>Provide vendor services</ProfileText>
+              <img
+                src={rightArrow}
+                className={`${arrow === 2 && "second"}`}
+                alt=""
+              />
+            </ProfileOption>
+
+            <ProfileOption
+              onMouseEnter={() => setArrow(3)}
+              onMouseLeave={() => setArrow("")}
+              classname="sponsor"
+            >
+              <LottieWrapper>
                 <Lottie
                   animationData={coinStack}
                   loop={true}
                   style={{ width: "120px", height: "120px" }}
                 />
-                <ProfileText>Sponsor event</ProfileText>
-              </ProfileOption>
-            </ProfileOptionsContainer>
-
-            {/* edit here above */}
-          </ProfileSection>
-        </ProfileHeader>
+              </LottieWrapper>
+              <ProfileText>Sponsor event</ProfileText>
+              <img
+                src={rightArrow}
+                className={`${arrow === 3 && "third"}`}
+                alt=""
+              />
+            </ProfileOption>
+          </ProfileOptionsContainer>
+          {/* edit here above */}
+        </ProfileSection>
       </ProfileContent>
     </ProfileContainer>
   );

@@ -5,20 +5,19 @@ export const ProfileContainer = styled.div`
   background: #f5f5f5;
   width: 100%;
   height: 100vh;
-  /* position: sticky; */
-  /* top: 0; */
-  /* display: flex; */
-  /* justify-content: center; */
-  /* padding: 7rem 5rem 0 5rem; */
 `;
 export const ShapedBackground = styled.div`
   background: url(${shapedBackground});
   background-repeat: no-repeat;
-  z-index: 2;
+  background-size: cover;
   width: 100%;
   height: 100%;
   position: fixed;
-  top: -5rem;
+  top: -15rem;
+
+  @media screen and (max-width: 768px) {
+    /* top: -40rem; */
+  }
 `;
 
 export const ProfileContent = styled.section`
@@ -27,18 +26,16 @@ export const ProfileContent = styled.section`
   height: 100%;
   border-radius: 50px 50px 0 0;
   padding: 4rem;
-  z-index: 100;
+  z-index: 99;
   position: fixed;
-  top: 60%;
   left: 50%;
   transform: translate(-50%, -50%);
-  /* top: 0; */
-  /* position: fixed; */
+  top: 60%;
 `;
 
-export const ProfileHeader = styled.header`
-  background: #fff;
-`;
+// export const ProfileHeader = styled.header`
+//   background: #fff;
+// `;
 
 export const LogoDiv = styled.header`
   display: flex;
@@ -55,10 +52,14 @@ export const ProfileProgress = styled.p`
   font-size: 14px;
   line-height: 20px;
   color: #ffbc15;
+
+  @media screen and (max-width: 768px) {
+    font-size: 10px;
+    line-height: 20px;
+  }
 `;
 
 export const ProfileSection = styled.section`
-  /* border: 2px solid green; */
   height: 75%;
   width: 85%;
   overflow-y: auto;
@@ -79,6 +80,11 @@ export const ProfileTitle = styled.h2`
   font-size: 24px;
   line-height: 32px;
   color: #484848;
+
+  @media screen and (max-width: 768px) {
+    font-size: 18px;
+    line-height: 28px;
+  }
 `;
 
 export const ProfileSubtitle = styled.p`
@@ -86,12 +92,18 @@ export const ProfileSubtitle = styled.p`
   font-size: 16px;
   line-height: 24px;
   color: #484848;
+
+  @media screen and (max-width: 768px) {
+    font-size: 12px;
+    line-height: 18px;
+  }
 `;
 export const ProfileOptionsContainer = styled.section`
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
   margin-top: 2rem;
+  gap: 2rem;
 
   @media screen and (max-width: 960px) {
     flex-direction: column;
@@ -107,11 +119,24 @@ export const ProfileOption = styled.div`
   align-items: center;
   height: ${(props) => (props.height ? props.height : "250px")};
   width: ${(props) => (props.height ? props.width : "250px")};
-  /* background-color: ${(props) => props.backgroundColor}; */
   border: 1.5px solid #f4d5dc;
   border-radius: 10px;
   padding: 1rem;
   transition: all ease 400ms;
+  cursor: pointer;
+
+  img {
+    display: none;
+  }
+  .first {
+    display: flex;
+  }
+  .second {
+    display: flex;
+  }
+  .third {
+    display: flex;
+  }
 
   &:hover {
     background-color: #fff1f1;
@@ -120,10 +145,12 @@ export const ProfileOption = styled.div`
     box-shadow: 0px 1px 4px rgba(255, 188, 21, 0.25);
   }
 
-  @media screen and (max-width: 960px) {
-    width: 300px;
-    height: 250px;
-    margin-bottom: 2rem;
+  @media screen and (max-width: 768px) {
+    width: 250px;
+    height: 200px;
+    &:nth-child(3) {
+      margin-bottom: 3rem;
+    }
   }
 `;
 
@@ -131,4 +158,17 @@ export const ProfileText = styled(ProfileTitle)`
   font-weight: 400;
   margin-top: 1rem;
   text-align: center;
+
+  @media screen and (max-width: 768px) {
+    font-size: 16px;
+    line-height: 24px;
+  }
+`;
+
+export const LottieWrapper = styled.div`
+  @media screen and (max-width: 768px) {
+    height: 5rem;
+    width: 5rem;
+    margin-bottom: 1rem;
+  }
 `;
