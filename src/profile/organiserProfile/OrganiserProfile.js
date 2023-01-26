@@ -41,6 +41,9 @@ const OrganiserProfile = () => {
   const navigateNext = () => {
     navigate("/manageProfile");
   };
+  const navigateBack = () => {
+    navigate("/createProfile");
+  };
 
   const handleFileChange = (e) => {
     if (e.target.files) {
@@ -95,58 +98,6 @@ const OrganiserProfile = () => {
             </InputSeg>
 
             <InputSeg>
-              <InputText>Organizer's / Association's Office address</InputText>
-              <Input type="text" placeholder="Enter office address" />
-            </InputSeg>
-
-            <InputSeg>
-              <InputText>Organizer's / Association's Details</InputText>
-              <MyTextArea
-                type="textarea"
-                row="6"
-                placeholder="Give descriptions"
-              />
-            </InputSeg>
-
-            <InputSeg>
-              <InputText>Logo</InputText>
-              <FormContainer>
-                <FileWrapper>
-                  <CustomWrapper>
-                    <input
-                      type="file"
-                      style={{ cursor: "pointer" }}
-                      onChange={handleFileChange}
-                      hidden
-                      id="file"
-                    />
-                  </CustomWrapper>
-                  <UploadBtn htmlFor="file">Upload</UploadBtn>
-                </FileWrapper>
-                <h3
-                  style={{
-                    color: "#ff2957",
-                    fontSize: "16px",
-                    justifyContent: "center",
-                    display: "flex",
-                    marginTop: "0.5rem",
-                  }}
-                >
-                  {errorMsg}
-                </h3>
-                <Supported>Support files; PDF, JPG, CSV</Supported>
-                <Supported style={{ color: "#ff2957" }}>
-                  {" "}
-                  Not more than 1mb{" "}
-                </Supported>
-                {correctFileSize && <div>{file && `${file.name}`}</div>}
-                {isSuccess ? (
-                  <p style={{ color: "green" }}>Validation successful</p>
-                ) : null}
-              </FormContainer>
-            </InputSeg>
-
-            <InputSeg style={{ marginBottom: "8rem" }}>
               <InputText>Background Picture</InputText>
               <FormContainer>
                 <FileWrapper>
@@ -183,11 +134,20 @@ const OrganiserProfile = () => {
                 ) : null}
               </FormContainer>
             </InputSeg>
+            <div
+              style={{
+                marginBottom: "8rem",
+              }}
+            ></div>
           </ProfileSection>
         </ProfileContent>
         <SaveBox>
           <ButtonSave>
-            <TransparentButton color="#FF2957" fontWeight={600}>
+            <TransparentButton
+              color="#FF2957"
+              fontWeight={600}
+              onClick={navigateBack}
+            >
               Back
             </TransparentButton>
             <PrimaryButton onClick={navigateNext}>Next</PrimaryButton>
