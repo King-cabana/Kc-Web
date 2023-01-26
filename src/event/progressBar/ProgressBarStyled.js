@@ -17,7 +17,6 @@ export const KCProgressBarHolder = styled.div`
 export const KCProgressBar = styled.div`
   width: 80%;
   height: 100px;
-  /* border: none; */
   border-radius: 5px;
   display: flex;
 
@@ -27,48 +26,79 @@ export const KCProgressBar = styled.div`
 `;
 
 
-export const ProgressStages = styled.div`
+export const ProgressStagesOutter = styled.div`
+  clip-path: polygon(0% 0%, 93% 0, 100% 50%, 93% 100%, 0% 100%);
+  height: inherit;
+  background-color: gray;
   width: 35%;
+  margin-right: -22px;
+  position: relative;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
-  margin-right: -20px;
+  border: 1px solid #d2cedc;
+`
+
+export const ProgressStages = styled.div`
+  width: 100%;
+  height: 100%;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
   display: flex;
   justify-content: center;
   align-items: center;
   clip-path: polygon(0% 0%, 93% 0, 100% 50%, 93% 100%, 0% 100%);
-  border: 1px solid #d2cedc;
   background-color: white;
+  position: absolute;
 
 
   @media screen and (max-width: 480px) {
-    width: inherit;
     padding: 2%;
   }
 `;
 
-export const ProgressStages2 = styled.div`
+export const ProgressStages2Outter = styled.div`
   clip-path: polygon(93% 0, 100% 50%, 93% 100%, 0% 100%, 5% 51%, 0% 0%);
   height: inherit;
   background-color: gray;
   width: 35%;
-  margin-right: -20px;
+  margin-right: -22px;
+  position: relative;
   border: 1px solid #d2cedc;
+`
+
+export const ProgressStages2 = styled.div`
+  clip-path: polygon(93% 0, 100% 50%, 93% 100%, 0% 100%, 5% 51%, 0% 0%);
+  background-color: white;
+  width: 100%;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  position: absolute;
+`
+
+export const ProgressStages3Outter = styled.div`
+  clip-path: polygon(100% 0, 100% 50%, 100% 99%, 0% 100%, 5% 51%, 0% 0%);
+  height: inherit;
+  background-color: gray;
+  width: 35%;
+  position: relative;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border: 1px solid #d2cedc;
 `
 
 export const ProgressStages3 = styled.div`
   clip-path: polygon(100% 0, 100% 50%, 100% 99%, 0% 100%, 5% 51%, 0% 0%);
-  height: inherit;
+  height: 100%;
   background-color: white;
-  width: 35%;
+  width: 100%;
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
-  border: 0.5px solid #d2cedc;
   display: flex;
   justify-content: center;
   align-items: center;
+  position: absolute;
   
 `
 

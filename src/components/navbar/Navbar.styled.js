@@ -72,6 +72,7 @@ export const NavItems = styled.ul`
   justify-content: space-between;
   align-items: center;
 
+
   li,
   a {
     text-decoration: none;
@@ -109,7 +110,7 @@ export const NavItems = styled.ul`
   }
 
   @media screen and (min-width: 600px) {
-    top: 100px;
+    /* top: 100px; */
   }
 `;
 

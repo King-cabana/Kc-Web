@@ -8,6 +8,9 @@ import {
   NumberHolder,
   ProgressStageInner,
   ProgressStageCounter,
+  ProgressStagesOutter,
+  ProgressStages2Outter,
+  ProgressStages3Outter,
 } from "./ProgressBarStyled";
 
 const ProgressBar = ({ setActive }) => {
@@ -16,10 +19,10 @@ const ProgressBar = ({ setActive }) => {
   return (
     <KCProgressBarHolder>
       <KCProgressBar>
+
+      <ProgressStagesOutter>
         <ProgressStages
           onClick={() => setActive("details")}
-          // bblr={"5px"}
-          // btlr={"5px"}
         >
           <ProgressStageInner>
             <ProgressStageCounter>
@@ -29,7 +32,9 @@ const ProgressBar = ({ setActive }) => {
             {progress}/4
           </ProgressStageInner>
         </ProgressStages>
+        </ProgressStagesOutter>
 
+      <ProgressStages2Outter>
         <ProgressStages2 onClick={() => setActive("audience")}>
           <ProgressStageInner>
             <ProgressStageCounter>
@@ -39,7 +44,9 @@ const ProgressBar = ({ setActive }) => {
             {progress}/1
           </ProgressStageInner>
         </ProgressStages2>
+        </ProgressStages2Outter>
         
+        <ProgressStages3Outter>
         <ProgressStages3
           onClick={() => setActive("budget")}
           // btrr={"5px"}
@@ -53,6 +60,7 @@ const ProgressBar = ({ setActive }) => {
             {progress}/2
           </ProgressStageInner>
         </ProgressStages3>
+        </ProgressStages3Outter>
       </KCProgressBar>
     </KCProgressBarHolder>
   );

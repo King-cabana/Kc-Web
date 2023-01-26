@@ -44,7 +44,7 @@ export const KBDisplayS = styled.p`
 `;
 
 export const KBDisplayXs = styled.p`
-  font-size: 24px;
+  font-size: 22px;
   line-height: 32px;
   font-weight: ${(props) => props.fontWeight};
   color: ${(props) => props.color};

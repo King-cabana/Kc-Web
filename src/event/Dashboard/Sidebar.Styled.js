@@ -39,11 +39,10 @@ export const SidebarWrap = styled.div`
 
 export const ContentBody = styled.div`
   /* height: 100%; */
-  background-color: #fef5f7;
+  background-color: #fffdfd;
   display: flex;
   justify-content: center;
   align-items: center;
-  /* font-size: 60px;  */
   width: 80%;
 
   @media screen and (max-width: 480px) {

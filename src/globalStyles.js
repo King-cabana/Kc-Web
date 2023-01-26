@@ -24,8 +24,21 @@ export const ModalOverlay = styled.div`
   display: flex;
 `;
 
+export const AuthBackground = styled.div`
+  width: 100%;
+  height: 100vh;
+  background: #FFFCFC;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+
+  /* @media screen and (max-width:'480px') {
+    width: 100%;
+  } */
+`;
+
 export const LongButton = styled.button`
-  margin-top: 5%;
+ 
   height: 7vh;
   background-color: #ff2957;
   color: white;
@@ -89,7 +102,7 @@ export const InputFieldWrapper = styled.div`
 
   @media screen and (max-width: 960px) {
     input {
-      width: 80vw;
+      width: 80%;
     }
   }
 `;
@@ -379,15 +392,14 @@ export const WhatsApp = styled.div`
   }
 `;
 export const Div = styled.div`
-  margin-top: 8%;
   display: flex;
   align-items: center;
-  width: 25vw;
+  width: 100%;
   font-size: 12px;
   justify-content: space-between;
 
   @media only screen and (max-width: 960px) {
-    width: 80vw;
+    width: 100%;
   }
 `;
 
@@ -413,5 +425,37 @@ export const Or = styled.div`
     padding: 5%;
   }
 `;
+
+export const SocialIconsHolder = styled.div`
+ border: 1px solid #d9d9d9;
+  border-radius: 50px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  img{
+      width: 20px;
+      height:20px;
+    }
+    
+  
+
+  @media only screen and (max-width: 960px) {
+    display: flex;
+    border: 1px solid #d9d9d9;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    flex-direction: column;
+
+    img{
+      width: 20px;
+      height:20px;
+    }
+    
+}
+`
 
 export default GlobalStyle;
