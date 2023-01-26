@@ -106,7 +106,7 @@ export const ProfileOptionsContainer = styled.section`
   margin-top: 2rem;
   gap: 2rem;
 
-  @media screen and (max-width: 960px) {
+  @media screen and (max-width: 930px) {
     flex-direction: column;
     justify-content: center;
     align-items: center;
