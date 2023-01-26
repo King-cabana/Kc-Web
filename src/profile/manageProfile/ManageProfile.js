@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
 import { BsChevronDown, BsChevronRight } from "react-icons/bs";
-import {
-  AlternativeButton,
-} from "../../components/button/button";
+import { AlternativeButton } from "../../components/button/button";
 import kingCabanaLogo from "../../images/kingCabanaLogo.svg";
 import {
   InputText,
@@ -24,7 +22,8 @@ import {
 import {
   ButtonSave,
   InputSeg,
-  SaveBox, TransparentButton,
+  SaveBox,
+  TransparentButton,
 } from "../organiserProfile/OrganiserProfileStyled";
 import { ManageBox, LongButton1 } from "./ManageProfileStyled";
 import {
@@ -109,7 +108,9 @@ const ManageProfile = () => {
       <SaveBox>
         <ButtonSave>
           <TransparentButton onClick={navigateBack}>Back</TransparentButton>
-          <LongButton1>proceed to Dashboard</LongButton1>
+          <LongButton1 onClick={() => navigate("/home")}>
+            Proceed to Dashboard
+          </LongButton1>
         </ButtonSave>
       </SaveBox>
     </>
