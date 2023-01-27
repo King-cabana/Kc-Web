@@ -24,18 +24,22 @@ import SponsorEvent from "./event/pages/SponsorEvent";
 import EventHistory from "./event/pages/EventHistory";
 import EventAnalytics from "./event/pages/EventAnalytics";
 import Settings from "./event/pages/Settings";
-import TimeLineEvent from "./event/createEvent/TimeLineEvent";
 
 import Test from "./event/pages/Test";
 
 // Budget createEvent form
 import Budget from "./event/budgetInventory/Budget";
 import Inventory from "./event/budgetInventory/Inventory";
-import ContactInfo from "./event/budgetInventory/ContactInfo";
+import ContactInfo from "./event/createEvent/ContactInfo";
 
+import TimeLineEvent from "./event/createEvent/TimeLineEvent";
+import Submitted from "./event/budgetInventory/Submitted";
 
-
-
+// Set Up Profile
+import CreateProfile from "./profile/createProfile/CreateProfile";
+import ManageProfile from "./profile/manageProfile/ManageProfile";
+import OrganiserProfile from "./profile/organiserProfile/OrganiserProfile";
+import ResetPasswordSuccess from "./authentication/signIn/ResetPasswordSuccess";
 
 function App() {
   return (
@@ -48,11 +52,16 @@ function App() {
           <Route path="/waitlist" element={<Waitlist />} />
           <Route path="/budget" element={<Budget />} />
           <Route path="/inventory" element={<Inventory />} />
-          <Route path="/contactInfo" element={<ContactInfo />} />
+          <Route path="/submitted" element={<Submitted />} />
+          <Route path="/createProfile" element={<CreateProfile />} />
+          <Route path="/manageProfile" element={<ManageProfile />} />
+          <Route path="/organiserProfile" element={<OrganiserProfile />} />
+
           <Route path="*" element={<NoPage />} />
-          <Route path="/signin" element={<SignIn />} />
+          <Route path="/login" element={<SignIn />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/resetpassword" element={<ResetPassword />} />
+          <Route path="/resetpasswordsuccess" element={<ResetPasswordSuccess />} />
 
           <Route path="signupsuccess" element={<SignUpSuccess />} />
           <Route path="verifyemail" element={<VerifyEmail />} />
@@ -118,13 +127,15 @@ function App() {
 
           <Route path="/firstCreateEvent" element={<FirstCreateEvent />} />
           <Route path="/secondCreateEvent" element={<SecondCreateEvent />} />
+          <Route path="/contactInfo" element={<ContactInfo />} />
           <Route path="/timeLineEvent" element={<TimeLineEvent />} />
 
           <Route
             path="/home"
             element={
               <Sidebar>
-                <DashboardHome />
+                {" "}
+                <DashboardHome />{" "}
               </Sidebar>
             }
           />
@@ -132,7 +143,8 @@ function App() {
             path="/event/create"
             element={
               <Sidebar>
-                <CreateEvent />
+                {" "}
+                <CreateEvent />{" "}
               </Sidebar>
             }
           />
@@ -140,7 +152,8 @@ function App() {
             path="/event/sponsor"
             element={
               <Sidebar>
-                <SponsorEvent />
+                {" "}
+                <SponsorEvent />{" "}
               </Sidebar>
             }
           />
@@ -148,7 +161,8 @@ function App() {
             path="/report/eventhistory"
             element={
               <Sidebar>
-                <EventHistory />
+                {" "}
+                <EventHistory />{" "}
               </Sidebar>
             }
           />
@@ -156,7 +170,8 @@ function App() {
             path="/report/eventanalytics"
             element={
               <Sidebar>
-                <EventAnalytics />
+                {" "}
+                <EventAnalytics />{" "}
               </Sidebar>
             }
           />
@@ -164,7 +179,8 @@ function App() {
             path="/settings"
             element={
               <Sidebar>
-                <Settings />
+                {" "}
+                <Settings />{" "}
               </Sidebar>
             }
           />

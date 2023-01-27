@@ -19,7 +19,7 @@ import {
   Radio,
   RadioInput,
   RadioLabel,
-} from "../budgetInventory/ContactInfoStyled";
+} from "../createEvent/ContactInfoStyled";
 
 const DefineAudience = () => {
   const [isdisabled, setIsDisabled] = useState(true);

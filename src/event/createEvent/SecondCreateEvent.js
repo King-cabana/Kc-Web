@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { BiTime, BiLinkAlt } from 'react-icons/bi';
 import { HiCalendarDays } from 'react-icons/hi2';
+import { useNavigate } from 'react-router';
 import { BsChevronDown, BsChevronRight } from "react-icons/bs";
 import { EventBox, EventTitle, EventOccurence, EventInputBox,EventInput, EventLink, ButtonBox,ButtonOutline, EventPhysical, LeftInputBox,RightInputBox,
          DownButtonBox, DownButtonOutline, DownBtn, DownButtonFull, DayBox, TimeText, WeekBox,} from './SecondCreateEventStyled';
@@ -13,6 +14,17 @@ const SecondCreateEvent = () => {
   const [locationType, setLocationType] = useState("virtual");
   const [isDisplay, setIsDisplay] = useState(false)
   const[calenderType, setCalendarType] = useState("monthly");
+
+  const navigate= useNavigate();
+
+  const navigateBack = () => {
+    navigate('/firstCreateEvent');
+  };
+
+const navigateNext = () => {
+  navigate('/timeLineEvent');
+}
+
 
  
   return (
@@ -114,8 +126,8 @@ const SecondCreateEvent = () => {
   </CreateEventContainer>
   <DownButtonBox>
               <DownBtn>
-                <DownButtonOutline>Back</DownButtonOutline>
-                <DownButtonFull>Save & Continue</DownButtonFull>
+                <DownButtonOutline onClick={navigateBack}>Back</DownButtonOutline>
+                <DownButtonFull onClick={navigateNext}>Save & Continue</DownButtonFull>
               </DownBtn>
     </DownButtonBox>
 </>

@@ -87,16 +87,12 @@ export const VerifyBody = styled.div`
         margin-right: auto;
     }
 
-    hr{
-        margin-top: 8%;
-        outline: 1px solid #C4C4C4;
-        border: none;
-    }
 
     @media screen and (max-width: 960px) {
         width: 90%;
         border-radius: 3px;
         padding: 5%;
+        box-shadow: none;
 }
 
 `

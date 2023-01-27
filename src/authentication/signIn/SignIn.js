@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router";
 import {
   AuthBackground,
   Div,
@@ -26,6 +27,13 @@ const SignIn = () => {
   };
 
   const InputType = visible ? "text" : "password";
+
+  const navigate = useNavigate();
+
+  const navigateToReset = () => {
+    navigate("/resetpassword");
+  };
+
 
   return (
     <AuthBackground >
@@ -91,7 +99,7 @@ const SignIn = () => {
                 Keep me signed in{" "}
               </KBTextXs>
               </div> 
-              <p style={{ color: "#ff2957", fontSize:'12px'}}>Forgot Password?</p>
+              <p style={{ cursor:'pointer', color: "#ff2957", fontSize:'12px'}} onClick={navigateToReset}>Forgot Password?</p>
             </div>
             <LongButton style={{marginTop:'5%'}}>Log in</LongButton>
           </Form>
@@ -148,7 +156,7 @@ const SignIn = () => {
             </InputFieldWrapper>
           </div>
 
-          <LogInLink to="/logIn">
+          <LogInLink to="/signup">
             Don't have an account?{" "}
             <span
               style={{ color: "#ff2957", fontWeight: "500", textAlign: "left" }}

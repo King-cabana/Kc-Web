@@ -3,12 +3,23 @@ import { HiCalendarDays } from 'react-icons/hi2';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import CrossTime from '../../images/CrossTime.png';
+import {useNavigate} from 'react-router-dom';
 import { CreateEventContainer, CreateEventHeader, EventHeader1, EventText, CreateEventSection, EventSubSection, EventTagText,
          InputTagBox, InputTag, AddButton, ErrorText, EventButton, EventSetText, InputBox,AddOtherBox, BlueText} from './TimeLineEventsStyled';
 import { DownButtonBox, DownButtonOutline, DownBtn, DownButtonFull, } from '../createEvent/SecondCreateEventStyled';
 
 const TimeLineEvent = () => {
     const [startDate, setStartDate] = useState(new Date());
+
+    const navigate= useNavigate();
+
+    const navigateBack = () => {
+      navigate('/secondCreateEvent');
+    };
+  
+  const navigateNext = () => {
+    navigate('/contactInfo');
+  }
 
   return (
 <>
@@ -67,8 +78,8 @@ const TimeLineEvent = () => {
     </CreateEventContainer>
             <DownButtonBox>
               <DownBtn>
-                <DownButtonOutline>Back</DownButtonOutline>
-                <DownButtonFull>Save & Continue</DownButtonFull>
+                <DownButtonOutline onClick={navigateBack}>Back</DownButtonOutline>
+                <DownButtonFull onClick={navigateNext}>Save & Continue</DownButtonFull>
               </DownBtn>
             </DownButtonBox>
 </>
