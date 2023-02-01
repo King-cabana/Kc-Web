@@ -4,19 +4,36 @@ import { Link } from "react-router-dom";
 export const OverallContainer = styled.section`
   width: 100%;
   height: 100%;
-  display: flex;
-  justify-content: flex-end;
-  /* margin-top: 8vh; */
 `;
 
 export const NoEventContainer = styled.div`
-  padding: 8.5rem 2rem;
-  background-color: #fffdfd;
+  padding: 2rem 5rem;
+  background-color: #fff;
   width: 100%;
   height: 100%;
 
   @media screen and (max-width: 769px) {
-    padding: 5rem 1rem;
+    padding: 1rem;
+  }
+`;
+
+export const WelcomeHeader = styled.section`
+  display: flex;
+  align-items: center;
+  margin-bottom: 2rem;
+`;
+
+export const Txt = styled.span`
+  font-size: 20px;
+  line-height: 32px;
+  color: #484848;
+  font-weight: ${(props) => (props.fontWeight ? props.fontWeight : "700")};
+  color: ${(props) => (props.color ? props.color : "#484848")};
+  margin-right: 0.5rem;
+
+  @media screen and (max-width: 769px) {
+    font-size: 16px;
+    line-height: 24px;
   }
 `;
 
@@ -56,11 +73,11 @@ export const LottieWrapper = styled.section`
 
 export const ButtonLink = styled(Link)`
   text-decoration: none;
-  @media screen and (max-width: 769px) {
+  /* @media screen and (max-width: 769px) {
     display: flex;
     align-items: center;
     justify-content: center;
-  }
+  } */
 `;
 
 export const PrimaryButton = styled.button`

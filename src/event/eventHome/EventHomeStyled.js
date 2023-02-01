@@ -5,13 +5,15 @@ export const OverallContainer = styled.section`
   width: 100%;
   /* background-color: #fef5f7; */
   /* height:'90vh',  */
-  /* margin-left: 20%; */
+  /* margin-left: 5%; */
   /* margin-top: -44%; */
   /* position: absolute; */
   /* width: 100%; */
   height: 100%;
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
+  align-items: center;
+  padding: 0 5%;
   /* margin-top: 8vh; */
 `;
 
@@ -72,10 +74,8 @@ export const PopUpComponent = styled.div`
 
 export const WelcomeContainer = styled.div`
   padding: 2rem;
-  background-color: #fffdfd;
-  /* width: 80%; */
+  background-color: #fff;
   width: 100%;
-  /* height: 92%; */
   height: 100%;
 
   @media screen and (max-width: 960px) {
@@ -92,12 +92,13 @@ export const WelcomeCenter = styled.div`
   width: 100%;
 
   @media screen and (max-width: 769px) {
-    margin-bottom: 2rem;
+    /* margin-bottom: 2rem; */
   }
 `;
 
 export const WelcomeText = styled.p`
-  font-weight: 700;
+  /* font-weight: 700; */
+  font-weight: ${(props) => (props.fontWeight ? props.fontWeight : "700")};
   font-size: 20px;
   line-height: 32px;
   color: #484848;
@@ -111,10 +112,10 @@ export const WelcomeText = styled.p`
 export const ButtonLink = styled(Link)``;
 
 export const ButtonsContainer = styled.div`
-  width: 80%;
+  width: 100%;
   margin-top: 0.5rem;
   display: flex;
-  background-color: #fffdfd;
+  background-color: #fff;
   justify-content: flex-end;
 
   @media screen and (max-width: 960px) {
@@ -157,6 +158,12 @@ export const AlternativeButton2 = styled.button`
     background-color: white;
     color: white;
     border: 1.5px solid rgba(255, 41, 87, 0.6);
+  }
+`;
+
+export const CustomAlt = styled(AlternativeButton2)`
+  @media screen and (max-width: 769px) {
+    width: 100px;
   }
 `;
 
@@ -221,14 +228,13 @@ export const PrimaryButton2 = styled.button`
 `;
 
 export const EventReportContainer = styled.div`
-  width: 80%;
+  width: 100%;
   margin-top: 1.3rem;
-  display: flex;
-  justify-content: space-between;
-  background-color: #fffdfd;
 
   @media screen and (max-width: 960px) {
     width: 100%;
+    /* grid-template-columns: repeat(1, 1fr);
+    overflow-x: scroll; */
   }
   @media screen and (max-width: 577px) {
     padding: 0.1rem;
@@ -237,17 +243,25 @@ export const EventReportContainer = styled.div`
     overflow-x: scroll;
   }
 `;
+export const InnerWrapper = styled.section`
+  display: flex;
+  justify-content: space-between;
 
+  &:nth-child(1) {
+    margin-bottom: 2rem;
+  }
+`;
 export const InnerContainer = styled.div`
-  width: 47%;
-  height: 170px;
-  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.25);
+  width: 30%;
+  height: 110px;
   border-radius: 6px;
-  padding: 25px 20px;
+  padding: 10px 10px 0px 10px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-color: #fff;
+  background-color: #fffdfd;
+  border-bottom: 3px solid transparent;
+  border-image: linear-gradient(to right, red, rgba(0, 0, 0, 0)) 1;
 
   @media screen and (max-width: 577px) {
     width: 100%;
@@ -255,10 +269,16 @@ export const InnerContainer = styled.div`
   }
 `;
 
-export const Text = styled.div`
-  font-size: 16px;
-  width: 50%;
+export const Row1 = styled.section`
   display: flex;
+  justify-content: space-between;
+`;
+
+export const Text = styled.p`
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  /* display: flex; */
   color: #484848;
 
   @media screen and (max-width: 577px) {
@@ -268,36 +288,43 @@ export const Text = styled.div`
   }
 `;
 
-export const SubTextContainer = styled.div`
-  display: flex;
-  height: 17%;
+export const Counter = styled.p`
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 30px;
 `;
 
-export const SubText = styled.div`
-  color: #484848;
-  display: flex;
-  font-weight: 400;
-  font-size: 14px;
-  width: max-content;
-  margin-right: 1rem;
+// export const Total = styled.label`
+//   font-weight: 400;
+//   font-size: 12px;
+//   line-height: 18px;
+//   color: #ff2957;
+// `;
 
-  @media screen and (max-width: 577px) {
-    font-size: 12px;
-  }
-  .success {
-    color: #ff2957;
-    border-bottom: 1px solid #ff2957;
-    padding-bottom: 1.5rem;
-  }
+export const Select = styled.select`
+  border: none;
+  background-color: #fffdfd;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 18px;
+  color: #ff2957;
+  height: 1.2rem;
+
   &:hover {
     cursor: pointer;
-    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
   }
+`;
+
+export const Option = styled.option`
+  border: 2px solid yellow;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 18px;
+  color: #484848;
 `;
 
 export const ChecklistContainer = styled.div`
-  background-color: #fffdfd;
-  width: 80%;
+  width: 100%;
   margin-top: 2rem;
   margin-bottom: 3.5rem;
   border: 1px solid rgba(0, 104, 255, 0.1);
@@ -350,7 +377,6 @@ export const ChecklistSubHeading = styled.div`
 `;
 
 export const ItemsContainer = styled.div`
-  background-color: #fffdfd;
   width: 100%;
   border-bottom: 1px solid rgba(0, 104, 255, 0.1);
   border-radius: 8px;
@@ -366,7 +392,7 @@ export const ItemsContainer = styled.div`
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  width: 80%;
+  width: 100%;
 
   @media screen and (max-width: 577px) {
     width: 100%;

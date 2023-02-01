@@ -9,14 +9,17 @@ import {
   ButtonLink,
   ButtonsContainer,
   JointContainer,
-  AlternativeButton2,
+  CustomAlt,
   PrimaryButton,
   PrimaryButton2,
   EventReportContainer,
+  InnerWrapper,
   InnerContainer,
+  Row1,
   Text,
-  SubTextContainer,
-  SubText,
+  Select,
+  Option,
+  Counter,
   ChecklistContainer,
   ChecklistHeading,
   ChecklistHeading2,
@@ -24,21 +27,11 @@ import {
   ItemsContainer,
   Wrapper,
 } from "./EventHomeStyled";
-// import { PrimaryButton } from "./components/button/button";
 import click from "../../images/click.png";
 import "../../modal.css";
 
 const EventHome = () => {
-  const [state, setState] = useState(true);
   const [modal, setModal] = useState(true);
-
-  const handleClick = () => {
-    if (state === true) {
-      setState(false);
-    } else {
-      setState(true);
-    }
-  };
 
   const toggleModal = () => {
     setModal(!modal);
@@ -59,20 +52,23 @@ const EventHome = () => {
       <OverallContainer>
         <WelcomeContainer>
           <WelcomeCenter>
-            <WelcomeText>Hello Peter, Welcome!</WelcomeText>
+            <WelcomeText>Dashboard</WelcomeText>
+          </WelcomeCenter>
+          <WelcomeCenter>
+            <WelcomeText fontWeight="400">Hello Peter, Welcome!</WelcomeText>
           </WelcomeCenter>
 
           <ButtonsContainer>
             <JointContainer>
               <ButtonLink to="/event/create">
-                <AlternativeButton2
+                <CustomAlt
                   style={{
                     color: "#FF2957",
                     fontWeight: "600",
                   }}
                 >
                   Add event history
-                </AlternativeButton2>
+                </CustomAlt>
               </ButtonLink>
 
               <div className={`${showModal}`}>
@@ -89,43 +85,72 @@ const EventHome = () => {
               </div>
             </JointContainer>
 
-            <ButtonLink to="/event/create">
-              <PrimaryButton> Create event</PrimaryButton>
+            <ButtonLink to="/firstCreateEvent">
+              <PrimaryButton>Create event</PrimaryButton>
             </ButtonLink>
           </ButtonsContainer>
 
           <EventReportContainer>
-            <InnerContainer>
-              <Text style={{ fontWeight: "500" }}>Event</Text>
-              <SubTextContainer>
-                <SubText>
-                  <p
-                    onClick={handleClick}
-                    className={` ${state === true && "success"}`}
-                  >
-                    Created
-                  </p>
-                </SubText>
-                <SubText>
-                  <p
-                    onClick={handleClick}
-                    className={` ${state === false && "success"}`}
-                  >
-                    Sponsored
-                  </p>
-                </SubText>
-              </SubTextContainer>
-              <Text style={{ fontWeight: "700" }}>0</Text>
-            </InnerContainer>
-            <InnerContainer>
-              <Text style={{ fontWeight: "500" }}>Report</Text>
-              <SubTextContainer>
-                <SubText>
-                  <p className="success">Event History</p>
-                </SubText>
-              </SubTextContainer>
-              <Text style={{ fontWeight: "700" }}>0</Text>
-            </InnerContainer>
+            <InnerWrapper>
+              <InnerContainer>
+                <Row1>
+                  <Text>Event Created</Text>
+                  <Select name="list" id="list">
+                    <Option>Total </Option>
+                    <Option>Draft</Option>
+                    <Option>Completed</Option>
+                  </Select>
+                </Row1>
+                <Counter>0</Counter>
+              </InnerContainer>
+
+              <InnerContainer>
+                <Row1>
+                  <Text>Proposals generated</Text>
+                  <Select name="list" id="list">
+                    <Option>Total </Option>
+                    <Option>Draft</Option>
+                    <Option>Completed</Option>
+                  </Select>
+                </Row1>
+                <Counter>0</Counter>
+              </InnerContainer>
+
+              <InnerContainer>
+                <Row1>
+                  <Text>Sponsors engaged</Text>
+                  <Select name="list" id="list">
+                    <Option>Matched</Option>
+                    <Option>In progress</Option>
+                    <Option>Rejected</Option>
+                  </Select>
+                </Row1>
+                <Counter>0</Counter>
+              </InnerContainer>
+            </InnerWrapper>
+
+            <InnerWrapper>
+              <InnerContainer>
+                <Row1>
+                  <Text>Event history</Text>
+                </Row1>
+                <Counter>0</Counter>
+              </InnerContainer>
+
+              <InnerContainer>
+                <Row1>
+                  <Text>Attendees registered</Text>
+                </Row1>
+                <Counter>0</Counter>
+              </InnerContainer>
+
+              <InnerContainer>
+                <Row1>
+                  <Text>Vendors engaged</Text>
+                </Row1>
+                <Counter>0</Counter>
+              </InnerContainer>
+            </InnerWrapper>
           </EventReportContainer>
 
           <ChecklistContainer>
@@ -144,7 +169,7 @@ const EventHome = () => {
                   Create an event right away.
                 </ChecklistSubHeading>
               </Wrapper>
-              <ButtonLink to="/event/create">
+              <ButtonLink to="/firstCreateEvent">
                 <PrimaryButton2>Start here</PrimaryButton2>
               </ButtonLink>
             </ItemsContainer>

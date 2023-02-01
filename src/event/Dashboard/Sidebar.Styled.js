@@ -9,7 +9,6 @@ export const DisplayMode = styled.div`
   }
 `;
 
-
 export const SidebarNav = styled.nav`
   background: white;
   width: 20%;
@@ -39,7 +38,7 @@ export const SidebarWrap = styled.div`
 
 export const ContentBody = styled.div`
   /* height: 100%; */
-  background-color: #fef5f7;
+  background-color: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -75,5 +74,4 @@ export const NavIcon = styled(Link)`
   @media screen and (max-width: 480px) {
     font-size: 1rem;
   }
-
 `;
