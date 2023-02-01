@@ -24,6 +24,7 @@ export const SidebarLink = styled(Link)`
     border-right: 4px solid #ff2957;
     color: #ff2957;
   }
+  
 `;
 
 export const SidebarLabel = styled.span`

@@ -14,7 +14,7 @@ import {
 import { DownButtonFull } from "../../event/createEvent/SecondCreateEventStyled";
 import { EventHeader1 } from "../../event/createEvent/TimeLineEventsStyled";
 import kingCabanaLogo from "../../images/kingCabanaLogo.svg";
-import { editProfile } from "../../redux/profileSlice";
+import { editProfile } from "../../redux/slices/profileSlice";
 import {
   KCLogo,
   LogoDiv,

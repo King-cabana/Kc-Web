@@ -15,7 +15,7 @@ import { CogIcon } from "@heroicons/react/24/outline";
 
 export const SidebarData = [
   {
-    title: "Home",
+    title: "Dashboard",
     path: "/dashboard",
     // icon: <AiIcons.AiFillHome />,
     icon: (
@@ -39,14 +39,14 @@ export const SidebarData = [
 
     subNav: [
       {
-        title: "Create",
+        title: "Planning",
         path: "/event/noEvent",
         icon: <BsIcons.BsDot />,
         cName: "sub-nav",
       },
       {
-        title: "Sponsor",
-        path: "/event/sponsor",
+        title: "History",
+        path: "/event/history",
         icon: <BsIcons.BsDot />,
         cName: "sub-nav",
       },
@@ -54,7 +54,7 @@ export const SidebarData = [
   },
 
   {
-    title: "Report",
+    title: "Sponsor",
     // path: '/report',
     // icon: <HiIcons.HiOutlineDocumentText />,
     icon: (
@@ -69,13 +69,13 @@ export const SidebarData = [
 
     subNav: [
       {
-        title: "Event history",
-        path: "/report/eventhistory",
+        title: "Proposal",
+        path: "/sponsor/proposal",
         icon: <BsIcons.BsDot />,
       },
       {
-        title: "Event analytics",
-        path: "/report/eventanalytics",
+        title: "Matching",
+        path: "/sponsor/matching",
         icon: <BsIcons.BsDot />,
       },
     ],

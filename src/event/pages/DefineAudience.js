@@ -40,6 +40,7 @@ const DefineAudience = () => {
         style={{
           backgroundColor: "#F3F0F0   ",
           width: "100%",
+          height:"100vh",
           padding: "2% 8%",
           display: "flex",
           flexDirection: "column",

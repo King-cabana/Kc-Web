@@ -109,7 +109,7 @@ export const NavItems = styled.ul`
   }
 
   @media screen and (min-width: 600px) {
-    top: 100px;
+    /* top: 100px; */
   }
 `;
 
@@ -119,8 +119,6 @@ export const LogoLink = styled(Link)`
 `;
 
 export const NavBarLink = styled(NavLink)`
- 
-
   @media screen and (max-width: 960px) {
     text-align: center;
     padding: 2%;
@@ -130,7 +128,7 @@ export const NavBarLink = styled(NavLink)`
     &:hover {
       color: #ff2957;
     }
-
+  }
 `;
 
 export const NavGroup = styled.div`

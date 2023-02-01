@@ -6,7 +6,8 @@ export const TopBarContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid #FF2957;
+  /* box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1); */
 
   @media screen and (max-width: 480px) {
     width: 100%;
@@ -56,7 +57,7 @@ export const ItemsHolder = styled.div`
 
 export const ItemsHolderInner = styled.div`
   height: inherit;
-  width: 204px;
+  width: 230px;
   display: flex;
   justify-content: space-around;
   align-items: center;

@@ -66,9 +66,9 @@ export const FooterContent = styled.div`
 
 export const FooterInner = styled.div`
   color: white;
-  width: 30vw;
+  width: 30%;
   height: 30vh;
-  line-height: 2em;
+  line-height: 1.5em;
 
   img {
     height: 40px;
@@ -141,7 +141,7 @@ export const SocialIcon = styled.a`
 
 export const FooterLinksHolder = styled.div`
   color: white;
-  width: 20vw;
+  width: 20%;
   height: 20vh;
 
   p {
@@ -164,7 +164,7 @@ export const FooterLinksHolder = styled.div`
   @media screen and (min-width: 481px) and (max-width: 960px) {
     padding-top: 3vh;
     text-align: left;
-    padding-left: 2%;
+    /* padding-left: 2%; */
   }
 `;
 
@@ -246,7 +246,6 @@ export const FooterLine = styled.hr`
 export const BottomLogo = styled.div`
   color: white;
   align-items: center;
-  /* margin-top:1%; */
   display: flex;
   width: 15%;
   height: 5vh;
@@ -254,7 +253,7 @@ export const BottomLogo = styled.div`
   margin: auto;
 
   @media screen and (max-width: 480px) {
-    width: 40vw;
+    width: 40%;
     margin-bottom: 50px;
   }
 
