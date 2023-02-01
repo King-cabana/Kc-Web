@@ -17,7 +17,6 @@ import {
 } from "../../event/createEvent/SecondCreateEventStyled";
 import {
   EventHeader1,
-  EventText,
 } from "../../event/createEvent/TimeLineEventsStyled";
 import {
   ButtonSave,
@@ -43,7 +42,7 @@ const ManageProfile = () => {
   const navigate = useNavigate();
 
   const navigateBack = () => {
-    navigate("/organiserProfile");
+    navigate("/socialProfile");
   };
 
   return (
@@ -55,9 +54,8 @@ const ManageProfile = () => {
             <KCLogo src={kingCabanaLogo} alt="kcLogo" />
           </LogoDiv>
           <ProfileSection>
-            <ProfileProgress>Step 3 of 3</ProfileProgress>
+            <ProfileProgress>Step 4 of 4</ProfileProgress>
             <EventHeader1>Manage organizer(s)</EventHeader1>
-            <EventText>lorem ipsum dolor sit amet consectetur</EventText>
 
             <ManageBox>
               <LeftInputBox>
