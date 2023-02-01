@@ -5,7 +5,7 @@ import GlobalStyle from "./globalStyles";
 import { Provider } from "react-redux";
 import GoToTop from "./GoToTop";
 import { BrowserRouter } from "react-router-dom";
-import store from "./store/authSlice";
+import store from "./redux/store";
 
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
