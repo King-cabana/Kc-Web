@@ -79,10 +79,7 @@ export const WelcomeContainer = styled.div`
   height: 100%;
 
   @media screen and (max-width: 960px) {
-    width: 100%;
-  }
-  @media screen and (max-width: 577px) {
-    padding: 1rem;
+    padding: 1rem 0;
   }
 `;
 
@@ -90,10 +87,6 @@ export const WelcomeCenter = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-
-  @media screen and (max-width: 769px) {
-    /* margin-bottom: 2rem; */
-  }
 `;
 
 export const WelcomeText = styled.p`
@@ -232,15 +225,13 @@ export const EventReportContainer = styled.div`
   margin-top: 1.3rem;
 
   @media screen and (max-width: 960px) {
-    width: 100%;
-    /* grid-template-columns: repeat(1, 1fr);
-    overflow-x: scroll; */
-  }
-  @media screen and (max-width: 577px) {
+    display: flex;
+    overflow-x: scroll;
+    /* } */
+    /* @media screen and (max-width: 577px) { */
     padding: 0.1rem;
     border-radius: 5px;
     gap: 20px;
-    overflow-x: scroll;
   }
 `;
 export const InnerWrapper = styled.section`
@@ -249,6 +240,14 @@ export const InnerWrapper = styled.section`
 
   &:nth-child(1) {
     margin-bottom: 2rem;
+
+    @media screen and (max-width: 960px) {
+      margin-bottom: 0;
+    }
+  }
+
+  @media screen and (max-width: 960px) {
+    flex-direction: column;
   }
 `;
 export const InnerContainer = styled.div`
@@ -263,9 +262,10 @@ export const InnerContainer = styled.div`
   border-bottom: 3px solid transparent;
   border-image: linear-gradient(to right, red, rgba(0, 0, 0, 0)) 1;
 
-  @media screen and (max-width: 577px) {
-    width: 100%;
+  @media screen and (max-width: 960px) {
+    width: 300px;
     height: 150px;
+    margin-bottom: 2rem;
   }
 `;
 
@@ -281,10 +281,10 @@ export const Text = styled.p`
   /* display: flex; */
   color: #484848;
 
-  @media screen and (max-width: 577px) {
+  @media screen and (max-width: 960px) {
     font-size: 14px;
     width: 100%;
-    margin-right: 10rem;
+    /* margin-right: 4rem; */
   }
 `;
 

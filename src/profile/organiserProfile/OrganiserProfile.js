@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 
 import {
@@ -11,10 +12,9 @@ import {
   Supported,
 } from "../../event/createEvent/FirstCreateEventStyled";
 import { DownButtonFull } from "../../event/createEvent/SecondCreateEventStyled";
-import {
-  EventHeader1,
-} from "../../event/createEvent/TimeLineEventsStyled";
+import { EventHeader1 } from "../../event/createEvent/TimeLineEventsStyled";
 import kingCabanaLogo from "../../images/kingCabanaLogo.svg";
+import { editProfile } from "../../redux/profileSlice";
 import {
   KCLogo,
   LogoDiv,
@@ -24,7 +24,12 @@ import {
   ProfileSection,
   ShapedBackground,
 } from "../createProfile/CreateProfileStyled";
-import { InputSeg, SaveBox, ButtonSave, TransparentButton } from "./OrganiserProfileStyled";
+import {
+  InputSeg,
+  SaveBox,
+  ButtonSave,
+  TransparentButton,
+} from "./OrganiserProfileStyled";
 
 const OrganiserProfile = () => {
   const [isSuccess, setIsSuccess] = useState(false);
@@ -33,6 +38,8 @@ const OrganiserProfile = () => {
   const [correctFileSize, setCorrectFileSize] = useState(false);
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const state = useSelector((state) => state.profile);
 
   const navigateNext = () => {
     navigate("/socialProfile");
@@ -70,6 +77,9 @@ const OrganiserProfile = () => {
     setCorrectFileSize(true);
   }, [file]);
 
+  const change = (e) => {
+    dispatch(editProfile({ name: e.target.name, value: e.target.value }));
+  };
   return (
     <div>
       <ProfileContainer>
@@ -83,13 +93,25 @@ const OrganiserProfile = () => {
 
             <EventHeader1>Set up your Event Organizer's Profile</EventHeader1>
             <InputSeg>
-              <InputText>Organizer's / Association's Name</InputText>
-              <Input type="text" placeholder="Enter name" />
+              <InputText>
+                Organizer's / Association's Name {JSON.stringify(state)}
+              </InputText>
+              <Input
+                type="text"
+                placeholder="Enter name"
+                name="name"
+                onChange={change}
+              />
             </InputSeg>
 
             <InputSeg>
               <InputText>Organizer's / Association's Email address</InputText>
-              <Input type="email" placeholder="Enter Email address" />
+              <Input
+                type="email"
+                placeholder="Enter Email address"
+                name="email"
+                onChange={change}
+              />
             </InputSeg>
 
             <InputSeg>
