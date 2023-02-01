@@ -34,6 +34,7 @@ import Submitted from "./event/budgetInventory/Submitted";
 import CreateProfile from "./profile/createProfile/CreateProfile";
 import ManageProfile from "./profile/manageProfile/ManageProfile";
 import OrganiserProfile from "./profile/organiserProfile/OrganiserProfile";
+import SocialProfile from "./profile/socialProfile/SocialProfile";
 
 function App() {
   return (
@@ -51,6 +52,7 @@ function App() {
           <Route path="/createProfile" element={<CreateProfile />} />
           <Route path="/manageProfile" element={<ManageProfile />} />
           <Route path="/organiserProfile" element={<OrganiserProfile />} />
+          <Route path="/socialProfile" element={<SocialProfile />} />
 
           <Route path="*" element={<NoPage />} />
 

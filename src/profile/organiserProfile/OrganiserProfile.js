@@ -4,7 +4,6 @@ import { useNavigate } from "react-router";
 import {
   Input,
   InputText,
-  MyTextArea,
   FormContainer,
   FileWrapper,
   CustomWrapper,
@@ -14,7 +13,6 @@ import {
 import { DownButtonFull } from "../../event/createEvent/SecondCreateEventStyled";
 import {
   EventHeader1,
-  EventText,
 } from "../../event/createEvent/TimeLineEventsStyled";
 import kingCabanaLogo from "../../images/kingCabanaLogo.svg";
 import {
@@ -37,7 +35,7 @@ const OrganiserProfile = () => {
   const navigate = useNavigate();
 
   const navigateNext = () => {
-    navigate("/manageProfile");
+    navigate("/socialProfile");
   };
   const navigateBack = () => {
     navigate("/createProfile");
@@ -81,10 +79,9 @@ const OrganiserProfile = () => {
             <KCLogo src={kingCabanaLogo} alt="kcLogo" />
           </LogoDiv>
           <ProfileSection>
-            <ProfileProgress>Step 2 of 3</ProfileProgress>
+            <ProfileProgress>Step 2 of 4</ProfileProgress>
 
             <EventHeader1>Set up your Event Organizer's Profile</EventHeader1>
-            <EventText>lorem ipsum dolor sit amet consectetur</EventText>
             <InputSeg>
               <InputText>Organizer's / Association's Name</InputText>
               <Input type="text" placeholder="Enter name" />
