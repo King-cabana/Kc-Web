@@ -68,7 +68,7 @@ export const FooterInner = styled.div`
   color: white;
   width: 30%;
   height: 30vh;
-  line-height: 1em;
+  line-height: 1.5em;
 
   img {
     height: 40px;

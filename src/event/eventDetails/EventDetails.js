@@ -1,5 +1,5 @@
 import React from 'react'
-import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import { Table, TableContent,TableRow, TableHeader, SmallItem, SmallButton,
          TableBox, TableBorder, Item, ItemL, ItemBlue, ItemInside, ItemS,

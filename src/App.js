@@ -1,7 +1,8 @@
 import { Routes, Route } from "react-router-dom";
+import React, { Suspense, lazy } from 'react';
 import "./App.css";
 
-import Home from "./pages/landingPage/Home";
+// import Home from "./pages/landingPage/Home";
 import AboutUs from "./pages/aboutUs/AboutUs";
 import NoPage from "./pages/noPage/NoPage";
 import ContactUs from "./pages/contactUs/ContactUs";
@@ -40,10 +41,15 @@ import CreateProfile from "./profile/createProfile/CreateProfile";
 import ManageProfile from "./profile/manageProfile/ManageProfile";
 import OrganiserProfile from "./profile/organiserProfile/OrganiserProfile";
 import ResetPasswordSuccess from "./authentication/signIn/ResetPasswordSuccess";
+import LoadingScreen from "./LoadingScreen";
+
+const Home = lazy(() => import('./pages/landingPage/Home'));
 
 function App() {
   return (
-    <>
+
+    <Suspense fallback={<LoadingScreen />}>
+      <>
       <>
         <Routes>
           <Route path="/" element={<Home />}></Route>
@@ -93,7 +99,7 @@ function App() {
             }
           />
           <Route
-            path="/event/sponsor"
+            path="/event/history"
             element={
               <Sidebar>
                 <SponsorEvent />
@@ -101,7 +107,7 @@ function App() {
             }
           />
           <Route
-            path="/report/eventhistory"
+            path="/sponsor/proposal"
             element={
               <Sidebar>
                 <EventHistory />
@@ -109,7 +115,7 @@ function App() {
             }
           />
           <Route
-            path="/report/eventanalytics"
+            path="/sponsor/matching"
             element={
               <Sidebar>
                 <EventAnalytics />
@@ -121,6 +127,15 @@ function App() {
             element={
               <Sidebar>
                 <Settings />
+              </Sidebar>
+            }
+          />
+
+            <Route
+            path="/settings"
+            element={
+              <Sidebar>
+                Shola
               </Sidebar>
             }
           />
@@ -187,6 +202,7 @@ function App() {
         </Routes>
       </>
     </>
+     </Suspense>
   );
 }
 

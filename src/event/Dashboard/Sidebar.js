@@ -26,8 +26,14 @@ const Sidebar = ({ children }) => {
         </NavIcon>
       </Nav> */}
       <DisplayMode>
+     
         <SidebarNav sidebar={sidebar}>
           <SidebarWrap>
+          <div style={{width:'inherit', height:'20vh', backgroundColor:'pink', padding:'20px'}}>
+            <div style={{width:'100%', height:'10vh', backgroundColor:'blue'}}>
+
+            </div>
+          </div>
             {SidebarData.map((item, index) => {
               return <SubMenu item={item} key={index} />;
             })}

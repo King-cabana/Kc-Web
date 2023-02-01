@@ -5,7 +5,7 @@ export const DisplayMode = styled.div`
   display: flex;
 
   @media screen and (max-width: 480px) {
-    display: block;
+    /* display: block; */
   }
 `;
 
@@ -20,7 +20,7 @@ export const SidebarNav = styled.nav`
   left: ${({ sidebar }) => (sidebar ? "0" : "-100%")};
   transition: 350ms;
   z-index: 10;
-  padding-top: 2%;
+  padding-top: 1%;
 
   @media screen and (max-width: 480px) {
     width: 100%;

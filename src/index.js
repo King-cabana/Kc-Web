@@ -3,9 +3,10 @@ import ReactDOM from "react-dom/client";
 import App from "./App";
 import GlobalStyle from "./globalStyles";
 import { Provider } from "react-redux";
-import store from "./store";
 import GoToTop from "./GoToTop";
 import { BrowserRouter } from "react-router-dom";
+import store from "./store/authSlice";
+
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -19,3 +20,5 @@ root.render(
     </Provider>
   </React.StrictMode>
 );
+
+
