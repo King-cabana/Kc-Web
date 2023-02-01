@@ -10,10 +10,12 @@ import {
 } from "./TopBar.styled";
 import Logo from "../../../images/KCLogo.svg";
 import SearchBar from "../../../components/searchBar/SearchBar";
-import { TextButton } from "../../../components/button/button";
 import { SlBell } from "react-icons/sl";
 import Profile from "../../../images/pexels-george-ikwegbu-2379429.jpg";
 import { RiArrowDownSLine } from "react-icons/ri";
+import { KBTextM } from "../../../components/fonts/fontSize";
+
+
 
 const TopBar = () => {
   return (
@@ -27,7 +29,6 @@ const TopBar = () => {
         <SearchBar />
         <ItemsHolder>
           <ItemsHolderInner>
-            <TextButton style={{ color: "black" }}>Help</TextButton>
             <SlBell
               style={{
                 cursor: "pointer",
@@ -42,9 +43,10 @@ const TopBar = () => {
                 alignItems: "center",
               }}
             >
-              <ProfilePicture>
-                <img src={Profile} alt="pp" />
+              <ProfilePicture style={{border:'1px solid #FF2957', display:'flex', justifyContent:'center', alignItems:'center'}}>
+                PE
               </ProfilePicture>
+              <KBTextM>Peter Enumah</KBTextM>
               <RiArrowDownSLine
                 style={{
                   cursor: "pointer",
