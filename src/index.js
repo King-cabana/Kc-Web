@@ -5,20 +5,20 @@ import GlobalStyle from "./globalStyles";
 import { Provider } from "react-redux";
 import GoToTop from "./GoToTop";
 import { BrowserRouter } from "react-router-dom";
-import store from "./redux/store";
-
+import { store, persistor } from "./redux/store";
+import { PersistGate } from "redux-persist/integration/react";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <GlobalStyle />
-      <BrowserRouter>
-        <GoToTop />
-        <App />
-      </BrowserRouter>
+      <PersistGate loading={null} persistor={persistor}>
+        <GlobalStyle />
+        <BrowserRouter>
+          <GoToTop />
+          <App />
+        </BrowserRouter>
+      </PersistGate>
     </Provider>
   </React.StrictMode>
 );
-
-

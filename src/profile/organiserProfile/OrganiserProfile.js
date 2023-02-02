@@ -93,14 +93,13 @@ const OrganiserProfile = () => {
 
             <EventHeader1>Set up your Event Organizer's Profile</EventHeader1>
             <InputSeg>
-              <InputText>
-                Organizer's / Association's Name {JSON.stringify(state)}
-              </InputText>
+              <InputText>Organizer's / Association's Name</InputText>
               <Input
                 type="text"
                 placeholder="Enter name"
                 name="name"
                 onChange={change}
+                value={state.name}
               />
             </InputSeg>
 
@@ -111,6 +110,7 @@ const OrganiserProfile = () => {
                 placeholder="Enter Email address"
                 name="email"
                 onChange={change}
+                value={state.email}
               />
             </InputSeg>
 
