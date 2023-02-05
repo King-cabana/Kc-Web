@@ -20,7 +20,7 @@ export const SidebarData = [
     // icon: <AiIcons.AiFillHome />,
     icon: (
       <Square2StackIcon
-        class="h-6 h-6 text-gray-500"
+        className="h-6 h-6 text-gray-500"
         style={{ width: "20px" }}
       />
     ),
@@ -31,7 +31,7 @@ export const SidebarData = [
     // path: "/event",
     // icon: <HiIcons.HiOutlineCalendar />
     icon: (
-      <CalendarIcon class="h-6 h-6 text-gray-500" style={{ width: "20px" }} />
+      <CalendarIcon className="h-6 h-6 text-gray-500" style={{ width: "20px" }} />
     ),
 
     iconClosed: <MdIcons.MdKeyboardArrowRight />,
@@ -59,7 +59,7 @@ export const SidebarData = [
     // icon: <HiIcons.HiOutlineDocumentText />,
     icon: (
       <DocumentChartBarIcon
-        class="h-6 h-6 text-gray-500"
+      className="h-6 h-6 text-gray-500"
         style={{ width: "20px" }}
       />
     ),
@@ -85,7 +85,7 @@ export const SidebarData = [
     path: "/messaging",
     icon: (
       <ChatBubbleLeftRightIcon
-        class="h-6 h-6 text-gray-500"
+      className="h-6 h-6 text-gray-500"
         style={{ width: "20px" }}
       />
     ),
@@ -93,13 +93,13 @@ export const SidebarData = [
   {
     title: "Notifications",
     path: "/notification",
-    icon: <BellIcon class="h-6 h-6 text-gray-500" style={{ width: "20px" }} />,
+    icon: <BellIcon className="h-6 h-6 text-gray-500" style={{ width: "20px" }} />,
   },
   {
     title: "Attendees Mgt",
     path: "/attendeesmgt",
     icon: (
-      <UserGroupIcon class="h-6 h-6 text-gray-500" style={{ width: "20px" }} />
+      <UserGroupIcon className="h-6 h-6 text-gray-500" style={{ width: "20px" }} />
     ),
   },
   {
@@ -107,7 +107,7 @@ export const SidebarData = [
     path: "/vendorsmgt",
     icon: (
       <Square2StackIcon
-        class="h-6 h-6 text-gray-500"
+      className="h-6 h-6 text-gray-500"
         style={{ width: "20px" }}
       />
     ),
@@ -116,13 +116,13 @@ export const SidebarData = [
     title: "Analytics",
     path: "/analytics",
     icon: (
-      <ChartBarIcon class="h-6 h-6 text-gray-500" style={{ width: "20px" }} />
+      <ChartBarIcon className="h-6 h-6 text-gray-500" style={{ width: "20px" }} />
     ),
   },
 
   {
     title: "Settings",
     path: "/settings",
-    icon: <CogIcon class="h-6 h-6 text-gray-500" style={{ width: "20px" }} />,
+    icon: <CogIcon className="h-6 h-6 text-gray-500" style={{ width: "20px" }} />,
   },
 ];
