@@ -7,7 +7,6 @@ import AboutUs from "./pages/aboutUs/AboutUs";
 import NoPage from "./pages/noPage/NoPage";
 import ContactUs from "./pages/contactUs/ContactUs";
 
-
 //Authentication
 import Signup from "./authentication/signup/SignUp";
 import SignIn from "./authentication/signIn/SignIn";
@@ -45,7 +44,7 @@ import ResetPasswordSuccess from "./authentication/signIn/ResetPasswordSuccess";
 import LoadingScreen from "./LoadingScreen";
 
 const Home = lazy(() => import("./pages/landingPage/Home"));
-const Waitlist = lazy(() => import ("./pages/waitlist/WaitlistForm"));
+const Waitlist = lazy(() => import("./pages/waitlist/WaitlistForm"));
 
 function App() {
   return (
