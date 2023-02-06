@@ -70,6 +70,7 @@ const OrganiserProfile = () => {
   const handleFileChange = (e) => {
     if (e.target.files) {
       setFile(e.target.files[0]);
+      alert(e.target.files[0].size);
       dispatch(
         editProfile({
           name: e.target.name,

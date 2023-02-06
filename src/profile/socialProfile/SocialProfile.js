@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import {
@@ -25,14 +25,13 @@ import {
   InputText,
   SmallText,
 } from "../../event/createEvent/FirstCreateEventStyled";
-import { DownButtonFull } from "../../event/createEvent/SecondCreateEventStyled";
+// import { DownButtonFull } from "../../event/createEvent/SecondCreateEventStyled";
 import { LongButton1 } from "../manageProfile/ManageProfileStyled";
 import { editProfile } from "../../redux/slices/profileSlice";
 
 const SocialProfile = () => {
   const [visibility, setVisibility] = useState(false);
   const navigate = useNavigate();
-  const inputRef = useRef();
 
   const toggleOthers = () => {
     if (visibility === true) {
@@ -43,7 +42,10 @@ const SocialProfile = () => {
   const dispatch = useDispatch();
   const state = useSelector((state) => state.profile);
 
+  const [inputState, setInputState] = useState("");
+
   const change = (e) => {
+    // const value = e.target.value === "others" ? inputState : e.target.value;
     dispatch(editProfile({ name: e.target.name, value: e.target.value }));
   };
 
@@ -156,66 +158,71 @@ const SocialProfile = () => {
               <SmallText>
                 Select a role that befits a guarantor to this event community
               </SmallText>
+
               <CheckBoxInput>
                 <input
                   type="radio"
                   id="patron"
-                  ref={inputRef}
                   name="guarantorInformation"
-                  value={state.guarantorInformation}
+                  value={"patron"}
                   onChange={change}
                   onClick={toggleOthers}
                 />
                 <label htmlFor="patron">Patron</label>
               </CheckBoxInput>
+
               <CheckBoxInput>
                 <input
                   type="radio"
                   id="staff"
-                  ref={inputRef}
                   name="guarantorInformation"
-                  value={state.guarantorInformation}
+                  value={"staff-Adviser"}
                   onChange={change}
                   onClick={toggleOthers}
                 />
                 <label htmlFor="staff">Staff Adviser</label>
               </CheckBoxInput>
+
               <CheckBoxInput>
                 <input
                   type="radio"
                   id="coordinators"
-                  ref={inputRef}
                   name="guarantorInformation"
-                  value={state.guarantorInformation}
+                  value={"coordinators"}
                   onChange={change}
                   onClick={toggleOthers}
                 />
                 <label htmlFor="coordinators">Coordinators</label>
               </CheckBoxInput>
+
               <CheckBoxInput>
                 <input
                   onClick={() => setVisibility(!visibility)}
                   type="radio"
-                  id="patron"
-                  ref={inputRef}
+                  id="others"
                   name="guarantorInformation"
                   onChange={change}
-                  value={state.guarantorInformation}
+                  value={"others"}
                 />
-                <label htmlFor="patron">Others (please specify)</label>
+                <label htmlFor="others">Others (please specify)</label>
               </CheckBoxInput>
               <InputBoxOther display={visibility ? "flex" : "none"}>
                 <Input
                   type="text"
                   placeholder="Enter others"
-                  name="guarantorsInformation"
+                  name="guarantorInformation"
                   value={state.guarantorInformation}
+                  // onChange={(e) => setInputState(e.target.value)}
                   onChange={change}
                 />
               </InputBoxOther>
             </InputSeg>
 
-            <InputText>Full name of {"{Secondary Contact}"}</InputText>
+            <InputText>
+              Full name of {""}
+              {state.guarantorInformation.charAt(0).toUpperCase() +
+                state.guarantorInformation.slice(1)}
+            </InputText>
             <InputSeg>
               <InputText>Company/Business Name</InputText>
               <Input
