@@ -41,19 +41,6 @@ const OrganiserProfile = () => {
   const dispatch = useDispatch();
   const state = useSelector((state) => state.profile);
 
-  const navigateNext = () => {
-    navigate("/socialProfile");
-  };
-  const navigateBack = () => {
-    navigate("/createProfile");
-  };
-
-  const handleFileChange = (e) => {
-    if (e.target.files) {
-      setFile(e.target.files[0]);
-    }
-  };
-
   useEffect(() => {
     const MAX_FILE_SIZE = 1024; // 1MB
 
@@ -79,6 +66,28 @@ const OrganiserProfile = () => {
 
   const change = (e) => {
     dispatch(editProfile({ name: e.target.name, value: e.target.value }));
+  };
+  const handleFileChange = (e) => {
+    if (e.target.files) {
+      setFile(e.target.files[0]);
+      dispatch(
+        editProfile({
+          name: e.target.name,
+          value: e.target.files[0],
+        })
+      );
+    }
+  };
+  const navigateNext = (e) => {
+    console.log({
+      name: state.name,
+      email: state.email,
+      backgroundPicture: state.backgroundPicture,
+    });
+    navigate("/socialProfile");
+  };
+  const navigateBack = () => {
+    navigate("/createProfile");
   };
   return (
     <div>
@@ -125,6 +134,7 @@ const OrganiserProfile = () => {
                       onChange={handleFileChange}
                       hidden
                       id="file"
+                      name="backgroundPicture"
                     />
                   </CustomWrapper>
                   <UploadBtn htmlFor="file">Upload</UploadBtn>
@@ -142,8 +152,7 @@ const OrganiserProfile = () => {
                 </h3>
                 <Supported>Support files; PDF, JPG, CSV</Supported>
                 <Supported style={{ color: "#ff2957" }}>
-                  {" "}
-                  Not more than 1mb{" "}
+                  Not more than 1mb
                 </Supported>
                 {correctFileSize && <div>{file && `${file.name}`}</div>}
                 {isSuccess ? (

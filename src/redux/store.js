@@ -6,7 +6,7 @@ import signUpSlice from "./slices/signUpSlice";
 import profileSlice from "./slices/profileSlice";
 
 const persistConfig = {
-  key: "kingCubana",
+  key: "kingCabana",
   storage,
 };
 const reducer = combineReducers({
@@ -17,6 +17,12 @@ const reducer = combineReducers({
 
 const persistedReducer = persistReducer(persistConfig, reducer);
 
-const store = configureStore({ reducer: persistedReducer });
+const store = configureStore({
+  reducer: persistedReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }),
+});
 const persistor = persistStore(store);
 export { store, persistor };

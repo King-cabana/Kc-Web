@@ -3,17 +3,14 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   name: "",
   email: "",
-  file: "",
+  backgroundPicture: "",
 };
 export const profileSlice = createSlice({
   name: "profile",
-  //dummy data
   initialState,
-  //responds to the action, takes the current state, handles the action similar to database tables
   reducers: {
     editProfile: (state, { payload }) => {
       Object.assign(state, { [payload.name]: payload.value });
-      //   state.push(todo);
     },
   },
 });
