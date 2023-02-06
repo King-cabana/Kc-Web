@@ -79,11 +79,11 @@ const OrganiserProfile = () => {
     }
   };
   const navigateNext = (e) => {
-    console.log({
-      name: state.name,
-      email: state.email,
-      backgroundPicture: state.backgroundPicture,
-    });
+    // console.log({
+    //   name: state.name,
+    //   email: state.email,
+    //   backgroundPicture: state.backgroundPicture,
+    // });
     navigate("/socialProfile");
   };
   const navigateBack = () => {
