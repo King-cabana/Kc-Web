@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import { BsChevronDown, BsChevronRight } from "react-icons/bs";
 import { AlternativeButton } from "../../components/button/button";
@@ -15,9 +16,7 @@ import {
   LeftInputBox,
   RightInputBox,
 } from "../../event/createEvent/SecondCreateEventStyled";
-import {
-  EventHeader1,
-} from "../../event/createEvent/TimeLineEventsStyled";
+import { EventHeader1 } from "../../event/createEvent/TimeLineEventsStyled";
 import {
   ButtonSave,
   InputSeg,
@@ -34,15 +33,45 @@ import {
   ProfileSection,
   ShapedBackground,
 } from "../createProfile/CreateProfileStyled";
+import { editProfile } from "../../redux/slices/profileSlice";
 
 const ManageProfile = () => {
   const [isDisplay, setIsDisplay] = useState(false);
   const [visibility, setVisibility] = useState(false);
 
+  const dispatch = useDispatch();
+  const state = useSelector((state) => state.profile);
   const navigate = useNavigate();
+
+  const change = (e) => {
+    dispatch(editProfile({ name: e.target.name, value: e.target.value }));
+  };
 
   const navigateBack = () => {
     navigate("/socialProfile");
+  };
+  const navigateNext = () => {
+    console.log({
+      name: state.name,
+      email: state.email,
+      backgroundPicture: state.backgroundPicture,
+      website: state.website,
+      linkedin: state.linkedin,
+      instagram: state.instagram,
+      twitter: state.twitter,
+      facebook: state.facebook,
+      others: state.others,
+      guarantorInformation: state.guarantorInformation,
+      company: state.company,
+      jobRole: state.jobRole,
+      officeAddress: state.officeAddress,
+      guarantorNumber: state.guarantorNumber,
+      guarantorEmail: state.guarantorEmail,
+      teamMemberFirstName: state.teamMemberFirstName,
+      teamMemberLastName: state.teamMemberLastName,
+      teamMemberEmail: state.teamMemberEmail,
+    });
+    navigate("/home");
   };
 
   return (
@@ -60,18 +89,36 @@ const ManageProfile = () => {
             <ManageBox>
               <LeftInputBox>
                 <InputText>Team member's first name</InputText>
-                <Input type="text" placeholder="Enter first name" />
+                <Input
+                  type="text"
+                  placeholder="Enter first name"
+                  name="teamMemberFirstName"
+                  value={state.teamMemberFirstName}
+                  onChange={change}
+                />
               </LeftInputBox>
 
               <RightInputBox>
                 <InputText>Team member's last name</InputText>
-                <Input type="text" placeholder="Enter last name" />
+                <Input
+                  type="text"
+                  placeholder="Enter last name"
+                  name="teamMemberLastName"
+                  value={state.teamMemberLastName}
+                  onChange={change}
+                />
               </RightInputBox>
             </ManageBox>
 
             <InputSeg>
               <InputText>Team member's Email</InputText>
-              <Input type="text" placeholder="Enter email" />
+              <Input
+                type="text"
+                placeholder="Enter email"
+                name="teamMemberEmail"
+                value={state.teamMemberEmail}
+                onChange={change}
+              />
             </InputSeg>
 
             <InputSeg>
@@ -106,9 +153,7 @@ const ManageProfile = () => {
       <SaveBox>
         <ButtonSave>
           <TransparentButton onClick={navigateBack}>Back</TransparentButton>
-          <LongButton1 onClick={() => navigate("/home")}>
-            Proceed to Dashboard
-          </LongButton1>
+          <LongButton1 onClick={navigateNext}>Proceed to Dashboard</LongButton1>
         </ButtonSave>
       </SaveBox>
     </>
