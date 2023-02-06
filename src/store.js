@@ -1,36 +1,28 @@
-import { configureStore } from "@reduxjs/toolkit";
-import authSlice from "./redux/authSlice"
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import { persistReducer, persistStore } from "redux-persist";
+import storage from "redux-persist/lib/storage";
+import loginSlice from "./redux/slices/loginSlice";
+import signUpSlice from "./redux/slices/signUpSlice";
+import profileSlice from "./redux/slices/profileSlice";
 
+const persistConfig = {
+  key: "kingCabana",
+  storage,
+};
+const reducer = combineReducers({
+  signup: signUpSlice,
+  login: loginSlice,
+  profile: profileSlice,
+});
+
+const persistedReducer = persistReducer(persistConfig, reducer);
 
 const store = configureStore({
-  reducer: {
-    user: authSlice,
-  },
-})
-
-export default store
-
-// import { configureStore, compose, applyMiddleware, combineReducers } from 'redux';
-// import thunk from 'redux-thunk';
-// import { userSigninReducer } from './reducers/userReducers';
-
-// const initialState = {
-//   userSignin: {
-//     userInfo: localStorage.getItem('userInfo')
-//       ? JSON.parse(localStorage.getItem('userInfo'))
-//       : null,
-//   }
-// }
-
-// const reducer = combineReducers({
-//   userSignin: userSigninReducer,
-// })
-
-
-// const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-// const store = configureStore(
-//   reducer,
-//   initialState,
-//   composeEnhancer(applyMiddleware(thunk))
-// );
-// export default store;
+  reducer: persistedReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }),
+});
+const persistor = persistStore(store);
+export { store, persistor };

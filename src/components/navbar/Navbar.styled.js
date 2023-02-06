@@ -19,12 +19,11 @@ export const Nav = styled.div`
     z-index: 1;
   }
 
-  @media (max-width: 960px) {
-    position: sticky;
-    height: 10vh;
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
-    z-index: 1;
-  }
+  /* @media screen and (max-width: 1920px){
+    width: 100%;
+    padding-left: 10% ;
+    padding-right: 10%;
+  } */
 `;
 
 export const NavLogo = styled.div`
@@ -32,8 +31,13 @@ export const NavLogo = styled.div`
   cursor: pointer;
 
   img {
-    height: 35;
     width: 35;
+  }
+
+  @media screen and (max-width: 480px) {
+    img {
+      max-width: 100px;
+    }
   }
 `;
 
@@ -64,7 +68,7 @@ export const NavItems = styled.ul`
   float: left;
   list-style: none;
   display: flex;
-  width: 80vw;
+  width: 90%;
   justify-content: space-between;
   align-items: center;
 
@@ -105,7 +109,7 @@ export const NavItems = styled.ul`
   }
 
   @media screen and (min-width: 600px) {
-    top: 100px;
+    /* top: 100px; */
   }
 `;
 
@@ -115,10 +119,6 @@ export const LogoLink = styled(Link)`
 `;
 
 export const NavBarLink = styled(NavLink)`
-  /* &:active{
-        color: #FF2957;
-        } */
-
   @media screen and (max-width: 960px) {
     text-align: center;
     padding: 2%;
@@ -128,10 +128,6 @@ export const NavBarLink = styled(NavLink)`
     &:hover {
       color: #ff2957;
     }
-
-    /* &:active{
-        color: #FF2957;
-        } */
   }
 `;
 
@@ -173,11 +169,6 @@ export const NavButton = styled.button`
   color: white;
   cursor: pointer;
   font-weight: 600;
-
-  /* &:hover{
-            background-color: #FF2957;
-            color: white;
-        } */
 
   &:hover {
     background-color: rgba(255, 41, 87, 0.8);

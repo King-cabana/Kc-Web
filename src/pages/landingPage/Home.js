@@ -1,71 +1,96 @@
-import React from 'react'
+import React from "react";
 import {
-  BgOverlay, HeroSection,
-  ContentHolder, BtnHolder,
-  EventButton, ContentSection,
-  EventCard, NavButtonHolder
-} from './HomeStyled'
+  BgOverlay,
+  HeroSection,
+  ContentHolder,
+  BtnHolder,
+  ContentSection,
+  EventCard,
+  NavButtonHolder,
+} from "./HomeStyled";
 import {
-  BodyFont,
-  CardHolder, HeaderFont, ImageDisplayOverlay,ImageDisplayOverlayB,
-} from '../../globalStyles'
-import Footer from '../../components/footer/Footer'
-import { NavButton, NavButtonLink } from '../../components/navbar/Navbar.styled'
-import Navbar from '../../components/navbar/Navbar'
-import { Typewriter } from 'react-simple-typewriter'
-import Img from '../../images/Business.jpg'
-import {ASContentSection, ASContent, ASImage, SponsorSection, SponsorSectionInner, 
-  SponsorCard, ASSectionInner, ASContentInner, TestimonialSection, ReadySection} from './HomeStyled'
-import Search from '../../images/search.svg'
-import Bulb from '../../images/Frame 21613bulb.svg'
-import Speaker from '../../images/speaker.svg'
-import Subscribe from '../../images/computer.jpg'
-import Testimonial from '../../components/testimonials/Testimonial'
-import Food from '../../images/Food.jpg'
-import Business from '../../images/BusinessB.jpg'
-import Art from '../../images/Arts.jpg'
-import Weddings from '../../images/Wedding.jpg'
-import Concert from '../../images/Concert.jpg'
-import Sports from '../../images/Sport.jpg'
-
-
-
-
+  CardHolder,
+  ImageDisplayOverlay,
+  ImageDisplayOverlayB,
+} from "../../globalStyles";
+import Footer from "../../components/footer/Footer";
+import { NavButtonLink } from "../../components/navbar/Navbar.styled";
+import Navbar from "../../components/navbar/Navbar";
+import { Typewriter } from "react-simple-typewriter";
+import Img from "../../images/Business.jpg";
+import {
+  ASContentSection,
+  ASContent,
+  ASImage,
+  SponsorSection,
+  SponsorSectionInner,
+  SponsorCard,
+  ASSectionInner,
+  ASContentInner,
+  TestimonialSection,
+  ReadySection,
+} from "./HomeStyled";
+import Search from "../../images/search.svg";
+import Bulb from "../../images/Frame 21613bulb.svg";
+import Speaker from "../../images/speaker.svg";
+import Subscribe from "../../images/computer.jpg";
+// import Testimonial from "../../components/testimonials/Testimonial";
+import Food from "../../images/Food.jpg";
+import Business from "../../images/BusinessB.jpg";
+import Art from "../../images/Arts.jpg";
+import Weddings from "../../images/Wedding.jpg";
+import Concert from "../../images/Concert.jpg";
+import Sports from "../../images/Sport.jpg";
+import {
+  AlternativeButton,
+  PrimaryButton,
+} from "../../components/button/button";
+import {
+  KBDisplayL,
+  KBDisplayM,
+  KBTextL,
+  KBTextM,
+} from "../../components/fonts/fontSize";
 
 const Home = () => {
   return (
     <>
-      <Navbar/>
+      <Navbar />
 
       <HeroSection>
         <BgOverlay>
           <ContentHolder>
-            <h1 style={{ margin: 'auto 0'}}>
-              Dreams do come true.<br />{' '}
-              <span style={{color: '#FFBC15', fontWeight: 'bold' }}>
+            <KBDisplayL style={{ margin: "auto 0" }}>
+              Dreams do come true.
+              <br />{" "}
+              <span style={{ color: "#FFBC15", fontWeight: "bold" }}>
                 <Typewriter
-                  words={['Create Memories',
-                    'Secure Sponsorships',
-                    'Assess Target Markets'
+                  words={[
+                    "Create Memories",
+                    "Secure Sponsorships",
+                    "Assess Target Markets",
                   ]}
                   loop={Infinity}
                   cursor
-                  cursorStyle='_'
+                  cursorStyle="_"
                   typeSpeed={100}
                   deleteSpeed={100}
                   delaySpeed={1000}
                 />
               </span>
-            </h1>
-            <BodyFont>Connecting People | Creating Memories | 
-              Capturing Value</BodyFont>
-            
+            </KBDisplayL>
+            <KBTextL>
+              Connecting People | Creating Memories | Capturing Value
+            </KBTextL>
+
             <BtnHolder>
-              <NavButtonLink to="/waitlist"> 
-              <EventButton>Create Event</EventButton>
+              <NavButtonLink to="/waitlist">
+                <PrimaryButton fontWeight="600">Create Event</PrimaryButton>
               </NavButtonLink>
-              <NavButtonLink to="/waitlist"> 
-              <EventButton style={{ background: 'transparent', border: '1.5px solid #FF2957' }}>Sponsor Events</EventButton>
+              <NavButtonLink to="/waitlist">
+                <AlternativeButton fontWeight="600">
+                  Sponsor Events
+                </AlternativeButton>
               </NavButtonLink>
             </BtnHolder>
           </ContentHolder>
@@ -73,13 +98,22 @@ const Home = () => {
       </HeroSection>
 
       <ContentSection>
-        <HeaderFont style={{textAlign:'center', marginTop:'6%', color:'#484848', 
-                          fontSize:'26px', fontWeight: '600', marginBottom:' 4%'
-                          }}>Event Categories</HeaderFont>
-        <BodyFont style={{ color:'#484848', marginLeft:'8%', fontWeight:'500', 
-                           fontSize:'14px', alignSelf: 'flex-start', textAlign:'left'                        
-
-        }}>Explore the most trending</BodyFont>
+        <KBDisplayM
+          style={{
+            textAlign: "center",
+            marginTop: "4%",
+            color: "#484848",
+            fontWeight: "600",
+            marginBottom: " 1%",
+          }}
+        >
+          Event Categories
+        </KBDisplayM>
+        <KBTextL
+          style={{ color: "#484848", fontWeight: "500", textAlign: "center" }}
+        >
+          Explore the most trending
+        </KBTextL>
         <CardHolder>
           <EventCard img={Business}>
             <ImageDisplayOverlay>Business</ImageDisplayOverlay>
@@ -101,78 +135,110 @@ const Home = () => {
           </EventCard>
         </CardHolder>
         <NavButtonHolder>
-        <NavButtonLink to="/waitlist">
-          <NavButton style={{backgroundColor:'transparent',color: 'black', border: '1.5px solid #FF2957' }}>Explore More</NavButton>
-        </NavButtonLink>
+          <NavButtonLink to="/waitlist">
+            <AlternativeButton style={{ color: "black" }} fontWeight="600">
+              Explore More
+            </AlternativeButton>
+          </NavButtonLink>
         </NavButtonHolder>
       </ContentSection>
 
-      <ASContentSection style={{backgroundColor:'#FEF5F7'}}>
+      <ASContentSection style={{ backgroundColor: "#FEF5F7" }}>
         <ASSectionInner>
-        <ASContent>
-          <ASContentInner>
-            <HeaderFont>
-              Advertise your events on our platform.
-            </HeaderFont>
-          <BodyFont style={{marginTop:'10%', marginBottom:'8%'
-            }}>Publicize your events and business here and experience potential 
-            customers seek you out in record time.</BodyFont>
-          <NavButtonLink to="/waitlist"> 
-          <EventButton style={{marginTop:'4%'}}>Get in touch</EventButton>
-          </NavButtonLink>
-          </ASContentInner>
-        </ASContent>
-        <ASImage img={Img}/>
+          <ASContent>
+            <ASContentInner>
+              <KBDisplayM fontWeight="600">
+                Advertise your events on our platform.
+              </KBDisplayM>
+              <KBTextL style={{ marginTop: "5%", marginBottom: "4%" }}>
+                Publicize your events and business here and experience potential
+                customers seek you out in record time.
+              </KBTextL>
+              <NavButtonLink to="/waitlist">
+                <PrimaryButton style={{ marginTop: "4%" }}>
+                  Get in touch
+                </PrimaryButton>
+              </NavButtonLink>
+            </ASContentInner>
+          </ASContent>
+          <ASImage img={Img} />
         </ASSectionInner>
       </ASContentSection>
-      
+
       <SponsorSection>
-        <HeaderFont>Leverage for being an Event sponsor</HeaderFont>
-        <BodyFont>As a sponsor, these are some of the opportunities you would get.</BodyFont>
+        <KBDisplayM fontWeight="600" color="#484848;">
+          Leverage for being an Event sponsor
+        </KBDisplayM>
+        <KBTextL>
+          As a sponsor, these are some of the opportunities you would get.
+        </KBTextL>
         <SponsorSectionInner>
           <SponsorCard>
-            <img src={Search} alt=''/>
-            <BodyFont style={{marginTop:'10%'}}>Assess target markets.</BodyFont>
+            <img src={Search} alt="" />
+            <KBTextM style={{ marginTop: "10%" }}>
+              Assess target markets.
+            </KBTextM>
           </SponsorCard>
           <SponsorCard>
-            <img src={Bulb} alt=''/>
-            <BodyFont  style={{marginTop:'10%'}}>Enhance connection with target markets.</BodyFont>
+            <img src={Bulb} alt="" />
+            <KBTextM style={{ marginTop: "10%" }}>
+              Enhance connection with target markets.
+            </KBTextM>
           </SponsorCard>
           <SponsorCard>
-            <img src={Speaker} alt=''/>
-            <BodyFont  style={{marginTop:'10%'}}>Promote your brand through experiential marketing.</BodyFont>
+            <img src={Speaker} alt="" />
+            <KBTextM style={{ marginTop: "10%" }}>
+              Promote your brand through experiential marketing.
+            </KBTextM>
           </SponsorCard>
-        </SponsorSectionInner>           
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width:'100vw' }}>
-        <NavButtonLink to="/waitlist"> 
-        <NavButton>Get Started</NavButton>
-        </NavButtonLink>
+        </SponsorSectionInner>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            width: "100vw",
+          }}
+        >
+          <NavButtonLink to="/waitlist">
+            <PrimaryButton fontWeight="600">Get Started</PrimaryButton>
+          </NavButtonLink>
         </div>
       </SponsorSection>
 
       <TestimonialSection>
-        <HeaderFont style={{marginBottom:'3%', textAlign:'center', fontSize:'24px', 
-                            fontWeight:'600', color:'#484848'
-                            }}>Testimonials</HeaderFont>
-        <Testimonial/>
+        <KBDisplayM
+          style={{
+            marginBottom: "5%",
+            textAlign: "center",
+            fontWeight: "600",
+            color: "#484848",
+          }}
+        >
+          Testimonials
+        </KBDisplayM>
+        {/* <Testimonial /> */}
       </TestimonialSection>
-      
 
       <ReadySection>
-      <ASImage img={Subscribe}><ImageDisplayOverlayB/></ASImage>
-        <ASContent >
-          <div style={{width:'inherit', justifyContent:'flex-start'}}>
-          <HeaderFont>Ready to be sponsored? .</HeaderFont>
-          <BodyFont>Enter your email with King Cabana now!</BodyFont>
-          <NavButtonLink to="/waitlist">
-          <NavButton>Get Started</NavButton>
-          </NavButtonLink>
+        <ASImage img={Subscribe}>
+          <ImageDisplayOverlayB />
+        </ASImage>
+        <ASContent>
+          <div style={{ width: "inherit", justifyContent: "flex-start" }}>
+            <KBDisplayM fontWeight="600" color="#484848">
+              Ready to be sponsored?{" "}
+            </KBDisplayM>
+            <KBTextL>Enter your email with King Cabana now!</KBTextL>
+            <NavButtonLink to="/waitlist">
+              <PrimaryButton>Get Started</PrimaryButton>
+            </NavButtonLink>
           </div>
         </ASContent>
       </ReadySection>
       <Footer />
     </>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
