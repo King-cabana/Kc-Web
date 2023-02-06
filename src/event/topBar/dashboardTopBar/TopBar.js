@@ -11,7 +11,7 @@ import {
 import Logo from "../../../images/KCLogo.svg";
 import SearchBar from "../../../components/searchBar/SearchBar";
 import { SlBell } from "react-icons/sl";
-import Profile from "../../../images/pexels-george-ikwegbu-2379429.jpg";
+// import Profile from "../../../images/pexels-george-ikwegbu-2379429.jpg";
 import { RiArrowDownSLine } from "react-icons/ri";
 import { KBTextM } from "../../../components/fonts/fontSize";
 
