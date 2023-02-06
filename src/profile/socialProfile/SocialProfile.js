@@ -25,7 +25,7 @@ import {
   InputText,
   SmallText,
 } from "../../event/createEvent/FirstCreateEventStyled";
-import { DownButtonFull } from "../../event/createEvent/SecondCreateEventStyled";
+// import { DownButtonFull } from "../../event/createEvent/SecondCreateEventStyled";
 import { LongButton1 } from "../manageProfile/ManageProfileStyled";
 import { editProfile } from "../../redux/slices/profileSlice";
 

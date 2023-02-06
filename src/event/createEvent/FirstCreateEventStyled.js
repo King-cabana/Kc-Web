@@ -30,10 +30,20 @@ height: 64px;
 border-radius: 10px;
 border:1px solid rgba(0, 104, 255, 0.1);
 outline:none;
+-moz-appearance: textfield;
 
 @media screen and (max-width:960px){
   height:50px;
 }
+
+::-webkit-inner-spin-button{
+        -webkit-appearance: none; 
+        margin: 0; 
+    }
+    ::-webkit-outer-spin-button{
+        -webkit-appearance: none; 
+        margin: 0; 
+    }  
 `;
 
 

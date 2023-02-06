@@ -10,6 +10,7 @@ import {
   CustomWrapper,
   UploadBtn,
   Supported,
+  MyTextArea,
 } from "../../event/createEvent/FirstCreateEventStyled";
 import { DownButtonFull } from "../../event/createEvent/SecondCreateEventStyled";
 import { EventHeader1 } from "../../event/createEvent/TimeLineEventsStyled";
@@ -33,9 +34,14 @@ import {
 
 const OrganiserProfile = () => {
   const [isSuccess, setIsSuccess] = useState(false);
-  const [image, setImage] = useState("");
+  const [logoIsSuccess, setLogoIsSuccess] = useState(false);
+  const [file, setFile] = useState("");
+  const [logoFile, setLogoFile] = useState("");
+
   const [errorMsg, setErrorMsg] = useState(false);
+  const [logoErrorMsg, setLogoErrorMsg] = useState(false);
   const [correctFileSize, setCorrectFileSize] = useState(false);
+  const [correctLogoFileSize, setCorrectLogoFileSize] = useState(false);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -44,13 +50,13 @@ const OrganiserProfile = () => {
   useEffect(() => {
     const MAX_FILE_SIZE = 1024; // 1MB
 
-    if (!image) {
-      setErrorMsg("*Please choose a file*");
+    if (!file) {
+      setErrorMsg("*Please choose an image*");
       setIsSuccess(false);
       return;
     }
 
-    const fileSizeKiloBytes = image.size / 1024;
+    const fileSizeKiloBytes = file.size / 1024;
 
     if (fileSizeKiloBytes > MAX_FILE_SIZE) {
       setErrorMsg("*Image size is greater than maximum limit*");
@@ -62,20 +68,59 @@ const OrganiserProfile = () => {
     setErrorMsg("");
     setIsSuccess(true);
     setCorrectFileSize(true);
-  }, [image]);
+    // validateFile(file)
+ }, [file]);
+
+ useEffect(() => {
+  const MAX_FILE_SIZE = 1024; // 1MB
+    if (!logoFile) {
+      setLogoErrorMsg("*Please choose an image*");
+      setLogoIsSuccess(false);
+      return;
+    }
+ 
+    const fileSizeKiloBytes = logoFile.size / 1024;
+
+    if (fileSizeKiloBytes > MAX_FILE_SIZE) {
+      setLogoErrorMsg("*Image size is greater than maximum limit*");
+      setLogoIsSuccess(false);
+      setCorrectLogoFileSize(false);
+      return;
+    }
+
+    setLogoErrorMsg("");
+    setLogoIsSuccess(true);
+    setCorrectLogoFileSize(true);
+    // validateFile(file)
+  }, [logoFile]);
 
   const change = (e) => {
     dispatch(editProfile({ name: e.target.name, value: e.target.value }));
   };
   const handleFileChange = (e) => {
-    if (e.target.image) {
-      setImage(e.target.image[0]);
+    if (e.target.files) {
+      setFile(e.target.files[0]);
       dispatch(
         editProfile({
           name: e.target.name,
-          value: e.target.image[0],
+          value: e.target.files[0],
         })
       );
+      
+    // alert(JSON.stringify(state.logo))
+    }
+  };
+  const handleLogoFileChange = (e) => {
+    if (e.target.files) {
+      setLogoFile(e.target.files[0]);
+      dispatch(
+        editProfile({
+          name: e.target.name,
+          value: e.target.files[0],
+        })
+      );
+      
+    // alert(JSON.stringify(state.logo))
     }
   };
   const navigateNext = (e) => {
@@ -124,21 +169,93 @@ const OrganiserProfile = () => {
             </InputSeg>
 
             <InputSeg>
+              <InputText>Organizer's / Association's Phone Number</InputText>
+              <Input
+                type="number"
+                placeholder="Enter Phone number"
+                name="email"
+                onChange={change}
+                value={state.number}
+              />
+            </InputSeg>
+
+            <InputSeg>
+              <InputText>Organizer's / Association's Office Address</InputText>
+              <Input
+                type="email"
+                placeholder="Enter office address"
+                name="email"
+                onChange={change}
+                value={state.address}
+              />
+            </InputSeg>
+
+            <InputSeg>
+              <InputText>Organizer's / Association's Details</InputText>
+              <MyTextArea
+                type="textarea"
+                row="4"
+                placeholder="Give descriptions"
+                onChange={change}
+                value={state.description}
+              />
+            </InputSeg>
+
+            <InputSeg>
+              <InputText>Logo</InputText>
+              <FormContainer>
+                <FileWrapper>
+                  <CustomWrapper>
+                    <input
+                      type="file"
+                      style={{ cursor: "pointer" }}
+                      onChange={handleLogoFileChange}
+                      hidden
+                      id="logoFile"
+                      accept="image/png, image/jpeg, image/jpg"
+                      name="logoFile"
+                    />
+                  </CustomWrapper>
+                  <UploadBtn htmlFor="logoFile">Upload</UploadBtn>
+                </FileWrapper>
+                <h3
+                  style={{
+                    color: "#ff2957",
+                    fontSize: "16px",
+                    justifyContent: "center",
+                    display: "flex",
+                    marginTop: "0.5rem",
+                  }}
+                >
+                  {logoErrorMsg}
+                </h3>
+                <Supported>Support image: JPEG, JPG, PNG, *img</Supported>
+                <Supported style={{ color: "#ff2957" }}>
+                  Not more than 1mb
+                </Supported>
+                {correctLogoFileSize && <div>{logoFile && `${logoFile.name}`}</div>}
+                {logoIsSuccess ? (
+                  <p style={{ color: "green" }}>Validation successful</p>
+                ) : null}
+              </FormContainer>
+            </InputSeg>
+
+            <InputSeg>
               <InputText>Background Picture</InputText>
               <FormContainer>
                 <FileWrapper>
                   <CustomWrapper>
                     <input
-                      type="image"
+                      type="file"
                       style={{ cursor: "pointer" }}
                       onChange={handleFileChange}
                       hidden
-                      id="image"
-                      alt="image"
+                      id="file"
+                      accept="image/png, image/jpeg, image/jpg"
                       name="backgroundPicture"
                     />
                   </CustomWrapper>
-                  <UploadBtn htmlFor="image">Upload</UploadBtn>
+                  <UploadBtn htmlFor="file">Upload</UploadBtn>
                 </FileWrapper>
                 <h3
                   style={{
@@ -151,11 +268,11 @@ const OrganiserProfile = () => {
                 >
                   {errorMsg}
                 </h3>
-                <Supported>Support image;</Supported>
+                <Supported>Support image: JPEG, JPG, PNG, *img</Supported>
                 <Supported style={{ color: "#ff2957" }}>
                   Not more than 1mb
                 </Supported>
-                {correctFileSize && <div>{image && `${image.name}`}</div>}
+                {correctFileSize && <div>{file && `${file.name}`}</div>}
                 {isSuccess ? (
                   <p style={{ color: "green" }}>Validation successful</p>
                 ) : null}

@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   name: "",
   email: "",
+  logoFile:"",
   backgroundPicture: "",
   website: "",
   linkedin: "",
@@ -26,6 +27,7 @@ export const profileSlice = createSlice({
   initialState,
   reducers: {
     editProfile: (state, { payload }) => {
+      // alert(payload.value.name)
       Object.assign(state, { [payload.name]: payload.value });
     },
   },
