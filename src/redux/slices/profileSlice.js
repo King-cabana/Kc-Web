@@ -12,7 +12,7 @@ const initialState = {
   others: "",
   guarantorInformation: "",
   company: "",
-  jobrole: "",
+  jobRole: "",
   officeAddress: "",
   guarantorNumber: "",
   guarantorEmail: "",
