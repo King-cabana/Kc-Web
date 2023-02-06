@@ -28,7 +28,7 @@ const Sidebar = ({ children }) => {
      
         <SidebarNav sidebar={sidebar}>
           <SidebarWrap>
-          <div style={{width:'inherit', height:'25vh', padding:'15px', display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center'}}>
+          <div style={{width:'inherit', height:'22vh', padding:'15px', display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center'}}>
             <p style={{fontSize:'12px', color:'#FF2957'}}>Event Organizer</p>
             <div style={{width:'100%', height:'10vh', display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:'10px'}}>
               <div style={{height:'40px', width:'40px', borderRadius:'6px', backgroundColor:'green'}}>

@@ -80,7 +80,8 @@ export const ContentHolder = styled.div`
 export const BtnHolder = styled.div`
   display: flex;
   padding-top: 5%;
-  width: 24vw;
+  width: 20%;
+  gap:10px;
   justify-content: space-between;
 
   @media screen and (max-width: 960px) {
