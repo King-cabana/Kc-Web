@@ -68,7 +68,7 @@ export const NavItems = styled.ul`
   float: left;
   list-style: none;
   display: flex;
-  width: 80vw;
+  width: 90%;
   justify-content: space-between;
   align-items: center;
 
