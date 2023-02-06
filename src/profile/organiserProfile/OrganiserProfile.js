@@ -98,7 +98,7 @@ const OrganiserProfile = () => {
             <KCLogo src={kingCabanaLogo} alt="kcLogo" />
           </LogoDiv>
           <ProfileSection>
-            <ProfileProgress>Step 2 of 4</ProfileProgress>
+            <ProfileProgress>Step 2 of 3</ProfileProgress>
 
             <EventHeader1>Set up your Event Organizer's Profile</EventHeader1>
             <InputSeg>

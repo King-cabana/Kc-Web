@@ -26,6 +26,7 @@ import {
   SmallText,
 } from "../../event/createEvent/FirstCreateEventStyled";
 import { DownButtonFull } from "../../event/createEvent/SecondCreateEventStyled";
+import { LongButton1 } from "../manageProfile/ManageProfileStyled";
 import { editProfile } from "../../redux/slices/profileSlice";
 
 const SocialProfile = () => {
@@ -47,7 +48,25 @@ const SocialProfile = () => {
   };
 
   const navigateNext = () => {
-    navigate("/manageProfile");
+    console.log({
+      name: state.name,
+      email: state.email,
+      backgroundPicture: state.backgroundPicture,
+      website: state.website,
+      linkedin: state.linkedin,
+      instagram: state.instagram,
+      twitter: state.twitter,
+      facebook: state.facebook,
+      others: state.others,
+      guarantorInformation: state.guarantorInformation,
+      company: state.company,
+      jobRole: state.jobRole,
+      officeAddress: state.officeAddress,
+      guarantorNumber: state.guarantorNumber,
+      guarantorEmail: state.guarantorEmail,
+    });
+    navigate("/home");
+    // navigate("/manageProfile");
   };
   const navigateBack = () => {
     navigate("/organiserProfile");
@@ -62,7 +81,7 @@ const SocialProfile = () => {
             <KCLogo src={kingCabanaLogo} alt="kcLogo" />
           </LogoDiv>
           <ProfileSection>
-            <ProfileProgress>Step 3 of 4</ProfileProgress>
+            <ProfileProgress>Step 3 of 3</ProfileProgress>
             <EventHeader1>Social Media & Guarantor information</EventHeader1>
 
             <InputText>Social media information</InputText>
@@ -257,7 +276,9 @@ const SocialProfile = () => {
         <SaveBox>
           <ButtonSave>
             <TransparentButton onClick={navigateBack}>Back</TransparentButton>
-            <DownButtonFull onClick={navigateNext}>Next</DownButtonFull>
+            <LongButton1 onClick={navigateNext}>
+              Proceed to Dashboard
+            </LongButton1>
           </ButtonSave>
         </SaveBox>
       </ProfileContainer>
