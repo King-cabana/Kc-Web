@@ -1,9 +1,9 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { persistReducer, persistStore } from "redux-persist";
 import storage from "redux-persist/es/storage";
-import loginSlice from "./slices/loginSlice";
-import signUpSlice from "./slices/signUpSlice";
-import profileSlice from "./slices/profileSlice";
+import loginSlice from "./redux/slices/loginSlice";
+import signUpSlice from "./redux/slices/signUpSlice";
+import profileSlice from "./redux/slices/profileSlice";
 
 const persistConfig = {
   key: "kingCabana",

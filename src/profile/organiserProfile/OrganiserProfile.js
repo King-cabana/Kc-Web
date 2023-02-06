@@ -33,7 +33,7 @@ import {
 
 const OrganiserProfile = () => {
   const [isSuccess, setIsSuccess] = useState(false);
-  const [file, setFile] = useState("");
+  const [image, setImage] = useState("");
   const [errorMsg, setErrorMsg] = useState(false);
   const [correctFileSize, setCorrectFileSize] = useState(false);
 
@@ -44,16 +44,16 @@ const OrganiserProfile = () => {
   useEffect(() => {
     const MAX_FILE_SIZE = 1024; // 1MB
 
-    if (!file) {
+    if (!image) {
       setErrorMsg("*Please choose a file*");
       setIsSuccess(false);
       return;
     }
 
-    const fileSizeKiloBytes = file.size / 1024;
+    const fileSizeKiloBytes = image.size / 1024;
 
     if (fileSizeKiloBytes > MAX_FILE_SIZE) {
-      setErrorMsg("*File size is greater than maximum limit*");
+      setErrorMsg("*Image size is greater than maximum limit*");
       setIsSuccess(false);
       setCorrectFileSize(false);
       return;
@@ -62,18 +62,18 @@ const OrganiserProfile = () => {
     setErrorMsg("");
     setIsSuccess(true);
     setCorrectFileSize(true);
-  }, [file]);
+  }, [image]);
 
   const change = (e) => {
     dispatch(editProfile({ name: e.target.name, value: e.target.value }));
   };
   const handleFileChange = (e) => {
-    if (e.target.files) {
-      setFile(e.target.files[0]);
+    if (e.target.image) {
+      setImage(e.target.image[0]);
       dispatch(
         editProfile({
           name: e.target.name,
-          value: e.target.files[0],
+          value: e.target.image[0],
         })
       );
     }
@@ -129,15 +129,16 @@ const OrganiserProfile = () => {
                 <FileWrapper>
                   <CustomWrapper>
                     <input
-                      type="file"
+                      type="image"
                       style={{ cursor: "pointer" }}
                       onChange={handleFileChange}
                       hidden
-                      id="file"
+                      id="image"
+                      alt="image"
                       name="backgroundPicture"
                     />
                   </CustomWrapper>
-                  <UploadBtn htmlFor="file">Upload</UploadBtn>
+                  <UploadBtn htmlFor="image">Upload</UploadBtn>
                 </FileWrapper>
                 <h3
                   style={{
@@ -150,11 +151,11 @@ const OrganiserProfile = () => {
                 >
                   {errorMsg}
                 </h3>
-                <Supported>Support files; PDF, JPG, CSV</Supported>
+                <Supported>Support image;</Supported>
                 <Supported style={{ color: "#ff2957" }}>
                   Not more than 1mb
                 </Supported>
-                {correctFileSize && <div>{file && `${file.name}`}</div>}
+                {correctFileSize && <div>{image && `${image.name}`}</div>}
                 {isSuccess ? (
                   <p style={{ color: "green" }}>Validation successful</p>
                 ) : null}
