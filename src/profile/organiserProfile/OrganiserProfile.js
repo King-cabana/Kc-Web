@@ -49,7 +49,6 @@ const OrganiserProfile = () => {
 
   useEffect(() => {
     const MAX_FILE_SIZE = 1024; // 1MB
-
     if (!file) {
       setErrorMsg("*Please choose an image*");
       setIsSuccess(false);
@@ -64,11 +63,9 @@ const OrganiserProfile = () => {
       setCorrectFileSize(false);
       return;
     }
-
     setErrorMsg("");
     setIsSuccess(true);
     setCorrectFileSize(true);
-    // validateFile(file)
   }, [file]);
 
   useEffect(() => {
@@ -87,11 +84,9 @@ const OrganiserProfile = () => {
       setCorrectLogoFileSize(false);
       return;
     }
-
     setLogoErrorMsg("");
     setLogoIsSuccess(true);
     setCorrectLogoFileSize(true);
-    // validateFile(file)
   }, [logoFile]);
 
   const change = (e) => {
@@ -100,15 +95,12 @@ const OrganiserProfile = () => {
   const handleFileChange = (e) => {
     if (e.target.files) {
       setFile(e.target.files[0]);
-      alert(e.target.files[0].size);
       dispatch(
         editProfile({
           name: e.target.name,
           value: e.target.files[0],
         })
       );
-
-      // alert(JSON.stringify(state.logo))
     }
   };
   const handleLogoFileChange = (e) => {
@@ -120,16 +112,9 @@ const OrganiserProfile = () => {
           value: e.target.files[0],
         })
       );
-
-      // alert(JSON.stringify(state.logo))
     }
   };
   const navigateNext = (e) => {
-    // console.log({
-    //   name: state.name,
-    //   email: state.email,
-    //   backgroundPicture: state.backgroundPicture,
-    // });
     navigate("/socialProfile");
   };
   const navigateBack = () => {
@@ -148,18 +133,18 @@ const OrganiserProfile = () => {
 
             <EventHeader1>Set up your Event Organizer's Profile</EventHeader1>
             <InputSeg>
-              <InputText>Organizer's / Association's Name</InputText>
+              <InputText>Organizer's Name</InputText>
               <Input
                 type="text"
                 placeholder="Enter name"
-                name="name"
+                name="organizerName"
                 onChange={change}
-                value={state.name}
+                value={state.organizerName}
               />
             </InputSeg>
 
             <InputSeg>
-              <InputText>Organizer's / Association's Email address</InputText>
+              <InputText>Organizer's Email address</InputText>
               <Input
                 type="email"
                 placeholder="Enter Email address"
@@ -170,36 +155,36 @@ const OrganiserProfile = () => {
             </InputSeg>
 
             <InputSeg>
-              <InputText>Organizer's / Association's Phone Number</InputText>
+              <InputText>Organizer's Phone Number</InputText>
               <Input
                 type="number"
                 placeholder="Enter Phone number"
-                name="organiserNumber"
+                name="phoneNumber"
                 onChange={change}
-                value={state.organiserNumber}
+                value={state.phoneNumber}
               />
             </InputSeg>
 
             <InputSeg>
-              <InputText>Organizer's / Association's Office Address</InputText>
+              <InputText>Organizer's Office Address</InputText>
               <Input
                 type="text"
                 placeholder="Enter office address"
-                name="organiserAddress"
+                name="address"
                 onChange={change}
-                value={state.organiserAddress}
+                value={state.address}
               />
             </InputSeg>
 
             <InputSeg>
-              <InputText>Organizer's / Association's Details</InputText>
+              <InputText>Organizer's Details</InputText>
               <MyTextArea
                 type="textarea"
                 row="4"
-                name="organiserDetails"
+                name="organizerDetails"
                 placeholder="Give descriptions"
                 onChange={change}
-                value={state.organiserDetails}
+                value={state.organizerDetails}
               />
             </InputSeg>
 
@@ -215,7 +200,7 @@ const OrganiserProfile = () => {
                       hidden
                       id="logoFile"
                       accept="image/png, image/jpeg, image/jpg"
-                      name="logoFile"
+                      name="logoUrl"
                     />
                   </CustomWrapper>
                   <UploadBtn htmlFor="logoFile">Upload</UploadBtn>
@@ -256,7 +241,7 @@ const OrganiserProfile = () => {
                       hidden
                       id="file"
                       accept="image/png, image/jpeg, image/jpg"
-                      name="backgroundPicture"
+                      name="backgroundPictureUrl"
                     />
                   </CustomWrapper>
                   <UploadBtn htmlFor="file">Upload</UploadBtn>

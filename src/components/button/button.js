@@ -29,8 +29,8 @@ export const PrimaryButton = styled.button`
     font-size: 10px;
     line-height: 12px;
     padding: 0.2rem 0.5rem;
-    height: 35px;
-    width: auto;
+    /* height: 35px;
+    width: auto; */
     /* height: max-content; */
   }
 `;
@@ -39,7 +39,7 @@ export const ModalPrimaryButton = styled(PrimaryButton)`
   margin-left: 1.5rem;
 
   @media screen and (max-width: px) {
-    /*wi */
+
   }
 `;
 

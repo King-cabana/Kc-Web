@@ -25,13 +25,14 @@ import {
   InputText,
   SmallText,
 } from "../../event/createEvent/FirstCreateEventStyled";
-// import { DownButtonFull } from "../../event/createEvent/SecondCreateEventStyled";
 import { LongButton1 } from "../manageProfile/ManageProfileStyled";
 import { editProfile } from "../../redux/slices/profileSlice";
 
 const SocialProfile = () => {
   const [visibility, setVisibility] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const state = useSelector((state) => state.profile);
 
   const toggleOthers = () => {
     if (visibility === true) {
@@ -39,36 +40,34 @@ const SocialProfile = () => {
     }
   };
 
-  const dispatch = useDispatch();
-  const state = useSelector((state) => state.profile);
-
-  const [inputState, setInputState] = useState("");
-
   const change = (e) => {
-    // const value = e.target.value === "others" ? inputState : e.target.value;
     dispatch(editProfile({ name: e.target.name, value: e.target.value }));
   };
 
   const navigateNext = () => {
     console.log({
-      name: state.name,
+      organizerName: state.organizerName,
       email: state.email,
-      backgroundPicture: state.backgroundPicture,
+      phoneNumber: state.phoneNumber,
+      address: state.address,
+      organizerDetails: state.organizerDetails,
+      logoUrl: state.logoUrl,
+      backgroundPictureUrl: state.backgroundPictureUrl,
       website: state.website,
-      linkedin: state.linkedin,
+      linkedIn: state.linkedIn,
       instagram: state.instagram,
       twitter: state.twitter,
-      facebook: state.facebook,
-      others: state.others,
-      guarantorInformation: state.guarantorInformation,
-      company: state.company,
+      faceBook: state.faceBook,
+      otherHandle: state.otherHandle,
+      guarantorRole: state.guarantorRole,
+      secondaryContactFullName: state.secondaryContactFullName,
       jobRole: state.jobRole,
       officeAddress: state.officeAddress,
-      guarantorNumber: state.guarantorNumber,
-      guarantorEmail: state.guarantorEmail,
+      secondaryContactEmail: state.secondaryContactEmail,
+      secondaryContactPhoneNumber: state.secondaryContactPhoneNumber,
+      companyName: state.companyName,
     });
     navigate("/home");
-    // navigate("/manageProfile");
   };
   const navigateBack = () => {
     navigate("/organiserProfile");
@@ -103,8 +102,8 @@ const SocialProfile = () => {
               <Input
                 type="text"
                 placeholder="Enter URL"
-                name="linkedin"
-                value={state.linkedin}
+                name="linkedIn"
+                value={state.linkedIn}
                 onChange={change}
               />
             </InputSeg>
@@ -136,8 +135,8 @@ const SocialProfile = () => {
               <Input
                 type="text"
                 placeholder="Enter URL"
-                name="facebook"
-                value={state.facebook}
+                name="faceBook"
+                value={state.faceBook}
                 onChange={change}
               />
             </InputSeg>
@@ -147,8 +146,8 @@ const SocialProfile = () => {
               <Input
                 type="text"
                 placeholder="Enter URL"
-                name="others"
-                value={state.others}
+                name="otherHandle"
+                value={state.otherHandle}
                 onChange={change}
               />
             </InputSeg>
@@ -163,8 +162,8 @@ const SocialProfile = () => {
                 <input
                   type="radio"
                   id="patron"
-                  name="guarantorInformation"
-                  value={"patron"}
+                  name="guarantorRole"
+                  value={"Patron"}
                   onChange={change}
                   onClick={toggleOthers}
                 />
@@ -175,8 +174,8 @@ const SocialProfile = () => {
                 <input
                   type="radio"
                   id="staff"
-                  name="guarantorInformation"
-                  value={"staff-Adviser"}
+                  name="guarantorRole"
+                  value={"Staff Adviser"}
                   onChange={change}
                   onClick={toggleOthers}
                 />
@@ -187,8 +186,8 @@ const SocialProfile = () => {
                 <input
                   type="radio"
                   id="coordinators"
-                  name="guarantorInformation"
-                  value={"coordinators"}
+                  name="guarantorRole"
+                  value={"Coordinators"}
                   onChange={change}
                   onClick={toggleOthers}
                 />
@@ -200,36 +199,45 @@ const SocialProfile = () => {
                   onClick={() => setVisibility(!visibility)}
                   type="radio"
                   id="others"
-                  name="guarantorInformation"
+                  name="guarantorRole"
                   onChange={change}
-                  value={"others"}
+                  value={"Others"}
                 />
-                <label htmlFor="others">Others (please specify)</label>
+                <label htmlFor="others">Others (please specify role)</label>
               </CheckBoxInput>
               <InputBoxOther display={visibility ? "flex" : "none"}>
                 <Input
                   type="text"
                   placeholder="Enter others"
-                  name="guarantorInformation"
-                  value={state.guarantorInformation}
-                  // onChange={(e) => setInputState(e.target.value)}
+                  name="guarantorRole"
+                  value={state.guarantorRole}
                   onChange={change}
                 />
               </InputBoxOther>
             </InputSeg>
 
-            <InputText>
-              Full name of {""}
-              {state.guarantorInformation.charAt(0).toUpperCase() +
-                state.guarantorInformation.slice(1)}
-            </InputText>
+            <InputSeg>
+              <InputText>
+                Full name of {""}
+                {state.guarantorRole.charAt(0).toUpperCase() +
+                  state.guarantorRole.slice(1)}
+              </InputText>
+              <Input
+                type="text"
+                placeholder="Enter Full Name of Secondary Contact"
+                name="secondaryContactFullName"
+                value={state.secondaryContactFullName}
+                onChange={change}
+              />
+            </InputSeg>
+
             <InputSeg>
               <InputText>Company/Business Name</InputText>
               <Input
                 type="text"
                 placeholder="Enter Company/Business Name"
-                name="company"
-                value={state.company}
+                name="companyName"
+                value={state.companyName}
                 onChange={change}
               />
             </InputSeg>
@@ -261,19 +269,19 @@ const SocialProfile = () => {
               <Input
                 type="number"
                 placeholder="Enter Phone Number"
-                name="guarantorNumber"
-                value={state.guarantorNumber}
+                name="secondaryContactPhoneNumber"
+                value={state.secondaryContactPhoneNumber}
                 onChange={change}
               />
             </InputSeg>
 
-            <InputSeg>
+            <InputSeg style={{ marginBottom: "4rem" }}>
               <InputText>Email Address</InputText>
               <Input
                 type="email"
                 placeholder="Enter Email"
-                name="guarantorEmail"
-                value={state.guarantorEmail}
+                name="secondaryContactEmail"
+                value={state.secondaryContactEmail}
                 onChange={change}
               />
             </InputSeg>

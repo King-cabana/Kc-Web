@@ -1,36 +1,33 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  name: "",
+  organizerName: "",
   email: "",
-  logoFile: "",
-  organiserNumber: "",
-  organiserAddress: "",
-  organiserDetails: "",
-  backgroundPicture: "",
+  phoneNumber: "",
+  address: "",
+  organizerDetails: "",
+  logoUrl: "",
+  backgroundPictureUrl: "",
   website: "",
-  linkedin: "",
+  linkedIn: "",
   instagram: "",
   twitter: "",
-  facebook: "",
-  others: "",
-  guarantorInformation: "",
-  company: "",
+  faceBook: "",
+  otherHandle: "",
+  guarantorRole: "",
+  secondaryContactFullName: "",
   jobRole: "",
   officeAddress: "",
-  guarantorNumber: "",
-  guarantorEmail: "",
-  teamMemberFirstName: "",
-  teamMemberLastName: "",
-  teamMemberEmail: "",
-  teamMemberRole: "",
+  secondaryContactEmail: "",
+  secondaryContactPhoneNumber: "",
+  companyName: "",
 };
+
 export const profileSlice = createSlice({
   name: "profile",
   initialState,
   reducers: {
     editProfile: (state, { payload }) => {
-      // alert(payload.value.name)
       Object.assign(state, { [payload.name]: payload.value });
     },
   },

@@ -2,6 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import React, { Suspense, lazy } from "react";
 import "./App.css";
 
+
 // import Home from "./pages/landingPage/Home";
 import AboutUs from "./pages/aboutUs/AboutUs";
 import NoPage from "./pages/noPage/NoPage";
@@ -46,7 +47,17 @@ import LoadingScreen from "./LoadingScreen";
 const Home = lazy(() => import("./pages/landingPage/Home"));
 const Waitlist = lazy(() => import("./pages/waitlist/WaitlistForm"));
 
+
 function App() {
+
+  // const ProtectedRoute =({children})=>{
+  //  if(isLoggedIn === true){
+  //   <Test/>
+  //  }else{
+  //   <Route path="/" element={<Home />}></Route>
+  //  }
+  // }
+
   return (
     <Suspense fallback={<LoadingScreen />}>
       <>
