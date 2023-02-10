@@ -23,7 +23,7 @@ const SignUp = () => {
   const [visible, setVisibility] = useState(false);
 
   const [inputs, setInput] = useState({
-    fullname: "",
+    fullName: "",
     email: "",
     password: "",
     confirmPassword: "",
@@ -64,7 +64,7 @@ const SignUp = () => {
             <InputFieldWrapper>
               <input
                 placeholder="Enter your name"
-                name="fullname"
+                name="fullName"
                 onChange={inputChange}
               ></input>
             </InputFieldWrapper>

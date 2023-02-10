@@ -10,7 +10,6 @@ const persistConfig = {
   storage,
 };
 const reducer = combineReducers({
-  auth: authReducer,
   message: messageSlice,
   profile: profileSlice,
 });

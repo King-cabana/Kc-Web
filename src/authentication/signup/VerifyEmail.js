@@ -3,17 +3,17 @@ import OtpInput from "react-otp-input";
 import { LongButton, Form, AuthBackground } from "../../globalStyles";
 import { VerifyBody } from "./SignUpStyled";
 import Logo from "../../images/Logo.svg";
+import { verifyEmail } from "../../redux/service/authService";
 // import { apiFetch } from '../../../redux/authSlice';
 
 const VerifyEmail = () => {
   const [otp, setOtp] = useState("");
 
-  const handleChange = (value) => setOtp(value);
+  const handleSubmit = () => {
+    console.log(otp);
+    verifyEmail(otp);
+  }
 
-  const sendOtp = () => {};
-
-  // const dispatch = useDispatch();
-  // dispatch(apiFetch({ apiName: 'verify', body: { otp }, method: 'get', url: 'forgot-password/otp?otp' }))
 
   return (
     <AuthBackground>
@@ -31,8 +31,8 @@ const VerifyEmail = () => {
             input code
           </label>
           <OtpInput
+            onChange={setOtp}
             value={otp}
-            onChange={handleChange}
             numInputs={6}
             containerStyle={{
               display: "flex",
@@ -51,7 +51,7 @@ const VerifyEmail = () => {
             // isInputSecure
             separator={<span> </span>}
           />
-          <LongButton style={{ marginTop: "5%" }}>Verify</LongButton>
+          <LongButton style={{ marginTop: "5%" }} type="button" onClick={handleSubmit}>Verify</LongButton>
           <p
             style={{
               color: "#ff2957",
