@@ -1,24 +1,44 @@
 import React, { useState } from "react";
+import { HiOutlineEye, HiOutlineEyeOff } from "react-icons/hi";
+import { KBDisplayXs, KBTextXs } from "../../components/fonts/fontSize";
 import {
   AuthBackground,
   Div,
+  Form,
   Horizontal,
   InputFieldWrapper,
   LongButton,
   Or,
   SocialIconsHolder,
 } from "../../globalStyles";
-import { SignUpContent, LogInLink, SignUpBody } from "./SignUpStyled";
-import Logo from "../../images/Logo.svg";
-import { KBDisplayXs, KBTextXs } from "../../components/fonts/fontSize";
-import { Form } from "../../globalStyles";
-import { HiOutlineEyeOff, HiOutlineEye } from "react-icons/hi";
 import google from "../../images/Google.svg";
 import linkedin from "../../images/linkedin.svg";
+import Logo from "../../images/Logo.svg";
+import { register } from "../../redux/service/authService";
+import { LogInLink, SignUpBody, SignUpContent } from "./SignUpStyled";
+// import { register } from "../../redux/slices/authSlice";
 
 const SignUp = () => {
   const [click, setClick] = useState(false);
   const [visible, setVisibility] = useState(false);
+
+  const [inputs, setInput] = useState({
+    fullname: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
+
+  function inputChange(e) {
+    setInput({ ...inputs, [e.target.name]: e.target.value });
+  }
+
+  // const dispatch = useDispatch();
+  const handleSignUp = () => {
+    alert("handle signup");
+    console.log(inputs);
+    register(inputs);
+  };
 
   const handleClick = () => {
     setClick(!click);
@@ -28,10 +48,10 @@ const SignUp = () => {
   const InputType = visible ? "text" : "password";
 
   return (
-    <AuthBackground >
+    <AuthBackground>
       <SignUpBody>
         <SignUpContent>
-          <img style={{marginTop:'25%'}} src={Logo} alt="King Cabana Logo" />
+          <img style={{ marginTop: "25%" }} src={Logo} alt="King Cabana Logo" />
           <KBDisplayXs
             fontWeight="700"
             style={{ textAlign: "left", color: "#484848", marginTop: "2%" }}
@@ -42,12 +62,20 @@ const SignUp = () => {
           <Form>
             <label style={{ marginBottom: "2%" }}>Full Name</label>
             <InputFieldWrapper>
-              <input placeholder="Enter your name"></input>
+              <input
+                placeholder="Enter your name"
+                name="fullname"
+                onChange={inputChange}
+              ></input>
             </InputFieldWrapper>
 
             <label style={{ marginBottom: "2%" }}>E-mail</label>
             <InputFieldWrapper>
-              <input placeholder="Enter your E-mail"></input>
+              <input
+                placeholder="Enter your E-mail"
+                name="email"
+                onChange={inputChange}
+              ></input>
             </InputFieldWrapper>
 
             <label style={{ marginBottom: "2%" }}>Password</label>
@@ -55,7 +83,9 @@ const SignUp = () => {
               <input
                 placeholder="Create a password"
                 type={InputType}
-                required
+                // required
+                name="password"
+                onChange={inputChange}
               ></input>
               {click ? (
                 <HiOutlineEyeOff
@@ -85,7 +115,9 @@ const SignUp = () => {
               <input
                 placeholder="Re-enter password"
                 type={InputType}
-                required
+                // required
+                name="confirmPassword"
+                onChange={inputChange}
               ></input>
               {click ? (
                 <HiOutlineEyeOff
@@ -126,10 +158,16 @@ const SignUp = () => {
                 <span style={{ color: "#ff2957" }}>Privacy Policy</span>
               </KBTextXs>
             </div>
-            <LongButton style={{marginTop:'5%'}}>Sign up</LongButton>
+            <LongButton
+              style={{ marginTop: "5%" }}
+              type="button"
+              onClick={handleSignUp}
+            >
+              Sign up
+            </LongButton>
           </Form>
 
-          <Div style={{marginTop:'5%'}}>
+          <Div style={{ marginTop: "5%" }}>
             <Horizontal />
             <Or>Or Signup with</Or>
             <Horizontal />

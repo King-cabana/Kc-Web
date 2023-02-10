@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
+import { useDispatch, useSelector } from "react-redux";
 import {
   AuthBackground,
   Div,
@@ -16,10 +17,14 @@ import { Form } from "../../globalStyles";
 import { HiOutlineEyeOff, HiOutlineEye } from "react-icons/hi";
 import google from "../../images/Google.svg";
 import linkedin from "../../images/linkedin.svg";
+import { login } from "../../redux/service/authService";
+
 
 const SignIn = () => {
   const [click, setClick] = useState(false);
   const [visible, setVisibility] = useState(false);
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
 
   const handleClick = () => {
     setClick(!click);
@@ -33,6 +38,14 @@ const SignIn = () => {
   const navigateToReset = () => {
     navigate("/resetpassword");
   };
+
+
+    const handleLogin = () => {
+        alert("handle signin")
+        console.log(email, password)
+        login(email, password)
+          
+      }
 
 
   return (
@@ -51,7 +64,7 @@ const SignIn = () => {
 
             <label style={{ marginBottom: "2%" }}>E-mail</label>
             <InputFieldWrapper>
-              <input placeholder="Enter your E-mail"></input>
+              <input placeholder="Enter your E-mail" value={email} onChange={(e)=> setEmail(e.target.value)}></input>
             </InputFieldWrapper>
 
             <label style={{ marginBottom: "2%" }}>Password</label>
@@ -60,6 +73,8 @@ const SignIn = () => {
                 placeholder="Create a password"
                 type={InputType}
                 required
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
               ></input>
               {click ? (
                 <HiOutlineEyeOff
@@ -101,7 +116,7 @@ const SignIn = () => {
               </div> 
               <p style={{ cursor:'pointer', color: "#ff2957", fontSize:'12px'}} onClick={navigateToReset}>Forgot Password?</p>
             </div>
-            <LongButton style={{marginTop:'5%'}}>Log in</LongButton>
+            <LongButton style={{marginTop:'5%'}} type='button' onClick={handleLogin}>Log in</LongButton>
           </Form>
 
           <Div style={{marginTop:'5%'}}>
