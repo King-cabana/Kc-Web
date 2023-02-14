@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import {
@@ -17,6 +17,7 @@ import {
   InputSeg,
   SaveBox,
   TransparentButton,
+  Asterix,
 } from "../organiserProfile/OrganiserProfileStyled";
 import {
   CheckBoxInput,
@@ -27,9 +28,11 @@ import {
 } from "../../event/createEvent/FirstCreateEventStyled";
 import { LongButton1 } from "../manageProfile/ManageProfileStyled";
 import { editProfile } from "../../redux/slices/profileSlice";
+import axios from "axios";
 
 const SocialProfile = () => {
   const [visibility, setVisibility] = useState(false);
+  const [isDisabled, setIsDisabled] = useState(true);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const state = useSelector((state) => state.profile);
@@ -40,35 +43,60 @@ const SocialProfile = () => {
     }
   };
 
+  useEffect(() => {
+    if (
+      state.guarantorRole &&
+      state.secondaryContactFullName &&
+      state.jobRole &&
+      state.officeAddress &&
+      state.secondaryContactEmail &&
+      state.secondaryContactPhoneNumber &&
+      state.companyName
+    ) {
+      setIsDisabled(false);
+    }
+  }, [
+    state.guarantorRole,
+    state.secondaryContactFullName,
+    state.jobRole,
+    state.officeAddress,
+    state.secondaryContactEmail,
+    state.secondaryContactPhoneNumber,
+    state.companyName,
+  ]);
+
   const change = (e) => {
     dispatch(editProfile({ name: e.target.name, value: e.target.value }));
   };
 
-  const navigateNext = () => {
-    console.log({
-      organizerName: state.organizerName,
-      email: state.email,
-      phoneNumber: state.phoneNumber,
-      address: state.address,
-      organizerDetails: state.organizerDetails,
-      logoUrl: state.logoUrl,
-      backgroundPictureUrl: state.backgroundPictureUrl,
-      website: state.website,
-      linkedIn: state.linkedIn,
-      instagram: state.instagram,
-      twitter: state.twitter,
-      faceBook: state.faceBook,
-      otherHandle: state.otherHandle,
-      guarantorRole: state.guarantorRole,
-      secondaryContactFullName: state.secondaryContactFullName,
-      jobRole: state.jobRole,
-      officeAddress: state.officeAddress,
-      secondaryContactEmail: state.secondaryContactEmail,
-      secondaryContactPhoneNumber: state.secondaryContactPhoneNumber,
-      companyName: state.companyName,
-    });
-    navigate("/home");
+  const navigateNext = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post(
+        "http://localhost:8080/profiles/create/",
+        state,
+        {
+          headers: { "Content-Type": "application/json" },
+        }
+      );
+      localStorage.clear();
+      console.log(response);
+      console.log(state);
+      navigate("/home");
+      alert("Form Submitted Successfully");
+    } catch (error) {
+      console.log(error);
+      if (error.response.data === "Profile already exists") {
+        localStorage.clear();
+        alert("Profile already exists");
+        navigate("/createProfile");
+      } else {
+        alert("Error Submitting Form");
+        navigate("/organiserProfile");
+      }
+    }
   };
+
   const navigateBack = () => {
     navigate("/organiserProfile");
   };
@@ -153,7 +181,9 @@ const SocialProfile = () => {
             </InputSeg>
 
             <InputSeg>
-              <InputText>Guarantor's information</InputText>
+              <InputText>
+                Guarantor's information <Asterix>*</Asterix>
+              </InputText>
               <SmallText>
                 Select a role that befits a guarantor to this event community
               </SmallText>
@@ -187,11 +217,11 @@ const SocialProfile = () => {
                   type="radio"
                   id="coordinators"
                   name="guarantorRole"
-                  value={"Coordinators"}
+                  value={"Coordinator"}
                   onChange={change}
                   onClick={toggleOthers}
                 />
-                <label htmlFor="coordinators">Coordinators</label>
+                <label htmlFor="coordinators">Coordinator</label>
               </CheckBoxInput>
 
               <CheckBoxInput>
@@ -201,7 +231,7 @@ const SocialProfile = () => {
                   id="others"
                   name="guarantorRole"
                   onChange={change}
-                  value={"Others"}
+                  value={"Other"}
                 />
                 <label htmlFor="others">Others (please specify role)</label>
               </CheckBoxInput>
@@ -219,8 +249,11 @@ const SocialProfile = () => {
             <InputSeg>
               <InputText>
                 Full name of {""}
-                {state.guarantorRole.charAt(0).toUpperCase() +
-                  state.guarantorRole.slice(1)}
+                {state.guarantorRole
+                  ? state.guarantorRole.charAt(0).toUpperCase() +
+                    state.guarantorRole.slice(1)
+                  : "Secondary Contact"}{" "}
+                <Asterix>*</Asterix>
               </InputText>
               <Input
                 type="text"
@@ -232,7 +265,9 @@ const SocialProfile = () => {
             </InputSeg>
 
             <InputSeg>
-              <InputText>Company/Business Name</InputText>
+              <InputText>
+                Company/Business Name <Asterix>*</Asterix>
+              </InputText>
               <Input
                 type="text"
                 placeholder="Enter Company/Business Name"
@@ -243,7 +278,9 @@ const SocialProfile = () => {
             </InputSeg>
 
             <InputSeg>
-              <InputText>Job Role</InputText>
+              <InputText>
+                Job Role <Asterix>*</Asterix>
+              </InputText>
               <Input
                 type="text"
                 placeholder="Enter Job Role"
@@ -254,7 +291,9 @@ const SocialProfile = () => {
             </InputSeg>
 
             <InputSeg>
-              <InputText>Office Address</InputText>
+              <InputText>
+                Office Address <Asterix>*</Asterix>
+              </InputText>
               <Input
                 type="text"
                 placeholder="Enter Office Address"
@@ -265,7 +304,9 @@ const SocialProfile = () => {
             </InputSeg>
 
             <InputSeg>
-              <InputText>Phone Number</InputText>
+              <InputText>
+                Phone Number <Asterix>*</Asterix>
+              </InputText>
               <Input
                 type="number"
                 placeholder="Enter Phone Number"
@@ -276,7 +317,9 @@ const SocialProfile = () => {
             </InputSeg>
 
             <InputSeg style={{ marginBottom: "4rem" }}>
-              <InputText>Email Address</InputText>
+              <InputText>
+                Email Address <Asterix>*</Asterix>
+              </InputText>
               <Input
                 type="email"
                 placeholder="Enter Email"
@@ -291,7 +334,7 @@ const SocialProfile = () => {
         <SaveBox>
           <ButtonSave>
             <TransparentButton onClick={navigateBack}>Back</TransparentButton>
-            <LongButton1 onClick={navigateNext}>
+            <LongButton1 onClick={navigateNext} disabled={isDisabled}>
               Proceed to Dashboard
             </LongButton1>
           </ButtonSave>
