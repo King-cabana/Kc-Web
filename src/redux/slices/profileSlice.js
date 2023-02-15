@@ -5,6 +5,8 @@ const initialState = {
   email: "",
   phoneNumber: "",
   address: "",
+  state: "",
+  country: "",
   organizerDetails: "",
   logoUrl: "",
   backgroundPictureUrl: "",

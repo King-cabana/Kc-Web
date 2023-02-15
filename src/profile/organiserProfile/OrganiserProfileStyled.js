@@ -72,3 +72,14 @@ export const OrganiserSection = styled.div`
 export const Asterix = styled.span`
   color: #ff2957;
 `;
+
+export const Wrapper = styled.section`
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+    gap: 0;
+  }
+`;

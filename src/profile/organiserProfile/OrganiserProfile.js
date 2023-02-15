@@ -30,6 +30,7 @@ import {
   ButtonSave,
   TransparentButton,
   Asterix,
+  Wrapper,
 } from "./OrganiserProfileStyled";
 
 const OrganiserProfile = () => {
@@ -159,6 +160,8 @@ const OrganiserProfile = () => {
       state.email &&
       state.phoneNumber &&
       state.address &&
+      state.state &&
+      state.country &&
       state.organizerDetails
     ) {
       setIsDisabled(false);
@@ -171,6 +174,8 @@ const OrganiserProfile = () => {
     state.email,
     state.phoneNumber,
     state.address,
+    state.state,
+    state.country,
     state.organizerDetails,
   ]);
 
@@ -241,12 +246,40 @@ const OrganiserProfile = () => {
               </InputText>
               <Input
                 type="text"
-                placeholder="Enter office address"
+                placeholder="E.g: 19, Isaac Mike Street, Thomas Avenue"
                 name="address"
                 onChange={change}
                 value={state.address}
               />
             </InputSeg>
+
+            <Wrapper>
+              <InputSeg>
+                <InputText>
+                  State <Asterix>*</Asterix>
+                </InputText>
+                <Input
+                  type="text"
+                  placeholder="E.g: Kaduna State"
+                  name="state"
+                  onChange={change}
+                  value={state.state}
+                />
+              </InputSeg>
+
+              <InputSeg>
+                <InputText>
+                  Country <Asterix>*</Asterix>
+                </InputText>
+                <Input
+                  type="text"
+                  placeholder="E.g: Nigeria"
+                  name="country"
+                  onChange={change}
+                  value={state.country}
+                />
+              </InputSeg>
+            </Wrapper>
 
             <InputSeg>
               <InputText>

@@ -3,11 +3,18 @@ import {
   OverallContainer,
   PopUpOverlay,
   PopUpComponent,
+  HeaderContainer,
   WelcomeContainer,
   WelcomeText,
   WelcomeCenter,
   ButtonLink,
   ButtonsContainer,
+  Wrap,
+  BioSection,
+  Bio,
+  Name,
+  Location,
+  Description,
   JointContainer,
   CustomAlt,
   PrimaryButton,
@@ -26,9 +33,17 @@ import {
   ChecklistSubHeading,
   ItemsContainer,
   Wrapper,
+  BackgroundPicture,
+  LogoPicture,
+  ImagesContainer,
+  EditPen,
 } from "./EventHomeStyled";
 import click from "../../images/click.png";
+import backgroundPicture from "../../images/dashboardBackgroundPicture.png";
+import logo from "../../images/dashboardLogo.png";
 import "../../modal.css";
+import { TbEdit } from "react-icons/tb";
+import { FaBars } from "react-icons/fa";
 
 const EventHome = () => {
   const [modal, setModal] = useState(true);
@@ -50,45 +65,77 @@ const EventHome = () => {
       {modal && <PopUpOverlay onClick={toggleModal}></PopUpOverlay>}
       {/* <Event /> */}
       <OverallContainer>
+        <HeaderContainer>
+          <WelcomeCenter>
+            {/* <FaBars/> */}
+            <WelcomeText>Drummer's Club</WelcomeText>
+          </WelcomeCenter>
+
+          <ImagesContainer>
+            <BackgroundPicture
+              src={backgroundPicture}
+              alt="Background Picture"
+            />
+            <LogoPicture src={logo} alt="Logo Picture" />
+            {/* <WelcomeText fontWeight="400">Hello Peter, Welcome!</WelcomeText> */}
+          </ImagesContainer>
+        </HeaderContainer>
+
         <WelcomeContainer>
-          <WelcomeCenter>
-            <WelcomeText>Dashboard</WelcomeText>
-          </WelcomeCenter>
-          <WelcomeCenter>
-            <WelcomeText fontWeight="400">Hello Peter, Welcome!</WelcomeText>
-          </WelcomeCenter>
+          <EditPen>
+            <TbEdit size="1.5rem" />
+          </EditPen>
+          <BioSection>
+            <Bio>
+              <Name>Drummer's Club</Name>
+              <Location>Lagos, Nigeria.</Location>
+              <Description>
+                Lorem ipsum dolor sit amet consectetur. Eget aliquam at leo diam
+                tortor. Lorem et commodo hendrerit tellus odio vulputate. Felis
+                malesuada vivamus gravida habitant. Viverra vulputate posuere
+                urna leo.
+              </Description>
+            </Bio>
 
-          <ButtonsContainer>
-            <JointContainer>
-              <ButtonLink to="/event/create">
-                <CustomAlt
-                  style={{
-                    color: "#FF2957",
-                    fontWeight: "600",
-                  }}
-                >
-                  Add event history
-                </CustomAlt>
-              </ButtonLink>
-
-              <div className={`${showModal}`}>
-                <PopUpComponent>
-                  <img src={click} alt="" onClick={toggleModal} />
-                  <p>Add your previously held event to event history</p>
-                  <PrimaryButton
-                    onClick={toggleModal}
-                    style={{ width: "93px", height: "30px", fontSize: "10px" }}
+            <ButtonsContainer>
+              <Wrap>
+                <ButtonLink to="/firstCreateEvent">
+                  <PrimaryButton>Create event</PrimaryButton>
+                </ButtonLink>
+              </Wrap>
+              {/* <Wrap> */}
+              <JointContainer>
+                <ButtonLink to="/event/create">
+                  <CustomAlt
+                    style={{
+                      color: "#FF2957",
+                      fontWeight: "600",
+                    }}
                   >
-                    Okay, got it
-                  </PrimaryButton>
-                </PopUpComponent>
-              </div>
-            </JointContainer>
+                    Add event history
+                  </CustomAlt>
+                </ButtonLink>
 
-            <ButtonLink to="/firstCreateEvent">
-              <PrimaryButton>Create event</PrimaryButton>
-            </ButtonLink>
-          </ButtonsContainer>
+                <div className={`${showModal}`}>
+                  <PopUpComponent>
+                    <img src={click} alt="" onClick={toggleModal} />
+                    <p>Add your previously held event to event history</p>
+                    <PrimaryButton
+                      onClick={toggleModal}
+                      style={{
+                        width: "93px",
+                        height: "30px",
+                        fontSize: "10px",
+                      }}
+                    >
+                      Okay, got it
+                    </PrimaryButton>
+                  </PopUpComponent>
+                </div>
+              </JointContainer>
+              {/* </Wrap> */}
+            </ButtonsContainer>
+          </BioSection>
 
           <EventReportContainer>
             <InnerWrapper>

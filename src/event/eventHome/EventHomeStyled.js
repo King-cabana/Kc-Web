@@ -11,9 +11,10 @@ export const OverallContainer = styled.section`
   /* width: 100%; */
   height: 100%;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 0 5%;
+  padding: 0 2%;
   /* margin-top: 8vh; */
 `;
 
@@ -31,7 +32,6 @@ export const PopUpOverlay = styled.div`
 
 export const PopUpComponent = styled.div`
   position: absolute;
-  margin-left: -0.5rem;
   margin-top: 0.1rem;
   background-color: #fff;
   width: 200px;
@@ -73,24 +73,34 @@ export const PopUpComponent = styled.div`
 `;
 
 export const WelcomeContainer = styled.div`
-  padding: 2rem;
+  padding: 2rem 4rem;
   background-color: #fff;
   width: 100%;
   height: 100%;
 
-  @media screen and (max-width: 960px) {
-    padding: 1rem 0;
+  @media screen and (max-width: 769px) {
+    padding: 1rem 0.5rem;
   }
 `;
 
+export const HeaderContainer = styled(WelcomeContainer)`
+  padding: 0;
+`;
+
 export const WelcomeCenter = styled.div`
-  display: flex;
-  flex-direction: column;
   width: 100%;
+  display: flex;
+
+  @media screen and (max-width: 769px) {
+    justify-content: flex-end;
+    align-items: center;
+  }
 `;
 
 export const WelcomeText = styled.p`
   /* font-weight: 700; */
+  margin-top: 1rem;
+  margin-bottom: 1rem;
   font-weight: ${(props) => (props.fontWeight ? props.fontWeight : "700")};
   font-size: 20px;
   line-height: 32px;
@@ -99,6 +109,8 @@ export const WelcomeText = styled.p`
   @media screen and (max-width: 769px) {
     font-size: 16px;
     line-height: 24px;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
   }
 `;
 
@@ -108,11 +120,80 @@ export const ButtonsContainer = styled.div`
   width: 100%;
   margin-top: 0.5rem;
   display: flex;
+  flex-direction: column;
   background-color: #fff;
   justify-content: flex-end;
+  align-items: flex-end;
 
   @media screen and (max-width: 960px) {
     width: 100%;
+    flex-direction: row;
+    margin-top: 0;
+  }
+`;
+
+export const Wrap = styled.section`
+  @media screen and (max-width: 960px) {
+    order: 2;
+  }
+`;
+
+export const BioSection = styled.div`
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: space-between;
+
+  @media screen and (max-width: 960px) {
+    flex-direction: column;
+    margin-bottom: 0;
+  }
+`;
+
+export const Bio = styled.section`
+  color: #484848;
+`;
+export const Name = styled.h2`
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 28px;
+
+  @media screen and (max-width: 960px) {
+    margin-bottom: 0;
+    font-size: 16px;
+    line-height: 20px;
+  }
+`;
+
+export const Text = styled.p`
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  /* display: flex; */
+  color: #484848;
+
+  @media screen and (max-width: 960px) {
+    font-size: 14px;
+    width: 100%;
+    /* margin-right: 4rem; */
+  }
+`;
+
+export const Location = styled(Text)`
+  font-style: italic;
+
+  @media screen and (max-width: 960px) {
+    font-size: 12px;
+    line-height: 16px;
+  }
+`;
+export const Description = styled(Location)`
+  margin-top: 0.5rem;
+  font-size: 15px;
+  font-style: normal;
+  @media screen and (max-width: 960px) {
+    font-size: 12px;
+    margin-top: 0.2rem;
   }
 `;
 
@@ -120,24 +201,28 @@ export const JointContainer = styled.div`
   z-index: 99;
   position: relative;
 
-  @media screen and (max-width: 769px) {
+  @media screen and (max-width: 960px) {
     width: 120px;
   }
 `;
 
+export const EditPen = styled.div`
+  display: flex;
+  justify-content: flex-end;
+`;
+
 export const AlternativeButton2 = styled.button`
-  width: 150px;
-  height: 50px;
+  width: 140px;
+  height: 45px;
   border-radius: 8px;
   background-color: transparent;
-  margin-right: 1rem;
   color: ${(props) => (props.color ? props.color : "white")};
   border: 1.5px solid #ff2957;
   cursor: pointer;
   font-weight: ${(props) => props.fontWeight};
   font-size: 14px;
 
-  @media screen and (max-width: 769px) {
+  @media screen and (max-width: 960px) {
     font-size: 10px;
     width: 90px;
     height: 30px;
@@ -155,14 +240,15 @@ export const AlternativeButton2 = styled.button`
 `;
 
 export const CustomAlt = styled(AlternativeButton2)`
-  @media screen and (max-width: 769px) {
+  margin-top: 1rem;
+  @media screen and (max-width: 960px) {
     width: 100px;
   }
 `;
 
 export const PrimaryButton = styled.button`
-  width: 150px;
-  height: 50px;
+  width: 140px;
+  height: 45px;
   border-radius: 8px;
   background-color: #ff2957;
   color: white;
@@ -172,7 +258,7 @@ export const PrimaryButton = styled.button`
   font-weight: 600;
   font-size: 14px;
 
-  @media screen and (max-width: 769px) {
+  @media screen and (max-width: 960px) {
     font-size: 10px;
     width: 90px;
     height: 30px;
@@ -227,8 +313,6 @@ export const EventReportContainer = styled.div`
   @media screen and (max-width: 960px) {
     display: flex;
     overflow-x: scroll;
-    /* } */
-    /* @media screen and (max-width: 577px) { */
     padding: 0.1rem;
     border-radius: 5px;
     gap: 20px;
@@ -263,7 +347,7 @@ export const InnerContainer = styled.div`
   border-image: linear-gradient(to right, red, rgba(0, 0, 0, 0)) 1;
 
   @media screen and (max-width: 960px) {
-    width: 300px;
+    width: 250px;
     height: 150px;
     margin-bottom: 2rem;
   }
@@ -274,32 +358,11 @@ export const Row1 = styled.section`
   justify-content: space-between;
 `;
 
-export const Text = styled.p`
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 20px;
-  /* display: flex; */
-  color: #484848;
-
-  @media screen and (max-width: 960px) {
-    font-size: 14px;
-    width: 100%;
-    /* margin-right: 4rem; */
-  }
-`;
-
 export const Counter = styled.p`
   font-weight: 700;
   font-size: 20px;
   line-height: 30px;
 `;
-
-// export const Total = styled.label`
-//   font-weight: 400;
-//   font-size: 12px;
-//   line-height: 18px;
-//   color: #ff2957;
-// `;
 
 export const Select = styled.select`
   border: none;
@@ -396,5 +459,60 @@ export const Wrapper = styled.div`
 
   @media screen and (max-width: 577px) {
     width: 100%;
+  }
+`;
+
+export const ImagesContainer = styled.section`
+  width: 100%;
+  position: relative;
+  top: 0;
+  left: 0;
+`;
+
+export const BackgroundPicture = styled.img`
+  position: relative;
+  top: 0;
+  left: 0;
+  border-radius: 10px;
+  width: 100%;
+  height: 238px;
+
+  @media screen and (max-width: 960px) {
+    height: 200px;
+  }
+  @media screen and (max-width: 769px) {
+    height: 150px;
+  }
+  @media screen and (max-width: 577px) {
+    height: 100px;
+  }
+`;
+
+export const LogoPicture = styled.img`
+  border: 7px solid #fff;
+  width: 152px;
+  height: 152px;
+  border-radius: 50px;
+  position: absolute;
+  top: 150px;
+  left: 60px;
+
+  @media screen and (max-width: 960px) {
+    top: 120px;
+    height: 140px;
+    width: 140px;
+  }
+  @media screen and (max-width: 769px) {
+    border-radius: 30px;
+    top: 90px;
+    left: 20px;
+    height: 110px;
+    width: 110px;
+  }
+  @media screen and (max-width: 577px) {
+    height: 80px;
+    width: 80px;
+    top: 60px;
+    left: 15px;
   }
 `;
