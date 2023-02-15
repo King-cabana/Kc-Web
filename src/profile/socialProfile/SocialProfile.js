@@ -27,7 +27,7 @@ import {
   SmallText,
 } from "../../event/createEvent/FirstCreateEventStyled";
 import { LongButton1 } from "../manageProfile/ManageProfileStyled";
-import { editProfile } from "../../redux/slices/profileSlice";
+import { clearProfile, editProfile } from "../../redux/slices/profileSlice";
 import axios from "axios";
 
 const SocialProfile = () => {
@@ -79,7 +79,6 @@ const SocialProfile = () => {
           headers: { "Content-Type": "application/json" },
         }
       );
-      localStorage.clear();
       console.log(response);
       console.log(state);
       navigate("/home");
@@ -87,13 +86,14 @@ const SocialProfile = () => {
     } catch (error) {
       console.log(error);
       if (error.response.data === "Profile already exists") {
-        localStorage.clear();
-        alert("Profile already exists");
         navigate("/createProfile");
+        alert("Profile already exists");
       } else {
         alert("Error Submitting Form");
         navigate("/organiserProfile");
       }
+    } finally {
+      dispatch(clearProfile());
     }
   };
 

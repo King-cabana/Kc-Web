@@ -25,6 +25,7 @@ import {
 const CreateProfile = () => {
   const navigate = useNavigate();
   const [arrow, setArrow] = useState("");
+
   return (
     <ProfileContainer>
       <ShapedBackground />

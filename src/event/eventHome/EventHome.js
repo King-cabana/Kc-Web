@@ -103,7 +103,6 @@ const EventHome = () => {
                   <PrimaryButton>Create event</PrimaryButton>
                 </ButtonLink>
               </Wrap>
-              {/* <Wrap> */}
               <JointContainer>
                 <ButtonLink to="/event/create">
                   <CustomAlt
@@ -133,7 +132,6 @@ const EventHome = () => {
                   </PopUpComponent>
                 </div>
               </JointContainer>
-              {/* </Wrap> */}
             </ButtonsContainer>
           </BioSection>
 

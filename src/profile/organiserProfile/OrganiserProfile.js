@@ -91,6 +91,8 @@ const OrganiserProfile = () => {
     }
   };
 
+  useEffect(() => {}, []);
+
   useEffect(() => {
     if (!file) {
       setErrorMsg("*Please choose an image*");
@@ -220,7 +222,7 @@ const OrganiserProfile = () => {
               </InputText>
               <Input
                 type="email"
-                placeholder="Enter Email address"
+                placeholder="E.g: email@example.com"
                 name="email"
                 onChange={change}
                 value={state.email}
@@ -233,7 +235,7 @@ const OrganiserProfile = () => {
               </InputText>
               <Input
                 type="number"
-                placeholder="Enter Phone number"
+                placeholder="E.g: +2348022345661"
                 name="phoneNumber"
                 onChange={change}
                 value={state.phoneNumber}
@@ -283,13 +285,18 @@ const OrganiserProfile = () => {
 
             <InputSeg>
               <InputText>
-                Organizer's Details <Asterix>*</Asterix>
+                Organizer's Details{" "}
+                <Asterix>
+                  *{" - "}
+                  {state.organizerDetails.length}/250 Characters
+                </Asterix>
               </InputText>
               <MyTextArea
                 type="textarea"
                 row="4"
                 name="organizerDetails"
                 placeholder="Give descriptions"
+                maxLength={250}
                 onChange={change}
                 value={state.organizerDetails}
               />

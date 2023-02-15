@@ -32,9 +32,14 @@ export const profileSlice = createSlice({
     editProfile: (state, { payload }) => {
       Object.assign(state, { [payload.name]: payload.value });
     },
+    clearProfile: (state) => {
+      Object.keys(state).forEach((each) =>
+        Object.assign(state, { [each]: "" })
+      );
+    },
   },
 });
 
-export const { editProfile } = profileSlice.actions;
+export const { editProfile, clearProfile } = profileSlice.actions;
 
 export default profileSlice.reducer;

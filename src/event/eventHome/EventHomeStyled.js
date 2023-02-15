@@ -3,19 +3,12 @@ import { Link } from "react-router-dom";
 
 export const OverallContainer = styled.section`
   width: 100%;
-  /* background-color: #fef5f7; */
-  /* height:'90vh',  */
-  /* margin-left: 5%; */
-  /* margin-top: -44%; */
-  /* position: absolute; */
-  /* width: 100%; */
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 0 2%;
-  /* margin-top: 8vh; */
 `;
 
 export const PopUpOverlay = styled.div`
@@ -98,7 +91,6 @@ export const WelcomeCenter = styled.div`
 `;
 
 export const WelcomeText = styled.p`
-  /* font-weight: 700; */
   margin-top: 1rem;
   margin-bottom: 1rem;
   font-weight: ${(props) => (props.fontWeight ? props.fontWeight : "700")};
@@ -169,13 +161,11 @@ export const Text = styled.p`
   font-weight: 400;
   font-size: 14px;
   line-height: 20px;
-  /* display: flex; */
   color: #484848;
 
   @media screen and (max-width: 960px) {
     font-size: 14px;
     width: 100%;
-    /* margin-right: 4rem; */
   }
 `;
 

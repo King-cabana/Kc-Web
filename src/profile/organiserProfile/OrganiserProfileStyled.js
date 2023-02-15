@@ -71,6 +71,7 @@ export const OrganiserSection = styled.div`
 
 export const Asterix = styled.span`
   color: #ff2957;
+  font-size: 16px;
 `;
 
 export const Wrapper = styled.section`
