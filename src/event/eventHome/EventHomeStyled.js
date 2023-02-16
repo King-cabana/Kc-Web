@@ -84,9 +84,17 @@ export const WelcomeCenter = styled.div`
   width: 100%;
   display: flex;
 
-  @media screen and (max-width: 769px) {
-    justify-content: flex-end;
+  @media screen and (max-width: 960px) {
+    justify-content: space-between;
     align-items: center;
+  }
+`;
+
+export const HamburgerWrapper = styled.section`
+  display: none;
+
+  @media screen and (max-width: 960px) {
+    display: block;
   }
 `;
 

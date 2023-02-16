@@ -49,7 +49,6 @@ const SocialProfile = () => {
       state.secondaryContactFullName &&
       state.jobRole &&
       state.officeAddress &&
-      state.secondaryContactEmail &&
       state.secondaryContactPhoneNumber &&
       state.companyName
     ) {
@@ -60,7 +59,6 @@ const SocialProfile = () => {
     state.secondaryContactFullName,
     state.jobRole,
     state.officeAddress,
-    state.secondaryContactEmail,
     state.secondaryContactPhoneNumber,
     state.companyName,
   ]);
@@ -117,8 +115,8 @@ const SocialProfile = () => {
             <InputSeg>
               <InputText>Website</InputText>
               <Input
-                type="text"
-                placeholder="Enter URL"
+                type="url"
+                placeholder="https://example.com/"
                 name="website"
                 value={state.website}
                 onChange={change}
@@ -128,8 +126,8 @@ const SocialProfile = () => {
             <InputSeg>
               <InputText>Linkedin</InputText>
               <Input
-                type="text"
-                placeholder="Enter URL"
+                type="url"
+                placeholder="https://linkedin.com/*****"
                 name="linkedIn"
                 value={state.linkedIn}
                 onChange={change}
@@ -139,8 +137,8 @@ const SocialProfile = () => {
             <InputSeg>
               <InputText>Instagram</InputText>
               <Input
-                type="text"
-                placeholder="Enter URL"
+                type="url"
+                placeholder="https://instagram.com/*****"
                 name="instagram"
                 value={state.instagram}
                 onChange={change}
@@ -150,8 +148,8 @@ const SocialProfile = () => {
             <InputSeg>
               <InputText>Twitter</InputText>
               <Input
-                type="text"
-                placeholder="Enter URL"
+                type="url"
+                placeholder="https://twitter.com/*****"
                 name="twitter"
                 value={state.twitter}
                 onChange={change}
@@ -161,8 +159,8 @@ const SocialProfile = () => {
             <InputSeg>
               <InputText>Facebook</InputText>
               <Input
-                type="text"
-                placeholder="Enter URL"
+                type="url"
+                placeholder="https://facebook.com/*****"
                 name="faceBook"
                 value={state.faceBook}
                 onChange={change}
@@ -172,8 +170,8 @@ const SocialProfile = () => {
             <InputSeg>
               <InputText>Others</InputText>
               <Input
-                type="text"
-                placeholder="Enter URL"
+                type="url"
+                placeholder="https://others.com/"
                 name="otherHandle"
                 value={state.otherHandle}
                 onChange={change}
@@ -261,6 +259,7 @@ const SocialProfile = () => {
                 name="secondaryContactFullName"
                 value={state.secondaryContactFullName}
                 onChange={change}
+                required
               />
             </InputSeg>
 
@@ -274,6 +273,7 @@ const SocialProfile = () => {
                 name="companyName"
                 value={state.companyName}
                 onChange={change}
+                required
               />
             </InputSeg>
 
@@ -287,6 +287,7 @@ const SocialProfile = () => {
                 name="jobRole"
                 value={state.jobRole}
                 onChange={change}
+                required
               />
             </InputSeg>
 
@@ -300,6 +301,7 @@ const SocialProfile = () => {
                 name="officeAddress"
                 value={state.officeAddress}
                 onChange={change}
+                required
               />
             </InputSeg>
 
@@ -308,21 +310,23 @@ const SocialProfile = () => {
                 Phone Number <Asterix>*</Asterix>
               </InputText>
               <Input
-                type="number"
-                placeholder="Enter Phone Number"
+                type="tel"
+                placeholder="E.g: +2348022345661"
                 name="secondaryContactPhoneNumber"
                 value={state.secondaryContactPhoneNumber}
                 onChange={change}
+                required
+                minLength={5}
               />
             </InputSeg>
 
             <InputSeg style={{ marginBottom: "4rem" }}>
-              <InputText>
-                Email Address <Asterix>*</Asterix>
-              </InputText>
+              <InputText>Email Address</InputText>
               <Input
                 type="email"
-                placeholder="Enter Email"
+                title="Email format: xxx@xxxx.xxx)"
+                pattern="^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$"
+                placeholder="E.g: email@example.com"
                 name="secondaryContactEmail"
                 value={state.secondaryContactEmail}
                 onChange={change}

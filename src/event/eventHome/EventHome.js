@@ -4,6 +4,7 @@ import {
   PopUpOverlay,
   PopUpComponent,
   HeaderContainer,
+  HamburgerWrapper,
   WelcomeContainer,
   WelcomeText,
   WelcomeCenter,
@@ -67,7 +68,9 @@ const EventHome = () => {
       <OverallContainer>
         <HeaderContainer>
           <WelcomeCenter>
-            {/* <FaBars/> */}
+            <HamburgerWrapper>
+              <FaBars />
+            </HamburgerWrapper>
             <WelcomeText>Drummer's Club</WelcomeText>
           </WelcomeCenter>
 

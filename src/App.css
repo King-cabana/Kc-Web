@@ -63,7 +63,6 @@
 }
 
 /* details & summary styling */
-
 details[open] summary ~ * {
   animation: sweep 0.2s ease-in-out;
 }

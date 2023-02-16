@@ -226,6 +226,9 @@ const OrganiserProfile = () => {
                 name="email"
                 onChange={change}
                 value={state.email}
+                title="Email format: xxx@xxxx.xxx)"
+                pattern="^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$"
+                required
               />
             </InputSeg>
 
@@ -234,11 +237,13 @@ const OrganiserProfile = () => {
                 Organizer's Phone Number <Asterix>*</Asterix>
               </InputText>
               <Input
-                type="number"
+                type="tel"
                 placeholder="E.g: +2348022345661"
                 name="phoneNumber"
                 onChange={change}
                 value={state.phoneNumber}
+                required
+                minLength={5}
               />
             </InputSeg>
 
@@ -252,6 +257,7 @@ const OrganiserProfile = () => {
                 name="address"
                 onChange={change}
                 value={state.address}
+                required
               />
             </InputSeg>
 
@@ -266,6 +272,7 @@ const OrganiserProfile = () => {
                   name="state"
                   onChange={change}
                   value={state.state}
+                  required
                 />
               </InputSeg>
 
@@ -279,6 +286,7 @@ const OrganiserProfile = () => {
                   name="country"
                   onChange={change}
                   value={state.country}
+                  required
                 />
               </InputSeg>
             </Wrapper>
@@ -295,10 +303,11 @@ const OrganiserProfile = () => {
                 type="textarea"
                 row="4"
                 name="organizerDetails"
-                placeholder="Give descriptions"
+                placeholder="Write a short bio: 250 characters maximum"
                 maxLength={250}
                 onChange={change}
                 value={state.organizerDetails}
+                required
               />
             </InputSeg>
 
@@ -317,6 +326,7 @@ const OrganiserProfile = () => {
                       id="logoFile"
                       accept="image/png, image/jpeg, image/jpg"
                       name="logoUrl"
+                      required
                     />
                   </CustomWrapper>
                   <UploadBtn htmlFor="logoFile">Upload</UploadBtn>
