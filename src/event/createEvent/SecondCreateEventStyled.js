@@ -285,15 +285,17 @@ export const DownButtonOutline = styled.button`
 export const DownButtonFull = styled.button`
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   padding: 10px 8px;
-  gap: 10px;
+  font-size: 18px;
   width: 191px;
   height: 50px;
   background: #ff2957;
   border-radius: 6px;
   border: 1px solid #ff2957;
   color: white;
+  cursor: pointer;
 
   &:disabled {
     background-color: rgba(255, 41, 87, 0.3);

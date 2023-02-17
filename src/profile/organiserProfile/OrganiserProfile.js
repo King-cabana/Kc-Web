@@ -32,6 +32,7 @@ import {
   Asterix,
   Wrapper,
 } from "./OrganiserProfileStyled";
+import { ImSpinner6 } from "react-icons/im";
 
 const OrganiserProfile = () => {
   const [file, setFile] = useState("");
@@ -44,6 +45,7 @@ const OrganiserProfile = () => {
   const [logoErrorMsg, setLogoErrorMsg] = useState(false);
   const [logoLoading, setLogoLoading] = useState(false);
   const [isDisabled, setIsDisabled] = useState(true);
+  const [sending, setSending] = useState(false);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -185,6 +187,8 @@ const OrganiserProfile = () => {
     dispatch(editProfile({ name: e.target.name, value: e.target.value }));
   };
   const navigateNext = () => {
+    setSending(true);
+    setIsDisabled(true);
     navigate("/socialProfile");
   };
   const navigateBack = () => {
@@ -442,7 +446,7 @@ const OrganiserProfile = () => {
           <ButtonSave>
             <TransparentButton onClick={navigateBack}>Back</TransparentButton>
             <DownButtonFull onClick={navigateNext} disabled={isDisabled}>
-              Next
+              {sending ? <ImSpinner6 size={"1.5em"} /> : "Next"}
             </DownButtonFull>
           </ButtonSave>
         </SaveBox>

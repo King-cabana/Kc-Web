@@ -29,10 +29,12 @@ import {
 import { LongButton1 } from "../manageProfile/ManageProfileStyled";
 import { clearProfile, editProfile } from "../../redux/slices/profileSlice";
 import axios from "axios";
+import { ImSpinner6 } from "react-icons/im";
 
 const SocialProfile = () => {
   const [visibility, setVisibility] = useState(false);
   const [isDisabled, setIsDisabled] = useState(true);
+  const [sending, setSending] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const state = useSelector((state) => state.profile);
@@ -69,6 +71,8 @@ const SocialProfile = () => {
 
   const navigateNext = async (e) => {
     e.preventDefault();
+    setSending(true);
+    setIsDisabled(true);
     try {
       const response = await axios.post(
         "http://localhost:8080/profiles/create/",
@@ -339,7 +343,11 @@ const SocialProfile = () => {
           <ButtonSave>
             <TransparentButton onClick={navigateBack}>Back</TransparentButton>
             <LongButton1 onClick={navigateNext} disabled={isDisabled}>
-              Proceed to Dashboard
+              {sending ? (
+                <ImSpinner6 size={"1.5rem"} />
+              ) : (
+                "Proceed to Dashboard"
+              )}
             </LongButton1>
           </ButtonSave>
         </SaveBox>
