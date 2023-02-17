@@ -45,9 +45,15 @@ import logo from "../../images/dashboardLogo.png";
 import "../../modal.css";
 import { TbEdit } from "react-icons/tb";
 import { FaBars } from "react-icons/fa";
+import { useNavigate } from "react-router";
 
 const EventHome = () => {
   const [modal, setModal] = useState(true);
+  const navigate = useNavigate();
+
+  const navitgateToEditOrganiserProfile = () => {
+    navigate("/organiserProfile/home/edit");
+  };
 
   const toggleModal = () => {
     setModal(!modal);
@@ -86,7 +92,11 @@ const EventHome = () => {
 
         <WelcomeContainer>
           <EditPen>
-            <TbEdit size="1.5rem" />
+            <TbEdit
+              size="1.5rem"
+              onClick={navitgateToEditOrganiserProfile}
+              style={{ cursor: "pointer" }}
+            />
           </EditPen>
           <BioSection>
             <Bio>

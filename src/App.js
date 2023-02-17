@@ -2,7 +2,6 @@ import { Routes, Route } from "react-router-dom";
 import React, { Suspense, lazy } from "react";
 import "./App.css";
 
-
 // import Home from "./pages/landingPage/Home";
 import AboutUs from "./pages/aboutUs/AboutUs";
 import NoPage from "./pages/noPage/NoPage";
@@ -43,13 +42,12 @@ import OrganiserProfile from "./profile/organiserProfile/OrganiserProfile";
 import SocialProfile from "./profile/socialProfile/SocialProfile";
 import ResetPasswordSuccess from "./authentication/signIn/ResetPasswordSuccess";
 import LoadingScreen from "./LoadingScreen";
+import EditOrganiserProfile from "./profile/EditOrganiserProfile/EditOrganiserProfile";
 
 const Home = lazy(() => import("./pages/landingPage/Home"));
 const Waitlist = lazy(() => import("./pages/waitlist/WaitlistForm"));
 
-
 function App() {
-
   // const ProtectedRoute =({children})=>{
   //  if(isLoggedIn === true){
   //   <Test/>
@@ -74,6 +72,10 @@ function App() {
             <Route path="/manageProfile" element={<ManageProfile />} />
             <Route path="/organiserProfile" element={<OrganiserProfile />} />
             <Route path="/socialProfile" element={<SocialProfile />} />
+            <Route
+              path="/organiserProfile/home/edit"
+              element={<EditOrganiserProfile />}
+            />
 
             <Route path="*" element={<NoPage />} />
             <Route path="/login" element={<SignIn />} />
