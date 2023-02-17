@@ -91,7 +91,7 @@ export const InputFieldWrapper = styled.div`
 
   input {
     height: inherit;
-    width: 25vw;
+    width: 100%;
     border: none;
     outline: transparent;
     padding: 3%;
@@ -102,7 +102,7 @@ export const InputFieldWrapper = styled.div`
 
   @media screen and (max-width: 960px) {
     input {
-      width: 80%;
+      width: 100%;
     }
   }
 `;

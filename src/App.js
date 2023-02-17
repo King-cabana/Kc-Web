@@ -44,6 +44,10 @@ import OrganiserProfile from "./profile/organiserProfile/OrganiserProfile";
 import SocialProfile from "./profile/socialProfile/SocialProfile";
 import ResetPasswordSuccess from "./authentication/signIn/ResetPasswordSuccess";
 import LoadingScreen from "./LoadingScreen";
+import ForgotPassword from "./authentication/forgotPassword/ForgotPassword";
+import ForgotPasswordOtp from "./authentication/forgotPassword/ForgotPasswordOtp";
+import { ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Home = lazy(() => import("./pages/landingPage/Home"));
 const Waitlist = lazy(() => import ("./pages/waitlist/WaitlistForm"));
@@ -62,6 +66,7 @@ function App() {
   return (
     <Suspense fallback={<LoadingScreen />}>
       <>
+        <ToastContainer/>
         <>
           <Routes>
             <Route path="/" element={<Home />}></Route>
@@ -79,6 +84,8 @@ function App() {
             <Route path="*" element={<NoPage />} />
             <Route path="/login" element={<SignIn />} />
             <Route path="/signup" element={<Signup />} />
+            <Route path="/forgotpassword" element={<ForgotPassword />} />
+            <Route path="/forgotpassword-otp-verification" element={<ForgotPasswordOtp/>} />
             <Route path="/resetpassword" element={<ResetPassword />} />
             <Route
               path="/resetpasswordsuccess"

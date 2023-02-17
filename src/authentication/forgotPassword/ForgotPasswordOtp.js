@@ -1,13 +1,12 @@
 import React, { useDispatch, useState } from "react";
 import OtpInput from "react-otp-input";
 import { LongButton, Form, AuthBackground } from "../../globalStyles";
-import { VerifyBody } from "./SignUpStyled";
+import { VerifyBody } from "./../signup/SignUpStyled";
 import Logo from "../../images/Logo.svg";
-import { verifyEmail } from "../../redux/service/authService";
+import { forgotPasswordOtp} from "../../redux/service/authService";
 import { useNavigate } from "react-router";
-// import { apiFetch } from '../../../redux/authSlice';
 
-const VerifyEmail = () => {
+const ForgotPasswordOtp = () => {
 
   const [otp, setOtp] = useState("");
 
@@ -16,7 +15,8 @@ const VerifyEmail = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
    try {
-    await verifyEmail(otp);
+    await forgotPasswordOtp(otp);
+    sessionStorage.setItem("otp", otp);
     alert("Email verified succesfuly!")
     navigate("/login");
    } catch (error) {
@@ -25,7 +25,7 @@ const VerifyEmail = () => {
    finally {
     setOtp("");
   }
-    // sessionStorage.setItem("otp", otp);
+  
    
   }
  
@@ -35,7 +35,7 @@ const VerifyEmail = () => {
       <VerifyBody>
         <img src={Logo} alt="King Cabana Logo" />
         <h5 style={{ marginTop: "5%", fontWeight: "bold", color: "#484848" }}>
-          Email Verification
+          Otp Verification
         </h5>
         <p style={{ textAlign: "center", fontSize: "12px" }}>
           Enter the verification code sent to Peterenumah@gmail.com
@@ -85,4 +85,4 @@ const VerifyEmail = () => {
   );
 };
 
-export default VerifyEmail;
+export default ForgotPasswordOtp;

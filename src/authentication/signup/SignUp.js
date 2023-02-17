@@ -16,7 +16,10 @@ import linkedin from "../../images/linkedin.svg";
 import Logo from "../../images/Logo.svg";
 import { register } from "../../redux/service/authService";
 import { LogInLink, SignUpBody, SignUpContent } from "./SignUpStyled";
-// import { register } from "../../redux/slices/authSlice";
+import Validation from "../Validation";
+import { useNavigate } from "react-router";
+import { toast } from 'react-toastify';
+
 
 const SignUp = () => {
   const [click, setClick] = useState(false);
@@ -33,11 +36,38 @@ const SignUp = () => {
     setInput({ ...inputs, [e.target.name]: e.target.value });
   }
 
-  // const dispatch = useDispatch();
-  const handleSignUp = () => {
-    alert("handle signup");
-    console.log(inputs);
-    register(inputs);
+  const [errors, setErrors] = useState({});
+  const resolveAfter3Sec = new Promise((resolve, rej) => setTimeout(resolve, 3000));
+
+  function handleValidation(e) {
+    setErrors(Validation(inputs));
+  }
+
+  const navigate = useNavigate();
+
+  const handleSignUp = async (e) => {
+    e.preventDefault();
+    handleValidation();
+    try {
+      await register(inputs);
+      alert("Successful, An Otp has been sent to your inbox");
+      // toast.promise(resolveAfter3Sec, {
+      //   pending:"loading...",
+      //   success: "successful",
+      //   error: "error"
+      //   })
+      navigate("/verifyemail");
+    } catch (error) {
+      // console.log(error);
+      alert(error.response.data);
+      // toast.promise(resolveAfter3Sec, {
+      //   pending:"loading...",
+      //   success: "successful",
+      //   error: "error",
+      // })
+    } finally {
+      setInput("");
+    }
   };
 
   const handleClick = () => {
@@ -59,7 +89,7 @@ const SignUp = () => {
             Sign up
           </KBDisplayXs>
 
-          <Form>
+          <Form onSubmit={handleSignUp}>
             <label style={{ marginBottom: "2%" }}>Full Name</label>
             <InputFieldWrapper>
               <input
@@ -68,6 +98,18 @@ const SignUp = () => {
                 onChange={inputChange}
               ></input>
             </InputFieldWrapper>
+            {errors.fullName && (
+              <p
+                style={{
+                  color: "red",
+                  fontSize: "10px",
+                  textAlign: "left",
+                  marginTop: "2%",
+                }}
+              >
+                {errors.fullName}
+              </p>
+            )}
 
             <label style={{ marginBottom: "2%" }}>E-mail</label>
             <InputFieldWrapper>
@@ -77,13 +119,24 @@ const SignUp = () => {
                 onChange={inputChange}
               ></input>
             </InputFieldWrapper>
+            {errors.email && (
+              <p
+                style={{
+                  color: "red",
+                  fontSize: "10px",
+                  textAlign: "left",
+                  marginTop: "2%",
+                }}
+              >
+                {errors.email}
+              </p>
+            )}
 
             <label style={{ marginBottom: "2%" }}>Password</label>
             <InputFieldWrapper>
               <input
                 placeholder="Create a password"
                 type={InputType}
-                // required
                 name="password"
                 onChange={inputChange}
               ></input>
@@ -109,38 +162,40 @@ const SignUp = () => {
                 />
               )}
             </InputFieldWrapper>
+            {errors.password && (
+              <p
+                style={{
+                  color: "red",
+                  fontSize: "10px",
+                  textAlign: "left",
+                  marginTop: "2%",
+                }}
+              >
+                {errors.password}
+              </p>
+            )}
 
             <label style={{ marginBottom: "2%" }}>Confirm Password</label>
             <InputFieldWrapper>
               <input
                 placeholder="Re-enter password"
-                type={InputType}
-                // required
+                type={"password"}
                 name="confirmPassword"
                 onChange={inputChange}
               ></input>
-              {click ? (
-                <HiOutlineEyeOff
-                  onClick={handleClick}
-                  style={{
-                    margin: "auto",
-                    top: "auto",
-                    marginRight: "3%",
-                    color: "#C4C4C4",
-                  }}
-                />
-              ) : (
-                <HiOutlineEye
-                  onClick={handleClick}
-                  style={{
-                    margin: "auto",
-                    top: "auto",
-                    marginRight: "3%",
-                    color: "#C4C4C4",
-                  }}
-                />
-              )}
             </InputFieldWrapper>
+            {errors.confirmPassword && (
+              <p
+                style={{
+                  color: "red",
+                  fontSize: "10px",
+                  textAlign: "left",
+                  marginTop: "2%",
+                }}
+              >
+                {errors.confirmPassword}
+              </p>
+            )}
 
             <div
               style={{ marginTop: "5%", display: "flex", alignItems: "center" }}
@@ -158,11 +213,7 @@ const SignUp = () => {
                 <span style={{ color: "#ff2957" }}>Privacy Policy</span>
               </KBTextXs>
             </div>
-            <LongButton
-              style={{ marginTop: "5%" }}
-              type="button"
-              onClick={handleSignUp}
-            >
+            <LongButton style={{ marginTop: "5%" }} type="submit">
               Sign up
             </LongButton>
           </Form>
@@ -220,7 +271,7 @@ const SignUp = () => {
           </div>
 
           <LogInLink to="/logIn">
-            Already have an account?{" "}
+            Already have an account?
             <span
               style={{ color: "#ff2957", fontWeight: "500", textAlign: "left" }}
             >

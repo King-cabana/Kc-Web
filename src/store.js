@@ -2,8 +2,8 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { persistReducer, persistStore } from "redux-persist";
 import storage from "redux-persist/es/storage";
 import profileSlice from "./redux/slices/profileSlice";
-import authReducer from "./redux/slices/authSlice";
 import messageSlice from "./redux/slices/messageSlice";
+import otpSlice from "./redux/slices/otpSlice";
 
 const persistConfig = {
   key: "kingCabana",
@@ -12,6 +12,7 @@ const persistConfig = {
 const reducer = combineReducers({
   message: messageSlice,
   profile: profileSlice,
+  otp: otpSlice,
 });
 
 const persistedReducer = persistReducer(persistConfig, reducer);

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
-import { useDispatch, useSelector } from "react-redux";
 import {
   AuthBackground,
   Div,
@@ -36,14 +35,26 @@ const SignIn = () => {
   const navigate = useNavigate();
 
   const navigateToReset = () => {
-    navigate("/resetpassword");
+    navigate("/forgotpassword");
   };
 
-  const handleLogin = () => {
-    setLoading(true);
-    console.log(email, password);
-    login(email, password, setLoading(false));
+  const handleLogin = async (e) => {
+    // setLoading(true);
+    // console.log(email, password);
+    // login(email, password, setLoading(false));
+    e.preventDefault();
+    try {
+      await login(email, password);
+      alert("Email verified succesfuly!")
+      navigate("/createProfile");
+    } catch (error) {
+      alert(error.response.data);
+    }
+      finally {
+        setEmail("")
+        setPassword("")
   };
+}
 
   return (
     <AuthBackground>
@@ -57,7 +68,7 @@ const SignIn = () => {
             log in
           </KBDisplayXs>
 
-          <Form>
+          <Form onSubmit={handleLogin}>
             <label style={{ marginBottom: "2%" }}>E-mail</label>
             <InputFieldWrapper>
               <input
@@ -139,8 +150,7 @@ const SignIn = () => {
             </div>
             <LongButton
               style={{ marginTop: "5%" }}
-              type="button"
-              onClick={handleLogin}
+              type="submit"
               disabled={loading}
             >
               {loading ? "Loading..." : "Log in"}
