@@ -1,6 +1,6 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { persistReducer, persistStore } from "redux-persist";
-import storage from "redux-persist/es/storage";
+import storage from "redux-persist/lib/storage";
 import profileSlice from "./redux/slices/profileSlice";
 import messageSlice from "./redux/slices/messageSlice";
 import otpSlice from "./redux/slices/otpSlice";

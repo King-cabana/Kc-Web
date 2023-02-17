@@ -25,6 +25,7 @@ import {
 const CreateProfile = () => {
   const navigate = useNavigate();
   const [arrow, setArrow] = useState("");
+
   return (
     <ProfileContainer>
       <ShapedBackground />
@@ -34,7 +35,7 @@ const CreateProfile = () => {
         </LogoDiv>
         <ProfileSection>
           {/* edit here below */}
-          <ProfileProgress>Step 1 of 4</ProfileProgress>
+          <ProfileProgress>Step 1 of 3</ProfileProgress>
           <ProfileTitle>Create your Profile</ProfileTitle>
           <ProfileSubtitle>
             Lorem ipsum dolor sit amet consectetur adipisicing elit.

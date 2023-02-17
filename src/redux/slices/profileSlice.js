@@ -1,26 +1,30 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  name: "",
+  organizerName: "",
   email: "",
-  backgroundPicture: "",
+  phoneNumber: "",
+  address: "",
+  state: "",
+  country: "",
+  organizerDetails: "",
+  logoUrl: "",
+  backgroundPictureUrl: "",
   website: "",
-  linkedin: "",
+  linkedIn: "",
   instagram: "",
   twitter: "",
-  facebook: "",
-  others: "",
-  guarantorInformation: "",
-  company: "",
+  faceBook: "",
+  otherHandle: "",
+  guarantorRole: "",
+  secondaryContactFullName: "",
   jobRole: "",
   officeAddress: "",
-  guarantorNumber: "",
-  guarantorEmail: "",
-  teamMemberFirstName: "",
-  teamMemberLastName: "",
-  teamMemberEmail: "",
-  teamMemberRole: "",
+  secondaryContactEmail: "",
+  secondaryContactPhoneNumber: "",
+  companyName: "",
 };
+
 export const profileSlice = createSlice({
   name: "profile",
   initialState,
@@ -28,9 +32,14 @@ export const profileSlice = createSlice({
     editProfile: (state, { payload }) => {
       Object.assign(state, { [payload.name]: payload.value });
     },
+    clearProfile: (state) => {
+      Object.keys(state).forEach((each) =>
+        Object.assign(state, { [each]: "" })
+      );
+    },
   },
 });
 
-export const { editProfile } = profileSlice.actions;
+export const { editProfile, clearProfile } = profileSlice.actions;
 
 export default profileSlice.reducer;

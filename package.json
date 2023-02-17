@@ -25,7 +25,7 @@
     "react-redux": "^8.0.5",
     "react-router": "^6.4.3",
     "react-router-dom": "^6.4.3",
-    "react-scripts": "5.0.1",
+    "react-scripts": "4.0.3",
     "react-simple-typewriter": "^5.0.1",
     "react-table": "^7.8.0",
     "react-time-picker": "^5.1.0",
@@ -37,7 +37,7 @@
     "yup": "^0.32.11"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "react-scripts --openssl-legacy-provider start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
