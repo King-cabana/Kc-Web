@@ -45,7 +45,7 @@ const SignIn = () => {
     e.preventDefault();
     try {
       await login(email, password);
-      alert("Email verified succesfuly!")
+      alert("login succesfuly!")
       navigate("/createProfile");
     } catch (error) {
       alert(error.response.data);

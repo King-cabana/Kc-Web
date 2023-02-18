@@ -300,7 +300,7 @@ const OrganiserProfile = () => {
                 Organizer's Details{" "}
                 <Asterix>
                   *{" - "}
-                  {state.organizerDetails.length}/250 Characters
+                  {state.organizerDetails}/250 Characters
                 </Asterix>
               </InputText>
               <MyTextArea

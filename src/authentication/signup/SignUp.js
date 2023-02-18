@@ -19,11 +19,13 @@ import { LogInLink, SignUpBody, SignUpContent } from "./SignUpStyled";
 import Validation from "../Validation";
 import { useNavigate } from "react-router";
 import { toast } from 'react-toastify';
+import { ImSpinner6 } from "react-icons/im";
 
 
 const SignUp = () => {
   const [click, setClick] = useState(false);
   const [visible, setVisibility] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const [inputs, setInput] = useState({
     fullName: "",
@@ -49,22 +51,12 @@ const SignUp = () => {
     e.preventDefault();
     handleValidation();
     try {
+      setLoading(true);
       await register(inputs);
-      alert("Successful, An Otp has been sent to your inbox");
-      // toast.promise(resolveAfter3Sec, {
-      //   pending:"loading...",
-      //   success: "successful",
-      //   error: "error"
-      //   })
+      toast.success("Successful, An Otp has been sent to your inbox");
       navigate("/verifyemail");
     } catch (error) {
-      // console.log(error);
-      alert(error.response.data);
-      // toast.promise(resolveAfter3Sec, {
-      //   pending:"loading...",
-      //   success: "successful",
-      //   error: "error",
-      // })
+      toast.error(error.response.data);
     } finally {
       setInput("");
     }
@@ -214,7 +206,11 @@ const SignUp = () => {
               </KBTextXs>
             </div>
             <LongButton style={{ marginTop: "5%" }} type="submit">
-              Sign up
+            {loading ? (
+                <ImSpinner6 size={"1.5rem"} />
+              ) : (
+                "Sign up"
+              )}
             </LongButton>
           </Form>
 
