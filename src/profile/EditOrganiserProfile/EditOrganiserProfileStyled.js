@@ -6,11 +6,16 @@ import {
 
 export const OverallContainer = styled.div`
   width: 100%;
-  height: 100vh;
+  height: 100%;
   background: #fffcfc;
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 2rem 0;
+
+  @media screen and (max-width: 768px) {
+    padding: 0;
+  }
 `;
 
 export const EditSection = styled.div`
@@ -93,5 +98,5 @@ export const WrapRx = styled(WrapBs)`
 `;
 
 export const EditForm = styled.form`
-  border: 2px solid red;
+  /* border: 2px solid red; */
 `;
