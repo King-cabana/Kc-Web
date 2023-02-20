@@ -17,6 +17,8 @@ import { HiOutlineEyeOff, HiOutlineEye } from "react-icons/hi";
 import google from "../../images/Google.svg";
 import linkedin from "../../images/linkedin.svg";
 import { login } from "../../redux/service/authService";
+import { toast } from "react-toastify";
+import { ImSpinner6 } from "react-icons/im";
 
 const SignIn = () => {
   const [click, setClick] = useState(false);
@@ -39,16 +41,16 @@ const SignIn = () => {
   };
 
   const handleLogin = async (e) => {
-    // setLoading(true);
-    // console.log(email, password);
-    // login(email, password, setLoading(false));
+
     e.preventDefault();
     try {
+      setLoading(true)
       await login(email, password);
-      alert("login succesfuly!")
+      toast.success("login successfully!")
       navigate("/createProfile");
     } catch (error) {
-      alert(error.response.data);
+      setLoading(false)
+      toast.error(error.response.data);
     }
       finally {
         setEmail("")
@@ -151,9 +153,8 @@ const SignIn = () => {
             <LongButton
               style={{ marginTop: "5%" }}
               type="submit"
-              disabled={loading}
             >
-              {loading ? "Loading..." : "Log in"}
+             {loading ? <ImSpinner6 size={"1.5rem"} /> : "Log in"}
             </LongButton>
           </Form>
 

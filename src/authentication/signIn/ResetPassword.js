@@ -10,13 +10,14 @@ import { KBDisplayXs } from "../../components/fonts/fontSize";
 import { Form } from "../../globalStyles";
 import { HiOutlineEyeOff, HiOutlineEye } from "react-icons/hi";
 import { resetPassword } from "../../redux/service/authService";
-import { useSelector } from "react-redux";
-import { setOtp } from "../../redux/slices/otpSlice";
 import { useNavigate } from "react-router";
+import { toast } from "react-toastify";
+import { ImSpinner6 } from "react-icons/im";
 
 const ResetPassword = () => {
   const [click, setClick] = useState(false);
   const [visible, setVisibility] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -31,7 +32,7 @@ const ResetPassword = () => {
     if(sessionStorage.getItem("otp")){
         setOtp(sessionStorage.getItem("otp"))
     } else{
-      alert('you do not have access to this page ')
+      toast.error('You do not have access to this page')
       window.history.back()
     }
   },[])
@@ -43,9 +44,12 @@ const ResetPassword = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      resetPassword(password, confirmPassword, otp);
+      setLoading(true)
+      await resetPassword(password, confirmPassword, otp);
+      toast.success("Password Reset Successful!")
       navigate("/login")
     } catch (error) {
+      setLoading(false)
       alert(error.response.data);
     } finally{
       setPassword("");
@@ -98,7 +102,7 @@ const ResetPassword = () => {
               )}
             </InputFieldWrapper>
 
-            <label style={{ marginBottom: "2%" }}>{otp} Confirm Password</label>
+            <label style={{ marginBottom: "2%" }}>Confirm Password</label>
             <InputFieldWrapper>
               <input
                 placeholder="Re-enter password"
@@ -109,7 +113,9 @@ const ResetPassword = () => {
               ></input>
             </InputFieldWrapper>
 
-            <LongButton style={{ marginTop: "5%" }} type='submit'>Submit</LongButton>
+            <LongButton style={{ marginTop: "5%" }} type='submit'>
+            {loading ?<ImSpinner6 size={"1.5rem"} /> : "Submit"}
+            </LongButton>
 
           </Form>
         </SignUpContent>

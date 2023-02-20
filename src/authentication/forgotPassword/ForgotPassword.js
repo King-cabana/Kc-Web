@@ -11,23 +11,29 @@ import { Form } from "../../globalStyles";
 import { ArrowLongLeftIcon } from "@heroicons/react/24/outline";
 import { forgotPassword } from "../../redux/service/authService";
 import { useNavigate } from "react-router";
+import { toast } from "react-toastify";
+import { ImSpinner6 } from "react-icons/im";
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState("");
+  const [loading, setLoading] = useState(false)
 
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
+     setLoading(true)
      await forgotPassword(email);
-     alert("An Otp has been sent to " + email)
+     toast.success("An Otp has been sent to " + email)
      navigate("/forgotpassword-otp-verification")
     } catch (error) {
-      alert(error.response.data);
+      setLoading(false)
+      toast.error(error.response.data);
     } finally{
       setEmail("");
     }
+    sessionStorage.setItem("email", email);
   };
 
   return (
@@ -63,7 +69,8 @@ const ForgotPassword = () => {
               style={{ marginTop: "5%" }}
               type="submit"
             >
-              Submit
+              {loading ? <ImSpinner6 size={"1.5rem"} /> : "Submit"}
+             
             </LongButton>
 
             <LogInLink

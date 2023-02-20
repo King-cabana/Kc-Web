@@ -3,32 +3,33 @@ import OtpInput from "react-otp-input";
 import { LongButton, Form, AuthBackground } from "../../globalStyles";
 import { VerifyBody } from "./../signup/SignUpStyled";
 import Logo from "../../images/Logo.svg";
-import { forgotPasswordOtp} from "../../redux/service/authService";
+import { forgotPasswordOtp } from "../../redux/service/authService";
 import { useNavigate } from "react-router";
+import { toast } from "react-toastify";
+import { ImSpinner6 } from "react-icons/im";
 
 const ForgotPasswordOtp = () => {
-
   const [otp, setOtp] = useState("");
+  const [email, setEmail] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-   try {
-    await forgotPasswordOtp(otp);
-    sessionStorage.setItem("otp", otp);
-    alert("Email verified succesfuly!")
-    navigate("/login");
-   } catch (error) {
-    alert(error.response.data);
-   }
-   finally {
-    setOtp("");
-  }
-  
-   
-  }
- 
+    try {
+      setLoading(true)
+      await forgotPasswordOtp(otp);
+      sessionStorage.setItem("otp", otp);
+      toast.success("Otp Successfully Verified!");
+      navigate("/resetpassword");
+    } catch (error) {
+      setLoading(false)
+      toast.error(error.response.data);
+    } finally {
+      setOtp("");
+    }
+  };
 
   return (
     <AuthBackground>
@@ -38,7 +39,9 @@ const ForgotPasswordOtp = () => {
           Otp Verification
         </h5>
         <p style={{ textAlign: "center", fontSize: "12px" }}>
-          Enter the verification code sent to Peterenumah@gmail.com
+         {"Enter the verification code sent to" + " "}
+         {setEmail ? (sessionStorage.getItem("email",email))
+          : setEmail(sessionStorage.getItem("email"))}
         </p>
 
         <Form onSubmit={handleSubmit}>
@@ -66,7 +69,9 @@ const ForgotPasswordOtp = () => {
             // isInputSecure
             separator={<span> </span>}
           />
-          <LongButton style={{ marginTop: "5%" }} type="submit">Verify</LongButton>
+          <LongButton style={{ marginTop: "5%" }} type="submit">
+           {loading ?<ImSpinner6 size={"1.5rem"} /> : "Verify"}
+          </LongButton>
           <p
             style={{
               color: "#ff2957",
@@ -74,7 +79,7 @@ const ForgotPasswordOtp = () => {
               textAlign: "center",
               fontSize: "12px",
               marginTop: "20px",
-              cursor:'pointer'
+              cursor: "pointer",
             }}
           >
             Resend code

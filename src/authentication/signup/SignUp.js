@@ -18,14 +18,15 @@ import { register } from "../../redux/service/authService";
 import { LogInLink, SignUpBody, SignUpContent } from "./SignUpStyled";
 import Validation from "../Validation";
 import { useNavigate } from "react-router";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 import { ImSpinner6 } from "react-icons/im";
-
 
 const SignUp = () => {
   const [click, setClick] = useState(false);
   const [visible, setVisibility] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [disabledButton, setdisableButton] = useState(true);
+  // const [email, setEmail] = useState("");
 
   const [inputs, setInput] = useState({
     fullName: "",
@@ -36,10 +37,17 @@ const SignUp = () => {
 
   function inputChange(e) {
     setInput({ ...inputs, [e.target.name]: e.target.value });
+    setdisableButton(false);
   }
 
   const [errors, setErrors] = useState({});
-  const resolveAfter3Sec = new Promise((resolve, rej) => setTimeout(resolve, 3000));
+
+  const handleClick = () => {
+    setClick(!click);
+    setVisibility(!visible);
+  };
+
+  const InputType = visible ? "text" : "password";
 
   function handleValidation(e) {
     setErrors(Validation(inputs));
@@ -56,18 +64,14 @@ const SignUp = () => {
       toast.success("Successful, An Otp has been sent to your inbox");
       navigate("/verifyemail");
     } catch (error) {
+      setLoading(false);
       toast.error(error.response.data);
     } finally {
       setInput("");
     }
-  };
 
-  const handleClick = () => {
-    setClick(!click);
-    setVisibility(!visible);
+    sessionStorage.setItem("email", inputs.email);
   };
-
-  const InputType = visible ? "text" : "password";
 
   return (
     <AuthBackground>
@@ -205,12 +209,12 @@ const SignUp = () => {
                 <span style={{ color: "#ff2957" }}>Privacy Policy</span>
               </KBTextXs>
             </div>
-            <LongButton style={{ marginTop: "5%" }} type="submit">
-            {loading ? (
-                <ImSpinner6 size={"1.5rem"} />
-              ) : (
-                "Sign up"
-              )}
+            <LongButton
+              style={{ marginTop: "5%" }}
+              type="submit"
+              disabled={disabledButton}
+            >
+              {loading ? <ImSpinner6 size={"1.5rem"} /> : "Sign up"}
             </LongButton>
           </Form>
 

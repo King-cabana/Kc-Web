@@ -1,8 +1,5 @@
 import React from "react";
-// import * as AiIcons from "react-icons/ai";
-// import * as HiIcons from "react-icons/hi";
 import * as BsIcons from "react-icons/bs";
-// import * as FiIcons from "react-icons/fi";
 import * as MdIcons from "react-icons/md";
 import { Square2StackIcon } from "@heroicons/react/24/outline";
 import { CalendarIcon } from "@heroicons/react/24/outline";
@@ -13,15 +10,16 @@ import { ChatBubbleLeftRightIcon } from "@heroicons/react/24/outline";
 import { ChartBarIcon } from "@heroicons/react/24/outline";
 import { CogIcon } from "@heroicons/react/24/outline";
 
+
 export const SidebarData = [
   {
     title: "Dashboard",
     path: "/dashboard",
-    // icon: <AiIcons.AiFillHome />,
     icon: (
       <Square2StackIcon
         className="h-6 h-6 text-gray-500"
         style={{ width: "20px" }}
+        
       />
     ),
   },

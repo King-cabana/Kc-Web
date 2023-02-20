@@ -45,6 +45,13 @@ export const LongButton = styled.button`
   border: none;
   border-radius: 4px;
   cursor: pointer;
+
+  &:disabled {
+    background-color: rgba(255, 41, 87, 0.3);
+    color: rgba(255, 255, 255, 0.3);
+    outline: none;
+    border: none;
+  }
 `;
 
 export const SignInLink = styled(Link)`

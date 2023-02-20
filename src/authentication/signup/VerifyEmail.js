@@ -5,22 +5,28 @@ import { VerifyBody } from "./SignUpStyled";
 import Logo from "../../images/Logo.svg";
 import { verifyEmail } from "../../redux/service/authService";
 import { useNavigate } from "react-router";
-// import { apiFetch } from '../../../redux/authSlice';
+import { toast } from "react-toastify";
+import { ImSpinner6 } from "react-icons/im";
 
 const VerifyEmail = () => {
 
   const [otp, setOtp] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [email, setEmail] = useState(null)
 
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
+    
     e.preventDefault();
    try {
+    setLoading(true)
     await verifyEmail(otp);
-    alert("Email verified succesfuly!")
+    toast.success("Email Successfully verified!")
     navigate("/login");
    } catch (error) {
-    alert(error.response.data);
+    setLoading(false)
+    toast.error(error.response.data);
    }
    finally {
     setOtp("");
@@ -38,7 +44,9 @@ const VerifyEmail = () => {
           Email Verification
         </h5>
         <p style={{ textAlign: "center", fontSize: "12px" }}>
-          Enter the verification code sent to Peterenumah@gmail.com
+        {"Enter the verification code sent to" + " "}
+         {setEmail ? (sessionStorage.getItem("email",email))
+          : setEmail(sessionStorage.getItem("email"))}
         </p>
 
         <Form onSubmit={handleSubmit}>
@@ -66,7 +74,9 @@ const VerifyEmail = () => {
             // isInputSecure
             separator={<span> </span>}
           />
-          <LongButton style={{ marginTop: "5%" }} type="submit">Verify</LongButton>
+          <LongButton style={{ marginTop: "5%" }} type="submit">
+          {loading ? <ImSpinner6 size={"1.5rem"} /> : "Verify"}
+            </LongButton>
           <p
             style={{
               color: "#ff2957",
