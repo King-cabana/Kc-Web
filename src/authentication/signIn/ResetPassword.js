@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect} from "react";
 import {
   AuthBackground,
   InputFieldWrapper,
@@ -9,17 +9,53 @@ import Logo from "../../images/Logo.svg";
 import { KBDisplayXs } from "../../components/fonts/fontSize";
 import { Form } from "../../globalStyles";
 import { HiOutlineEyeOff, HiOutlineEye } from "react-icons/hi";
+import { resetPassword } from "../../redux/service/authService";
+import { useNavigate } from "react-router";
+import { toast } from "react-toastify";
+import { ImSpinner6 } from "react-icons/im";
 
-const SignIn = () => {
+const ResetPassword = () => {
   const [click, setClick] = useState(false);
   const [visible, setVisibility] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [otp, setOtp] = useState(null);
 
   const handleClick = () => {
     setClick(!click);
     setVisibility(!visible);
   };
 
+  useEffect(()=>{
+    if(sessionStorage.getItem("otp")){
+        setOtp(sessionStorage.getItem("otp"))
+    } else{
+      toast.error('You do not have access to this page')
+      window.history.back()
+    }
+  },[])
+
   const InputType = visible ? "text" : "password";
+
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      setLoading(true)
+      await resetPassword(password, confirmPassword, otp);
+      toast.success("Password Reset Successful!")
+      navigate("/login")
+    } catch (error) {
+      setLoading(false)
+      alert(error.response.data);
+    } finally{
+      setPassword("");
+      setConfirmPassword("");
+    }
+  };
 
   return (
     <AuthBackground>
@@ -33,13 +69,15 @@ const SignIn = () => {
             Reset Password
           </KBDisplayXs>
 
-          <Form>
+          <Form onSubmit={handleSubmit}>
             <label style={{ marginBottom: "2%" }}>Password</label>
             <InputFieldWrapper>
               <input
                 placeholder="Create a new password"
                 type={InputType}
                 required
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
               ></input>
               {click ? (
                 <HiOutlineEyeOff
@@ -68,33 +106,16 @@ const SignIn = () => {
             <InputFieldWrapper>
               <input
                 placeholder="Re-enter password"
-                type={InputType}
+                type={"password"}
                 required
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
               ></input>
-              {click ? (
-                <HiOutlineEyeOff
-                  onClick={handleClick}
-                  style={{
-                    margin: "auto",
-                    top: "auto",
-                    marginRight: "3%",
-                    color: "#C4C4C4",
-                  }}
-                />
-              ) : (
-                <HiOutlineEye
-                  onClick={handleClick}
-                  style={{
-                    margin: "auto",
-                    top: "auto",
-                    marginRight: "3%",
-                    color: "#C4C4C4",
-                  }}
-                />
-              )}
             </InputFieldWrapper>
 
-            <LongButton style={{ marginTop: "5%" }}>Submit</LongButton>
+            <LongButton style={{ marginTop: "5%" }} type='submit'>
+            {loading ?<ImSpinner6 size={"1.5rem"} /> : "Submit"}
+            </LongButton>
 
           </Form>
         </SignUpContent>
@@ -103,4 +124,4 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+export default ResetPassword;

@@ -9,7 +9,6 @@ import {
   SidebarWrap,
   DisplayMode,
 } from "./Sidebar.Styled";
-import { PrimaryButton } from "../../components/button/button";
 
 const Sidebar = ({ children }) => {
   const [sidebar, setSidebar] = useState(false);
@@ -28,7 +27,7 @@ const Sidebar = ({ children }) => {
      
         <SidebarNav sidebar={sidebar}>
           <SidebarWrap>
-          <div style={{width:'inherit', height:'22vh', padding:'15px', display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center'}}>
+          {/* <div style={{width:'inherit', height:'22vh', padding:'15px', display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center'}}>
             <p style={{fontSize:'12px', color:'#FF2957'}}>Event Organizer</p>
             <div style={{width:'100%', height:'10vh', display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:'10px'}}>
               <div style={{height:'40px', width:'40px', borderRadius:'6px', backgroundColor:'green'}}>
@@ -42,7 +41,7 @@ const Sidebar = ({ children }) => {
         />
             </div>
             <PrimaryButton style={{borderRadius:'5px'}}>Manage Team </PrimaryButton>
-          </div>
+          </div> */}
             {SidebarData.map((item, index) => {
               return <SubMenu item={item} key={index} />;
             })}

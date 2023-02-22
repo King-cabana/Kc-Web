@@ -96,7 +96,7 @@ const Waitlist = () => {
               ></textarea>
             </Form>
 
-            <LongButton type="button" onClick={handleJoinWaitlist}>
+            <LongButton style={{marginTop:'5%'}} type="button" onClick={handleJoinWaitlist}>
               Join Waitlist
             </LongButton>
           </Form>

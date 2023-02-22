@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 import {
   AuthBackground,
@@ -16,10 +16,16 @@ import { Form } from "../../globalStyles";
 import { HiOutlineEyeOff, HiOutlineEye } from "react-icons/hi";
 import google from "../../images/Google.svg";
 import linkedin from "../../images/linkedin.svg";
+import { login } from "../../redux/service/authService";
+import { toast } from "react-toastify";
+import { ImSpinner6 } from "react-icons/im";
 
 const SignIn = () => {
   const [click, setClick] = useState(false);
   const [visible, setVisibility] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleClick = () => {
     setClick(!click);
@@ -31,15 +37,32 @@ const SignIn = () => {
   const navigate = useNavigate();
 
   const navigateToReset = () => {
-    navigate("/resetpassword");
+    navigate("/forgotpassword");
   };
 
+  const handleLogin = async (e) => {
+
+    e.preventDefault();
+    try {
+      setLoading(true)
+      await login(email, password);
+      toast.success("login successfully!")
+      navigate("/createProfile");
+    } catch (error) {
+      setLoading(false)
+      toast.error(error.response.data);
+    }
+      finally {
+        setEmail("")
+        setPassword("")
+  };
+}
 
   return (
-    <AuthBackground >
+    <AuthBackground>
       <SignUpBody>
         <SignUpContent>
-          <img style={{marginTop:'5%'}} src={Logo} alt="King Cabana Logo" />
+          <img style={{ marginTop: "5%" }} src={Logo} alt="King Cabana Logo" />
           <KBDisplayXs
             fontWeight="700"
             style={{ textAlign: "left", color: "#484848", marginTop: "2%" }}
@@ -47,11 +70,14 @@ const SignIn = () => {
             log in
           </KBDisplayXs>
 
-          <Form>
-
+          <Form onSubmit={handleLogin}>
             <label style={{ marginBottom: "2%" }}>E-mail</label>
             <InputFieldWrapper>
-              <input placeholder="Enter your E-mail"></input>
+              <input
+                placeholder="Enter your E-mail"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              ></input>
             </InputFieldWrapper>
 
             <label style={{ marginBottom: "2%" }}>Password</label>
@@ -60,6 +86,8 @@ const SignIn = () => {
                 placeholder="Create a password"
                 type={InputType}
                 required
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
               ></input>
               {click ? (
                 <HiOutlineEyeOff
@@ -85,26 +113,52 @@ const SignIn = () => {
             </InputFieldWrapper>
 
             <div
-              style={{ marginTop: "5%", display: "flex", alignItems: "center", justifyContent:'space-between'}}
+              style={{
+                marginTop: "5%",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+              }}
             >
-              <div style={{display:'flex', alignitems:'center', justifyContent:'center', gap:'5px'}}> 
-              <input type="checkbox" required></input>
-              <KBTextXs
+              <div
                 style={{
-                  textAlign: "center",
-                  marginBottom: "0",
-                  lineHeight: "1em",
+                  display: "flex",
+                  alignitems: "center",
+                  justifyContent: "center",
+                  gap: "5px",
                 }}
               >
-                Keep me signed in{" "}
-              </KBTextXs>
-              </div> 
-              <p style={{ cursor:'pointer', color: "#ff2957", fontSize:'12px'}} onClick={navigateToReset}>Forgot Password?</p>
+                <input type="checkbox" required></input>
+                <KBTextXs
+                  style={{
+                    textAlign: "center",
+                    marginBottom: "0",
+                    lineHeight: "1em",
+                  }}
+                >
+                  Keep me signed in{" "}
+                </KBTextXs>
+              </div>
+              <p
+                style={{
+                  cursor: "pointer",
+                  color: "#ff2957",
+                  fontSize: "12px",
+                }}
+                onClick={navigateToReset}
+              >
+                Forgot Password?
+              </p>
             </div>
-            <LongButton style={{marginTop:'5%'}}>Log in</LongButton>
+            <LongButton
+              style={{ marginTop: "5%" }}
+              type="submit"
+            >
+             {loading ? <ImSpinner6 size={"1.5rem"} /> : "Log in"}
+            </LongButton>
           </Form>
 
-          <Div style={{marginTop:'5%'}}>
+          <Div style={{ marginTop: "5%" }}>
             <Horizontal />
             <Or>Or Login with</Or>
             <Horizontal />

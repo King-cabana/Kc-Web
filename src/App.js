@@ -13,6 +13,9 @@ import SignIn from "./authentication/signIn/SignIn";
 import VerifyEmail from "./authentication/signup/VerifyEmail";
 import SignUpSuccess from "./authentication/signup/SignUpSuccess";
 import ResetPassword from "./authentication/signIn/ResetPassword";
+import ForgotPassword from "./authentication/forgotPassword/ForgotPassword";
+import ForgotPasswordOtp from "./authentication/forgotPassword/ForgotPasswordOtp";
+import ResetPasswordSuccess from "./authentication/signIn/ResetPasswordSuccess";
 
 import SecondCreateEvent from "./event/createEvent/SecondCreateEvent";
 import FirstCreateEvent from "./event/createEvent/FirstCreateEvent";
@@ -26,12 +29,12 @@ import EventAnalytics from "./event/pages/EventAnalytics";
 import Settings from "./event/pages/Settings";
 
 import Test from "./event/pages/Test";
+import LoadingScreen from "./LoadingScreen";
 
 // Budget createEvent form
 import Budget from "./event/budgetInventory/Budget";
 import Inventory from "./event/budgetInventory/Inventory";
 import ContactInfo from "./event/createEvent/ContactInfo";
-
 import TimeLineEvent from "./event/createEvent/TimeLineEvent";
 import Submitted from "./event/budgetInventory/Submitted";
 
@@ -40,25 +43,20 @@ import CreateProfile from "./profile/createProfile/CreateProfile";
 import ManageProfile from "./profile/manageProfile/ManageProfile";
 import OrganiserProfile from "./profile/organiserProfile/OrganiserProfile";
 import SocialProfile from "./profile/socialProfile/SocialProfile";
-import ResetPasswordSuccess from "./authentication/signIn/ResetPasswordSuccess";
-import LoadingScreen from "./LoadingScreen";
 import EditOrganiserProfile from "./profile/EditOrganiserProfile/EditOrganiserProfile";
+
+import { ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'
 
 const Home = lazy(() => import("./pages/landingPage/Home"));
 const Waitlist = lazy(() => import("./pages/waitlist/WaitlistForm"));
 
 function App() {
-  // const ProtectedRoute =({children})=>{
-  //  if(isLoggedIn === true){
-  //   <Test/>
-  //  }else{
-  //   <Route path="/" element={<Home />}></Route>
-  //  }
-  // }
 
   return (
     <Suspense fallback={<LoadingScreen />}>
       <>
+        <ToastContainer/>
         <>
           <Routes>
             <Route path="/" element={<Home />}></Route>
@@ -80,6 +78,8 @@ function App() {
             <Route path="*" element={<NoPage />} />
             <Route path="/login" element={<SignIn />} />
             <Route path="/signup" element={<Signup />} />
+            <Route path="/forgotpassword" element={<ForgotPassword />} />
+            <Route path="/forgotpassword-otp-verification" element={<ForgotPasswordOtp/>} />
             <Route path="/resetpassword" element={<ResetPassword />} />
             <Route
               path="/resetpasswordsuccess"

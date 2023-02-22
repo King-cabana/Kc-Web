@@ -1,50 +1,45 @@
 import React, { useDispatch, useState } from "react";
 import OtpInput from "react-otp-input";
 import { LongButton, Form, AuthBackground } from "../../globalStyles";
-import { VerifyBody } from "./SignUpStyled";
+import { VerifyBody } from "./../signup/SignUpStyled";
 import Logo from "../../images/Logo.svg";
-import { verifyEmail } from "../../redux/service/authService";
+import { forgotPasswordOtp } from "../../redux/service/authService";
 import { useNavigate } from "react-router";
 import { toast } from "react-toastify";
 import { ImSpinner6 } from "react-icons/im";
 
-const VerifyEmail = () => {
-
+const ForgotPasswordOtp = () => {
   const [otp, setOtp] = useState("");
+  const [email, setEmail] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [email, setEmail] = useState(null)
 
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
-    
     e.preventDefault();
-   try {
-    setLoading(true)
-    await verifyEmail(otp);
-    toast.success("Email Successfully verified!")
-    navigate("/login");
-   } catch (error) {
-    setLoading(false)
-    toast.error(error.response.data);
-   }
-   finally {
-    setOtp("");
-  }
-    // sessionStorage.setItem("otp", otp);
-   
-  }
- 
+    try {
+      setLoading(true)
+      await forgotPasswordOtp(otp);
+      sessionStorage.setItem("otp", otp);
+      toast.success("Otp Successfully Verified!");
+      navigate("/resetpassword");
+    } catch (error) {
+      setLoading(false)
+      toast.error(error.response.data);
+    } finally {
+      setOtp("");
+    }
+  };
 
   return (
     <AuthBackground>
       <VerifyBody>
         <img src={Logo} alt="King Cabana Logo" />
         <h5 style={{ marginTop: "5%", fontWeight: "bold", color: "#484848" }}>
-          Email Verification
+          Otp Verification
         </h5>
         <p style={{ textAlign: "center", fontSize: "12px" }}>
-        {"Enter the verification code sent to" + " "}
+         {"Enter the verification code sent to" + " "}
          {setEmail ? (sessionStorage.getItem("email",email))
           : setEmail(sessionStorage.getItem("email"))}
         </p>
@@ -75,8 +70,8 @@ const VerifyEmail = () => {
             separator={<span> </span>}
           />
           <LongButton style={{ marginTop: "5%" }} type="submit">
-          {loading ? <ImSpinner6 size={"1.5rem"} /> : "Verify"}
-            </LongButton>
+           {loading ?<ImSpinner6 size={"1.5rem"} /> : "Verify"}
+          </LongButton>
           <p
             style={{
               color: "#ff2957",
@@ -84,7 +79,7 @@ const VerifyEmail = () => {
               textAlign: "center",
               fontSize: "12px",
               marginTop: "20px",
-              cursor:'pointer'
+              cursor: "pointer",
             }}
           >
             Resend code
@@ -95,4 +90,4 @@ const VerifyEmail = () => {
   );
 };
 
-export default VerifyEmail;
+export default ForgotPasswordOtp;

@@ -45,6 +45,13 @@ export const LongButton = styled.button`
   border: none;
   border-radius: 4px;
   cursor: pointer;
+
+  &:disabled {
+    background-color: rgba(255, 41, 87, 0.3);
+    color: rgba(255, 255, 255, 0.3);
+    outline: none;
+    border: none;
+  }
 `;
 
 export const SignInLink = styled(Link)`
@@ -91,7 +98,7 @@ export const InputFieldWrapper = styled.div`
 
   input {
     height: inherit;
-    width: 25vw;
+    width: 100%;
     border: none;
     outline: transparent;
     padding: 3%;
@@ -102,7 +109,7 @@ export const InputFieldWrapper = styled.div`
 
   @media screen and (max-width: 960px) {
     input {
-      width: 80%;
+      width: 100%;
     }
   }
 `;
