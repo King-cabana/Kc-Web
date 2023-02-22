@@ -30,6 +30,7 @@ import { LongButton1 } from "../manageProfile/ManageProfileStyled";
 import { clearProfile, editProfile } from "../../redux/slices/profileSlice";
 import axios from "axios";
 import { ImSpinner6 } from "react-icons/im";
+import { setEventOrganizerProfile } from "../../redux/slices/eventOrganizerProfileSlice";
 
 const SocialProfile = () => {
   const [visibility, setVisibility] = useState(false);
@@ -74,15 +75,15 @@ const SocialProfile = () => {
     setSending(true);
     setIsDisabled(true);
     try {
-      const response = await axios.post(
+      const { data } = await axios.post(
         "http://localhost:8080/profiles/create/",
         state,
         {
           headers: { "Content-Type": "application/json" },
         }
       );
-      console.log(response);
-      console.log(state);
+      console.log(data);
+      dispatch(setEventOrganizerProfile(data));
       navigate("/home");
       alert("Form Submitted Successfully");
     } catch (error) {
@@ -251,9 +252,9 @@ const SocialProfile = () => {
             <InputSeg>
               <InputText>
                 Full name of {""}
-                {state.guarantorRole
-                  ? state.guarantorRole.charAt(0).toUpperCase() +
-                    state.guarantorRole.slice(1)
+                {state?.guarantorRole
+                  ? state?.guarantorRole.charAt(0).toUpperCase() +
+                    state?.guarantorRole.slice(1)
                   : "Secondary Contact"}{" "}
                 <Asterix>*</Asterix>
               </InputText>

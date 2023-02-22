@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { editProfile } from "../../redux/slices/profileSlice";
 import { useNavigate } from "react-router";
 import {
   Input,
@@ -14,7 +15,6 @@ import {
 import { DownButtonFull } from "../../event/createEvent/SecondCreateEventStyled";
 import { EventHeader1 } from "../../event/createEvent/TimeLineEventsStyled";
 import kingCabanaLogo from "../../images/kingCabanaLogo.svg";
-import { editProfile } from "../../redux/slices/profileSlice";
 import {
   KCLogo,
   LogoDiv,
@@ -57,7 +57,7 @@ const OrganiserProfile = () => {
     const fileSizeKiloBytes = file.size / 1024;
 
     if (fileSizeKiloBytes > MAX_FILE_SIZE) {
-      setErrorMsg("*Image size is greater than maximum limit*");
+      setErrorMsg("*Image size is greater than 1mb*");
       setIsSuccess(false);
       return;
     } else {
@@ -93,8 +93,6 @@ const OrganiserProfile = () => {
     }
   };
 
-  useEffect(() => {}, []);
-
   useEffect(() => {
     if (!file) {
       setErrorMsg("*Please choose an image*");
@@ -111,7 +109,7 @@ const OrganiserProfile = () => {
     const logoFileSizeKiloBytes = logoFile.size / 1024;
 
     if (logoFileSizeKiloBytes > MAX_FILE_SIZE) {
-      setLogoErrorMsg("*Image size is greater than maximum limit*");
+      setLogoErrorMsg("*Image size is greater than 1mb*");
       setLogoIsSuccess(false);
       return;
     } else {
@@ -300,7 +298,7 @@ const OrganiserProfile = () => {
                 Organizer's Details{" "}
                 <Asterix>
                   *{" - "}
-                  {state.organizerDetails.length}/250 Characters
+                  {state?.organizerDetails?.length}/250 Characters
                 </Asterix>
               </InputText>
               <MyTextArea
@@ -346,7 +344,7 @@ const OrganiserProfile = () => {
                 >
                   {logoErrorMsg}
                 </h3>
-                <Supported>Support image: JPEG, JPG, PNG, *img</Supported>
+                <Supported>Supported formats: JPEG, JPG, PNG, *img</Supported>
                 <Supported style={{ color: "#ff2957" }}>
                   Not more than 1mb
                 </Supported>

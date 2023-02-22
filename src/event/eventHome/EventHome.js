@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import axios from "axios";
 import {
   OverallContainer,
   PopUpOverlay,
@@ -46,10 +48,26 @@ import "../../modal.css";
 import { TbEdit } from "react-icons/tb";
 import { FaBars } from "react-icons/fa";
 import { useNavigate } from "react-router";
+import { setEventOrganizerProfile } from "../../redux/slices/eventOrganizerProfileSlice";
 
 const EventHome = () => {
+  const dispatch = useDispatch();
+  const state = useSelector((state) => state.eventOrganizerProfile);
   const [modal, setModal] = useState(true);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchOrganizerProfile = async () => {
+      const { data } = await axios.get(
+        `http://localhost:8080/profiles/${state?.id}`
+      );
+      console.log(data);
+      dispatch(setEventOrganizerProfile(data));
+    };
+    fetchOrganizerProfile();
+  }, []);
+
+  // const { address, guarantor } = state;
 
   const navitgateToEditOrganiserProfile = () => {
     navigate("/organiserProfile/home/edit");
@@ -64,7 +82,6 @@ const EventHome = () => {
   } else {
     document.body.classList.remove("active-modal");
   }
-
   const showModal = !modal && "notShown";
 
   return (
@@ -77,15 +94,24 @@ const EventHome = () => {
             <HamburgerWrapper>
               <FaBars />
             </HamburgerWrapper>
-            <WelcomeText>Drummer's Club</WelcomeText>
+            <WelcomeText>
+              {state.organizerName ? state.organizerName : "Organizer's Name"}
+            </WelcomeText>
           </WelcomeCenter>
 
           <ImagesContainer>
             <BackgroundPicture
-              src={backgroundPicture}
+              src={
+                state.backgroundPictureUrl
+                  ? state.backgroundPictureUrl
+                  : backgroundPicture
+              }
               alt="Background Picture"
             />
-            <LogoPicture src={logo} alt="Logo Picture" />
+            <LogoPicture
+              src={state.logoUrl ? state.logoUrl : logo}
+              alt="Logo Picture"
+            />
             {/* <WelcomeText fontWeight="400">Hello Peter, Welcome!</WelcomeText> */}
           </ImagesContainer>
         </HeaderContainer>
@@ -100,13 +126,17 @@ const EventHome = () => {
           </EditPen>
           <BioSection>
             <Bio>
-              <Name>Drummer's Club</Name>
-              <Location>Lagos, Nigeria.</Location>
+              <Name>
+                {state.organizerName ? state.organizerName : "Organizer's Name"}
+              </Name>
+              <Location>
+                {state.address?.state ? state.address?.state : "State"},{" "}
+                {state.address?.country ? state.address?.country : "Country"}.
+              </Location>
               <Description>
-                Lorem ipsum dolor sit amet consectetur. Eget aliquam at leo diam
-                tortor. Lorem et commodo hendrerit tellus odio vulputate. Felis
-                malesuada vivamus gravida habitant. Viverra vulputate posuere
-                urna leo.
+                {state.organizerDetails
+                  ? state.organizerDetails
+                  : "Lorem ipsum dolor sit amet consectetur. Eget aliquam at leo diam tortor. Lorem et commodo hendrerit tellus odio vulputate. Felis malesuada vivamus gravida habitant. Viverra vulputate posuere urna leo."}
               </Description>
             </Bio>
 

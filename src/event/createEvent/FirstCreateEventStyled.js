@@ -285,7 +285,6 @@ export const Supported = styled.div`
   align-items: center;
   justify-content: center;
   color: #484848;
-  margin-top: 0.5rem;
 
   @media screen and (max-width: 960px) {
     font-size: 8px;

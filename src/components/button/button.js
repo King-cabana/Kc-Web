@@ -2,12 +2,10 @@ import styled from "styled-components";
 
 //medium buttons (for the regular webpage)
 
-
 export const PrimaryButton = styled.button`
   width: 150px;
   height: 50px;
   border-radius: 8px;
-  background-color: #ff2957;
   background-color: #ff2957;
   color: white;
   border: 1px solid transparent;
@@ -29,17 +27,15 @@ export const PrimaryButton = styled.button`
     font-size: 10px;
     line-height: 12px;
     padding: 0.2rem 0.5rem;
-    /* height: 35px;
-    width: auto; */
-    /* height: max-content; */
   }
 `;
 
 export const ModalPrimaryButton = styled(PrimaryButton)`
   margin-left: 1.5rem;
 
-  @media screen and (max-width: px) {
-
+  @media screen and (max-width: 960px) {
+    width: auto;
+    height: 35px;
   }
 `;
 
@@ -70,13 +66,12 @@ export const PrimaryButton3 = styled.button`
     background-color: rgba(255, 41, 87, 0.3);
     color: rgba(255, 255, 255, 0.3);
   }
-  
+
   @media screen and (max-width: 960px) {
     font-size: 10px;
     line-height: 18px;
   }
-`
-
+`;
 
 export const AlternativeButton = styled.button`
   width: 150px;
@@ -130,8 +125,6 @@ export const AlternativeButton2 = styled.button`
   }
 `;
 
-
-
 export const TextButton = styled.button`
   color: #ff2957;
   font-size: 16px;
@@ -140,13 +133,13 @@ export const TextButton = styled.button`
   outline: transparent;
   background-color: transparent;
   cursor: pointer;
-  
-  &:hover{
+
+  &:hover {
     color: white;
     text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
   }
 
-  &:disabled  {
+  &:disabled {
     color: rgba(255, 41, 87, 0.6);
   }
 `;

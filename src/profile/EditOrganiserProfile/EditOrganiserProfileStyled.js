@@ -19,21 +19,19 @@ export const OverallContainer = styled.div`
 `;
 
 export const EditSection = styled.div`
+  position: relative;
   width: 40%;
   height: 88%;
   background: #fff;
   border: 2px solid rgba(0, 104, 255, 0.1);
   box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.25);
   border-radius: 6px;
-  padding: 1rem 2rem;
-
+  padding: 1rem;
   @media screen and (max-width: 1200px) {
     width: 55%;
-    padding: 1.5rem;
   }
   @media screen and (max-width: 960px) {
     width: 58%;
-    padding: 1.5rem;
   }
 
   @media screen and (max-width: 768px) {
@@ -49,6 +47,7 @@ export const EditHeader = styled.header`
 
 export const WrapLeftArrow = styled.div`
   color: #ff2957;
+  cursor: pointer;
 `;
 export const WrapLogo = styled.div`
   flex: 1;
@@ -67,15 +66,15 @@ export const EditLogoPicture = styled(LogoPicture)`
   border-radius: 30px;
   height: 96px;
   width: 96px;
-  top: 65px;
-  left: 20px;
+  top: 64px;
+  left: 12px;
 `;
 
 export const EditBackgroundPicture = styled(BackgroundPicture)`
   height: 120px;
 `;
 
-export const WrapBs = styled.div`
+export const WrapBs = styled.label`
   position: absolute;
   top: 130px;
   left: 82px;
@@ -99,4 +98,45 @@ export const WrapRx = styled(WrapBs)`
 
 export const EditForm = styled.form`
   /* border: 2px solid red; */
+`;
+
+export const ButtonWrapper = styled.section`
+  width: 40%;
+  height: 10%;
+  display: flex;
+  padding: 0.2rem;
+  justify-content: flex-end;
+  align-items: center;
+  position: fixed;
+  top: 40.5rem;
+  margin-left: -2rem;
+
+  @media screen and (max-width: 1200px) {
+    width: 55%;
+  }
+  @media screen and (max-width: 960px) {
+    width: 58%;
+  }
+
+  @media screen and (max-width: 768px) {
+    width: 100%;
+    top: 42rem;
+  }
+`;
+
+export const Messages = styled.section`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+`;
+export const ErrorMessages = styled.h3`
+  color: #ff2957;
+  font-size: 14px;
+  justify-content: center;
+  display: flex;
+  margin-top: 0.2rem;
+  @media screen and (max-width: 960px) {
+    font-size: 12px;
+  }
 `;

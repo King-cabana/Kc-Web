@@ -4,6 +4,7 @@ import storage from "redux-persist/lib/storage";
 import profileSlice from "./redux/slices/profileSlice";
 import authReducer from "./redux/slices/authSlice";
 import messageReducer from "./redux/slices/messageSlice";
+import eventOrganizerProfileSlice from "./redux/slices/eventOrganizerProfileSlice";
 
 const persistConfig = {
   key: "kingCabana",
@@ -13,6 +14,7 @@ const reducer = combineReducers({
   auth: authReducer,
   message: messageReducer,
   profile: profileSlice,
+  eventOrganizerProfile: eventOrganizerProfileSlice,
 });
 
 const persistedReducer = persistReducer(persistConfig, reducer);
