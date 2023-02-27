@@ -61,17 +61,22 @@ const EventHome = () => {
       const { data } = await axios.get(
         `http://localhost:8080/profiles/${state?.id}`
       );
+      // const { data } = await axios.get(`http://localhost:8080/eventuser/2`);
       console.log(data);
       dispatch(setEventOrganizerProfile(data));
     };
     fetchOrganizerProfile();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  // const { address, guarantor } = state;
 
   const navitgateToEditOrganiserProfile = () => {
     navigate("/organiserProfile/home/edit");
   };
+
+  // const logOut = () => {
+  //   dispatch(clearEventOrganizerProfile());
+  //   navigate("/login");
+  // };
 
   const toggleModal = () => {
     setModal(!modal);
@@ -95,8 +100,10 @@ const EventHome = () => {
               <FaBars />
             </HamburgerWrapper>
             <WelcomeText>
-              {state.organizerName ? state.organizerName : "Organizer's Name"}
+              {state?.organizerName ? state?.organizerName : "Organizer's Name"}
+              {/* Organizer's Name */}
             </WelcomeText>
+            {/* <PrimaryButton onClick={logOut}>Log Out</PrimaryButton> */}
           </WelcomeCenter>
 
           <ImagesContainer>

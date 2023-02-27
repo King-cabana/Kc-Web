@@ -3,9 +3,8 @@ import React, { Suspense, lazy } from "react";
 import "./App.css";
 
 // import Home from "./pages/landingPage/Home";
-import AboutUs from "./pages/aboutUs/AboutUs";
+// import AboutUs from "./pages/aboutUs/AboutUs";
 import NoPage from "./pages/noPage/NoPage";
-import ContactUs from "./pages/contactUs/ContactUs";
 
 //Authentication
 import Signup from "./authentication/signup/SignUp";
@@ -20,7 +19,7 @@ import ResetPasswordSuccess from "./authentication/signIn/ResetPasswordSuccess";
 import SecondCreateEvent from "./event/createEvent/SecondCreateEvent";
 import FirstCreateEvent from "./event/createEvent/FirstCreateEvent";
 import Sidebar from "./event/Dashboard/Sidebar";
-import DashboardHome from "./event/pages/DashboardHome";
+// import DashboardHome from "./event/pages/DashboardHome";
 import CreateEvent from "./event/pages/CreateEvent";
 import EmptyEvent from "./event/pages/NoEvent";
 import SponsorEvent from "./event/pages/SponsorEvent";
@@ -45,18 +44,20 @@ import OrganiserProfile from "./profile/organiserProfile/OrganiserProfile";
 import SocialProfile from "./profile/socialProfile/SocialProfile";
 import EditOrganiserProfile from "./profile/EditOrganiserProfile/EditOrganiserProfile";
 
-import { ToastContainer} from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css'
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Home = lazy(() => import("./pages/landingPage/Home"));
+const ContactUs = lazy(() => import("./pages/contactUs/ContactUs"));
 const Waitlist = lazy(() => import("./pages/waitlist/WaitlistForm"));
+const AboutUs = lazy(() => import("./pages/aboutUs/AboutUs"));
+const DashboardHome = lazy(() => import("./event/pages/DashboardHome"));
 
 function App() {
-
   return (
     <Suspense fallback={<LoadingScreen />}>
       <>
-        <ToastContainer/>
+        <ToastContainer />
         <>
           <Routes>
             <Route path="/" element={<Home />}></Route>
@@ -68,7 +69,7 @@ function App() {
             <Route path="/submitted" element={<Submitted />} />
             <Route path="/createProfile" element={<CreateProfile />} />
             <Route path="/manageProfile" element={<ManageProfile />} />
-            <Route path="/organiserProfile" element={<OrganiserProfile />} />
+            <Route path="/organizerProfile" element={<OrganiserProfile />} />
             <Route path="/socialProfile" element={<SocialProfile />} />
             <Route
               path="/organiserProfile/home/edit"
@@ -79,7 +80,10 @@ function App() {
             <Route path="/login" element={<SignIn />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/forgotpassword" element={<ForgotPassword />} />
-            <Route path="/forgotpassword-otp-verification" element={<ForgotPasswordOtp/>} />
+            <Route
+              path="/forgotpassword-otp-verification"
+              element={<ForgotPasswordOtp />}
+            />
             <Route path="/resetpassword" element={<ResetPassword />} />
             <Route
               path="/resetpasswordsuccess"

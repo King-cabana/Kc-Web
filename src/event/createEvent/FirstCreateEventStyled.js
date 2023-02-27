@@ -165,7 +165,7 @@ export const CheckBoxInput = styled.div`
 
 export const InputText = styled.label`
   font-weight: 500;
-  font-size: 20px;
+  font-size: ${(props) => (props.fontSize ? props.fontSize : "20px")};
   line-height: 30px;
   align-items: center;
   color: #484848;

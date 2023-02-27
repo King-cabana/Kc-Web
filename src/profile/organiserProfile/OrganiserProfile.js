@@ -51,6 +51,12 @@ const OrganiserProfile = () => {
   const dispatch = useDispatch();
   const state = useSelector((state) => state.profile);
 
+  useEffect(() => {
+    const userData = JSON.parse(localStorage.getItem("user") || "{}");
+    dispatch(editProfile({ name: "userEmail", value: userData.email }));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const handleFileChange = async (e) => {
     const MAX_FILE_SIZE = 1024; // 1MB
     const file = e.target.files[0];
@@ -159,7 +165,7 @@ const OrganiserProfile = () => {
     if (
       logoFile &&
       state.organizerName &&
-      state.email &&
+      state.profileEmail &&
       state.phoneNumber &&
       state.address &&
       state.state &&
@@ -173,7 +179,7 @@ const OrganiserProfile = () => {
   }, [
     logoFile,
     state.organizerName,
-    state.email,
+    state.profileEmail,
     state.phoneNumber,
     state.address,
     state.state,
@@ -206,7 +212,7 @@ const OrganiserProfile = () => {
             <EventHeader1>Set up your Event Organizer's Profile</EventHeader1>
             <InputSeg>
               <InputText>
-                Organizer's Name <Asterix>*</Asterix>
+                Event Organizer's Name <Asterix>*</Asterix>
               </InputText>
               <Input
                 type="text"
@@ -220,14 +226,14 @@ const OrganiserProfile = () => {
 
             <InputSeg>
               <InputText>
-                Organizer's Email address <Asterix>*</Asterix>
+                Event Organization's Email address <Asterix>*</Asterix>
               </InputText>
               <Input
                 type="email"
                 placeholder="E.g: email@example.com"
-                name="email"
+                name="profileEmail"
                 onChange={change}
-                value={state.email}
+                value={state.profileEmail}
                 title="Email format: xxx@xxxx.xxx)"
                 pattern="^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$"
                 required
@@ -236,7 +242,7 @@ const OrganiserProfile = () => {
 
             <InputSeg>
               <InputText>
-                Organizer's Phone Number <Asterix>*</Asterix>
+                Event Organization's Phone Number <Asterix>*</Asterix>
               </InputText>
               <Input
                 type="tel"
@@ -251,7 +257,7 @@ const OrganiserProfile = () => {
 
             <InputSeg>
               <InputText>
-                Organizer's Office Address <Asterix>*</Asterix>
+                Event Organizer's Office Address <Asterix>*</Asterix>
               </InputText>
               <Input
                 type="text"
@@ -295,7 +301,7 @@ const OrganiserProfile = () => {
 
             <InputSeg>
               <InputText>
-                Organizer's Details{" "}
+                Event Organizer's Details{" "}
                 <Asterix>
                   *{" - "}
                   {state?.organizerDetails?.length}/250 Characters

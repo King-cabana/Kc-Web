@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
 import { useNavigate } from "react-router";
 import {
   KCLogo,
@@ -85,15 +86,20 @@ const SocialProfile = () => {
       console.log(data);
       dispatch(setEventOrganizerProfile(data));
       navigate("/home");
-      alert("Form Submitted Successfully");
+      toast.success("Form Submitted Successfully");
     } catch (error) {
       console.log(error);
       if (error.response.data === "Profile already exists") {
         navigate("/createProfile");
-        alert("Profile already exists");
+        toast.error("Profile already exists");
+      } else if (error.response.data === "User does not exist") {
+        toast.error(
+          "User does not exist, input valid userEmail on King Cabana"
+        );
+        navigate("/organizerProfile");
       } else {
-        alert("Error Submitting Form");
-        navigate("/organiserProfile");
+        toast.error("Error Submitting Form");
+        navigate("/createProfile");
       }
     } finally {
       dispatch(clearProfile());

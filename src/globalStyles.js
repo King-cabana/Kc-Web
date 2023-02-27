@@ -26,8 +26,8 @@ export const ModalOverlay = styled.div`
 
 export const AuthBackground = styled.div`
   width: 100%;
-  height: 100vh;
-  background: #FFFCFC;
+  height: 100%;
+  background: #fffcfc;
   align-items: center;
   justify-content: center;
   display: flex;
@@ -38,7 +38,6 @@ export const AuthBackground = styled.div`
 `;
 
 export const LongButton = styled.button`
- 
   height: 7vh;
   background-color: #ff2957;
   color: white;
@@ -140,12 +139,11 @@ export const Valueholder = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-`
+`;
 
 export const ChechkBox = styled.input.attrs({
   type: "checkbox",
 })``;
-
 
 export const InputOthers = styled.input`
   display: ${(props) => (props.display ? props.display : "none")};
@@ -158,10 +156,7 @@ export const InputOthers = styled.input`
   width: 98%;
   font-size: 12px;
   margin-left: 1%;
-  
-
 `;
-
 
 export const AnimationContainer = styled.div`
   width: 150px;
@@ -434,7 +429,7 @@ export const Or = styled.div`
 `;
 
 export const SocialIconsHolder = styled.div`
- border: 1px solid #d9d9d9;
+  border: 1px solid #d9d9d9;
   border-radius: 50px;
   width: 40px;
   height: 40px;
@@ -442,12 +437,10 @@ export const SocialIconsHolder = styled.div`
   align-items: center;
   justify-content: center;
 
-  img{
-      width: 20px;
-      height:20px;
-    }
-    
-  
+  img {
+    width: 20px;
+    height: 20px;
+  }
 
   @media only screen and (max-width: 960px) {
     display: flex;
@@ -457,12 +450,11 @@ export const SocialIconsHolder = styled.div`
     height: 40px;
     flex-direction: column;
 
-    img{
+    img {
       width: 20px;
-      height:20px;
+      height: 20px;
     }
-    
-}
-`
+  }
+`;
 
 export default GlobalStyle;

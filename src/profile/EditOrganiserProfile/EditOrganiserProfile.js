@@ -54,6 +54,7 @@ import {
   AlternativeButton2,
 } from "../../components/button/button";
 import { useNavigate } from "react-router";
+import { toast } from "react-toastify";
 
 const EditOrganiserProfile = () => {
   const [modal, setModal] = useState(false);
@@ -86,58 +87,50 @@ const EditOrganiserProfile = () => {
   const [logoLoading, setLogoLoading] = useState(false);
   const [logoSuccessMsg, setLogoSuccessMsg] = useState(false);
 
-  const change = (e) => {
-    // dispatch(
-    //   setEventOrganizerProfile({ name: e.target.name, value: e.target.value })
-    // );
-    setIncomingData({ ...incomingData, [e.target.name]: e.target.value });
-  };
-
   useEffect(() => {
     const fetchOrganizerProfile = async () => {
       const { data } = await axios.get(
-        `http://localhost:8080/profiles/${state?.id}`
+        `http://localhost:8080/profiles/${state.id}`
       );
-      console.log(data);
       dispatch(setEventOrganizerProfile(data));
       setIncomingData(data);
     };
     fetchOrganizerProfile();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  useEffect(() => {
-    console.log(incomingData);
-  }, [incomingData]);
+  // useEffect(() => {
+  //   console.log(incomingData);
+  // }, [incomingData]);
 
-  // if (state !== undefined) {
-  const { address, guarantor } = state;
-  //   const addressString = `${address?.houseNo ? `${address?.houseNo},` : ""}
-  // ${address?.street || ""}
-  // ${address?.city ? `${address?.city},` : ""}
-  // ${address?.state ? `${address?.state}.` : ""}
-  // ${address?.country ? `${address?.country}.` : ""}
-  // ${address?.zipCode ? `${address?.zipCode}.` : ""}`;
-
-  const { officeAddress } = guarantor;
-  // const officeAddressString = `${
-  //   officeAddress?.houseNo ? `${officeAddress?.houseNo},` : ""
-  // }
-  // ${officeAddress?.street || ""}
-  // ${officeAddress?.city ? `${officeAddress?.city},` : ""}
-  // ${officeAddress?.state ? `${officeAddress?.state}.` : ""}
-  // ${officeAddress?.country ? `${officeAddress?.country}.` : ""}
-  // ${officeAddress?.zipCode ? `${officeAddress?.zipCode}.` : ""}`;
-  // }
-
-  // const { address, guarantor } = incomingData;
-  // const newAddressString = `${
-  //   incomingData.address.houseNo ? `${incomingData.address.houseNo},` : ""
-  // }
-  // ${incomingData.address.street || ""}
-  // ${incomingData.address.city ? `${incomingData.address.city},` : ""}
-  // ${incomingData.address.state ? `${incomingData.address.state}.` : ""}
-  // ${incomingData.address.country ? `${incomingData.address.country}.` : ""}
-  // ${incomingData.address.zipCode ? `${incomingData.address.zipCode}.` : ""}`;
+  const change = (e) => {
+    setIncomingData({ ...incomingData, [e.target.name]: e.target.value });
+  };
+  const addressChange = (e) => {
+    // const { name, value } = e.target;
+    setIncomingData({
+      ...incomingData,
+      address: { ...incomingData.address, [e.target.name]: e.target.value },
+    });
+  };
+  const guarantorChange = (e) => {
+    setIncomingData({
+      ...incomingData,
+      guarantor: { ...incomingData.guarantor, [e.target.name]: e.target.value },
+    });
+  };
+  const guarantorAddressChange = (e) => {
+    setIncomingData({
+      ...incomingData,
+      guarantor: {
+        ...incomingData.guarantor,
+        officeAddress: {
+          ...incomingData.guarantor.officeAddress,
+          [e.target.name]: e.target.value,
+        },
+      },
+    });
+  };
 
   const handleFileChange = async (e) => {
     const MAX_FILE_SIZE = 1024; // 1MB
@@ -169,12 +162,10 @@ const EditOrganiserProfile = () => {
         if (backgroundPicture.secure_url) {
           setFile(backgroundPicture.secure_url);
           setLoading(false);
-          // dispatch(
-          //   setEventOrganizerProfile({
-          //     name: e.target.name,
-          //     value: backgroundPicture.secure_url,
-          //   })
-          // );
+          setIncomingData({
+            ...incomingData,
+            [e.target.name]: backgroundPicture.secure_url,
+          });
         }
       } catch (error) {
         setLoading(false);
@@ -229,12 +220,10 @@ const EditOrganiserProfile = () => {
         if (logoPicture.secure_url) {
           setLogoFile(logoPicture.secure_url);
           setLogoLoading(false);
-          // dispatch(
-          //   setEventOrganizerProfile({
-          //     name: e.target.name,
-          //     value: logoPicture.secure_url,
-          //   })
-          // );
+          setIncomingData({
+            ...incomingData,
+            [e.target.name]: logoPicture.secure_url,
+          });
         }
       } catch (error) {
         setLogoLoading(false);
@@ -264,26 +253,134 @@ const EditOrganiserProfile = () => {
       setVisibility(false);
     }
   };
+  const discardNavigate = () => {
+    navigate("/home");
+  };
 
   const saveNavigate = async (e) => {
     e.preventDefault();
     setSending(true);
     setIsDisabled(true);
+    const patchData = [
+      {
+        op: "replace",
+        path: "/organizerName",
+        value: incomingData?.organizerName,
+      },
+      {
+        op: "replace",
+        path: "/profileEmail",
+        value: incomingData.profileEmail,
+      },
+      { op: "replace", path: "/phoneNumber", value: incomingData.phoneNumber },
+      {
+        op: "replace",
+        path: "/address/houseNo",
+        value: incomingData.address.houseNo,
+      },
+      {
+        op: "replace",
+        path: "/address/street",
+        value: incomingData.address.street,
+      },
+      {
+        op: "replace",
+        path: "/address/city",
+        value: incomingData.address.city,
+      },
+      {
+        op: "replace",
+        path: "/address/state",
+        value: incomingData.address.state,
+      },
+      {
+        op: "replace",
+        path: "/address/country",
+        value: incomingData.address.country,
+      },
+      {
+        op: "replace",
+        path: "/organizerDetails",
+        value: incomingData.organizerDetails,
+      },
+      { op: "replace", path: "/website", value: incomingData.website },
+      { op: "replace", path: "/linkedIn", value: incomingData.linkedIn },
+      { op: "replace", path: "/instagram", value: incomingData.instagram },
+      { op: "replace", path: "/twitter", value: incomingData.twitter },
+      { op: "replace", path: "/faceBook", value: incomingData.faceBook },
+      { op: "replace", path: "/otherHandle", value: incomingData.otherHandle },
+      {
+        op: "replace",
+        path: "/guarantorRole",
+        value: incomingData.guarantorRole,
+      },
+      {
+        op: "replace",
+        path: "/guarantor/secondaryContactFullName",
+        value: incomingData.guarantor.secondaryContactFullName,
+      },
+      {
+        op: "replace",
+        path: "/guarantor/companyName",
+        value: incomingData.guarantor.companyName,
+      },
+      {
+        op: "replace",
+        path: "/guarantor/jobRole",
+        value: incomingData.guarantor.jobRole,
+      },
+      {
+        op: "replace",
+        path: "/guarantor/officeAddress/houseNo",
+        value: incomingData.guarantor.officeAddress.houseNo,
+      },
+      {
+        op: "replace",
+        path: "/guarantor/officeAddress/street",
+        value: incomingData.guarantor.officeAddress.street,
+      },
+      {
+        op: "replace",
+        path: "/guarantor/officeAddress/city",
+        value: incomingData.guarantor.officeAddress.city,
+      },
+      {
+        op: "replace",
+        path: "/guarantor/officeAddress/state",
+        value: incomingData.guarantor.officeAddress.state,
+      },
+      {
+        op: "replace",
+        path: "/guarantor/officeAddress/country",
+        value: incomingData.guarantor.officeAddress.country,
+      },
+      {
+        op: "replace",
+        path: "/guarantor/secondaryContactPhoneNumber",
+        value: incomingData.guarantor.secondaryContactPhoneNumber,
+      },
+      {
+        op: "replace",
+        path: "/guarantor/secondaryContactEmail",
+        value: incomingData.guarantor.secondaryContactEmail,
+      },
+    ];
     try {
       const { data } = await axios.patch(
         `http://localhost:8080/profiles/${state?.id}`,
-        incomingData,
+        // `http://localhost:8080/profiles/9`,
+        patchData,
         {
           headers: { "Content-Type": "application/json" },
         }
       );
       console.log(data);
       dispatch(setEventOrganizerProfile(data));
-      alert("Changes Saved Successfully");
+      toast.success("Profile Updated Successfully");
       navigate("/home");
     } catch (error) {
       console.log(error);
-      alert("Unable to Save Changes");
+      toast.error("Failed to update Profile");
       setSending(false);
       setIsDisabled(false);
     }
@@ -329,7 +426,8 @@ const EditOrganiserProfile = () => {
                   hidden
                   id="backgroundPictureFile"
                   accept="image/png, image/jpeg, image/jpg"
-                  name="logoUrl"
+                  name="backgroundPictureUrl"
+                  defaultValue={incomingData?.backgroundPictureUrl}
                 />
                 <ErrorMessages>{errorMsg}</ErrorMessages>
 
@@ -367,6 +465,7 @@ const EditOrganiserProfile = () => {
                   id="logoFile"
                   accept="image/png, image/jpeg, image/jpg"
                   name="logoUrl"
+                  // defaultValue={incomingData?.logoUrl}
                 />
                 <ErrorMessages>{logoErrorMsg}</ErrorMessages>
                 {logoSuccessMsg ? (
@@ -388,15 +487,15 @@ const EditOrganiserProfile = () => {
               </Supported>
             </ImagesContainer>
 
-            <InputSeg>
+            <InputSeg style={{ marginTop: "1rem" }}>
               <InputText>Organizer's Name</InputText>
               <Input
                 type="text"
                 placeholder="Enter name"
                 name="organizerName"
                 onChange={change}
-                defaultValue={state?.organizerName}
-                value={incomingData?.organizerName}
+                // defaultValue={state.organizerName}
+                defaultValue={incomingData?.organizerName}
               />
             </InputSeg>
 
@@ -405,10 +504,10 @@ const EditOrganiserProfile = () => {
               <Input
                 type="email"
                 placeholder="E.g: email@example.com"
-                name="email"
+                name="profileEmail"
                 onChange={change}
-                defaultValue={state?.email}
-                value={incomingData?.email}
+                // defaultValue={state?.email}
+                defaultValue={incomingData?.profileEmail}
                 title="Email format: xxx@xxxx.xxx)"
                 pattern="^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$"
               />
@@ -421,48 +520,68 @@ const EditOrganiserProfile = () => {
                 placeholder="E.g: +2348022345661"
                 name="phoneNumber"
                 onChange={change}
-                defaultValue={state?.phoneNumber}
-                value={incomingData?.phoneNumber}
+                // defaultValue={state?.phoneNumber}
+                defaultValue={incomingData?.phoneNumber}
                 minLength={5}
               />
             </InputSeg>
 
-            <InputSeg>
-              <InputText>Organizer's Office Address</InputText>
-              <Input
-                type="text"
-                placeholder="E.g: 19, Isaac Mike Street, Thomas Avenue"
-                name="address"
-                onChange={change}
-                // defaultValue={addressString}
-                value={incomingData?.address?.houseNo
-                  ?.concat(incomingData?.address?.state)
-                  ?.concat(incomingData?.address?.country)}
-              />
-            </InputSeg>
-
+            <InputText>Organizer's Address</InputText>
             <Wrapper>
               <InputSeg>
-                <InputText>State</InputText>
+                <InputText fontSize="13px">Address Number</InputText>
                 <Input
                   type="text"
-                  placeholder="E.g: Kaduna State"
-                  name="state"
-                  onChange={change}
-                  defaultValue={state?.address.state}
-                  value={incomingData?.address.state}
+                  placeholder="E.g: 18 or Number 12 or Km 14 or Room 347 or...?"
+                  name="houseNo"
+                  onChange={addressChange}
+                  defaultValue={incomingData?.address.houseNo}
                 />
               </InputSeg>
 
               <InputSeg>
-                <InputText>Country</InputText>
+                <InputText fontSize="13px">Location/Street-address</InputText>
+                <Input
+                  type="text"
+                  placeholder="E.g: Mike Smith Avenue"
+                  name="street"
+                  onChange={addressChange}
+                  defaultValue={incomingData?.address.street}
+                />
+              </InputSeg>
+            </Wrapper>
+
+            <Wrapper>
+              <InputSeg>
+                <InputText fontSize="13px">Town/City</InputText>
+                <Input
+                  type="text"
+                  placeholder="E.g: Ikeja"
+                  name="city"
+                  onChange={addressChange}
+                  defaultValue={incomingData?.address.city}
+                />
+              </InputSeg>
+
+              <InputSeg>
+                <InputText fontSize="13px">State</InputText>
+                <Input
+                  type="text"
+                  placeholder="E.g: Kaduna State"
+                  name="state"
+                  onChange={addressChange}
+                  defaultValue={incomingData?.address.state}
+                />
+              </InputSeg>
+
+              <InputSeg>
+                <InputText fontSize="13px">Country</InputText>
                 <Input
                   type="text"
                   placeholder="E.g: Nigeria"
                   name="country"
-                  onChange={change}
-                  defaultValue={state?.address.country}
-                  value={incomingData?.address.country}
+                  onChange={addressChange}
+                  defaultValue={incomingData?.address.country}
                 />
               </InputSeg>
             </Wrapper>
@@ -471,7 +590,7 @@ const EditOrganiserProfile = () => {
               <InputText>
                 Organizer's Details{" "}
                 <Asterix>
-                  {state?.organizerDetails.length ||
+                  {incomingData?.organizerDetails.length ||
                     incomingData?.organizerDetails.length}
                   /250 Characters*
                 </Asterix>
@@ -483,8 +602,8 @@ const EditOrganiserProfile = () => {
                 placeholder="Write a short bio: 250 characters maximum"
                 maxLength={250}
                 onChange={change}
-                defaultValue={state?.organizerDetails}
-                value={incomingData?.organizerDetails}
+                // defaultValue={state?.organizerDetails}
+                defaultValue={incomingData?.organizerDetails}
               />
             </InputSeg>
 
@@ -495,8 +614,8 @@ const EditOrganiserProfile = () => {
                 type="url"
                 placeholder="https://example.com/"
                 name="website"
-                defaultValue={state?.website}
-                value={incomingData?.website}
+                // defaultValue={state?.website}
+                defaultValue={incomingData?.website}
                 onChange={change}
               />
             </InputSeg>
@@ -507,8 +626,8 @@ const EditOrganiserProfile = () => {
                 type="url"
                 placeholder="https://linkedin.com/*****"
                 name="linkedIn"
-                defaultValue={state?.linkedIn}
-                value={incomingData?.linkedIn}
+                // defaultValue={state?.linkedIn}
+                defaultValue={incomingData?.linkedIn}
                 onChange={change}
               />
             </InputSeg>
@@ -519,8 +638,8 @@ const EditOrganiserProfile = () => {
                 type="url"
                 placeholder="https://instagram.com/*****"
                 name="instagram"
-                defaultValue={state?.instagram}
-                value={incomingData?.instagram}
+                // defaultValue={state?.instagram}
+                defaultValue={incomingData?.instagram}
                 onChange={change}
               />
             </InputSeg>
@@ -531,8 +650,8 @@ const EditOrganiserProfile = () => {
                 type="url"
                 placeholder="https://twitter.com/*****"
                 name="twitter"
-                defaultValue={state?.twitter}
-                value={incomingData?.twitter}
+                // defaultValue={state?.twitter}
+                defaultValue={incomingData?.twitter}
                 onChange={change}
               />
             </InputSeg>
@@ -543,8 +662,8 @@ const EditOrganiserProfile = () => {
                 type="url"
                 placeholder="https://facebook.com/*****"
                 name="faceBook"
-                defaultValue={state?.faceBook}
-                value={incomingData?.faceBook}
+                // defaultValue={state?.faceBook}
+                defaultValue={incomingData?.faceBook}
                 onChange={change}
               />
             </InputSeg>
@@ -555,8 +674,8 @@ const EditOrganiserProfile = () => {
                 type="url"
                 placeholder="https://others.com/"
                 name="otherHandle"
-                defaultValue={state?.otherHandle}
-                value={incomingData?.otherHandle}
+                // defaultValue={state?.otherHandle}
+                defaultValue={incomingData?.otherHandle}
                 onChange={change}
               />
             </InputSeg>
@@ -619,8 +738,8 @@ const EditOrganiserProfile = () => {
                   type="text"
                   placeholder="Enter others"
                   name="guarantorRole"
-                  defaultValue={state?.guarantorRole}
-                  value={incomingData?.guarantorRole}
+                  // defaultValue={state?.guarantorRole}
+                  defaultValue={incomingData?.guarantorRole}
                   onChange={change}
                 />
               </InputBoxOther>
@@ -629,18 +748,18 @@ const EditOrganiserProfile = () => {
             <InputSeg>
               <InputText>
                 Full name of {""}
-                {state.guarantorRole
-                  ? state.guarantorRole.charAt(0).toUpperCase() +
-                    state.guarantorRole.slice(1)
+                {incomingData?.guarantorRole
+                  ? incomingData?.guarantorRole.charAt(0).toUpperCase() +
+                    incomingData?.guarantorRole.slice(1)
                   : "Secondary Contact"}{" "}
               </InputText>
               <Input
                 type="text"
                 placeholder="Enter Full Name of Secondary Contact"
                 name="secondaryContactFullName"
-                defaultValue={state?.guarantor.secondaryContactFullName}
-                value={incomingData?.guarantor.secondaryContactFullName}
-                onChange={change}
+                // defaultValue={state.guarantor?.secondaryContactFullName}
+                defaultValue={incomingData?.guarantor.secondaryContactFullName}
+                onChange={guarantorChange}
               />
             </InputSeg>
 
@@ -650,9 +769,9 @@ const EditOrganiserProfile = () => {
                 type="text"
                 placeholder="Enter Company/Business Name"
                 name="companyName"
-                defaultValue={state?.guarantor.companyName}
-                value={incomingData?.guarantor.companyName}
-                onChange={change}
+                // defaultValue={state.guarantor?.companyName}
+                defaultValue={incomingData?.guarantor.companyName}
+                onChange={guarantorChange}
               />
             </InputSeg>
 
@@ -662,23 +781,71 @@ const EditOrganiserProfile = () => {
                 type="text"
                 placeholder="Enter Job Role"
                 name="jobRole"
-                defaultValue={state?.guarantor.jobRole}
-                value={incomingData?.guarantor.jobRole}
-                onChange={change}
+                // defaultValue={state.guarantor?.jobRole}
+                defaultValue={incomingData?.guarantor.jobRole}
+                onChange={guarantorChange}
               />
             </InputSeg>
 
-            <InputSeg>
-              <InputText>Office Address</InputText>
-              <Input
-                type="text"
-                placeholder="Enter Office Address"
-                name="officeAddress"
-                // defaultValue={officeAddressString}
-                value={incomingData?.guarantor.address}
-                onChange={change}
-              />
-            </InputSeg>
+            <InputText>Guarantor's Office Address</InputText>
+            <Wrapper>
+              <InputSeg>
+                <InputText fontSize="13px">Address Number</InputText>
+                <Input
+                  type="text"
+                  placeholder="E.g: 18 or Number 12 or Km 14 or Room 347 or...?"
+                  name="houseNo"
+                  onChange={guarantorAddressChange}
+                  defaultValue={incomingData?.guarantor.officeAddress?.houseNo}
+                />
+              </InputSeg>
+
+              <InputSeg>
+                <InputText fontSize="13px">Location/Street-address</InputText>
+                <Input
+                  type="text"
+                  placeholder="E.g: Mike Smith Avenue"
+                  name="street"
+                  onChange={guarantorAddressChange}
+                  defaultValue={incomingData?.guarantor.officeAddress?.street}
+                />
+              </InputSeg>
+            </Wrapper>
+
+            <Wrapper>
+              <InputSeg>
+                <InputText fontSize="13px">Town/City</InputText>
+                <Input
+                  type="text"
+                  placeholder="E.g: Ikeja"
+                  name="city"
+                  onChange={guarantorAddressChange}
+                  defaultValue={incomingData?.guarantor.officeAddress?.city}
+                />
+              </InputSeg>
+
+              <InputSeg>
+                <InputText fontSize="13px">State</InputText>
+                <Input
+                  type="text"
+                  placeholder="E.g: Kaduna State"
+                  name="state"
+                  onChange={guarantorAddressChange}
+                  defaultValue={incomingData?.guarantor.officeAddress?.state}
+                />
+              </InputSeg>
+
+              <InputSeg>
+                <InputText fontSize="13px">Country</InputText>
+                <Input
+                  type="text"
+                  placeholder="E.g: Nigeria"
+                  name="country"
+                  onChange={guarantorAddressChange}
+                  defaultValue={incomingData?.guarantor.officeAddress?.country}
+                />
+              </InputSeg>
+            </Wrapper>
 
             <InputSeg>
               <InputText>Phone Number</InputText>
@@ -686,9 +853,11 @@ const EditOrganiserProfile = () => {
                 type="tel"
                 placeholder="E.g: +2348022345661"
                 name="secondaryContactPhoneNumber"
-                defaultValue={state?.guarantor.secondaryContactPhoneNumber}
-                value={incomingData?.guarantor.secondaryContactPhoneNumber}
-                onChange={change}
+                // defaultValue={state.guarantor?.secondaryContactPhoneNumber}
+                defaultValue={
+                  incomingData?.guarantor.secondaryContactPhoneNumber
+                }
+                onChange={guarantorChange}
                 minLength={5}
               />
             </InputSeg>
@@ -701,9 +870,9 @@ const EditOrganiserProfile = () => {
                 pattern="^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$"
                 placeholder="E.g: email@example.com"
                 name="secondaryContactEmail"
-                defaultValue={state?.guarantor.secondaryContactEmail}
-                value={incomingData?.guarantor.secondaryContactEmail}
-                onChange={change}
+                // defaultValue={state.guarantor?.secondaryContactEmail}
+                defaultValue={incomingData?.guarantor.secondaryContactEmail}
+                onChange={guarantorChange}
               />
             </InputSeg>
 
@@ -713,37 +882,37 @@ const EditOrganiserProfile = () => {
               }}
             ></div>
 
-            <div className={`${showModal}`}>
-              <PopUpComponent>
-                <ModalText>
-                  This is going to disrupt all unsaved changes. Are you sure you
-                  want to continue?
-                </ModalText>
-
-                <ModalButtonContainer>
-                  <BtnHolderLink>
-                    <AlternativeButton2
-                      onClick={() => setModal(!modal)}
-                      style={{
-                        color: "#FF2957",
-                      }}
-                    >
-                      Continue Editing
-                    </AlternativeButton2>
-                  </BtnHolderLink>
-
-                  <BtnHolderLink to="/home">
-                    <ModalPrimaryButton>Yes, Discard</ModalPrimaryButton>
-                  </BtnHolderLink>
-                </ModalButtonContainer>
-              </PopUpComponent>
-            </div>
             <ButtonWrapper>
               <PrimaryButton onClick={saveNavigate} disabled={isDisabled}>
                 {sending ? <ImSpinner6 size={"1.5rem"} /> : "Save"}
               </PrimaryButton>
             </ButtonWrapper>
           </EditForm>
+          <div className={`${showModal}`}>
+            <PopUpComponent>
+              <ModalText>
+                This is going to disrupt all unsaved changes. Are you sure you
+                want to continue?
+              </ModalText>
+
+              <ModalButtonContainer>
+                <BtnHolderLink>
+                  <AlternativeButton2
+                    onClick={() => setModal(!modal)}
+                    style={{
+                      color: "#FF2957",
+                    }}
+                  >
+                    Continue Editing
+                  </AlternativeButton2>
+                </BtnHolderLink>
+
+                <ModalPrimaryButton onClick={discardNavigate}>
+                  Yes, Discard
+                </ModalPrimaryButton>
+              </ModalButtonContainer>
+            </PopUpComponent>
+          </div>
         </EditSection>
       </OverallContainer>
     </>

@@ -66,17 +66,17 @@ export const EditLogoPicture = styled(LogoPicture)`
   border-radius: 30px;
   height: 96px;
   width: 96px;
-  top: 64px;
-  left: 12px;
+  top: 100px;
+  left: 10px;
 `;
 
 export const EditBackgroundPicture = styled(BackgroundPicture)`
-  height: 120px;
+  height: 150px;
 `;
 
 export const WrapBs = styled.label`
   position: absolute;
-  top: 130px;
+  top: 170px;
   left: 82px;
   width: 24px;
   height: 24px;
@@ -108,7 +108,7 @@ export const ButtonWrapper = styled.section`
   justify-content: flex-end;
   align-items: center;
   position: fixed;
-  top: 40.5rem;
+  top: 5rem;
   margin-left: -2rem;
 
   @media screen and (max-width: 1200px) {
@@ -120,7 +120,7 @@ export const ButtonWrapper = styled.section`
 
   @media screen and (max-width: 768px) {
     width: 100%;
-    top: 42rem;
+    top: 2rem;
   }
 `;
 

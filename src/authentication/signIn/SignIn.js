@@ -41,22 +41,21 @@ const SignIn = () => {
   };
 
   const handleLogin = async (e) => {
-
     e.preventDefault();
     try {
-      setLoading(true)
-      await login(email, password);
-      toast.success("login successfully!")
+      setLoading(true);
+      const response = await login(email, password);
+      console.log(response?.data?.data);
+      toast.success("login successfully!");
       navigate("/createProfile");
     } catch (error) {
-      setLoading(false)
+      setLoading(false);
       toast.error(error.response.data);
+    } finally {
+      setEmail("");
+      setPassword("");
     }
-      finally {
-        setEmail("")
-        setPassword("")
   };
-}
 
   return (
     <AuthBackground>
@@ -150,11 +149,8 @@ const SignIn = () => {
                 Forgot Password?
               </p>
             </div>
-            <LongButton
-              style={{ marginTop: "5%" }}
-              type="submit"
-            >
-             {loading ? <ImSpinner6 size={"1.5rem"} /> : "Log in"}
+            <LongButton style={{ marginTop: "5%" }} type="submit">
+              {loading ? <ImSpinner6 size={"1.5rem"} /> : "Log in"}
             </LongButton>
           </Form>
 

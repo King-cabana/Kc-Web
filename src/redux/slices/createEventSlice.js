@@ -2,14 +2,14 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {};
 
-export const profileSlice = createSlice({
-  name: "profile",
+export const createEventSlice = createSlice({
+  name: "createEvent",
   initialState,
   reducers: {
-    editProfile: (state, { payload }) => {
+    editEvent: (state, { payload }) => {
       Object.assign(state, { [payload.name]: payload.value });
     },
-    clearProfile: (state) => {
+    clearEvent: (state) => {
       Object.keys(state).forEach((each) =>
         Object.assign(state, { [each]: "" })
       );
@@ -17,6 +17,6 @@ export const profileSlice = createSlice({
   },
 });
 
-export const { editProfile, clearProfile } = profileSlice.actions;
+export const { editEvent, clearEvent } = createEventSlice.actions;
 
-export default profileSlice.reducer;
+export default createEventSlice.reducer;

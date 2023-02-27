@@ -7,8 +7,7 @@ export const eventOrganizerProfileSlice = createSlice({
   initialState,
   reducers: {
     setEventOrganizerProfile: (state, { payload }) => {
-      console.log(payload);
-      //   Object.assign(state, { ...payload });
+      Object.assign(state, { ...payload });
       // Object.assign(state, { [payload.name]: payload.value });
     },
     clearEventOrganizerProfile: (state) => {

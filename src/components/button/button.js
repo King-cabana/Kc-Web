@@ -27,6 +27,8 @@ export const PrimaryButton = styled.button`
     font-size: 10px;
     line-height: 12px;
     padding: 0.2rem 0.5rem;
+    width: 80px;
+    height: 35px;
   }
 `;
 
