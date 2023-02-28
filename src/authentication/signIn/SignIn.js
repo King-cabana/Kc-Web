@@ -128,7 +128,7 @@ const SignIn = () => {
                   gap: "5px",
                 }}
               >
-                <input type="checkbox" required></input>
+                <input type="checkbox" ></input>
                 <KBTextXs
                   style={{
                     textAlign: "center",

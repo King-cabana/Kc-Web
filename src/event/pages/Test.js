@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import CreateEventTopBar from "../topBar/CreateEventTopBar/CreateEventTopBar";
 import ProgressBar from "../progressBar/ProgressBar";
 import { BodyHolder, WavyBackground } from "./TestStyled";
@@ -6,8 +6,12 @@ import Layout from "../../components/layoutComponent/Layout";
 import DefineAudience from "./DefineAudience";
 import Budget from "../budgetInventory/Budget";
 import FirstCreateEvent from "../createEvent/FirstCreateEvent";
+import SecondCreateEvent from "../createEvent/SecondCreateEvent";
+import { useParams } from "react-router";
 
 const Test = ({ children }) => {
+  const { name, number } = useParams();
+
   // const [progress, setProgress] = useState(0)
   // const [age, setAge] = useState()
   // const [incomeRange, setIncomeRange] = useState(null)
@@ -18,6 +22,9 @@ const Test = ({ children }) => {
   //     setProgress(checkProgress.filter(x => x && x).length)
   // }, [age, incomeRange])
 
+  // useLayoutEffect(() => {
+  //   setPage();
+  // }, [link]);
   const [active, setActive] = useState("details");
   return (
     <>
@@ -30,7 +37,22 @@ const Test = ({ children }) => {
           ) : active === "audience" ? (
             <DefineAudience />
           ) : (
-            <FirstCreateEvent/>
+            <>
+              {name === "eventdetails" && number === "1" && (
+                <FirstCreateEvent />
+              )}
+              {name === "eventdetails" && number === "2" && (
+                <SecondCreateEvent />
+              )}
+              {name === "eventdetails" && number === "3" && (
+                <SecondCreateEvent />
+              )}
+              {name === "eventdetails" && number === "4" && (
+                <SecondCreateEvent />
+              )}
+              {/* {page.page === "2" && <SecondCreateEvent />} */}
+            </>
+            // typeof page?.page
           )}
         </Layout>
       </WavyBackground>

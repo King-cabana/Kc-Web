@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { HiOutlineEye, HiOutlineEyeOff } from "react-icons/hi";
 import { KBDisplayXs, KBTextXs } from "../../components/fonts/fontSize";
 import {
@@ -36,7 +36,7 @@ const SignUp = () => {
   });
 
   function inputChange(e) {
-    setInput({ ...inputs, [e.target.name]: e.target.value });
+    setInput({ ...inputs, [e.target.name]: e.target.value }); 
     setdisableButton(false);
   }
 
@@ -52,6 +52,10 @@ const SignUp = () => {
   function handleValidation(e) {
     setErrors(Validation(inputs));
   }
+
+  // useEffect(()=>{
+  //   handleSignUp();
+  // },[errors])
 
   const navigate = useNavigate();
 
@@ -275,7 +279,7 @@ const SignUp = () => {
             <span
               style={{ color: "#ff2957", fontWeight: "500", textAlign: "left" }}
             >
-              Login
+              {" Login"}
             </span>
           </LogInLink>
         </SignUpContent>

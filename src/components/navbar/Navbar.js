@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import hb from "../../images/hb.svg";
 import times from "../../images/times.svg";
-import { BiSearch } from "react-icons/bi";
 import { IconContext } from "react-icons/lib";
 import {
   Nav,
@@ -12,11 +11,11 @@ import {
   NavMobile,
   NavBarLink,
   NavButtonLink,
-  NavSearchHolder,
   AccessButton,
 } from "./Navbar.styled";
 import Logo from "../../images/kingCabanaLogo.svg";
 import { NavGroup } from "./Navbar.styled";
+import { AlternativeButton, AltNavBtn, PryNavBtn } from "../button/button";
 // import SignIn from '../../pages/authentication/signIn/SignIn';
 
 const Navbar = () => {
@@ -39,19 +38,6 @@ const Navbar = () => {
 
   window.addEventListener("resize", showButton);
 
-  // const navLinkStyles = ({isActive}) => {
-  //     return{
-  //       fontWeight: isActive? '600' : 'normal',
-  //       color: isActive? '#FF2957' : 'black',
-  //     }
-  // }
-
-  // const [showModal, setShowmodal] = useState(false);
-
-  // const openModal = () =>{
-  //   setShowmodal(prev => !prev)
-  // }
-
   return (
     <>
       <IconContext.Provider value={{ size: "25px" }}>
@@ -70,12 +56,6 @@ const Navbar = () => {
                 <NavBarLink to="/">Home</NavBarLink>
               </li>
               <li>
-                <NavBarLink to="/sponsors">For Sponsors</NavBarLink>
-              </li>
-              <li>
-                <NavBarLink to="/organizers">For Organizer</NavBarLink>
-              </li>
-              <li>
                 <NavBarLink to="/contactUs">Contact Us</NavBarLink>
               </li>
               <li>
@@ -83,13 +63,24 @@ const Navbar = () => {
               </li>
               <NavGroup>
                 {button ? (
-                  <NavButtonLink to="/waitlist">
-                    <AccessButton>Get early access</AccessButton>
+                  <>
+                  <NavButtonLink to="/login">
+                    <AltNavBtn fontWeight='500'>Sign In</AltNavBtn>
+                  </NavButtonLink>  
+                  <NavButtonLink to="/signup">  
+                    <PryNavBtn fontWeight='500'>Sign Up</PryNavBtn>
                   </NavButtonLink>
+                  </>
+                  
                 ) : (
-                  <NavButtonLink to="/waitlist">
-                    <AccessButton>Get early access</AccessButton>
+                  <>
+                  <NavButtonLink to="/login">
+                    <AltNavBtn fontWeight='500'>Sign In</AltNavBtn>
+                  </NavButtonLink>  
+                  <NavButtonLink to="/signup">  
+                    <PryNavBtn fontWeight='500'>Sign Up</PryNavBtn>
                   </NavButtonLink>
+                  </>
                 )}
               </NavGroup>
             </NavItems>

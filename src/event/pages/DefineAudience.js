@@ -18,7 +18,7 @@ import {
   OthersInput,
   Radio,
   RadioInput,
-  RadioLabel,
+  RadioLabel
 } from "../createEvent/ContactInfoStyled";
 
 const DefineAudience = () => {

@@ -257,6 +257,7 @@ export const ASSectionInner = styled.div`
   align-items: center;
 
   @media screen and (max-width: 960px) {
+    margin-top: 10%;
     display: flex;
     flex-direction: column-reverse;
   }

@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 
 export const DisplayMode = styled.div`
   display: flex;
-
+  position: fixed;
+  top: 62px;
   @media screen and (max-width: 480px) {
     /* display: block; */
   }
@@ -13,13 +14,16 @@ export const SidebarNav = styled.nav`
   background: white;
   width: 20%;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
-  /* height: 100vh; */
+  height: 100vh;
+  overflow-y: scroll;
   display: flex;
   justify-content: center;
-  left: ${({ sidebar }) => (sidebar ? "0" : "-100%")};
+  left: ${({ sidebar }) => (sidebar ? '0' : '-100%')};
   transition: 350ms;
   z-index: 10;
-  padding-top: 1%;
+  /* padding-top: 1%; */
+  /* position: fixed; */
+  /* top: 62px; */
 
   @media screen and (max-width: 480px) {
     width: 100%;
@@ -43,6 +47,9 @@ export const ContentBody = styled.div`
   justify-content: center;
   align-items: center;
   width: 80%;
+  position: relative;
+  overflow-y: scroll;
+  max-height: 85vh;
 
   @media screen and (max-width: 480px) {
     width: 100%;
@@ -51,7 +58,8 @@ export const ContentBody = styled.div`
 
 export const Nav = styled.div`
   height: 40px;
-  display: hidden;
+  display: flex;
+  /* display: hidden; */
   justify-content: flex-start;
   align-items: center;
 

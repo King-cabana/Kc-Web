@@ -8,7 +8,6 @@ import NoPage from "./pages/noPage/NoPage";
 import ContactUs from "./pages/contactUs/ContactUs";
 
 //Authentication
-import Signup from "./authentication/signup/SignUp";
 import SignIn from "./authentication/signIn/SignIn";
 import VerifyEmail from "./authentication/signup/VerifyEmail";
 import SignUpSuccess from "./authentication/signup/SignUpSuccess";
@@ -50,6 +49,7 @@ import 'react-toastify/dist/ReactToastify.css'
 
 const Home = lazy(() => import("./pages/landingPage/Home"));
 const Waitlist = lazy(() => import("./pages/waitlist/WaitlistForm"));
+const Signup = lazy(() => import("./authentication/signup/SignUp"))
 
 function App() {
 
@@ -89,7 +89,7 @@ function App() {
             <Route path="signupsuccess" element={<SignUpSuccess />} />
             <Route path="verifyemail" element={<VerifyEmail />} />
 
-            <Route path="/test" element={<Test />} />
+            <Route path="/test/:name/:number" element={<Test />} />
 
             <Route
               path="/dashboard"

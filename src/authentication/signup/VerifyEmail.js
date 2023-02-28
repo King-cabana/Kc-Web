@@ -16,7 +16,7 @@ const VerifyEmail = () => {
 
   const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
+ const handleSubmit = async (e) => {
     
     e.preventDefault();
    try {
@@ -31,8 +31,10 @@ const VerifyEmail = () => {
    finally {
     setOtp("");
   }
-    // sessionStorage.setItem("otp", otp);
-   
+  }
+
+  const resendCode = () => {
+
   }
  
 
@@ -86,6 +88,7 @@ const VerifyEmail = () => {
               marginTop: "20px",
               cursor:'pointer'
             }}
+            onClick={resendCode}
           >
             Resend code
           </p>
