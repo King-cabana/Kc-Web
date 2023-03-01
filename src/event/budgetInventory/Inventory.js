@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { clearEvent, editInventory } from "../../redux/slices/createEventSlice";
 import {
   BudgetInventoryContainer,
   BudgetInventoryHeader,
@@ -33,13 +35,14 @@ import {
 import "../../App.css";
 import "../../modal.css";
 import { BsChevronRight, BsChevronDown } from "react-icons/bs";
-// import CreateEventTopBar from "../topBar/CreateEventTopBar/CreateEventTopBar";
-// import ProgressBar from "../progressBar/ProgressBar";
 
 const Inventory = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const state = useSelector((state) => state.createEvent);
   // discard button modal
   // const [modal, setModal] = useState(false);
+
   // checkstates
   const [exclusive, setExclusive] = useState(false);
   const [otherOnline, setOtherOnline] = useState(false);
@@ -52,109 +55,15 @@ const Inventory = () => {
   const [production, setProduction] = useState(false);
   const [causeTieIn, setCauseTieIn] = useState(false);
 
-  // checkdataretreival
-  const [firstChecked, setFirstChecked] = useState([]);
-  const [secondChecked, setSecondChecked] = useState([]);
-  const [thirdChecked, setThirdChecked] = useState([]);
-  const [fourthChecked, setFourthChecked] = useState([]);
-  const [fifthChecked, setFifthChecked] = useState([]);
-  const [sixthChecked, setSixthChecked] = useState([]);
-  const [seventhChecked, setSeventhChecked] = useState([]);
-  const [eightChecked, setEightChecked] = useState([]);
-  const [ninthChecked, setNinthChecked] = useState([]);
-  const [tenthChecked, setTenthChecked] = useState([]);
+  const handleCheckboxChange = (e) => {
+    const { name, value, checked } = e.target;
+    dispatch(editInventory({ category: name, item: value, checked }));
+    // dispatch(editInventory({ name: e.target.name, value: e.target.value }));
+  };
 
-  // const [isDisabled, setIsDisabled] = useState(true);
-
-  const handleFirstCheck = (e) => {
-    var updatedList = [...firstChecked];
-    if (e.target.checked) {
-      updatedList = [[...firstChecked], e.target.value];
-    } else {
-      updatedList.splice(firstChecked.indexOf(e.target.value), 1);
-    }
-    setFirstChecked(updatedList);
-  };
-  const handleSecondCheck = (e) => {
-    var updatedList = [...secondChecked];
-    if (e.target.checked) {
-      updatedList = [...secondChecked, e.target.value];
-    } else {
-      updatedList.splice(secondChecked.indexOf(e.target.value), 1);
-    }
-    setSecondChecked(updatedList);
-  };
-  const handleThirdCheck = (e) => {
-    var updatedList = [...thirdChecked];
-    if (e.target.checked) {
-      updatedList = [...thirdChecked, e.target.value];
-    } else {
-      updatedList.splice(thirdChecked.indexOf(e.target.value), 1);
-    }
-    setThirdChecked(updatedList);
-  };
-  const handleFourthCheck = (e) => {
-    var updatedList = [...fourthChecked];
-    if (e.target.checked) {
-      updatedList = [...fourthChecked, e.target.value];
-    } else {
-      updatedList.splice(fourthChecked.indexOf(e.target.value), 1);
-    }
-    setFourthChecked(updatedList);
-  };
-  const handleFifthCheck = (e) => {
-    var updatedList = [...fifthChecked];
-    if (e.target.checked) {
-      updatedList = [...fifthChecked, e.target.value];
-    } else {
-      updatedList.splice(fifthChecked.indexOf(e.target.value), 1);
-    }
-    setFifthChecked(updatedList);
-  };
-  const handleSixthCheck = (e) => {
-    var updatedList = [...sixthChecked];
-    if (e.target.checked) {
-      updatedList = [...sixthChecked, e.target.value];
-    } else {
-      updatedList.splice(sixthChecked.indexOf(e.target.value), 1);
-    }
-    setSixthChecked(updatedList);
-  };
-  const handleSeventhCheck = (e) => {
-    var updatedList = [...seventhChecked];
-    if (e.target.checked) {
-      updatedList = [...seventhChecked, e.target.value];
-    } else {
-      updatedList.splice(seventhChecked.indexOf(e.target.value), 1);
-    }
-    setSeventhChecked(updatedList);
-  };
-  const handleEightCheck = (e) => {
-    var updatedList = [...eightChecked];
-    if (e.target.checked) {
-      updatedList = [...eightChecked, e.target.value];
-    } else {
-      updatedList.splice(eightChecked.indexOf(e.target.value), 1);
-    }
-    setEightChecked(updatedList);
-  };
-  const handleNinthCheck = (e) => {
-    var updatedList = [...ninthChecked];
-    if (e.target.checked) {
-      updatedList = [...ninthChecked, e.target.value];
-    } else {
-      updatedList.splice(ninthChecked.indexOf(e.target.value), 1);
-    }
-    setNinthChecked(updatedList);
-  };
-  const handleTenthCheck = (e) => {
-    var updatedList = [...tenthChecked];
-    if (e.target.checked) {
-      updatedList = [...tenthChecked, e.target.value];
-    } else {
-      updatedList.splice(tenthChecked.indexOf(e.target.value), 1);
-    }
-    setTenthChecked(updatedList);
+  const handleSubmit = async function (e) {
+    e.preventDefault();
+    console.log("Selected items:", state);
   };
 
   // Modal Contitions
@@ -166,23 +75,11 @@ const Inventory = () => {
   // const showModal = !modal && "notShown";
 
   // Submission handling
-  const handleSubmit = async function (e) {
-    e.preventDefault();
-    const items = [
-      firstChecked,
-      secondChecked,
-      thirdChecked,
-      fourthChecked,
-      fifthChecked,
-      sixthChecked,
-      seventhChecked,
-      eightChecked,
-      ninthChecked,
-      tenthChecked,
-    ];
-    console.log(items);
-    navigate("/submitted");
-  };
+  // const handleSubmit = async function (e) {
+  //   e.preventDefault();
+  //   console.log(items);
+  //   navigate("/submitted");
+  // };
 
   return (
     <>
@@ -216,8 +113,11 @@ const Inventory = () => {
                       type="checkbox"
                       id="content"
                       value="Provision of content for sponsor activities (e.g articles, podcasts etc.)"
-                      name="exclusive content"
-                      onChange={handleFirstCheck}
+                      name="exclusiveContent"
+                      checked={state.exclusiveContent?.includes(
+                        "Provision of content for sponsor activities (e.g articles, podcasts etc.)"
+                      )}
+                      onChange={handleCheckboxChange}
                     />
                     <CheckLabel htmlFor="content">
                       Provision of content for sponsor activities (e.g articles,
@@ -230,8 +130,11 @@ const Inventory = () => {
                       id="events"
                       value="Provision of online ‘events’ (online chat with a star,
                         webcast, webinar, spaces etc.)"
-                      name="exclusive content"
-                      onChange={handleFirstCheck}
+                      name="exclusiveContent"
+                      checked={state.exclusiveContent?.includes(
+                        "Provision of online ‘events’ (online chat with a star, webcast, webinar, spaces etc.)"
+                      )}
+                      onChange={handleCheckboxChange}
                     />
                     <CheckLabel htmlFor="events">
                       Provision of online ‘events’ (online chat with a star,
@@ -242,9 +145,12 @@ const Inventory = () => {
                     <CheckInput
                       type="checkbox"
                       id="ownable"
-                      value="ownable"
-                      name="exclusive content"
-                      onChange={handleFirstCheck}
+                      value="Access to venue, athletes, celebrities artistes, curators, etc. for creation of new exclusive “ownable” content"
+                      name="exclusiveContent"
+                      checked={state.exclusiveContent?.includes(
+                        "Access to venue, athletes, celebrities artistes, curators, etc. for creation of new exclusive “ownable” content"
+                      )}
+                      onChange={handleCheckboxChange}
                     />
                     <CheckLabel htmlFor="ownable">
                       Access to venue, athletes, celebrities artistes, curators
@@ -258,8 +164,11 @@ const Inventory = () => {
                       value="Access to background information, statistics, photos,
                       video clips, autographs, etc. for creation of new,
                       exclusive, “ownable’’ content"
-                      name="exclusive content"
-                      onChange={handleFirstCheck}
+                      name="exclusiveContent"
+                      checked={state.exclusiveContent?.includes(
+                        "Access to background information, statistics, photos, video clips, autographs, etc. for creation of new, exclusive, “ownable’’ content"
+                      )}
+                      onChange={handleCheckboxChange}
                     />
                     <CheckLabel htmlFor="information">
                       Access to background information, statistics, photos,
@@ -284,7 +193,10 @@ const Inventory = () => {
                       sponsee’s social media activies, e-newsletter, and/or
                       website."
                       name="otherOnline"
-                      onChange={handleSecondCheck}
+                      checked={state.otherOnline?.includes(
+                        "Promotion of relevant sponsor leverage activities through sponsee’s social media activies, e-newsletter, and/or website."
+                      )}
+                      onChange={handleCheckboxChange}
                     />
                     <CheckLabel htmlFor="leverageActivities">
                       Promotion of relevant sponsor leverage activities through
@@ -299,7 +211,10 @@ const Inventory = () => {
                       followers via sponsee-controlled social media"
                       id="addValue"
                       name="otherOnline"
-                      onChange={handleSecondCheck}
+                      checked={state.otherOnline?.includes(
+                        "Ability for sponsor to add value to sponsee fans/followers via sponsee-controlled social media"
+                      )}
+                      onChange={handleCheckboxChange}
                     />
                     <CheckLabel htmlFor="addValue">
                       Ability for sponsor to add value to sponsee fans/
@@ -313,7 +228,10 @@ const Inventory = () => {
                       e-newsletter, and/or website."
                       id="socialMedia"
                       name="otherOnline"
-                      onChange={handleSecondCheck}
+                      checked={state.otherOnline?.includes(
+                        "Promotion of content on sponsee social media, e-newsletter, and/or website."
+                      )}
+                      onChange={handleCheckboxChange}
                     />
                     <CheckLabel htmlFor="socialMedia">
                       Promotion of content on sponsee social media,
@@ -327,7 +245,10 @@ const Inventory = () => {
                       platforms"
                       id="profile"
                       name="otherOnline"
-                      onChange={handleSecondCheck}
+                      checked={state.otherOnline?.includes(
+                        "Sponsor profile on sponsee website, and social media platforms"
+                      )}
+                      onChange={handleCheckboxChange}
                     />
                     <CheckLabel htmlFor="profile">
                       Sponsor profile on sponsee website, and social media
@@ -349,7 +270,10 @@ const Inventory = () => {
                       id="venueSignage"
                       value="Venue signage (full, partial, or non-broadcast view)"
                       name="signage"
-                      onChange={handleThirdCheck}
+                      checked={state.signage?.includes(
+                        "Venue signage (full, partial, or non-broadcast view)"
+                      )}
+                      onChange={handleCheckboxChange}
                     />
                     <CheckLabel htmlFor="venueSignage">
                       Venue signage (full, partial, or non-broadcast view)
@@ -362,7 +286,10 @@ const Inventory = () => {
                       value="Inclusion in on-site event signage (exclusive or
                         nonexclusive)"
                       name="signage"
-                      onChange={handleThirdCheck}
+                      checked={state.signage?.includes(
+                        "Inclusion in on-site event signage (exclusive or nonexclusive)"
+                      )}
+                      onChange={handleCheckboxChange}
                     />
                     <CheckLabel htmlFor="onSite">
                       Inclusion in on-site event signage (exclusive or
@@ -375,7 +302,10 @@ const Inventory = () => {
                       id="banners"
                       value="Inclusion on pre-event street banners, flags, etc."
                       name="signage"
-                      onChange={handleThirdCheck}
+                      checked={state.signage?.includes(
+                        "Inclusion on pre-event street banners, flags, etc."
+                      )}
+                      onChange={handleCheckboxChange}
                     />
                     <CheckLabel htmlFor="banners">
                       Inclusion on pre-event street banners, flags, etc.
@@ -387,7 +317,10 @@ const Inventory = () => {
                       id="pressConference"
                       value="Press conference signage"
                       name="signage"
-                      onChange={handleThirdCheck}
+                      checked={state.signage?.includes(
+                        "Press conference signage"
+                      )}
+                      onChange={handleCheckboxChange}
                     />
                     <CheckLabel htmlFor="pressConference">
                       Press conference signage
@@ -399,7 +332,8 @@ const Inventory = () => {
                       id="vehicleSignage"
                       value="Vehicle signage"
                       name="signage"
-                      onChange={handleThirdCheck}
+                      checked={state.signage?.includes("Vehicle signage")}
+                      onChange={handleCheckboxChange}
                     />
                     <CheckLabel htmlFor="vehicleSignage">
                       Vehicle signage
@@ -411,7 +345,10 @@ const Inventory = () => {
                       id="uniforms"
                       value="Event staff shirts/caps/uniforms"
                       name="signage"
-                      onChange={handleThirdCheck}
+                      checked={state.signage?.includes(
+                        "Event staff shirts/caps/uniforms"
+                      )}
+                      onChange={handleCheckboxChange}
                     />
                     <CheckLabel htmlFor="uniforms">
                       Event staff shirts/caps/uniforms
@@ -433,8 +370,11 @@ const Inventory = () => {
                       value="Unlimited access to event-generated datbase(s), such as
                       member lists, for direct marketing follow-up (be careful
                       not to breach privacy laws)"
-                      name="dataMarketing"
-                      onChange={handleFourthCheck}
+                      name="databaseMarketing"
+                      checked={state.databaseMarketing?.includes(
+                        "Unlimited access to event-generated datbase(s), such as member lists, for direct marketing follow-up (be careful not to breach privacy laws)"
+                      )}
+                      onChange={handleCheckboxChange}
                     />
                     <CheckLabel htmlFor="databaseAccess">
                       Unlimited access to event-generated datbase(s), such as
@@ -447,8 +387,11 @@ const Inventory = () => {
                       type="checkbox"
                       id="sponseeMailings"
                       value="Opportunity to provide inserts in sponsee mailings"
-                      name="dataMarketing"
-                      onChange={handleFourthCheck}
+                      name="databaseMarketing"
+                      checked={state.databaseMarketing?.includes(
+                        "Opportunity to provide inserts in sponsee mailings"
+                      )}
+                      onChange={handleCheckboxChange}
                     />
                     <CheckLabel htmlFor="sponseeMailings">
                       Opportunity to provide inserts in sponsee mailings
@@ -460,8 +403,11 @@ const Inventory = () => {
                       id="oneOffCommunication"
                       value="Rental/loan of sponsee database for one-off communication
                       with people who have opted into third-party promotions"
-                      name="dataMarketing"
-                      onChange={handleFourthCheck}
+                      name="databaseMarketing"
+                      checked={state.databaseMarketing?.includes(
+                        "Rental/loan of sponsee database for one-off communication with people who have opted into third-party promotions"
+                      )}
+                      onChange={handleCheckboxChange}
                     />
                     <CheckLabel htmlFor="oneOffCommunication">
                       Rental/loan of sponsee database for one-off communication
@@ -473,8 +419,11 @@ const Inventory = () => {
                       type="checkbox"
                       id="activitiesOnSite"
                       value="Opportunity to run database-generating activities on-site"
-                      name="dataMarketing"
-                      onChange={handleFourthCheck}
+                      name="databaseMarketing"
+                      checked={state.databaseMarketing?.includes(
+                        "Opportunity to run database-generating activities on-site"
+                      )}
+                      onChange={handleCheckboxChange}
                     />
                     <CheckLabel htmlFor="activitiesOnSite">
                       Opportunity to run database-generating activities on-site
@@ -486,8 +435,11 @@ const Inventory = () => {
                       id="attendeeAdmission"
                       value="Opportunity to run databse-genrating activities on-site as
                       a requirement for attendee admission."
-                      name="dataMarketing"
-                      onChange={handleFourthCheck}
+                      name="databaseMarketing"
+                      checked={state.databaseMarketing?.includes(
+                        "Opportunity to run databse-genrating activities on-site as a requirement for attendee admission."
+                      )}
+                      onChange={handleCheckboxChange}
                     />
                     <CheckLabel htmlFor="attendeeAdmission">
                       Opportunity to run databse-genrating activities on-site as
@@ -511,8 +463,11 @@ const Inventory = () => {
                       id="customDesign"
                       value="Custom design of a new event, program, award, or other
                       activity that meets the sponsor’s specific needs."
-                      name="OtherPromotions"
-                      onChange={handleFifthCheck}
+                      name="otherPromotionalOpportunities"
+                      checked={state.otherPromotionalOpportunities?.includes(
+                        "Custom design of a new event, program, award, or other activity that meets the sponsor’s specific needs."
+                      )}
+                      onChange={handleCheckboxChange}
                     />
                     <CheckLabel htmlFor="customDesign">
                       Custom design of a new event, program, award, or other
@@ -525,8 +480,11 @@ const Inventory = () => {
                       id="sponsorsBehalf"
                       value="Securing and administration of entertainment, celebrity
                       appearances, etc, to appear on sponsor’s behalf"
-                      name="OtherPromotions"
-                      onChange={handleFifthCheck}
+                      name="otherPromotionalOpportunities"
+                      checked={state.otherPromotionalOpportunities?.includes(
+                        "Securing and administration of entertainment, celebrity appearances, etc, to appear on sponsor’s behalf"
+                      )}
+                      onChange={handleCheckboxChange}
                     />
                     <CheckLabel htmlFor="sponsorsBehalf">
                       Securing and administration of entertainment, celebrity
@@ -539,8 +497,11 @@ const Inventory = () => {
                       id="spokesperson"
                       value="Provision by sponsor of spokespersons/people, celebrity
                       appearances, costumed character, etc. for sponsored event."
-                      name="OtherPromotions"
-                      onChange={handleFifthCheck}
+                      name="otherPromotionalOpportunities"
+                      checked={state.otherPromotionalOpportunities?.includes(
+                        "Provision by sponsor of spokespersons/people, celebrity appearances, costumed character, etc. for sponsored event."
+                      )}
+                      onChange={handleCheckboxChange}
                     />
                     <CheckLabel htmlFor="spokesperson">
                       Provision by sponsor of spokespersons/people, celebrity
@@ -553,8 +514,11 @@ const Inventory = () => {
                       id="mediaPrizes"
                       value="Opportunity to provide prizes for media or event
                       promotions."
-                      name="OtherPromotions"
-                      onChange={handleFifthCheck}
+                      name="otherPromotionalOpportunities"
+                      checked={state.otherPromotionalOpportunities?.includes(
+                        "Opportunity to provide prizes for media or event promotions."
+                      )}
+                      onChange={handleCheckboxChange}
                     />
                     <CheckLabel htmlFor="mediaPrizes">
                       Opportunity to provide prizes for media or event
@@ -566,8 +530,11 @@ const Inventory = () => {
                       type="checkbox"
                       id="couponing"
                       value="Couponing/advertising on ticket backs."
-                      name="OtherPromotions"
-                      onChange={handleFifthCheck}
+                      name="otherPromotionalOpportunities"
+                      checked={state.otherPromotionalOpportunities?.includes(
+                        "Couponing/advertising on ticket backs."
+                      )}
+                      onChange={handleCheckboxChange}
                     />
                     <CheckLabel htmlFor="couponing">
                       Couponing/advertising on ticket backs.
@@ -589,7 +556,10 @@ const Inventory = () => {
                       value="Inclusion in all print, outdoor, and/or broadcast
                       advertising (logo or name)"
                       name="mediaProfile"
-                      onChange={handleSixthCheck}
+                      checked={state.mediaProfile?.includes(
+                        "Inclusion in all print, outdoor, and/or broadcast advertising (logo or name)"
+                      )}
+                      onChange={handleCheckboxChange}
                     />
                     <CheckLabel htmlFor="adsInclusion">
                       Inclusion in all print, outdoor, and/or broadcast
@@ -603,7 +573,10 @@ const Inventory = () => {
                       value="Inclusion on event promotional pieces (posters, fliers,
                         brochures, buttons, apparel, etc. - logo or name)"
                       name="mediaProfile"
-                      onChange={handleSixthCheck}
+                      checked={state.mediaProfile?.includes(
+                        "Inclusion on event promotional pieces (posters, fliers, brochures, buttons, apparel, etc. - logo or name)"
+                      )}
+                      onChange={handleCheckboxChange}
                     />
                     <CheckLabel htmlFor="piecesInclusion">
                       Inclusion on event promotional pieces (posters, fliers,
@@ -616,7 +589,10 @@ const Inventory = () => {
                       id="adTime"
                       value="Ad time during televised event"
                       name="mediaProfile"
-                      onChange={handleSixthCheck}
+                      checked={state.mediaProfile?.includes(
+                        "Ad time during televised event"
+                      )}
+                      onChange={handleCheckboxChange}
                     />
                     <CheckLabel htmlFor="adTime">
                       Ad time during televised event
@@ -629,7 +605,10 @@ const Inventory = () => {
                       value="Event-driven promotional radio or television schedule (you
                         provide them with part of your advertising)"
                       name="mediaProfile"
-                      onChange={handleSixthCheck}
+                      checked={state.mediaProfile?.includes(
+                        "Event-driven promotional radio or television schedule (you provide them with part of your advertising)"
+                      )}
+                      onChange={handleCheckboxChange}
                     />
                     <CheckLabel htmlFor="promotionalSchedule">
                       Event-driven promotional radio or television schedule (you
@@ -643,7 +622,10 @@ const Inventory = () => {
                       value="Event-driven outdoor (billboards, vehicle, public
                         transport)"
                       name="mediaProfile"
-                      onChange={handleSixthCheck}
+                      checked={state.mediaProfile?.includes(
+                        "Event-driven outdoor (billboards, vehicle, public transport)"
+                      )}
+                      onChange={handleCheckboxChange}
                     />
                     <CheckLabel htmlFor="outdoor">
                       Event-driven outdoor (billboards, vehicle, public
@@ -657,7 +639,10 @@ const Inventory = () => {
                       value="Sponsor/ retailer share media (themed display ads, 30/30
                       or 15/15 broadcast)"
                       name="mediaProfile"
-                      onChange={handleSixthCheck}
+                      checked={state.mediaProfile?.includes(
+                        "Sponsor/ retailer share media (themed display ads, 30/30 or 15/15 broadcast)"
+                      )}
+                      onChange={handleCheckboxChange}
                     />
                     <CheckLabel htmlFor="shareMedia">
                       Sponsor/ retailer share media (themed display ads, 30/30
@@ -670,7 +655,10 @@ const Inventory = () => {
                       id="adSpace"
                       value="Ad space in event program, catalog, etc."
                       name="mediaProfile"
-                      onChange={handleSixthCheck}
+                      checked={state.mediaProfile?.includes(
+                        "Ad space in event program, catalog, etc."
+                      )}
+                      onChange={handleCheckboxChange}
                     />
                     <CheckLabel htmlFor="adSpace">
                       Ad space in event program, catalog, etc.
@@ -691,7 +679,10 @@ const Inventory = () => {
                       id="researchAccess"
                       value="Access to pre-and/ or post-event research"
                       name="research"
-                      onChange={handleSeventhCheck}
+                      checked={state.research?.includes(
+                        "Access to pre-and/ or post-event research"
+                      )}
+                      onChange={handleCheckboxChange}
                     />
                     <CheckLabel htmlFor="researchAccess">
                       Access to pre-and/ or post-event research
@@ -704,7 +695,10 @@ const Inventory = () => {
                       value="Opportunity to provide sponsorship or industry-oriented
                       questions on event research."
                       name="research"
-                      onChange={handleSeventhCheck}
+                      checked={state.research?.includes(
+                        "Opportunity to provide sponsorship or industry-oriented questions on event research."
+                      )}
+                      onChange={handleCheckboxChange}
                     />
                     <CheckLabel htmlFor="questions">
                       Opportunity to provide sponsorship or industry-oriented
@@ -728,7 +722,10 @@ const Inventory = () => {
                       technology, expertise or personnel useful to the success
                       of the event in trade for part of sponsorship fee."
                       name="contra"
-                      onChange={handleEightCheck}
+                      checked={state.contra?.includes(
+                        "Opportunity for sponsor to provide equipment, services, technology, expertise or personnel useful to the success of the event in trade for part of sponsorship fee."
+                      )}
+                      onChange={handleCheckboxChange}
                     />
                     <CheckLabel htmlFor="extraProvision">
                       Opportunity for sponsor to provide equipment, services,
@@ -744,7 +741,10 @@ const Inventory = () => {
                       in-store/in-house promotion in trade for part of
                       sponsorship fee"
                       name="contra"
-                      onChange={handleEightCheck}
+                      checked={state.contra?.includes(
+                        "Opportunity for sponsor to provide media value, in-store/in-house promotion in trade for part of sponsorship fee"
+                      )}
+                      onChange={handleCheckboxChange}
                     />
                     <CheckLabel htmlFor="mediaValue">
                       Opportunity for sponsor to provide media value,
@@ -760,7 +760,10 @@ const Inventory = () => {
                       media, travel, printing, or other products or services in
                       trade for part of sponsorship fee."
                       name="contra"
-                      onChange={handleEightCheck}
+                      checked={state.contra?.includes(
+                        "Opportunity for sponsor to provide access to discounted media, travel, printing, or other products or services in trade for part of sponsorship fee."
+                      )}
+                      onChange={handleCheckboxChange}
                     />
                     <CheckLabel htmlFor="discounts">
                       Opportunity for sponsor to provide access to discounted
@@ -784,7 +787,10 @@ const Inventory = () => {
                       value="Design and/or production of key sponsor events
                       (hospitality, awards, etc)"
                       name="production"
-                      onChange={handleNinthCheck}
+                      checked={state.production?.includes(
+                        "Design and/or production of key sponsor events(hospitality, awards, etc)"
+                      )}
+                      onChange={handleCheckboxChange}
                     />
                     <CheckLabel htmlFor="keyEvents">
                       Design and/or production of key sponsor events
@@ -798,7 +804,10 @@ const Inventory = () => {
                       value="Hiring and/or administration of temporary or contract
                       personnel, services, and vendors for key sponsor events."
                       name="production"
-                      onChange={handleNinthCheck}
+                      checked={state.production?.includes(
+                        "Hiring and/or administration of temporary or contract personnel, services, and vendors for key sponsor events."
+                      )}
+                      onChange={handleCheckboxChange}
                     />
                     <CheckLabel htmlFor="hiring">
                       Hiring and/or administration of temporary or contract
@@ -812,7 +821,10 @@ const Inventory = () => {
                       value="Logistical assistance, including technical or creative
                       expertise."
                       name="production"
-                      onChange={handleNinthCheck}
+                      checked={state.production?.includes(
+                        "Logistical assistance, including technical or creative expertise."
+                      )}
+                      onChange={handleCheckboxChange}
                     />
                     <CheckLabel htmlFor="logistics">
                       Logistical assistance, including technical or creative
@@ -835,7 +847,10 @@ const Inventory = () => {
                       value="Opportunity to involve sponsor’s preferred charitable
                       organization or cause."
                       name="causeTieIn"
-                      onChange={handleTenthCheck}
+                      checked={state.causeTieIn?.includes(
+                        "Opportunity to involve sponsor’s preferred charitable organization or cause."
+                      )}
+                      onChange={handleCheckboxChange}
                     />
                     <CheckLabel htmlFor="charitableCause">
                       Opportunity to involve sponsor’s preferred charitable
@@ -849,7 +864,10 @@ const Inventory = () => {
                       value="Donation of a percentage of ticket or product sales to
                       charity."
                       name="causeTieIn"
-                      onChange={handleTenthCheck}
+                      checked={state.causeTieIn?.includes(
+                        "Donation of a percentage of ticket or product sales to charity."
+                      )}
+                      onChange={handleCheckboxChange}
                     />
                     <CheckLabel htmlFor="donation">
                       Donation of a percentage of ticket or product sales to
