@@ -31,10 +31,12 @@ import Test from "./event/pages/Test";
 import LoadingScreen from "./LoadingScreen";
 
 // Budget createEvent form
-import Budget from "./event/budgetInventory/Budget";
-import Inventory from "./event/budgetInventory/Inventory";
 import ContactInfo from "./event/createEvent/ContactInfo";
 import TimeLineEvent from "./event/createEvent/TimeLineEvent";
+import DefineAudience from "./event/pages/DefineAudience";
+import Budget from "./event/budgetInventory/Budget";
+import Inventory from "./event/budgetInventory/Inventory";
+import EventPlanPreview from "./event/eventPlanPreview/EventPlanPreview";
 import Submitted from "./event/budgetInventory/Submitted";
 
 // Set Up Profile
@@ -64,8 +66,10 @@ function App() {
             <Route path="/contactUs" element={<ContactUs />} />
             <Route path="/aboutUs" element={<AboutUs />} />
             <Route path="/waitlist" element={<Waitlist />} />
+            <Route path="/defineAudience" element={<DefineAudience />} />
             <Route path="/budget" element={<Budget />} />
             <Route path="/inventory" element={<Inventory />} />
+            <Route path="/eventPlanPreview" element={<EventPlanPreview />} />
             <Route path="/submitted" element={<Submitted />} />
             <Route path="/createProfile" element={<CreateProfile />} />
             <Route path="/manageProfile" element={<ManageProfile />} />

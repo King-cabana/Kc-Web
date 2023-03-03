@@ -55,6 +55,7 @@ import {
 } from "../../components/button/button";
 import { useNavigate } from "react-router";
 import { toast } from "react-toastify";
+import { authToken } from "../../redux/service/authService";
 
 const EditOrganiserProfile = () => {
   const [modal, setModal] = useState(false);
@@ -371,7 +372,10 @@ const EditOrganiserProfile = () => {
         // `http://localhost:8080/profiles/9`,
         patchData,
         {
-          headers: { "Content-Type": "application/json" },
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: authToken,
+          },
         }
       );
       console.log(data);

@@ -8,7 +8,7 @@ import {
   PrimaryButton3,
   AlternativeButton2,
 } from "../../components/button/button";
-import { editEvent } from "../../redux/slices/createEventSlice";
+import { editGenerally } from "../../redux/slices/createEventSlice";
 // import ProgressBar from "../progressBar/ProgressBar";
 // import CreateEventTopBar from "../topBar/CreateEventTopBar/CreateEventTopBar";
 import {
@@ -29,26 +29,17 @@ import {
 
 const Budget = () => {
   const navigate = useNavigate();
-
+  const [selectedFile, setSelectedFile] = useState(null);
   const [loading, setLoading] = useState(false);
   const [file, setFile] = useState("");
   const [errorMsg, setErrorMsg] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
-  const [correctFileSize, setCorrectFileSize] = useState(false);
   const [isDisabled, setisDisabled] = useState(true);
   const dispatch = useDispatch();
   const state = useSelector((state) => state.createEvent);
-
-  // const handleFileChange = (e) => {
-  //   if (e.target.files) {
-  //     setFile(e.target.files[0]);
-  //   }
-  //   console.log(file);
-  // };
-  useEffect(() => {
-    console.log(state);
-  }, [state]);
-
+  // useEffect(() => {
+  //   console.log(state);
+  // }, [state]);
   const handleFileChange = async (e) => {
     const MAX_FILE_SIZE = 1024; // 1MB
     const file = e.target.files[0];
@@ -75,7 +66,7 @@ const Budget = () => {
           setFile(uploadedFile.secure_url);
           setLoading(false);
           dispatch(
-            editEvent({
+            editGenerally({
               name: e.target.name,
               value: uploadedFile.secure_url,
             })
@@ -87,48 +78,40 @@ const Budget = () => {
         console.log(error);
       }
     }
+    setSelectedFile(e.target.files[0]);
+    localStorage.setItem("budget", e.target.files[0].name);
   };
-
-  // useEffect(() => {
-  //   if (!file) {
-  //     setErrorMsg("*Please choose an image*");
-  //     setIsSuccess(false);
-  //     return;
-  //   }
-  //   setErrorMsg("");
-  //   setIsSuccess(true);
-  // }, [file]);
+  useEffect(() => {
+    const budgetData = localStorage.getItem("budget");
+    if (budgetData) {
+      setSelectedFile({ name: budgetData });
+    }
+  }, []);
 
   useEffect(() => {
     const MAX_FILE_SIZE = 1024; // 1MB
-
-    if (!file) {
+    if (!state?.eventBudgetTemplateUrl) {
       setErrorMsg("*Please a choose file*");
       setIsSuccess(false);
       setisDisabled(true);
       return;
     }
-
     const fileSizeKiloBytes = file.size / 1024;
-
     if (fileSizeKiloBytes > MAX_FILE_SIZE) {
       setErrorMsg("*File size is greater than maximum limit*");
       setIsSuccess(false);
-      setCorrectFileSize(false);
       setisDisabled(true);
       return;
     }
-
     setErrorMsg("");
     setIsSuccess(true);
-    setCorrectFileSize(true);
     setisDisabled(false);
   }, [file]);
 
   const handleSubmit = async function (e) {
     e.preventDefault();
-    // navigate("/inventory");
-    console.log(file);
+    navigate("/inventory");
+    console.log(state);
   };
 
   return (
@@ -158,6 +141,7 @@ const Budget = () => {
                     style={{ cursor: "pointer" }}
                     onChange={handleFileChange}
                     name="eventBudgetTemplateUrl"
+                    defaultValue={file}
                   />
                 </CustomWrapper>
                 <PrimaryButton3>Upload</PrimaryButton3>
@@ -172,7 +156,7 @@ const Budget = () => {
               >
                 Not more than 1mb
               </Supported>
-              {/* {correctFileSize && <div>{file && `${file.name}`}</div>} */}
+              <div>{selectedFile && `${selectedFile.name}`}</div>
               {isSuccess ? (
                 <div
                   style={{
@@ -197,7 +181,9 @@ const Budget = () => {
                   Loading...
                 </h4>
               ) : null}
-              <p style={{ color: "#ff2957", fontSize: "16px" }}>{errorMsg}</p>
+              <p style={{ color: "#ff2957", fontSize: "16px" }}>
+                {!file && errorMsg}
+              </p>
 
               <ButtonContainer>
                 <AlternativeButton2
@@ -206,6 +192,7 @@ const Budget = () => {
                     fontWeight: "600",
                     marginRight: "2rem",
                   }}
+                  onClick={() => navigate("/defineAudience")}
                 >
                   Back
                 </AlternativeButton2>

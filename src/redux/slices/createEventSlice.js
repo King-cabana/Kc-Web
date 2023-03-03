@@ -12,7 +12,7 @@ const initialState = {
   otherOnline: [],
   signage: [],
   databaseMarketing: [],
-  otherPromotionalActivities: [],
+  otherPromotionalOpportunities: [],
   mediaProfile: [],
   research: [],
   contra: [],
@@ -24,51 +24,13 @@ export const createEventSlice = createSlice({
   name: "createEvent",
   initialState,
   reducers: {
-    editEvent: (state, { payload }) => {
+    editGenerally: (state, { payload }) => {
       Object.assign(state, { [payload.name]: payload.value });
     },
-    // editInventory: (state, action) => {
-    //   const { category, item, checked } = action.payload;
-    //   const categoryItems = state[category];
-    //   if (checked) {
-    //     categoryItems?.push(item);
-    //   } else {
-    //     const index = categoryItems?.indexOf(item);
-    //     categoryItems?.splice(index, 1);
-    //   }
-    // },
-    // editInventory: (state, action) => {
-    //   const { category, item, checked } = action.payload;
-    //   const categoryItems = state[category];
-    //   const index = categoryItems?.indexOf(item);
-
-    //   return produce(state, (draftState) => {
-    //     if (checked) {
-    //       if (index === -1) {
-    //         draftState[category]?.push(item);
-    //       }
-    //     } else {
-    //       if (index !== -1) {
-    //         draftState[category]?.splice(index, 1);
-    //       }
-    //     }
-    //   });
-    // },
-    editInventory: (state, action) => {
-      const { category, item, checked } = action.payload;
-      const categoryItems = state[category];
-      const index = categoryItems?.indexOf(item);
-      if (checked) {
-        if (index === -1) {
-          state[category]?.push(item);
-        }
-      } else {
-        if (index !== -1) {
-          state[category]?.splice(index, 1);
-        }
-      }
-      // Return the updated state object
-      return state;
+    editCheckbox: (state, { payload }) => {
+      const { category, item } = payload;
+      Object.assign(state, { [category]: item });
+      //   console.log(payload);
     },
 
     clearEvent: (state) => {
@@ -79,7 +41,7 @@ export const createEventSlice = createSlice({
   },
 });
 
-export const { editEvent, clearEvent, editInventory } =
+export const { editGenerally, clearEvent, editCheckbox } =
   createEventSlice.actions;
 
 export default createEventSlice.reducer;
