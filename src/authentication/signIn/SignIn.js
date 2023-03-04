@@ -19,6 +19,8 @@ import linkedin from "../../images/linkedin.svg";
 import { login } from "../../redux/service/authService";
 import { toast } from "react-toastify";
 import { ImSpinner6 } from "react-icons/im";
+import { setUserDetails } from "../../redux/slices/userDetailsSlice";
+import { useDispatch } from "react-redux";
 
 const SignIn = () => {
   const [click, setClick] = useState(false);
@@ -40,23 +42,24 @@ const SignIn = () => {
     navigate("/forgotpassword");
   };
 
-  const handleLogin = async (e) => {
+  const dispatch = useDispatch()
 
+  const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      setLoading(true)
-      await login(email, password);
-      toast.success("login successfully!")
+      setLoading(true);
+      const response = await login(email, password);
+      dispatch(setUserDetails(response?.data))
+      toast.success("login successfully!");
       navigate("/createProfile");
     } catch (error) {
-      setLoading(false)
+      setLoading(false);
       toast.error(error.response.data);
+    } finally {
+      setEmail("");
+      setPassword("");
     }
-      finally {
-        setEmail("")
-        setPassword("")
   };
-}
 
   return (
     <AuthBackground>
@@ -150,11 +153,8 @@ const SignIn = () => {
                 Forgot Password?
               </p>
             </div>
-            <LongButton
-              style={{ marginTop: "5%" }}
-              type="submit"
-            >
-             {loading ? <ImSpinner6 size={"1.5rem"} /> : "Log in"}
+            <LongButton style={{ marginTop: "5%" }} type="submit">
+              {loading ? <ImSpinner6 size={"1.5rem"} /> : "Log in"}
             </LongButton>
           </Form>
 

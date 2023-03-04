@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
 import { useNavigate } from "react-router";
 import {
   KCLogo,
@@ -30,6 +31,7 @@ import { LongButton1 } from "../manageProfile/ManageProfileStyled";
 import { clearProfile, editProfile } from "../../redux/slices/profileSlice";
 import axios from "axios";
 import { ImSpinner6 } from "react-icons/im";
+import { setEventOrganizerProfile } from "../../redux/slices/eventOrganizerProfileSlice";
 
 const SocialProfile = () => {
   const [visibility, setVisibility] = useState(false);
@@ -74,25 +76,30 @@ const SocialProfile = () => {
     setSending(true);
     setIsDisabled(true);
     try {
-      const response = await axios.post(
-        "http://localhost:8080/profiles/create/",
+      const { data } = await axios.post(
+        "http://localhost:8081/profiles/create/",
         state,
         {
           headers: { "Content-Type": "application/json" },
         }
       );
-      console.log(response);
-      console.log(state);
+      console.log(data);
+      dispatch(setEventOrganizerProfile(data));
       navigate("/home");
-      alert("Form Submitted Successfully");
+      toast.success("Form Submitted Successfully");
     } catch (error) {
       console.log(error);
       if (error.response.data === "Profile already exists") {
         navigate("/createProfile");
-        alert("Profile already exists");
+        toast.error("Profile already exists");
+      } else if (error.response.data === "User does not exist") {
+        toast.error(
+          "User does not exist, input valid userEmail on King Cabana"
+        );
+        navigate("/organizerProfile");
       } else {
-        alert("Error Submitting Form");
-        navigate("/organiserProfile");
+        toast.error("Error Submitting Form");
+        navigate("/createProfile");
       }
     } finally {
       dispatch(clearProfile());
@@ -251,9 +258,9 @@ const SocialProfile = () => {
             <InputSeg>
               <InputText>
                 Full name of {""}
-                {state.guarantorRole
-                  ? state.guarantorRole.charAt(0).toUpperCase() +
-                    state.guarantorRole.slice(1)
+                {state?.guarantorRole
+                  ? state?.guarantorRole.charAt(0).toUpperCase() +
+                    state?.guarantorRole.slice(1)
                   : "Secondary Contact"}{" "}
                 <Asterix>*</Asterix>
               </InputText>

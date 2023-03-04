@@ -64,7 +64,8 @@ const SignUp = () => {
     handleValidation();
     try {
       setLoading(true);
-      await register(inputs);
+      const res= await register(inputs);
+      console.log(res)
       toast.success("Successful, An Otp has been sent to your inbox");
       navigate("/verifyemail");
     } catch (error) {
@@ -198,7 +199,7 @@ const SignUp = () => {
             )}
 
             <div
-              style={{ marginTop: "5%", display: "flex", alignItems: "center" }}
+              style={{ marginTop: "5%", display: "flex", alignItems: "center", gap:"10px" }}
             >
               <input type="checkbox" required></input>
               <KBTextXs

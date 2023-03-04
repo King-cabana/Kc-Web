@@ -2,8 +2,11 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { persistReducer, persistStore } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import profileSlice from "./redux/slices/profileSlice";
-import messageSlice from "./redux/slices/messageSlice";
+import createEventSlice from "./redux/slices/createEventSlice";
+import eventOrganizerProfileSlice from "./redux/slices/eventOrganizerProfileSlice";
+import messageSlice from "./redux/slices/userDetailsSlice";
 import otpSlice from "./redux/slices/otpSlice";
+import userDetailsSlice from "./redux/slices/userDetailsSlice";
 
 const persistConfig = {
   key: "kingCabana",
@@ -12,7 +15,10 @@ const persistConfig = {
 const reducer = combineReducers({
   message: messageSlice,
   profile: profileSlice,
+  eventOrganizerProfile: eventOrganizerProfileSlice,
   otp: otpSlice,
+  createEvent: createEventSlice,
+  userDetails : userDetailsSlice,
 });
 
 const persistedReducer = persistReducer(persistConfig, reducer);

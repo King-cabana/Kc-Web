@@ -2,13 +2,10 @@ import { Routes, Route } from "react-router-dom";
 import React, { Suspense, lazy } from "react";
 import "./App.css";
 
-// import Home from "./pages/landingPage/Home";
-import AboutUs from "./pages/aboutUs/AboutUs";
 import NoPage from "./pages/noPage/NoPage";
-import ContactUs from "./pages/contactUs/ContactUs";
 
 //Authentication
-import SignIn from "./authentication/signIn/SignIn";
+
 import VerifyEmail from "./authentication/signup/VerifyEmail";
 import SignUpSuccess from "./authentication/signup/SignUpSuccess";
 import ResetPassword from "./authentication/signIn/ResetPassword";
@@ -19,7 +16,7 @@ import ResetPasswordSuccess from "./authentication/signIn/ResetPasswordSuccess";
 import SecondCreateEvent from "./event/createEvent/SecondCreateEvent";
 import FirstCreateEvent from "./event/createEvent/FirstCreateEvent";
 import Sidebar from "./event/Dashboard/Sidebar";
-import DashboardHome from "./event/pages/DashboardHome";
+// import DashboardHome from "./event/pages/DashboardHome";
 import CreateEvent from "./event/pages/CreateEvent";
 import EmptyEvent from "./event/pages/NoEvent";
 import SponsorEvent from "./event/pages/SponsorEvent";
@@ -44,31 +41,34 @@ import OrganiserProfile from "./profile/organiserProfile/OrganiserProfile";
 import SocialProfile from "./profile/socialProfile/SocialProfile";
 import EditOrganiserProfile from "./profile/EditOrganiserProfile/EditOrganiserProfile";
 
-import { ToastContainer} from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css'
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Home = lazy(() => import("./pages/landingPage/Home"));
-const Waitlist = lazy(() => import("./pages/waitlist/WaitlistForm"));
+const ContactUs = lazy(() => import("./pages/contactUs/ContactUs"));
+// const Waitlist = lazy(() => import("./pages/waitlist/WaitlistForm"));
 const Signup = lazy(() => import("./authentication/signup/SignUp"))
+const AboutUs = lazy(() => import("./pages/aboutUs/AboutUs"));
+const DashboardHome = lazy(() => import("./event/pages/DashboardHome"));
+const SignIn = lazy(() => import("./authentication/signIn/SignIn"))
 
 function App() {
-
   return (
     <Suspense fallback={<LoadingScreen />}>
       <>
-        <ToastContainer/>
+        <ToastContainer />
         <>
           <Routes>
             <Route path="/" element={<Home />}></Route>
             <Route path="/contactUs" element={<ContactUs />} />
             <Route path="/aboutUs" element={<AboutUs />} />
-            <Route path="/waitlist" element={<Waitlist />} />
-            <Route path="/budget" element={<Budget />} />
-            <Route path="/inventory" element={<Inventory />} />
+            {/* <Route path="/waitlist" element={<Waitlist />} /> */}
+            {/* <Route path="/budget" element={<Budget />} /> */}
+            {/* <Route path="/inventory" element={<Inventory />} /> */}
             <Route path="/submitted" element={<Submitted />} />
             <Route path="/createProfile" element={<CreateProfile />} />
             <Route path="/manageProfile" element={<ManageProfile />} />
-            <Route path="/organiserProfile" element={<OrganiserProfile />} />
+            <Route path="/organizerProfile" element={<OrganiserProfile />} />
             <Route path="/socialProfile" element={<SocialProfile />} />
             <Route
               path="/organiserProfile/home/edit"
@@ -79,7 +79,10 @@ function App() {
             <Route path="/login" element={<SignIn />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/forgotpassword" element={<ForgotPassword />} />
-            <Route path="/forgotpassword-otp-verification" element={<ForgotPasswordOtp/>} />
+            <Route
+              path="/forgotpassword-otp-verification"
+              element={<ForgotPasswordOtp />}
+            />
             <Route path="/resetpassword" element={<ResetPassword />} />
             <Route
               path="/resetpasswordsuccess"
@@ -148,12 +151,10 @@ function App() {
               }
             />
 
-            <Route path="/settings" element={<Sidebar>Shola</Sidebar>} />
-
-            <Route path="/firstCreateEvent" element={<FirstCreateEvent />} />
+            {/* <Route path="/firstCreateEvent" element={<FirstCreateEvent />} />
             <Route path="/secondCreateEvent" element={<SecondCreateEvent />} />
             <Route path="/contactInfo" element={<ContactInfo />} />
-            <Route path="/timeLineEvent" element={<TimeLineEvent />} />
+            <Route path="/timeLineEvent" element={<TimeLineEvent />} /> */}
 
             <Route
               path="/home"

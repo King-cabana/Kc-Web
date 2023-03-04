@@ -20,6 +20,7 @@ import {
   RadioInput,
   RadioLabel
 } from "../createEvent/ContactInfoStyled";
+import { useNavigate } from "react-router-dom";
 
 const DefineAudience = () => {
   const [isdisabled, setIsDisabled] = useState(true);
@@ -33,6 +34,17 @@ const DefineAudience = () => {
     female: false,
     other: { state: false, text: "" },
   });
+
+const navigate= useNavigate();
+
+const navigateBack = () => {
+    navigate('/test/eventdetails/4');
+  };
+
+const navigateNext = () => {
+  navigate('/test/budget&inventory/1');
+}
+
 
   return (
     <div>
@@ -422,7 +434,7 @@ const DefineAudience = () => {
               </div>
             </Form>
             <ButtonContainer>
-              <AlternativeButton2
+              <AlternativeButton2 onClick={navigateBack}
                 style={{
                   color: "#FF2957",
                   fontWeight: "600",
@@ -431,7 +443,7 @@ const DefineAudience = () => {
               >
                 Back
               </AlternativeButton2>
-              <PrimaryButton disabled={isdisabled}>
+              <PrimaryButton onClick={navigateNext}>
                 Save & Continue
               </PrimaryButton>
             </ButtonContainer>

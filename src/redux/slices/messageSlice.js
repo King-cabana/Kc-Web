@@ -7,11 +7,10 @@ const messageSlice = createSlice({
   initialState,
   reducers: {
     setMessage: (state, action) => {
-      state = action.payload
-      // return { message: action.payload };
+      // state = action.payload
+      return { message: action.payload };
     },
     clearMessage: (state, action) => {
-      state = {}
       // return { message: "" };
     },
   },

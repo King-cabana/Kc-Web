@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { RiArrowDownSLine } from "react-icons/ri";
 import { SidebarData } from "./SidebarData";
 import SubMenu from "./SubMenu";
@@ -11,40 +11,48 @@ import {
   Nav,
   NavIcon,
 } from "./Sidebar.Styled";
-import * as FaIcons from 'react-icons/fa';
-import * as AiIcons from 'react-icons/ai';
+import * as FaIcons from "react-icons/fa";
+import * as AiIcons from "react-icons/ai";
 
 const Sidebar = ({ children }) => {
   const [sidebar, setSidebar] = useState(false);
 
   const showSidebar = () => setSidebar(!sidebar);
+  
 
   return (
     <>
       <TopBar />
-      <Nav>
-        <NavIcon to="#">
-          <FaIcons.FaBars onClick={showSidebar} />
-        </NavIcon>
-      </Nav>
+
       <DisplayMode>
-        <SidebarNav sidebar={sidebar}>
-          <SidebarWrap>
-          <NavIcon to='#'>
-              <AiIcons.AiOutlineClose onClick={showSidebar} />
+        {!sidebar && (
+          <SidebarNav sidebar={sidebar}>
+            <SidebarWrap>
+              {SidebarData.map((item, index) => {
+                return (
+                  <SubMenu
+                    click={() =>{ setSidebar(false)}}
+                    item={item}
+                    key={index}
+                  />
+                );
+              })}
+            </SidebarWrap>
+          </SidebarNav>
+        )}
+        <ContentBody>
+          <Nav>
+            <NavIcon to="#" onClick={showSidebar}>
+              {!sidebar && <FaIcons.FaBars />}
+
+              {sidebar && <AiIcons.AiOutlineClose />}
             </NavIcon>
-            {SidebarData.map((item, index) => {
-              return <SubMenu item={item} key={index} />;
-            })}
-          </SidebarWrap>
-        </SidebarNav>
-        <ContentBody>{children}</ContentBody>
+          </Nav>
+          {children}
+        </ContentBody>
       </DisplayMode>
     </>
   );
 };
 
 export default Sidebar;
-
-
-

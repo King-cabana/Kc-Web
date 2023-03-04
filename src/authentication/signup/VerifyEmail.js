@@ -21,7 +21,8 @@ const VerifyEmail = () => {
     e.preventDefault();
    try {
     setLoading(true)
-    await verifyEmail(otp);
+    const res = await verifyEmail(otp);
+    console.log(res)
     toast.success("Email Successfully verified!")
     navigate("/login");
    } catch (error) {

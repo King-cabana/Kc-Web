@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 
 export const DisplayMode = styled.div`
   display: flex;
-  position: fixed;
   top: 62px;
+
   @media screen and (max-width: 480px) {
     /* display: block; */
   }
@@ -18,7 +18,6 @@ export const SidebarNav = styled.nav`
   overflow-y: scroll;
   display: flex;
   justify-content: center;
-  left: ${({ sidebar }) => (sidebar ? '0' : '-100%')};
   transition: 350ms;
   z-index: 10;
   /* padding-top: 1%; */
@@ -27,8 +26,11 @@ export const SidebarNav = styled.nav`
 
   @media screen and (max-width: 480px) {
     width: 100%;
-    position: sticky;
-    z-index: 1;
+    position: fixed;
+    z-index: 1000;
+    display: ${({ sidebar }) => (sidebar ? "flex" : "block")};
+    left: 0;
+    top: 15vh;
   }
 `;
 
@@ -49,7 +51,7 @@ export const ContentBody = styled.div`
   width: 80%;
   position: relative;
   overflow-y: scroll;
-  max-height: 85vh;
+  /* max-height: 85vh; */
 
   @media screen and (max-width: 480px) {
     width: 100%;
@@ -62,7 +64,9 @@ export const Nav = styled.div`
   /* display: hidden; */
   justify-content: flex-start;
   align-items: center;
-
+  position: absolute;
+  top: 0;
+  left: 0;
   @media screen and (max-width: "480px") {
     /* display: block; */
   }
@@ -74,11 +78,12 @@ export const NavIcon = styled(Link)`
   height: 20px;
   justify-content: flex-start;
   align-items: center;
-  display: flex;
+  display: none;
   color: black;
   z-index: 10;
 
   @media screen and (max-width: 480px) {
     font-size: 1rem;
+    display: flex;
   }
 `;

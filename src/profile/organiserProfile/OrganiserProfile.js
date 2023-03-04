@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { editProfile } from "../../redux/slices/profileSlice";
 import { useNavigate } from "react-router";
 import {
   Input,
@@ -14,7 +15,6 @@ import {
 import { DownButtonFull } from "../../event/createEvent/SecondCreateEventStyled";
 import { EventHeader1 } from "../../event/createEvent/TimeLineEventsStyled";
 import kingCabanaLogo from "../../images/kingCabanaLogo.svg";
-import { editProfile } from "../../redux/slices/profileSlice";
 import {
   KCLogo,
   LogoDiv,
@@ -51,13 +51,19 @@ const OrganiserProfile = () => {
   const dispatch = useDispatch();
   const state = useSelector((state) => state.profile);
 
+  useEffect(() => {
+    const userData = JSON.parse(localStorage.getItem("user") || "{}");
+    dispatch(editProfile({ name: "userEmail", value: userData.email }));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const handleFileChange = async (e) => {
     const MAX_FILE_SIZE = 1024; // 1MB
     const file = e.target.files[0];
     const fileSizeKiloBytes = file.size / 1024;
 
     if (fileSizeKiloBytes > MAX_FILE_SIZE) {
-      setErrorMsg("*Image size is greater than maximum limit*");
+      setErrorMsg("*Image size is greater than 1mb*");
       setIsSuccess(false);
       return;
     } else {
@@ -93,8 +99,6 @@ const OrganiserProfile = () => {
     }
   };
 
-  useEffect(() => {}, []);
-
   useEffect(() => {
     if (!file) {
       setErrorMsg("*Please choose an image*");
@@ -111,7 +115,7 @@ const OrganiserProfile = () => {
     const logoFileSizeKiloBytes = logoFile.size / 1024;
 
     if (logoFileSizeKiloBytes > MAX_FILE_SIZE) {
-      setLogoErrorMsg("*Image size is greater than maximum limit*");
+      setLogoErrorMsg("*Image size is greater than 1mb*");
       setLogoIsSuccess(false);
       return;
     } else {
@@ -161,7 +165,7 @@ const OrganiserProfile = () => {
     if (
       logoFile &&
       state.organizerName &&
-      state.email &&
+      state.profileEmail &&
       state.phoneNumber &&
       state.address &&
       state.state &&
@@ -175,7 +179,7 @@ const OrganiserProfile = () => {
   }, [
     logoFile,
     state.organizerName,
-    state.email,
+    state.profileEmail,
     state.phoneNumber,
     state.address,
     state.state,
@@ -208,7 +212,7 @@ const OrganiserProfile = () => {
             <EventHeader1>Set up your Event Organizer's Profile</EventHeader1>
             <InputSeg>
               <InputText>
-                Organizer's Name <Asterix>*</Asterix>
+                Event Organizer's Name <Asterix>*</Asterix>
               </InputText>
               <Input
                 type="text"
@@ -222,14 +226,14 @@ const OrganiserProfile = () => {
 
             <InputSeg>
               <InputText>
-                Organizer's Email address <Asterix>*</Asterix>
+                Event Organization's Email address <Asterix>*</Asterix>
               </InputText>
               <Input
                 type="email"
                 placeholder="E.g: email@example.com"
-                name="email"
+                name="profileEmail"
                 onChange={change}
-                value={state.email}
+                value={state.profileEmail}
                 title="Email format: xxx@xxxx.xxx)"
                 pattern="^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$"
                 required
@@ -238,7 +242,7 @@ const OrganiserProfile = () => {
 
             <InputSeg>
               <InputText>
-                Organizer's Phone Number <Asterix>*</Asterix>
+                Event Organization's Phone Number <Asterix>*</Asterix>
               </InputText>
               <Input
                 type="tel"
@@ -253,7 +257,7 @@ const OrganiserProfile = () => {
 
             <InputSeg>
               <InputText>
-                Organizer's Office Address <Asterix>*</Asterix>
+                Event Organizer's Office Address <Asterix>*</Asterix>
               </InputText>
               <Input
                 type="text"
@@ -297,7 +301,7 @@ const OrganiserProfile = () => {
 
             <InputSeg>
               <InputText>
-                Organizer's Details{" "}
+                Event Organizer's Details{" "}
                 <Asterix>
                   *{" - "}
                   {state?.organizerDetails?.length}/250 Characters
@@ -346,7 +350,7 @@ const OrganiserProfile = () => {
                 >
                   {logoErrorMsg}
                 </h3>
-                <Supported>Support image: JPEG, JPG, PNG, *img</Supported>
+                <Supported>Supported formats: JPEG, JPG, PNG, *img</Supported>
                 <Supported style={{ color: "#ff2957" }}>
                   Not more than 1mb
                 </Supported>

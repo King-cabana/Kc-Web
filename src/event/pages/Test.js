@@ -8,52 +8,30 @@ import Budget from "../budgetInventory/Budget";
 import FirstCreateEvent from "../createEvent/FirstCreateEvent";
 import SecondCreateEvent from "../createEvent/SecondCreateEvent";
 import { useParams } from "react-router";
+import TimeLineEvent from "../createEvent/TimeLineEvent";
+import ContactInfo from "../createEvent/ContactInfo";
+import Inventory from "../budgetInventory/Inventory";
 
-const Test = ({ children }) => {
+const Test = () => {
   const { name, number } = useParams();
 
-  // const [progress, setProgress] = useState(0)
-  // const [age, setAge] = useState()
-  // const [incomeRange, setIncomeRange] = useState(null)
-  // const [gender, setGender] = useState({ male: false, female: false, other: { state: false, text: '' } })
 
-  // useEffect(() => {
-  //     const checkProgress = [age, incomeRange]
-  //     setProgress(checkProgress.filter(x => x && x).length)
-  // }, [age, incomeRange])
-
-  // useLayoutEffect(() => {
-  //   setPage();
-  // }, [link]);
-  const [active, setActive] = useState("details");
+  const [active, setActive] = useState("");
   return (
     <>
       <WavyBackground>
         <CreateEventTopBar />
-        <ProgressBar setActive={setActive} />
+        <ProgressBar setActive={setActive} name={name} number={number} />
         <Layout>
-          {active === "budget" ? (
-            <Budget />
-          ) : active === "audience" ? (
-            <DefineAudience />
-          ) : (
-            <>
-              {name === "eventdetails" && number === "1" && (
-                <FirstCreateEvent />
-              )}
-              {name === "eventdetails" && number === "2" && (
-                <SecondCreateEvent />
-              )}
-              {name === "eventdetails" && number === "3" && (
-                <SecondCreateEvent />
-              )}
-              {name === "eventdetails" && number === "4" && (
-                <SecondCreateEvent />
-              )}
-              {/* {page.page === "2" && <SecondCreateEvent />} */}
-            </>
-            // typeof page?.page
-          )}
+          <>
+            {name === "eventdetails" && number === "1" && <FirstCreateEvent />}
+            {name === "eventdetails" && number === "2" && <SecondCreateEvent />}
+            {name === "eventdetails" && number === "3" && <TimeLineEvent />}
+            {name === "eventdetails" && number === "4" && <ContactInfo />}
+            {name === "defineaudience" && number === "1" && <DefineAudience />}
+            {name === "budget&inventory" && number === "1" &&(<Budget />)}
+            {name === "budget&inventory" && number === "2" && (<Inventory />)}
+          </>
         </Layout>
       </WavyBackground>
     </>

@@ -14,11 +14,11 @@ const TimeLineEvent = () => {
     const navigate= useNavigate();
 
     const navigateBack = () => {
-      navigate('/secondCreateEvent');
+      navigate('/test/eventdetails/2');
     };
   
   const navigateNext = () => {
-    navigate('/contactInfo');
+    navigate('/test/eventdetails/4');
   }
 
   return (

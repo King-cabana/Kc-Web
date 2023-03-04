@@ -1,4 +1,14 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { setEventOrganizerProfile } from "../../redux/slices/eventOrganizerProfileSlice";
+import {
+  ModalButtonContainer,
+  ModalText,
+  PopUpComponent,
+  PopUpOverlay,
+  BtnHolderLink,
+} from "../../event/budgetInventory/InventoryStyled";
 import {
   Input,
   InputText,
@@ -6,6 +16,7 @@ import {
   SmallText,
   InputBoxOther,
   CheckBoxInput,
+  Supported,
 } from "../../event/createEvent/FirstCreateEventStyled";
 import {
   InputSeg,
@@ -24,8 +35,12 @@ import {
   WrapBs,
   WrapRx,
   EditForm,
+  ButtonWrapper,
+  Messages,
+  ErrorMessages,
 } from "./EditOrganiserProfileStyled";
 import { BsArrowLeft, BsPencilSquare } from "react-icons/bs";
+import { ImSpinner6 } from "react-icons/im";
 import kingCabanaLogo from "../../images/kingCabanaLogo.svg";
 import {
   WelcomeText,
@@ -33,14 +48,350 @@ import {
 } from "../../event/eventHome/EventHomeStyled";
 import backgroundPicture from "../../images/dashboardBackgroundPicture.png";
 import logo from "../../images/dashboardLogo.png";
+import {
+  PrimaryButton,
+  ModalPrimaryButton,
+  AlternativeButton2,
+} from "../../components/button/button";
+import { useNavigate } from "react-router";
+import { toast } from "react-toastify";
 
 const EditOrganiserProfile = () => {
+  const [modal, setModal] = useState(false);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const state = useSelector((state) => state.eventOrganizerProfile);
+  const [incomingData, setIncomingData] = useState();
+  const toggleModal = () => {
+    setModal(!modal);
+  };
+  // Modal Contitions
+  if (modal) {
+    document.body.classList.add("active-modal");
+  } else {
+    document.body.classList.remove("active-modal");
+  }
+  const showModal = !modal && "notShown";
+  const [isDisabled, setIsDisabled] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [visibility, setVisibility] = useState(false);
+  const [file, setFile] = useState("");
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [errorMsg, setErrorMsg] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [successMsg, setSuccessMsg] = useState(false);
+
+  const [logoFile, setLogoFile] = useState("");
+  const [logoIsSuccess, setLogoIsSuccess] = useState(false);
+  const [logoErrorMsg, setLogoErrorMsg] = useState(false);
+  const [logoLoading, setLogoLoading] = useState(false);
+  const [logoSuccessMsg, setLogoSuccessMsg] = useState(false);
+
+  useEffect(() => {
+    const fetchOrganizerProfile = async () => {
+      const { data } = await axios.get(
+        `http://localhost:8080/profiles/${state.id}`
+      );
+      dispatch(setEventOrganizerProfile(data));
+      setIncomingData(data);
+    };
+    fetchOrganizerProfile();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // useEffect(() => {
+  //   console.log(incomingData);
+  // }, [incomingData]);
+
+  const change = (e) => {
+    setIncomingData({ ...incomingData, [e.target.name]: e.target.value });
+  };
+  const addressChange = (e) => {
+    // const { name, value } = e.target;
+    setIncomingData({
+      ...incomingData,
+      address: { ...incomingData.address, [e.target.name]: e.target.value },
+    });
+  };
+  const guarantorChange = (e) => {
+    setIncomingData({
+      ...incomingData,
+      guarantor: { ...incomingData.guarantor, [e.target.name]: e.target.value },
+    });
+  };
+  const guarantorAddressChange = (e) => {
+    setIncomingData({
+      ...incomingData,
+      guarantor: {
+        ...incomingData.guarantor,
+        officeAddress: {
+          ...incomingData.guarantor.officeAddress,
+          [e.target.name]: e.target.value,
+        },
+      },
+    });
+  };
+
+  const handleFileChange = async (e) => {
+    const MAX_FILE_SIZE = 1024; // 1MB
+    const file = e.target.files[0];
+    const fileSizeKiloBytes = file.size / 1024;
+
+    if (fileSizeKiloBytes > MAX_FILE_SIZE) {
+      setErrorMsg("Image size is greater than 1mb");
+      setTimeout(() => {
+        setErrorMsg("");
+      }, 3000);
+      setIsSuccess(false);
+      return;
+    } else {
+      const data = new FormData();
+      data.append("file", e.target.files[0]);
+      data.append("upload_preset", "kingCabana");
+      setLoading(true);
+      try {
+        const response = await fetch(
+          "https://api.cloudinary.com/v1_1/dcanx4ftd/image/upload",
+          {
+            method: "POST",
+            body: data,
+          }
+        );
+        const backgroundPicture = await response.json();
+        console.log(backgroundPicture.secure_url);
+        if (backgroundPicture.secure_url) {
+          setFile(backgroundPicture.secure_url);
+          setLoading(false);
+          setIncomingData({
+            ...incomingData,
+            [e.target.name]: backgroundPicture.secure_url,
+          });
+        }
+      } catch (error) {
+        setLoading(false);
+        setErrorMsg("Error Changing Background Image!");
+        setTimeout(() => {
+          setErrorMsg("");
+        }, 3000);
+        console.log(error);
+      }
+    }
+  };
+
+  useEffect(() => {
+    if (!file) {
+      setIsSuccess(false);
+      return;
+    }
+    setIsSuccess(true);
+    setSuccessMsg(true);
+    setTimeout(() => {
+      setSuccessMsg(false);
+    }, 3000);
+  }, [file]);
+
+  const handleLogoFileChange = async (e) => {
+    const MAX_FILE_SIZE = 1024; // 1MB
+    const logoFile = e.target.files[0];
+    const logoFileSizeKiloBytes = logoFile.size / 1024;
+
+    if (logoFileSizeKiloBytes > MAX_FILE_SIZE) {
+      setLogoErrorMsg("Image size is greater than 1mb");
+      setTimeout(() => {
+        setLogoErrorMsg("");
+      }, 3000);
+      setLogoIsSuccess(false);
+      return;
+    } else {
+      const data = new FormData();
+      data.append("file", e.target.files[0]);
+      data.append("upload_preset", "kingCabana");
+      setLogoLoading(true);
+      try {
+        const response = await fetch(
+          "https://api.cloudinary.com/v1_1/dcanx4ftd/image/upload",
+          {
+            method: "POST",
+            body: data,
+          }
+        );
+        const logoPicture = await response.json();
+        console.log(logoPicture.secure_url);
+        if (logoPicture.secure_url) {
+          setLogoFile(logoPicture.secure_url);
+          setLogoLoading(false);
+          setIncomingData({
+            ...incomingData,
+            [e.target.name]: logoPicture.secure_url,
+          });
+        }
+      } catch (error) {
+        setLogoLoading(false);
+        setLogoErrorMsg("**Error Changing Logo Image!**");
+        setTimeout(() => {
+          setLogoErrorMsg("");
+        }, 3000);
+        console.log(error);
+      }
+    }
+  };
+
+  useEffect(() => {
+    if (!logoFile) {
+      setLogoIsSuccess(false);
+      return;
+    }
+    setLogoIsSuccess(true);
+    setLogoSuccessMsg(true);
+    setTimeout(() => {
+      setLogoSuccessMsg(false);
+    }, 3000);
+  }, [logoFile]);
+
+  const toggleOthers = () => {
+    if (visibility === true) {
+      setVisibility(false);
+    }
+  };
+  const discardNavigate = () => {
+    navigate("/home");
+  };
+
+  const saveNavigate = async (e) => {
+    e.preventDefault();
+    setSending(true);
+    setIsDisabled(true);
+    const patchData = [
+      {
+        op: "replace",
+        path: "/organizerName",
+        value: incomingData?.organizerName,
+      },
+      {
+        op: "replace",
+        path: "/profileEmail",
+        value: incomingData.profileEmail,
+      },
+      { op: "replace", path: "/phoneNumber", value: incomingData.phoneNumber },
+      {
+        op: "replace",
+        path: "/address/houseNo",
+        value: incomingData.address.houseNo,
+      },
+      {
+        op: "replace",
+        path: "/address/street",
+        value: incomingData.address.street,
+      },
+      {
+        op: "replace",
+        path: "/address/city",
+        value: incomingData.address.city,
+      },
+      {
+        op: "replace",
+        path: "/address/state",
+        value: incomingData.address.state,
+      },
+      {
+        op: "replace",
+        path: "/address/country",
+        value: incomingData.address.country,
+      },
+      {
+        op: "replace",
+        path: "/organizerDetails",
+        value: incomingData.organizerDetails,
+      },
+      { op: "replace", path: "/website", value: incomingData.website },
+      { op: "replace", path: "/linkedIn", value: incomingData.linkedIn },
+      { op: "replace", path: "/instagram", value: incomingData.instagram },
+      { op: "replace", path: "/twitter", value: incomingData.twitter },
+      { op: "replace", path: "/faceBook", value: incomingData.faceBook },
+      { op: "replace", path: "/otherHandle", value: incomingData.otherHandle },
+      {
+        op: "replace",
+        path: "/guarantorRole",
+        value: incomingData.guarantorRole,
+      },
+      {
+        op: "replace",
+        path: "/guarantor/secondaryContactFullName",
+        value: incomingData.guarantor.secondaryContactFullName,
+      },
+      {
+        op: "replace",
+        path: "/guarantor/companyName",
+        value: incomingData.guarantor.companyName,
+      },
+      {
+        op: "replace",
+        path: "/guarantor/jobRole",
+        value: incomingData.guarantor.jobRole,
+      },
+      {
+        op: "replace",
+        path: "/guarantor/officeAddress/houseNo",
+        value: incomingData.guarantor.officeAddress.houseNo,
+      },
+      {
+        op: "replace",
+        path: "/guarantor/officeAddress/street",
+        value: incomingData.guarantor.officeAddress.street,
+      },
+      {
+        op: "replace",
+        path: "/guarantor/officeAddress/city",
+        value: incomingData.guarantor.officeAddress.city,
+      },
+      {
+        op: "replace",
+        path: "/guarantor/officeAddress/state",
+        value: incomingData.guarantor.officeAddress.state,
+      },
+      {
+        op: "replace",
+        path: "/guarantor/officeAddress/country",
+        value: incomingData.guarantor.officeAddress.country,
+      },
+      {
+        op: "replace",
+        path: "/guarantor/secondaryContactPhoneNumber",
+        value: incomingData.guarantor.secondaryContactPhoneNumber,
+      },
+      {
+        op: "replace",
+        path: "/guarantor/secondaryContactEmail",
+        value: incomingData.guarantor.secondaryContactEmail,
+      },
+    ];
+    try {
+      const { data } = await axios.patch(
+        `http://localhost:8080/profiles/${state?.id}`,
+        // `http://localhost:8080/profiles/9`,
+        patchData,
+        {
+          headers: { "Content-Type": "application/json" },
+        }
+      );
+      console.log(data);
+      dispatch(setEventOrganizerProfile(data));
+      toast.success("Profile Updated Successfully");
+      navigate("/home");
+    } catch (error) {
+      console.log(error);
+      toast.error("Failed to update Profile");
+      setSending(false);
+      setIsDisabled(false);
+    }
+  };
   return (
     <>
+      {modal && <PopUpOverlay onClick={toggleModal}></PopUpOverlay>}
       <OverallContainer>
         <EditSection>
           <EditHeader>
-            <WrapLeftArrow>
+            <WrapLeftArrow onClick={toggleModal}>
               <BsArrowLeft size={"2rem"} />
             </WrapLeftArrow>
             <WrapLogo>
@@ -53,31 +404,98 @@ const EditOrganiserProfile = () => {
           <EditForm>
             <ImagesContainer>
               <section>
-                <EditBackgroundPicture
-                  src={backgroundPicture}
-                  alt="Background Picture"
-                />
-                <WrapRx>
+                {isSuccess ? (
+                  <EditBackgroundPicture src={file} alt="new bg pic" />
+                ) : (
+                  <EditBackgroundPicture
+                    src={
+                      state.backgroundPictureUrl
+                        ? state.backgroundPictureUrl
+                        : backgroundPicture
+                    }
+                    alt="Background Picture"
+                  />
+                )}
+                <WrapRx htmlFor="backgroundPictureFile">
                   <BsPencilSquare size={"1.5rem"} color={"#000"} />
                 </WrapRx>
+                <input
+                  type="file"
+                  style={{ cursor: "pointer" }}
+                  onChange={handleFileChange}
+                  hidden
+                  id="backgroundPictureFile"
+                  accept="image/png, image/jpeg, image/jpg"
+                  name="backgroundPictureUrl"
+                  defaultValue={incomingData?.backgroundPictureUrl}
+                />
+                <ErrorMessages>{errorMsg}</ErrorMessages>
+
+                {successMsg ? (
+                  <Messages>
+                    <p style={{ color: "green", marginRight: "1rem" }}>
+                      Background Image Changed Successfully
+                    </p>
+                  </Messages>
+                ) : null}
+                {loading ? (
+                  <h4 style={{ display: "flex", justifyContent: "flex-end" }}>
+                    Loading...
+                  </h4>
+                ) : null}
               </section>
 
               <section>
-                <EditLogoPicture src={logo} alt="Logo Picture" />
-                <WrapBs>
+                {logoIsSuccess ? (
+                  <EditLogoPicture src={logoFile} alt="new logo pic" />
+                ) : (
+                  <EditLogoPicture
+                    src={state.logoUrl ? state.logoUrl : logo}
+                    alt="Logo Picture"
+                  />
+                )}
+                <WrapBs htmlFor="logoFile">
                   <BsPencilSquare />
                 </WrapBs>
+                <input
+                  type="file"
+                  style={{ cursor: "pointer" }}
+                  onChange={handleLogoFileChange}
+                  hidden
+                  id="logoFile"
+                  accept="image/png, image/jpeg, image/jpg"
+                  name="logoUrl"
+                  // defaultValue={incomingData?.logoUrl}
+                />
+                <ErrorMessages>{logoErrorMsg}</ErrorMessages>
+                {logoSuccessMsg ? (
+                  <Messages>
+                    <p style={{ color: "green", marginRight: "1rem" }}>
+                      Logo Image Changed Successfully
+                    </p>
+                  </Messages>
+                ) : null}
+                {logoLoading ? (
+                  <h4 style={{ display: "flex", justifyContent: "flex-end" }}>
+                    Loading...
+                  </h4>
+                ) : null}
               </section>
+              <Supported>Supported formats: JPEG, JPG, PNG, *img</Supported>
+              <Supported style={{ color: "#ff2957" }}>
+                Not more than 1mb
+              </Supported>
             </ImagesContainer>
 
-            <InputSeg style={{ marginTop: "3rem" }}>
+            <InputSeg style={{ marginTop: "1rem" }}>
               <InputText>Organizer's Name</InputText>
               <Input
                 type="text"
                 placeholder="Enter name"
                 name="organizerName"
-                // onChange={change}
-                // value={state.organizerName}
+                onChange={change}
+                // defaultValue={state.organizerName}
+                defaultValue={incomingData?.organizerName}
               />
             </InputSeg>
 
@@ -86,9 +504,10 @@ const EditOrganiserProfile = () => {
               <Input
                 type="email"
                 placeholder="E.g: email@example.com"
-                name="email"
-                // onChange={change}
-                // value={state.email}
+                name="profileEmail"
+                onChange={change}
+                // defaultValue={state?.email}
+                defaultValue={incomingData?.profileEmail}
                 title="Email format: xxx@xxxx.xxx)"
                 pattern="^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$"
               />
@@ -100,51 +519,81 @@ const EditOrganiserProfile = () => {
                 type="tel"
                 placeholder="E.g: +2348022345661"
                 name="phoneNumber"
-                // onChange={change}
-                // value={state.phoneNumber}
+                onChange={change}
+                // defaultValue={state?.phoneNumber}
+                defaultValue={incomingData?.phoneNumber}
                 minLength={5}
               />
             </InputSeg>
 
-            <InputSeg>
-              <InputText>Organizer's Office Address</InputText>
-              <Input
-                type="text"
-                placeholder="E.g: 19, Isaac Mike Street, Thomas Avenue"
-                name="address"
-                // onChange={change}
-                // value={state.address}
-              />
-            </InputSeg>
-
+            <InputText>Organizer's Address</InputText>
             <Wrapper>
               <InputSeg>
-                <InputText>State</InputText>
+                <InputText fontSize="13px">Address Number</InputText>
                 <Input
                   type="text"
-                  placeholder="E.g: Kaduna State"
-                  name="state"
-                  //   onChange={change}
-                  //   value={state.state}
+                  placeholder="E.g: 18 or Number 12 or Km 14 or Room 347 or...?"
+                  name="houseNo"
+                  onChange={addressChange}
+                  defaultValue={incomingData?.address.houseNo}
                 />
               </InputSeg>
 
               <InputSeg>
-                <InputText>Country</InputText>
+                <InputText fontSize="13px">Location/Street-address</InputText>
+                <Input
+                  type="text"
+                  placeholder="E.g: Mike Smith Avenue"
+                  name="street"
+                  onChange={addressChange}
+                  defaultValue={incomingData?.address.street}
+                />
+              </InputSeg>
+            </Wrapper>
+
+            <Wrapper>
+              <InputSeg>
+                <InputText fontSize="13px">Town/City</InputText>
+                <Input
+                  type="text"
+                  placeholder="E.g: Ikeja"
+                  name="city"
+                  onChange={addressChange}
+                  defaultValue={incomingData?.address.city}
+                />
+              </InputSeg>
+
+              <InputSeg>
+                <InputText fontSize="13px">State</InputText>
+                <Input
+                  type="text"
+                  placeholder="E.g: Kaduna State"
+                  name="state"
+                  onChange={addressChange}
+                  defaultValue={incomingData?.address.state}
+                />
+              </InputSeg>
+
+              <InputSeg>
+                <InputText fontSize="13px">Country</InputText>
                 <Input
                   type="text"
                   placeholder="E.g: Nigeria"
                   name="country"
-                  //   onChange={change}
-                  //   value={state.country}
+                  onChange={addressChange}
+                  defaultValue={incomingData?.address.country}
                 />
               </InputSeg>
             </Wrapper>
 
             <InputSeg>
               <InputText>
-                Organizer's Details {/* {state.organizerDetails.length} */}
-                /250 Characters
+                Organizer's Details{" "}
+                <Asterix>
+                  {incomingData?.organizerDetails.length ||
+                    incomingData?.organizerDetails.length}
+                  /250 Characters*
+                </Asterix>
               </InputText>
               <MyTextArea
                 type="textarea"
@@ -152,8 +601,9 @@ const EditOrganiserProfile = () => {
                 name="organizerDetails"
                 placeholder="Write a short bio: 250 characters maximum"
                 maxLength={250}
-                // onChange={change}
-                // value={state.organizerDetails}
+                onChange={change}
+                // defaultValue={state?.organizerDetails}
+                defaultValue={incomingData?.organizerDetails}
               />
             </InputSeg>
 
@@ -164,8 +614,9 @@ const EditOrganiserProfile = () => {
                 type="url"
                 placeholder="https://example.com/"
                 name="website"
-                // value={state.website}
-                // onChange={change}
+                // defaultValue={state?.website}
+                defaultValue={incomingData?.website}
+                onChange={change}
               />
             </InputSeg>
 
@@ -175,8 +626,9 @@ const EditOrganiserProfile = () => {
                 type="url"
                 placeholder="https://linkedin.com/*****"
                 name="linkedIn"
-                // value={state.linkedIn}
-                // onChange={change}
+                // defaultValue={state?.linkedIn}
+                defaultValue={incomingData?.linkedIn}
+                onChange={change}
               />
             </InputSeg>
 
@@ -186,8 +638,9 @@ const EditOrganiserProfile = () => {
                 type="url"
                 placeholder="https://instagram.com/*****"
                 name="instagram"
-                // value={state.instagram}
-                // onChange={change}
+                // defaultValue={state?.instagram}
+                defaultValue={incomingData?.instagram}
+                onChange={change}
               />
             </InputSeg>
 
@@ -197,8 +650,9 @@ const EditOrganiserProfile = () => {
                 type="url"
                 placeholder="https://twitter.com/*****"
                 name="twitter"
-                // value={state.twitter}
-                // onChange={change}
+                // defaultValue={state?.twitter}
+                defaultValue={incomingData?.twitter}
+                onChange={change}
               />
             </InputSeg>
 
@@ -208,8 +662,9 @@ const EditOrganiserProfile = () => {
                 type="url"
                 placeholder="https://facebook.com/*****"
                 name="faceBook"
-                // value={state.faceBook}
-                // onChange={change}
+                // defaultValue={state?.faceBook}
+                defaultValue={incomingData?.faceBook}
+                onChange={change}
               />
             </InputSeg>
 
@@ -219,8 +674,9 @@ const EditOrganiserProfile = () => {
                 type="url"
                 placeholder="https://others.com/"
                 name="otherHandle"
-                // value={state.otherHandle}
-                // onChange={change}
+                // defaultValue={state?.otherHandle}
+                defaultValue={incomingData?.otherHandle}
+                onChange={change}
               />
             </InputSeg>
 
@@ -236,8 +692,8 @@ const EditOrganiserProfile = () => {
                   id="patron"
                   name="guarantorRole"
                   value={"Patron"}
-                  //   onChange={change}
-                  //   onClick={toggleOthers}
+                  onChange={change}
+                  onClick={toggleOthers}
                 />
                 <label htmlFor="patron">Patron</label>
               </CheckBoxInput>
@@ -248,8 +704,8 @@ const EditOrganiserProfile = () => {
                   id="staff"
                   name="guarantorRole"
                   value={"Staff Adviser"}
-                  //   onChange={change}
-                  //   onClick={toggleOthers}
+                  onChange={change}
+                  onClick={toggleOthers}
                 />
                 <label htmlFor="staff">Staff Adviser</label>
               </CheckBoxInput>
@@ -260,32 +716,31 @@ const EditOrganiserProfile = () => {
                   id="coordinators"
                   name="guarantorRole"
                   value={"Coordinator"}
-                  //   onChange={change}
-                  //   onClick={toggleOthers}
+                  onChange={change}
+                  onClick={toggleOthers}
                 />
                 <label htmlFor="coordinators">Coordinator</label>
               </CheckBoxInput>
 
               <CheckBoxInput>
                 <input
-                  //   onClick={() => setVisibility(!visibility)}
+                  onClick={() => setVisibility(!visibility)}
                   type="radio"
                   id="others"
                   name="guarantorRole"
-                  //   onChange={change}
+                  onChange={change}
                   value={"Other"}
                 />
                 <label htmlFor="others">Others (please specify role)</label>
               </CheckBoxInput>
-              <InputBoxOther
-              //   display={visibility ? "flex" : "none"}
-              >
+              <InputBoxOther display={visibility ? "flex" : "none"}>
                 <Input
                   type="text"
                   placeholder="Enter others"
                   name="guarantorRole"
-                  //   value={state.guarantorRole}
-                  //   onChange={change}
+                  // defaultValue={state?.guarantorRole}
+                  defaultValue={incomingData?.guarantorRole}
+                  onChange={change}
                 />
               </InputBoxOther>
             </InputSeg>
@@ -293,17 +748,18 @@ const EditOrganiserProfile = () => {
             <InputSeg>
               <InputText>
                 Full name of {""}
-                {/* {state.guarantorRole
-                  ? state.guarantorRole.charAt(0).toUpperCase() +
-                    state.guarantorRole.slice(1)
-                  : "Secondary Contact"}{" "} */}
+                {incomingData?.guarantorRole
+                  ? incomingData?.guarantorRole.charAt(0).toUpperCase() +
+                    incomingData?.guarantorRole.slice(1)
+                  : "Secondary Contact"}{" "}
               </InputText>
               <Input
                 type="text"
                 placeholder="Enter Full Name of Secondary Contact"
                 name="secondaryContactFullName"
-                // value={state.secondaryContactFullName}
-                // onChange={change}
+                // defaultValue={state.guarantor?.secondaryContactFullName}
+                defaultValue={incomingData?.guarantor.secondaryContactFullName}
+                onChange={guarantorChange}
               />
             </InputSeg>
 
@@ -313,8 +769,9 @@ const EditOrganiserProfile = () => {
                 type="text"
                 placeholder="Enter Company/Business Name"
                 name="companyName"
-                // value={state.companyName}
-                // onChange={change}
+                // defaultValue={state.guarantor?.companyName}
+                defaultValue={incomingData?.guarantor.companyName}
+                onChange={guarantorChange}
               />
             </InputSeg>
 
@@ -324,21 +781,71 @@ const EditOrganiserProfile = () => {
                 type="text"
                 placeholder="Enter Job Role"
                 name="jobRole"
-                // value={state.jobRole}
-                // onChange={change}
+                // defaultValue={state.guarantor?.jobRole}
+                defaultValue={incomingData?.guarantor.jobRole}
+                onChange={guarantorChange}
               />
             </InputSeg>
 
-            <InputSeg>
-              <InputText>Office Address</InputText>
-              <Input
-                type="text"
-                placeholder="Enter Office Address"
-                name="officeAddress"
-                // value={state.officeAddress}
-                // onChange={change}
-              />
-            </InputSeg>
+            <InputText>Guarantor's Office Address</InputText>
+            <Wrapper>
+              <InputSeg>
+                <InputText fontSize="13px">Address Number</InputText>
+                <Input
+                  type="text"
+                  placeholder="E.g: 18 or Number 12 or Km 14 or Room 347 or...?"
+                  name="houseNo"
+                  onChange={guarantorAddressChange}
+                  defaultValue={incomingData?.guarantor.officeAddress?.houseNo}
+                />
+              </InputSeg>
+
+              <InputSeg>
+                <InputText fontSize="13px">Location/Street-address</InputText>
+                <Input
+                  type="text"
+                  placeholder="E.g: Mike Smith Avenue"
+                  name="street"
+                  onChange={guarantorAddressChange}
+                  defaultValue={incomingData?.guarantor.officeAddress?.street}
+                />
+              </InputSeg>
+            </Wrapper>
+
+            <Wrapper>
+              <InputSeg>
+                <InputText fontSize="13px">Town/City</InputText>
+                <Input
+                  type="text"
+                  placeholder="E.g: Ikeja"
+                  name="city"
+                  onChange={guarantorAddressChange}
+                  defaultValue={incomingData?.guarantor.officeAddress?.city}
+                />
+              </InputSeg>
+
+              <InputSeg>
+                <InputText fontSize="13px">State</InputText>
+                <Input
+                  type="text"
+                  placeholder="E.g: Kaduna State"
+                  name="state"
+                  onChange={guarantorAddressChange}
+                  defaultValue={incomingData?.guarantor.officeAddress?.state}
+                />
+              </InputSeg>
+
+              <InputSeg>
+                <InputText fontSize="13px">Country</InputText>
+                <Input
+                  type="text"
+                  placeholder="E.g: Nigeria"
+                  name="country"
+                  onChange={guarantorAddressChange}
+                  defaultValue={incomingData?.guarantor.officeAddress?.country}
+                />
+              </InputSeg>
+            </Wrapper>
 
             <InputSeg>
               <InputText>Phone Number</InputText>
@@ -346,8 +853,11 @@ const EditOrganiserProfile = () => {
                 type="tel"
                 placeholder="E.g: +2348022345661"
                 name="secondaryContactPhoneNumber"
-                // value={state.secondaryContactPhoneNumber}
-                // onChange={change}
+                // defaultValue={state.guarantor?.secondaryContactPhoneNumber}
+                defaultValue={
+                  incomingData?.guarantor.secondaryContactPhoneNumber
+                }
+                onChange={guarantorChange}
                 minLength={5}
               />
             </InputSeg>
@@ -360,8 +870,9 @@ const EditOrganiserProfile = () => {
                 pattern="^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$"
                 placeholder="E.g: email@example.com"
                 name="secondaryContactEmail"
-                // value={state.secondaryContactEmail}
-                // onChange={change}
+                // defaultValue={state.guarantor?.secondaryContactEmail}
+                defaultValue={incomingData?.guarantor.secondaryContactEmail}
+                onChange={guarantorChange}
               />
             </InputSeg>
 
@@ -370,7 +881,38 @@ const EditOrganiserProfile = () => {
                 marginBottom: "8rem",
               }}
             ></div>
+
+            <ButtonWrapper>
+              <PrimaryButton onClick={saveNavigate} disabled={isDisabled}>
+                {sending ? <ImSpinner6 size={"1.5rem"} /> : "Save"}
+              </PrimaryButton>
+            </ButtonWrapper>
           </EditForm>
+          <div className={`${showModal}`}>
+            <PopUpComponent>
+              <ModalText>
+                This is going to disrupt all unsaved changes. Are you sure you
+                want to continue?
+              </ModalText>
+
+              <ModalButtonContainer>
+                <BtnHolderLink>
+                  <AlternativeButton2
+                    onClick={() => setModal(!modal)}
+                    style={{
+                      color: "#FF2957",
+                    }}
+                  >
+                    Continue Editing
+                  </AlternativeButton2>
+                </BtnHolderLink>
+
+                <ModalPrimaryButton onClick={discardNavigate}>
+                  Yes, Discard
+                </ModalPrimaryButton>
+              </ModalButtonContainer>
+            </PopUpComponent>
+          </div>
         </EditSection>
       </OverallContainer>
     </>

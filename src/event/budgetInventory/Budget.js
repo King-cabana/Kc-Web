@@ -67,7 +67,7 @@ const Budget = () => {
 
   const handleSubmit = async function (e) {
     e.preventDefault();
-    navigate("/inventory");
+    navigate("/test/budget&inventory/2");
     console.log(file);
   };
 

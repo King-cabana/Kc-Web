@@ -35,19 +35,22 @@ export const PopUpComponent = styled.div`
     height: 40%;
   }
   @media screen and (max-width: 960px) {
-    width: 30%;
-    height: 30%;
+    width: 40%;
+    /*height: 30%; */
   }
   @media screen and (max-width: 769px) {
-    width: 40%;
-    padding: none;
+    /* width: 40%;
+    padding: none;*/
     height: 25%;
   }
-  @media screen and (max-width: 500px) {
-    width: 50%;
+  @media screen and (max-width: 670px) {
+    width: 70%;
   }
   @media screen and (max-width: 375px) {
     width: 80%;
+  }
+  @media screen and (max-width: 320px) {
+    width: 100%;
   }
 `;
 
