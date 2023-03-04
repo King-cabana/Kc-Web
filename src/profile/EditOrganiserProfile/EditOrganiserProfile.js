@@ -55,6 +55,7 @@ import {
 } from "../../components/button/button";
 import { useNavigate } from "react-router";
 import { toast } from "react-toastify";
+import { authToken } from "../../redux/service/authService";
 
 const EditOrganiserProfile = () => {
   const [modal, setModal] = useState(false);
@@ -90,7 +91,7 @@ const EditOrganiserProfile = () => {
   useEffect(() => {
     const fetchOrganizerProfile = async () => {
       const { data } = await axios.get(
-        `http://localhost:8080/profiles/${state.id}`
+        `http://localhost:8081/profiles/${state.id}`
       );
       dispatch(setEventOrganizerProfile(data));
       setIncomingData(data);
@@ -367,11 +368,13 @@ const EditOrganiserProfile = () => {
     ];
     try {
       const { data } = await axios.patch(
-        `http://localhost:8080/profiles/${state?.id}`,
-        // `http://localhost:8080/profiles/9`,
+        `http://localhost:8081/profiles/${state?.id}`,
         patchData,
         {
-          headers: { "Content-Type": "application/json" },
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: authToken,
+          },
         }
       );
       console.log(data);

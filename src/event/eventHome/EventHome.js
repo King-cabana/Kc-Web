@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { authToken } from "../../redux/service/authService";
 import axios from "axios";
 import {
   OverallContainer,
@@ -59,7 +60,12 @@ const   EventHome = () => {
   useEffect(() => {
     const fetchOrganizerProfile = async () => {
       const { data } = await axios.get(
-        `http://localhost:8081/profiles/${state?.id}`
+        `http://localhost:8081/profiles/${state?.id}`,
+        {
+          headers: {
+            Authorization: authToken,
+          },
+        }
       );
       // const { data } = await axios.get(`http://localhost:8080/eventuser/2`);
       console.log(data);
