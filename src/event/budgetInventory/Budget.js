@@ -113,8 +113,7 @@ const Budget = ({ padding, height }) => {
 
   const handleSubmit = async function (e) {
     e.preventDefault();
-    navigate("/inventory");
-    console.log(state);
+    navigate("/test/budget&inventory/2");
   };
 
   return (

@@ -27,8 +27,8 @@ export const PrimaryButton = styled.button`
     font-size: 10px;
     line-height: 12px;
     padding: 0.2rem 0.5rem;
-    width: 80px;
-    height: 35px;
+    /* width: 80px;
+    height: 35px; */
   }
 `;
 
@@ -80,9 +80,7 @@ export const AlternativeButton = styled.button`
   height: 50px;
   border-radius: 8px;
   background-color: transparent;
-  color: ${(props) => (props.color ? props.color : "white")};
-  background-color: transparent;
-  color: ${(props) => (props.color ? props.color : "white")};
+  color: ${(props) => (props.color ? props.color : "#ff2957")};
   border: 2px solid #ff2957;
   cursor: pointer;
   font-weight: ${(props) => props.fontWeight};
@@ -144,4 +142,46 @@ export const TextButton = styled.button`
   &:disabled {
     color: rgba(255, 41, 87, 0.6);
   }
+`;
+
+
+export const PryNavBtn = styled.button`
+  padding: 10px 20px;
+  border-radius: 5px;
+  background-color: #ff2957;
+  color: ${(props) => (props.color ? props.color : "white")};
+  border: 1.5px solid #ff2957;
+  cursor: pointer;
+  font-weight: ${(props) => props.fontWeight};
+
+  /* &:hover {
+    color: #ff2957;
+  } */
+
+  /* &:disabled {
+    background-color: white;
+    color: white;
+    border: 1.5px solid rgba(255, 41, 87, 0.6);
+  } */
+`;
+
+
+export const AltNavBtn = styled.button`
+  padding: 10px 20px;
+  border-radius: 5px;
+  background-color: transparent;
+  color: ${(props) => (props.color ? props.color : "#ff2957")};
+  border: 1.5px solid #ff2957;
+  cursor: pointer;
+  font-weight: ${(props) => props.fontWeight};
+
+  /* &:hover {
+    color: #ff2957;
+  } */
+
+  /* &:disabled {
+    background-color: white;
+    color: white;
+    border: 1.5px solid rgba(255, 41, 87, 0.6);
+  } */
 `;

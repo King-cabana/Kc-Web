@@ -19,6 +19,8 @@ import linkedin from "../../images/linkedin.svg";
 import { login } from "../../redux/service/authService";
 import { toast } from "react-toastify";
 import { ImSpinner6 } from "react-icons/im";
+import { setUserDetails } from "../../redux/slices/userDetailsSlice";
+import { useDispatch } from "react-redux";
 
 const SignIn = () => {
   const [click, setClick] = useState(false);
@@ -40,12 +42,14 @@ const SignIn = () => {
     navigate("/forgotpassword");
   };
 
+  const dispatch = useDispatch()
+
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
       setLoading(true);
       const response = await login(email, password);
-      console.log(response?.data?.data);
+      dispatch(setUserDetails(response?.data))
       toast.success("login successfully!");
       navigate("/createProfile");
     } catch (error) {
@@ -127,7 +131,7 @@ const SignIn = () => {
                   gap: "5px",
                 }}
               >
-                <input type="checkbox" required></input>
+                <input type="checkbox" ></input>
                 <KBTextXs
                   style={{
                     textAlign: "center",

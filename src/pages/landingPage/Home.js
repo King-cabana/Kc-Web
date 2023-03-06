@@ -51,8 +51,12 @@ import {
   KBTextL,
   KBTextM,
 } from "../../components/fonts/fontSize";
+import { useState } from "react";
+
 
 const Home = () => {
+
+  
   return (
     <>
       <Navbar />
@@ -84,11 +88,11 @@ const Home = () => {
             </KBTextL>
 
             <BtnHolder>
-              <NavButtonLink to="/waitlist">
+              <NavButtonLink to="/signup">
                 <PrimaryButton fontWeight="600">Create Event</PrimaryButton>
               </NavButtonLink>
-              <NavButtonLink to="/waitlist">
-                <AlternativeButton fontWeight="600">
+              <NavButtonLink to="/signup">
+                <AlternativeButton fontWeight="600" color='white'>
                   Sponsor Events
                 </AlternativeButton>
               </NavButtonLink>
@@ -201,7 +205,7 @@ const Home = () => {
           }}
         >
           <NavButtonLink to="/waitlist">
-            <PrimaryButton fontWeight="600">Get Started</PrimaryButton>
+            <PrimaryButton fontWeight="600">Let's get started</PrimaryButton>
           </NavButtonLink>
         </div>
       </SponsorSection>
@@ -230,8 +234,8 @@ const Home = () => {
               Ready to be sponsored?{" "}
             </KBDisplayM>
             <KBTextL>Enter your email with King Cabana now!</KBTextL>
-            <NavButtonLink to="/waitlist">
-              <PrimaryButton>Get Started</PrimaryButton>
+            <NavButtonLink to="/signup">
+              <PrimaryButton>Sign me up</PrimaryButton>
             </NavButtonLink>
           </div>
         </ASContent>

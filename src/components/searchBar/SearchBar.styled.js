@@ -21,6 +21,10 @@ export const SearchBarWrapper = styled.div`
     opacity: 50%;
   }
 
+  @media screen and (max-width: 480px) {
+   display: none;
+  }
+
   @media screen and (max-width: 960px) {
     input {
       width: 80vw;

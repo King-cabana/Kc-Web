@@ -82,7 +82,7 @@ const SocialProfile = () => {
     setIsDisabled(true);
     try {
       const { data } = await axios.post(
-        "http://localhost:8080/profiles/create/",
+        "http://localhost:8081/profiles/create/",
         state,
         {
           headers: {

@@ -52,7 +52,7 @@ const navigate= useNavigate();
   
     const handleSubmit = async function (e) {
       e.preventDefault();
-      navigate("/secondCreateEvent");
+      navigate("/test/eventdetails/2");
       console.log(file);
     };
   

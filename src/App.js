@@ -2,13 +2,10 @@ import { Routes, Route } from "react-router-dom";
 import React, { Suspense, lazy } from "react";
 import "./App.css";
 
-// import Home from "./pages/landingPage/Home";
-// import AboutUs from "./pages/aboutUs/AboutUs";
 import NoPage from "./pages/noPage/NoPage";
 
 //Authentication
-import Signup from "./authentication/signup/SignUp";
-import SignIn from "./authentication/signIn/SignIn";
+
 import VerifyEmail from "./authentication/signup/VerifyEmail";
 import SignUpSuccess from "./authentication/signup/SignUpSuccess";
 import ResetPassword from "./authentication/signIn/ResetPassword";
@@ -51,9 +48,11 @@ import "react-toastify/dist/ReactToastify.css";
 
 const Home = lazy(() => import("./pages/landingPage/Home"));
 const ContactUs = lazy(() => import("./pages/contactUs/ContactUs"));
-const Waitlist = lazy(() => import("./pages/waitlist/WaitlistForm"));
+// const Waitlist = lazy(() => import("./pages/waitlist/WaitlistForm"));
+const Signup = lazy(() => import("./authentication/signup/SignUp"))
 const AboutUs = lazy(() => import("./pages/aboutUs/AboutUs"));
 const DashboardHome = lazy(() => import("./event/pages/DashboardHome"));
+const SignIn = lazy(() => import("./authentication/signIn/SignIn"))
 
 function App() {
   return (
@@ -65,6 +64,7 @@ function App() {
             <Route path="/" element={<Home />}></Route>
             <Route path="/contactUs" element={<ContactUs />} />
             <Route path="/aboutUs" element={<AboutUs />} />
+
             <Route path="/waitlist" element={<Waitlist />} />
             <Route path="/defineAudience" element={<DefineAudience />} />
             <Route path="/budget" element={<Budget />} />
@@ -97,7 +97,7 @@ function App() {
             <Route path="signupsuccess" element={<SignUpSuccess />} />
             <Route path="verifyemail" element={<VerifyEmail />} />
 
-            <Route path="/test" element={<Test />} />
+            <Route path="/test/:name/:number" element={<Test />} />
 
             <Route
               path="/dashboard"
@@ -156,12 +156,10 @@ function App() {
               }
             />
 
-            <Route path="/settings" element={<Sidebar>Shola</Sidebar>} />
-
-            <Route path="/firstCreateEvent" element={<FirstCreateEvent />} />
+            {/* <Route path="/firstCreateEvent" element={<FirstCreateEvent />} />
             <Route path="/secondCreateEvent" element={<SecondCreateEvent />} />
             <Route path="/contactInfo" element={<ContactInfo />} />
-            <Route path="/timeLineEvent" element={<TimeLineEvent />} />
+            <Route path="/timeLineEvent" element={<TimeLineEvent />} /> */}
 
             <Route
               path="/home"

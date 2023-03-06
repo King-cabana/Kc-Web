@@ -7,6 +7,8 @@ import { PrimaryButton,ModalPrimaryButton,AlternativeButton2,} from "../../compo
 import "../../App.css";
 import CreateEventTopBar from "../topBar/CreateEventTopBar/CreateEventTopBar";
 import ProgressBar from "../progressBar/ProgressBar";
+import { useNavigate } from 'react-router';
+import { DownBtn, DownButtonBox, DownButtonFull, DownButtonOutline } from "./SecondCreateEventStyled";
 
 const ContactInfo = () => {
   // form states
@@ -28,8 +30,20 @@ const ContactInfo = () => {
    if (modal) {document.body.classList.add("active-modal");} else {document.body.classList.remove("active-modal");}
   const showModal = !modal && "notShown";
 
+  
+  const navigate= useNavigate();
+
+  const navigateBack = () => {
+    navigate('/test/eventdetails/3');
+  };
+
+const navigateNext = () => {
+  navigate('/test/defineaudience/1');
+}
+
   const handleSubmit = async function (e) {
     e.preventDefault();
+
 
   const contactInformation = {pryFullName,pryPhoneNumber,pryEmailAddress,secRole,secFullName,secCompanyName,secJobRole,secOfficeAddress,
                               secPhoneNumber,secEmailAddress,};
@@ -202,7 +216,7 @@ const ContactInfo = () => {
                 </ModalButtonContainer>
               </PopUpComponent>
             </div>
-
+{/* 
             <ButtonContainer>
               <AlternativeButton2
               onClick={() => setModal(!modal)}
@@ -220,10 +234,17 @@ const ContactInfo = () => {
               >
                 Submit & Preview
               </PrimaryButton>
-            </ButtonContainer>
+            </ButtonContainer> */}
+             
           </ContactInfoUpload>
         </ContactInfoSection>
       </ContactInfoContainer>
+      <DownButtonBox>
+              <DownBtn>
+                <DownButtonOutline onClick={navigateBack}>Back</DownButtonOutline>
+                <DownButtonFull onClick={navigateNext}>Save & Continue</DownButtonFull>
+              </DownBtn>
+      </DownButtonBox>
     </>
   );
 };

@@ -42,7 +42,7 @@ export const NavLogo = styled.div`
 `;
 
 export const NavContent = styled.div`
-  width: 60vw;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -65,18 +65,18 @@ export const NavMobile = styled.div`
 `;
 
 export const NavItems = styled.ul`
-  float: left;
   list-style: none;
   display: flex;
-  width: 90%;
+  width: 50%;
   justify-content: space-between;
   align-items: center;
+  
 
   li,
   a {
     text-decoration: none;
     color: black;
-    font-weight: 600;
+    font-weight: 400;
     font-size: 14px;
     cursor: pointer;
     text-align: center;
@@ -132,11 +132,14 @@ export const NavBarLink = styled(NavLink)`
 `;
 
 export const NavGroup = styled.div`
-  width: 12vw;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
 
   @media screen and (max-width: 960px) {
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     height: 50vh;
     width: 100%;
@@ -156,45 +159,6 @@ export const NavSearchHolder = styled.div`
 
 export const NavButtonLink = styled(Link)`
   @media screen and (max-width: 960px) {
-    height: 10vh;
-  }
-`;
 
-export const NavButton = styled.button`
-  height: 8vh;
-  width: 11vw;
-  border: 1.5px none;
-  border-radius: 8px;
-  background-color: #ff2957;
-  color: white;
-  cursor: pointer;
-  font-weight: 600;
-
-  &:hover {
-    background-color: rgba(255, 41, 87, 0.8);
-    color: white;
-  }
-
-  @media screen and (max-width: 960px) {
-    width: 40vw;
-    margin-bottom: 5%;
-  }
-`;
-
-export const AccessButton = styled(NavButton)`
-  width: 14vw;
-  background-color: #ff2957;
-  color: white;
-  font-weight: 600;
-
-  &:hover {
-    background-color: white;
-    color: #ff2957;
-    border: 1.5px solid #ff2957;
-  }
-
-  @media screen and (max-width: 960px) {
-    width: 40vw;
-    margin-bottom: 5%;
-  }
+}
 `;

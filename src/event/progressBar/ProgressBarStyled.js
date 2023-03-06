@@ -30,7 +30,7 @@ export const ProgressStagesOutter = styled.div`
   clip-path: polygon(0% 0%, 93% 0, 100% 50%, 93% 100%, 0% 100%);
   height: inherit;
   background-color: gray;
-  width: 35%;
+  width: 40%;
   margin-right: -22px;
   position: relative;
   border-top-left-radius: 5px;

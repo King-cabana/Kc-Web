@@ -51,7 +51,7 @@ import { FaBars } from "react-icons/fa";
 import { useNavigate } from "react-router";
 import { setEventOrganizerProfile } from "../../redux/slices/eventOrganizerProfileSlice";
 
-const EventHome = () => {
+const   EventHome = () => {
   const dispatch = useDispatch();
   const state = useSelector((state) => state.eventOrganizerProfile);
   const [modal, setModal] = useState(true);
@@ -60,7 +60,7 @@ const EventHome = () => {
   useEffect(() => {
     const fetchOrganizerProfile = async () => {
       const { data } = await axios.get(
-        `http://localhost:8080/profiles/${state?.id}`,
+        `http://localhost:8081/profiles/${state?.id}`,
         {
           headers: {
             Authorization: authToken,
@@ -99,7 +99,6 @@ const EventHome = () => {
         <HeaderContainer>
           <WelcomeCenter>
             <HamburgerWrapper>
-              <FaBars />
             </HamburgerWrapper>
             <WelcomeText>
               {state?.organizerName ? state?.organizerName : "Organizer's Name"}

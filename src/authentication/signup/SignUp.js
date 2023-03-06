@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { HiOutlineEye, HiOutlineEyeOff } from "react-icons/hi";
 import { KBDisplayXs, KBTextXs } from "../../components/fonts/fontSize";
 import {
@@ -36,7 +36,7 @@ const SignUp = () => {
   });
 
   function inputChange(e) {
-    setInput({ ...inputs, [e.target.name]: e.target.value });
+    setInput({ ...inputs, [e.target.name]: e.target.value }); 
     setdisableButton(false);
   }
 
@@ -53,6 +53,10 @@ const SignUp = () => {
     setErrors(Validation(inputs));
   }
 
+  // useEffect(()=>{
+  //   handleSignUp();
+  // },[errors])
+
   const navigate = useNavigate();
 
   const handleSignUp = async (e) => {
@@ -60,7 +64,8 @@ const SignUp = () => {
     handleValidation();
     try {
       setLoading(true);
-      await register(inputs);
+      const res= await register(inputs);
+      console.log(res)
       toast.success("Successful, An Otp has been sent to your inbox");
       navigate("/verifyemail");
     } catch (error) {
@@ -194,7 +199,7 @@ const SignUp = () => {
             )}
 
             <div
-              style={{ marginTop: "5%", display: "flex", alignItems: "center" }}
+              style={{ marginTop: "5%", display: "flex", alignItems: "center", gap:"10px" }}
             >
               <input type="checkbox" required></input>
               <KBTextXs
@@ -275,7 +280,7 @@ const SignUp = () => {
             <span
               style={{ color: "#ff2957", fontWeight: "500", textAlign: "left" }}
             >
-              Login
+              {" Login"}
             </span>
           </LogInLink>
         </SignUpContent>

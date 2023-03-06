@@ -465,6 +465,7 @@ export const ImagesContainer = styled.section`
   position: relative;
   top: 0;
   left: 0;
+  background-size: contain;
 `;
 
 export const BackgroundPicture = styled.img`
@@ -474,6 +475,7 @@ export const BackgroundPicture = styled.img`
   border-radius: 10px;
   width: 100%;
   height: 238px;
+  object-fit: contain;
 
   @media screen and (max-width: 960px) {
     height: 200px;
