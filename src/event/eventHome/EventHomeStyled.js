@@ -12,7 +12,7 @@ export const OverallContainer = styled.section`
 `;
 
 export const PopUpOverlay = styled.div`
-  z-index: 90;
+  z-index: 99999;
   width: 100%;
   height: 100%;
   top: 0;
@@ -196,7 +196,7 @@ export const Description = styled(Location)`
 `;
 
 export const JointContainer = styled.div`
-  z-index: 99;
+  z-index: 999999;
   position: relative;
 
   @media screen and (max-width: 960px) {

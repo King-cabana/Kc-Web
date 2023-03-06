@@ -78,16 +78,13 @@ const EventHome = () => {
   const navitgateToEditOrganiserProfile = () => {
     navigate("/organiserProfile/home/edit");
   };
-
   // const logOut = () => {
   //   dispatch(clearEventOrganizerProfile());
   //   navigate("/login");
   // };
-
   const toggleModal = () => {
     setModal(!modal);
   };
-
   if (modal) {
     document.body.classList.add("active-modal");
   } else {
@@ -98,7 +95,6 @@ const EventHome = () => {
   return (
     <>
       {modal && <PopUpOverlay onClick={toggleModal}></PopUpOverlay>}
-      {/* <Event /> */}
       <OverallContainer>
         <HeaderContainer>
           <WelcomeCenter>
@@ -107,7 +103,6 @@ const EventHome = () => {
             </HamburgerWrapper>
             <WelcomeText>
               {state?.organizerName ? state?.organizerName : "Organizer's Name"}
-              {/* Organizer's Name */}
             </WelcomeText>
             {/* <PrimaryButton onClick={logOut}>Log Out</PrimaryButton> */}
           </WelcomeCenter>

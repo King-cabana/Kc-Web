@@ -40,7 +40,7 @@ const DefineAudience = () => {
         style={{
           backgroundColor: "#F3F0F0   ",
           width: "100%",
-          height:"100vh",
+          height: "100vh",
           padding: "2% 8%",
           display: "flex",
           flexDirection: "column",
@@ -49,7 +49,9 @@ const DefineAudience = () => {
         }}
       >
         <div>
-          <KBDisplayXs style={{color:'#484848'}} fontWeight={600}>Define Audience</KBDisplayXs>
+          <KBDisplayXs style={{ color: "#484848" }} fontWeight={600}>
+            Define Audience
+          </KBDisplayXs>
           <p style={{ fontSize: "16px" }}>
             Define your audience in terms of everyone who cares about what you
             do and the larger theme, not just the people who will attend.
@@ -147,24 +149,24 @@ const DefineAudience = () => {
               <div style={{ marginTop: "2%" }}>
                 <RadioButtonWrapper>
                   <Valueholder>
-                  <RadioButton
-                    onChange={(e) => setIncomeRange(e.target.value)}
-                    value={"0 - 49,999"}
-                  />
-                  0 - 49,999
+                    <RadioButton
+                      onChange={(e) => setIncomeRange(e.target.value)}
+                      value={"0 - 49,999"}
+                    />
+                    0 - 49,999
                   </Valueholder>
                 </RadioButtonWrapper>
                 <RadioButtonWrapper>
-                <Valueholder>
-                  <RadioButton />
-                  50,000 - 99,999
+                  <Valueholder>
+                    <RadioButton />
+                    50,000 - 99,999
                   </Valueholder>
                 </RadioButtonWrapper>
                 <RadioButtonWrapper>
-                <Valueholder>
-                  <RadioButton />
-                  100,000 and above
-                </Valueholder>
+                  <Valueholder>
+                    <RadioButton />
+                    100,000 and above
+                  </Valueholder>
                 </RadioButtonWrapper>
               </div>
             </Form>
@@ -180,32 +182,32 @@ const DefineAudience = () => {
               <div style={{ marginTop: "2%" }}>
                 <RadioButtonWrapper>
                   <Valueholder>
-                  <ChechkBox
-                    checked={gender.male}
-                    onChange={() =>
-                      setGender({ ...gender, male: !gender.male })
-                    }
-                  />
-                  Male
+                    <ChechkBox
+                      checked={gender.male}
+                      onChange={() =>
+                        setGender({ ...gender, male: !gender.male })
+                      }
+                    />
+                    Male
                   </Valueholder>
                 </RadioButtonWrapper>
                 <RadioButtonWrapper>
                   <Valueholder>
-                  <ChechkBox />
-                  Female
+                    <ChechkBox />
+                    Female
                   </Valueholder>
                 </RadioButtonWrapper>
 
                 <RadioButtonWrapper>
                   <Valueholder>
-                  <RadioInput
-                    type="checkbox"
-                    id="others"
-                    name="role"
-                    value="others"
-                    onClick={() => setOthers(!other)}
-                  />
-                  Others
+                    <RadioInput
+                      type="checkbox"
+                      id="others"
+                      name="role"
+                      value="others"
+                      onClick={() => setOthers(!other)}
+                    />
+                    Others
                   </Valueholder>
                 </RadioButtonWrapper>
                 <InputOthers
@@ -285,22 +287,22 @@ const DefineAudience = () => {
                   </Valueholder>
                 </RadioButtonWrapper>
                 <RadioButtonWrapper>
-                <Valueholder>
-                  <ChechkBox />
-                  Widowed
-                </Valueholder>
+                  <Valueholder>
+                    <ChechkBox />
+                    Widowed
+                  </Valueholder>
                 </RadioButtonWrapper>
                 <RadioButtonWrapper>
-                <Valueholder>
-                  <RadioInput
-                    type="checkbox"
-                    id="others"
-                    name="role"
-                    value="others"
-                    onClick={() => setOthers(!other)}
-                  />
-                  Others
-                </Valueholder>
+                  <Valueholder>
+                    <RadioInput
+                      type="checkbox"
+                      id="others"
+                      name="role"
+                      value="others"
+                      onClick={() => setOthers(!other)}
+                    />
+                    Others
+                  </Valueholder>
                 </RadioButtonWrapper>
                 <InputOthers
                   type="text"
@@ -320,46 +322,46 @@ const DefineAudience = () => {
             <Form>
               <div style={{ marginTop: "2%" }}>
                 <RadioButtonWrapper>
-                <Valueholder>
-                  <ChechkBox />
-                  Employed
-                </Valueholder>
+                  <Valueholder>
+                    <ChechkBox />
+                    Employed
+                  </Valueholder>
                 </RadioButtonWrapper>
                 <RadioButtonWrapper>
-                <Valueholder>
-                  <ChechkBox />
-                  Self Employed
-                </Valueholder>
+                  <Valueholder>
+                    <ChechkBox />
+                    Self Employed
+                  </Valueholder>
                 </RadioButtonWrapper>
                 <RadioButtonWrapper>
-                <Valueholder>
-                  <ChechkBox />
-                  Unemployed
-                </Valueholder>
+                  <Valueholder>
+                    <ChechkBox />
+                    Unemployed
+                  </Valueholder>
                 </RadioButtonWrapper>
                 <RadioButtonWrapper>
-                <Valueholder>
-                  <ChechkBox />
-                  Retired
-                </Valueholder>
+                  <Valueholder>
+                    <ChechkBox />
+                    Retired
+                  </Valueholder>
                 </RadioButtonWrapper>
                 <RadioButtonWrapper>
-                <Valueholder>
-                  <ChechkBox />
-                  Disable
-                </Valueholder>
+                  <Valueholder>
+                    <ChechkBox />
+                    Disable
+                  </Valueholder>
                 </RadioButtonWrapper>
                 <RadioButtonWrapper>
-                <Valueholder>
-                  <RadioInput
-                    type="checkbox"
-                    id="others"
-                    name="role"
-                    value="others"
-                    onClick={() => setOthers(!other)}
-                  />
-                  Others
-                </Valueholder>
+                  <Valueholder>
+                    <RadioInput
+                      type="checkbox"
+                      id="others"
+                      name="role"
+                      value="others"
+                      onClick={() => setOthers(!other)}
+                    />
+                    Others
+                  </Valueholder>
                 </RadioButtonWrapper>
                 <InputOthers
                   type="text"
@@ -379,39 +381,39 @@ const DefineAudience = () => {
             <Form>
               <div style={{ marginTop: "2%" }}>
                 <RadioButtonWrapper>
-                <Valueholder>
-                  <ChechkBox />
-                  High School
-                </Valueholder>
+                  <Valueholder>
+                    <ChechkBox />
+                    High School
+                  </Valueholder>
                 </RadioButtonWrapper>
                 <RadioButtonWrapper>
-                <Valueholder>
-                  <ChechkBox />
-                  College/Polytechnic
-                </Valueholder>
+                  <Valueholder>
+                    <ChechkBox />
+                    College/Polytechnic
+                  </Valueholder>
                 </RadioButtonWrapper>
                 <RadioButtonWrapper>
-                <Valueholder>
-                  <ChechkBox />
-                  Bachelor’s
-                </Valueholder>
+                  <Valueholder>
+                    <ChechkBox />
+                    Bachelor’s
+                  </Valueholder>
                 </RadioButtonWrapper>
                 <RadioButtonWrapper>
-                <Valueholder>
-                  <ChechkBox />
-                  Master’s
-                </Valueholder>
+                  <Valueholder>
+                    <ChechkBox />
+                    Master’s
+                  </Valueholder>
                 </RadioButtonWrapper>
                 <RadioButtonWrapper>
-                <Valueholder>
-                  <RadioInput
-                    type="checkbox"
-                    id="others"
-                    name="role"
-                    value="others"
-                    onClick={() => setOthers(!other)}
-                  />
-                  Others
+                  <Valueholder>
+                    <RadioInput
+                      type="checkbox"
+                      id="others"
+                      name="role"
+                      value="others"
+                      onClick={() => setOthers(!other)}
+                    />
+                    Others
                   </Valueholder>
                 </RadioButtonWrapper>
                 <InputOthers

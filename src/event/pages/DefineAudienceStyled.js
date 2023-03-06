@@ -8,7 +8,7 @@ export const ButtonContainer = styled.footer`
   padding: 0px 100px;
   width: 100%;
   /* margin-left: -9%; */
-  height: 107px;
+  height: 75px;
   border: 1px solid #d2cedc;
   box-sizing: border-box;
   z-index: 99;
@@ -17,6 +17,6 @@ export const ButtonContainer = styled.footer`
   left: 0;
 
   @media screen and (max-width: 960px) {
-    height: 80px;
+    height: 70px;
   }
 `;
