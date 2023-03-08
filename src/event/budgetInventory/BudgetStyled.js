@@ -135,7 +135,7 @@ export const FormContainer = styled.div`
 
 export const ButtonContainer = styled.footer`
   background-color: white;
-  display: ${(props) => (props.display ? props.display : "none")};
+  display: flex;
   justify-content: flex-end;
   align-items: center;
   padding: 0px 100px;

@@ -34,7 +34,6 @@ const DefineAudience = ({ padding }) => {
   const state = useSelector((state) => state.createEvent);
   const navigate = useNavigate();
   const location = useLocation();
-  const [component, setComponent] = useState(true);
   const [otherGender, setOtherGender] = useState(
     Boolean(state.genderListNew.length)
   );
@@ -67,14 +66,13 @@ const DefineAudience = ({ padding }) => {
     const updatedArr = checked
       ? [...arr, value]
       : arr.filter((item) => item !== value);
-    console.log(updatedArr);
+    // console.log(updatedArr);
     dispatch(editCheckbox({ category: name, item: updatedArr }));
   };
 
   const navigateBack = (e) => {
     e.preventDefault();
-    console.log(state);
-    // navigate("/test/eventdetails/4");
+    navigate("/test/eventdetails/4");
   };
 
   const navigateNext = (e) => {
@@ -98,7 +96,8 @@ const DefineAudience = ({ padding }) => {
           addToList({ listType: "educationLevelList", newItem: education })
         )
       : dispatch(addToList({ listType: "educationLevelList", newItem: "" }));
-    // navigate("/test/budget&inventory/1");
+    navigate("/test/budget&inventory/1");
+    // console.log(state);
   };
 
   return (
@@ -330,7 +329,6 @@ const DefineAudience = ({ padding }) => {
                 display={otherGender ? "flex" : "none"}
                 defaultValue={state.genderListNew.join(", ")}
                 onChange={(e) => setGender(e.target.value)}
-                // onBlur={handleOtherInputBlur}
               ></InputOthers>
             </div>
           </Form>
@@ -680,10 +678,7 @@ const DefineAudience = ({ padding }) => {
           </Form>
 
           {location.pathname === "/eventPlanPreview" ? null : (
-            <ButtonContainer
-              display={component ? "flex" : "none"}
-              style={{ margin: "0rem" }}
-            >
+            <ButtonContainer style={{ margin: "0rem" }}>
               <AlternativeButton2
                 onClick={navigateBack}
                 style={{

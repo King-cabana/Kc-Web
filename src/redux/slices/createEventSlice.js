@@ -43,16 +43,11 @@ export const createEventSlice = createSlice({
         .trim()
         .split(",")
         .map((item) => item.trim());
-      const updatedList = [...state[listType], ...newList];
-      const uniqueList = [...new Set(updatedList)];
-      const filteredList = uniqueList.filter((item) => item !== "");
       const finalArray = [
         ...[...state[listType]].filter((x) => checkBox[listType].includes(x)),
         ...newList,
       ];
-
-      console.log(finalArray, newList);
-
+      // console.log(finalArray, newList);
       state[listType] = finalArray.filter((x) => x !== "");
       state[`${listType}New`] = newList.filter((x) => x !== "");
     },
