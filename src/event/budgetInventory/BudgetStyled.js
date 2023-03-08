@@ -5,7 +5,20 @@ export const BudgetInventoryContainer = styled.div`
   width: 100%;
   height: 100%;
   padding: 2rem;
-  background: url(${budgetBackground});
+  background: ${(prop) =>
+    prop.background ? prop.background : `url(${budgetBackground})`};
+
+  @media screen and (max-width: 960px) {
+    padding: 1rem;
+  }
+`;
+
+export const DefineAudienceForm = styled.form`
+  width: 100%;
+  height: 100%;
+  padding: 2rem;
+  background: ${(prop) =>
+    prop.background ? prop.background : `url(${budgetBackground})`};
 
   @media screen and (max-width: 960px) {
     padding: 1rem;
@@ -17,7 +30,7 @@ export const BudgetInventoryHeader = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin: 20px 1rem;
+  margin: 10px 1rem;
 
   @media screen and (max-width: 960px) {
     margin: 7px 0.5rem;
@@ -61,27 +74,25 @@ export const BudgetInventorySubtitle = styled.p`
   font-size: 16px;
   line-height: 24px;
   color: #484848;
-  margin-top: 15px;
+  margin-top: 8px;
 
   @media screen and (max-width: 960px) {
     font-size: 12px;
     line-height: 18px;
-    margin-top: 5px;
+    margin-top: 3px;
   }
 `;
 
 export const BudgetSection = styled.section`
-  /* height: 100%; */
-  /* width: 100%; */
+  /* height: 50%; */
   max-width: 100%;
-  margin: 1rem;
+  margin: 0 1rem;
   margin-bottom: 8rem;
   padding: 2rem;
   background: #fff;
 
   @media screen and (max-width: 960px) {
     padding: 0.5rem;
-    margin: 0.5rem;
     margin-bottom: 5rem;
   }
 `;
@@ -104,12 +115,10 @@ export const BudgetSubtitle = styled.p`
 export const BudgetUpload = styled.section`
   display: flex;
   flex-direction: column;
-  /* margin-top: 1.5rem; */
-  padding: 2rem 1rem;
+  padding: 0.5rem 1rem 2rem 1rem;
 
   @media screen and (max-width: 960px) {
     padding: 1rem 0;
-    margin-top: 0;
   }
 `;
 
@@ -119,20 +128,19 @@ export const FormContainer = styled.div`
   justify-content: center;
   flex-direction: column;
   width: 100%;
-  padding: 1em;
+  padding: 0.5rem;
   border: 1px dashed rgba(0, 104, 255, 0.1);
   margin-top: 1rem;
 `;
 
 export const ButtonContainer = styled.footer`
   background-color: white;
-  display: flex;
+  display: ${(props) => (props.display ? props.display : "none")};
   justify-content: flex-end;
   align-items: center;
   padding: 0px 100px;
   width: 100%;
-  /* margin-left: -9%; */
-  height: 107px;
+  height: 75px;
   border: 1px solid #d2cedc;
   box-sizing: border-box;
   z-index: 7;
@@ -141,7 +149,7 @@ export const ButtonContainer = styled.footer`
   left: 0;
 
   @media screen and (max-width: 960px) {
-    height: 80px;
+    height: 70px;
     padding: 0px 40px;
   }
 `;
@@ -169,7 +177,7 @@ export const FileWrapper = styled.section`
   display: flex;
   justify-content: center;
   width: 80px;
-  height: 30px;
+  height: 70px;
 
   @media screen and (max-width: 960px) {
     margin-bottom: 1rem;

@@ -44,7 +44,7 @@ const SocialProfile = () => {
 
   useEffect(() => {
     console.log(authToken);
-  });
+  }, []);
 
   const toggleOthers = () => {
     if (visibility === true) {
@@ -210,9 +210,12 @@ const SocialProfile = () => {
                   type="radio"
                   id="patron"
                   name="guarantorRole"
-                  value={"Patron"}
+                  value="Patron"
                   onChange={change}
                   onClick={toggleOthers}
+                  checked={
+                    state.guarantorRole?.includes("Patron") ? true : false
+                  }
                 />
                 <label htmlFor="patron">Patron</label>
               </CheckBoxInput>
@@ -222,9 +225,14 @@ const SocialProfile = () => {
                   type="radio"
                   id="staff"
                   name="guarantorRole"
-                  value={"Staff Adviser"}
+                  value="Staff Adviser"
                   onChange={change}
                   onClick={toggleOthers}
+                  checked={
+                    state.guarantorRole?.includes("Staff Adviser")
+                      ? true
+                      : false
+                  }
                 />
                 <label htmlFor="staff">Staff Adviser</label>
               </CheckBoxInput>
@@ -234,9 +242,12 @@ const SocialProfile = () => {
                   type="radio"
                   id="coordinators"
                   name="guarantorRole"
-                  value={"Coordinator"}
+                  value="Coordinator"
                   onChange={change}
                   onClick={toggleOthers}
+                  checked={
+                    state.guarantorRole?.includes("Coordinator") ? true : false
+                  }
                 />
                 <label htmlFor="coordinators">Coordinator</label>
               </CheckBoxInput>
@@ -248,7 +259,10 @@ const SocialProfile = () => {
                   id="others"
                   name="guarantorRole"
                   onChange={change}
-                  value={"Other"}
+                  value="Other"
+                  checked={
+                    state.guarantorRole?.includes("Other") ? true : false
+                  }
                 />
                 <label htmlFor="others">Others (please specify role)</label>
               </CheckBoxInput>

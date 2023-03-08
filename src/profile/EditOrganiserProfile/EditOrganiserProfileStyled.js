@@ -122,6 +122,9 @@ export const ButtonWrapper = styled.section`
     width: 100%;
     top: 2rem;
   }
+  @media screen and (max-width: 450px) {
+    top: 2.3rem;
+  }
 `;
 
 export const Messages = styled.section`

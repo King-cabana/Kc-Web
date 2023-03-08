@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import {
   ChechkBox,
   Form,
@@ -7,434 +8,685 @@ import {
   InputOthers,
   Valueholder,
 } from "../../globalStyles";
-import { KBTextXl, KBDisplayXs } from "../../components/fonts/fontSize";
-import { ButtonContainer } from "./DefineAudienceStyled";
+import { KBTextXl } from "../../components/fonts/fontSize";
+import { ButtonContainer, Label } from "./DefineAudienceStyled";
 import {
-  AlternativeButton,
   AlternativeButton2,
   PrimaryButton,
 } from "../../components/button/button";
+import { RadioInput } from "../createEvent/ContactInfoStyled";
+import { useNavigate, useLocation } from "react-router-dom";
 import {
-  OthersInput,
-  Radio,
-  RadioInput,
-  RadioLabel
-} from "../createEvent/ContactInfoStyled";
-import { useNavigate } from "react-router-dom";
+  BudgetInventoryContainer,
+  BudgetInventoryHeader,
+  BudgetInventorySubtitle,
+  BudgetSubtitle,
+  BudgetTitle1,
+} from "../budgetInventory/BudgetStyled";
+import {
+  editGenerally,
+  editCheckbox,
+  addToList,
+} from "../../redux/slices/createEventSlice";
 
-const DefineAudience = () => {
-  const [isdisabled, setIsDisabled] = useState(true);
-  const [other, setOthers] = useState(false);
-
+const DefineAudience = ({ padding }) => {
+  const dispatch = useDispatch();
+  const state = useSelector((state) => state.createEvent);
+  const location = useLocation();
+  const [component, setComponent] = useState(true);
+  const [otherGender, setOtherGender] = useState(
+    Boolean(state.genderListNew.length)
+  );
+  const [otherReligion, setOtherReligion] = useState(
+    Boolean(state.religionListNew.length)
+  );
+  const [otherStatus, setOtherStatus] = useState(
+    Boolean(state.maritalStatusListNew.length)
+  );
+  const [otherEmployment, setOtherEmployment] = useState(
+    Boolean(state.employmentStatusListNew.length)
+  );
+  const [otherEducation, setOtherEducation] = useState(
+    Boolean(state.educationLevelListNew.length)
+  );
   const [progress, setProgress] = useState(0);
-  const [age, setAge] = useState();
-  const [incomeRange, setIncomeRange] = useState(null);
-  const [gender, setGender] = useState({
-    male: false,
-    female: false,
-    other: { state: false, text: "" },
-  });
+  const [gender, setGender] = useState("");
+  const [religion, setReligion] = useState("");
+  const [status, setStatus] = useState("");
+  const [employment, setEmployment] = useState("");
+  const [education, setEducation] = useState("");
 
 const navigate= useNavigate();
 
-const navigateBack = () => {
+  const change = (e) => {
+    dispatch(editGenerally({ name: e.target.name, value: e.target.value }));
+  };
+
+  const handleCheckboxChange = (e) => {
+    const { name, value, checked } = e.target;
+    const arr = state[name];
+    const updatedArr = checked
+      ? [...arr, value]
+      : arr.filter((item) => item !== value);
+    console.log(updatedArr);
+    dispatch(editCheckbox({ category: name, item: updatedArr }));
+  };
+
+  const navigateBack = (e) => {
+    e.preventDefault();
+    console.log(state);
     navigate('/createevent/eventdetails/4');
   };
 
-const navigateNext = () => {
-  navigate('/createevent/budget&inventory/1');
-}
-
+  const navigateNext = (e) => {
+    e.preventDefault();
+    gender
+      ? dispatch(addToList({ listType: "genderList", newItem: gender }))
+      : dispatch(addToList({ listType: "genderList", newItem: "" }));
+    religion
+      ? dispatch(addToList({ listType: "religionList", newItem: religion }))
+      : dispatch(addToList({ listType: "religionList", newItem: "" }));
+    status
+      ? dispatch(addToList({ listType: "maritalStatusList", newItem: status }))
+      : dispatch(addToList({ listType: "maritalStatusList", newItem: "" }));
+    employment
+      ? dispatch(
+          addToList({ listType: "employmentStatusList", newItem: employment })
+        )
+      : dispatch(addToList({ listType: "employmentStatusList", newItem: "" }));
+    education
+      ? dispatch(
+          addToList({ listType: "educationLevelList", newItem: education })
+        )
+      : dispatch(addToList({ listType: "educationLevelList", newItem: "" }));
+    // navigate('/createevent/budget&inventory/1');
+  };
 
   return (
-    <div>
+    <BudgetInventoryContainer
+      style={{
+        padding: "2% 8%",
+        padding: padding,
+      }}
+    >
+      <BudgetInventoryHeader>
+        <BudgetTitle1>Define Audience</BudgetTitle1>
+        <BudgetInventorySubtitle>
+          Define your audience in terms of everyone who cares about what you do
+          and the larger theme, not just the people who will attend.
+        </BudgetInventorySubtitle>
+      </BudgetInventoryHeader>
       <div
         style={{
-          backgroundColor: "#F3F0F0   ",
           width: "100%",
-          height:"100vh",
-          padding: "2% 8%",
-          display: "flex",
-          flexDirection: "column",
-          alignItmes: "center",
-          justifyContent: "center",
+          backgroundColor: "white",
+          overflowY: "scroll",
+          padding: "2% 3%",
+          margin: "2rem 0rem 5rem 0rem",
         }}
       >
         <div>
-          <KBDisplayXs style={{color:'#484848'}} fontWeight={600}>Define Audience</KBDisplayXs>
-          <p style={{ fontSize: "16px" }}>
-            Define your audience in terms of everyone who cares about what you
-            do and the larger theme, not just the people who will attend.
-          </p>
-        </div>
-        <div
-          style={{
-            width: "100%",
-            height: "70vh",
-            backgroundColor: "white",
-            overflowY: "scroll",
-            padding: "4%",
-            marginTop: "3%",
-          }}
-        >
-          <div>
-            <KBTextXl fontWeight={500}>Age {age} </KBTextXl>
-            <p>What age range best describes your community?</p>
-            <Form>
-              <div style={{ marginTop: "2%" }}>
-                <RadioButtonWrapper>
-                  <Valueholder>
-                    <RadioButton
-                      onChange={(e) => setAge(e.target.value)}
-                      value={"17 and younger"}
-                    />
-                    17 and younger
-                  </Valueholder>
-                </RadioButtonWrapper>
-                <RadioButtonWrapper>
-                  <Valueholder>
-                    <RadioButton
-                      onChange={(e) => setAge(e.target.value)}
-                      value={"18-20"}
-                    />
-                    18-20
-                  </Valueholder>
-                </RadioButtonWrapper>
-                <RadioButtonWrapper>
-                  <Valueholder>
-                    <RadioButton
-                      onChange={(e) => setAge(e.target.value)}
-                      value={"21-29"}
-                    />
-                    21-29
-                  </Valueholder>
-                </RadioButtonWrapper>
-                <RadioButtonWrapper>
-                  <Valueholder>
-                    <RadioButton
-                      onChange={(e) => setAge(e.target.value)}
-                      value={"30-39"}
-                    />
-                    30-39
-                  </Valueholder>
-                </RadioButtonWrapper>
-                <RadioButtonWrapper>
-                  <Valueholder>
-                    <RadioButton
-                      onChange={(e) => setAge(e.target.value)}
-                      value={"40-49"}
-                    />
-                    40-49
-                  </Valueholder>
-                </RadioButtonWrapper>
-                <RadioButtonWrapper>
-                  <Valueholder>
-                    <RadioButton
-                      onChange={(e) => setAge(e.target.value)}
-                      value={"50-59"}
-                    />
-                    50-59
-                  </Valueholder>
-                </RadioButtonWrapper>
-                <RadioButtonWrapper>
-                  <Valueholder>
-                    <RadioButton
-                      onChange={(e) => setAge(e.target.value)}
-                      value={"60 and older"}
-                    />
-                    60 and older
-                  </Valueholder>
-                </RadioButtonWrapper>
-              </div>
-            </Form>
-          </div>
-
-          <div style={{ marginTop: "3%" }}>
-            <KBTextXl fontWeight={500}>Income range</KBTextXl>
-            <p>
-              What income range (in Naira) best describes the people connected
-              to your event?
-            </p>
-            <Form>
-              <div style={{ marginTop: "2%" }}>
-                <RadioButtonWrapper>
-                  <Valueholder>
+          <KBTextXl fontWeight={500}>Age </KBTextXl>
+          <BudgetSubtitle>
+            What age range best describes your community?
+          </BudgetSubtitle>
+          <Form>
+            <div style={{ marginTop: "0.5%" }}>
+              <RadioButtonWrapper>
+                <Valueholder>
                   <RadioButton
-                    onChange={(e) => setIncomeRange(e.target.value)}
-                    value={"0 - 49,999"}
-                  />
-                  0 - 49,999
-                  </Valueholder>
-                </RadioButtonWrapper>
-                <RadioButtonWrapper>
-                <Valueholder>
-                  <RadioButton />
-                  50,000 - 99,999
-                  </Valueholder>
-                </RadioButtonWrapper>
-                <RadioButtonWrapper>
-                <Valueholder>
-                  <RadioButton />
-                  100,000 and above
-                </Valueholder>
-                </RadioButtonWrapper>
-              </div>
-            </Form>
-          </div>
-
-          <div style={{ marginTop: "3%" }}>
-            <KBTextXl fontWeight={500}>Gender</KBTextXl>
-            <p>
-              Select one or more of the most predominant of your audience or
-              specify for others
-            </p>
-            <Form>
-              <div style={{ marginTop: "2%" }}>
-                <RadioButtonWrapper>
-                  <Valueholder>
-                  <ChechkBox
-                    checked={gender.male}
-                    onChange={() =>
-                      setGender({ ...gender, male: !gender.male })
+                    name="ageRange"
+                    id="17"
+                    onChange={change}
+                    value="17 and younger"
+                    checked={
+                      state.ageRange?.includes("17 and younger") ? true : false
                     }
                   />
-                  Male
-                  </Valueholder>
-                </RadioButtonWrapper>
-                <RadioButtonWrapper>
-                  <Valueholder>
-                  <ChechkBox />
-                  Female
-                  </Valueholder>
-                </RadioButtonWrapper>
-
-                <RadioButtonWrapper>
-                  <Valueholder>
-                  <RadioInput
-                    type="checkbox"
-                    id="others"
-                    name="role"
-                    value="others"
-                    onClick={() => setOthers(!other)}
+                  <Label htmlFor="17">17 and younger</Label>
+                </Valueholder>
+              </RadioButtonWrapper>
+              <RadioButtonWrapper>
+                <Valueholder>
+                  <RadioButton
+                    name="ageRange"
+                    id="18"
+                    onChange={change}
+                    value="18-20"
+                    checked={state.ageRange?.includes("18-20") ? true : false}
                   />
-                  Others
-                  </Valueholder>
-                </RadioButtonWrapper>
-                <InputOthers
-                  type="text"
-                  placeholder="Specify for others"
-                  display={other ? "flex" : "none"}
-                ></InputOthers>
-              </div>
-            </Form>
-          </div>
-
-          <div style={{ marginTop: "3%" }}>
-            <KBTextXl fontWeight={500}>Religion</KBTextXl>
-            <p>
-              Select one or more of the most predominant of your audience or
-              specify for “others”
-            </p>
-            <Form>
-              <div style={{ marginTop: "2%" }}>
-                <RadioButtonWrapper>
-                  <Valueholder>
-                    <ChechkBox />
-                    Christianity
-                  </Valueholder>
-                </RadioButtonWrapper>
-                <RadioButtonWrapper>
-                  <Valueholder>
-                    <ChechkBox />
-                    Islam
-                  </Valueholder>
-                </RadioButtonWrapper>
-                <RadioButtonWrapper>
-                  <Valueholder>
-                    <RadioInput
-                      type="checkbox"
-                      id="others"
-                      name="role"
-                      value="others"
-                      onClick={() => setOthers(!other)}
-                    />
-                    Others
-                  </Valueholder>
-                </RadioButtonWrapper>
-                <InputOthers
-                  type="text"
-                  placeholder="Specify for others"
-                  display={other ? "flex" : "none"}
-                ></InputOthers>
-              </div>
-            </Form>
-          </div>
-
-          <div style={{ marginTop: "3%" }}>
-            <KBTextXl fontWeight={500}>Marital Status</KBTextXl>
-            <p>
-              Select one or more of the most predominant of your audience or
-              specify for “others”
-            </p>
-            <Form>
-              <div style={{ marginTop: "2%" }}>
-                <RadioButtonWrapper>
-                  <Valueholder>
-                    <ChechkBox />
-                    Single
-                  </Valueholder>
-                </RadioButtonWrapper>
-                <RadioButtonWrapper>
-                  <Valueholder>
-                    <ChechkBox />
-                    Married
-                  </Valueholder>
-                </RadioButtonWrapper>
-                <RadioButtonWrapper>
-                  <Valueholder>
-                    <ChechkBox />
-                    Divorced
-                  </Valueholder>
-                </RadioButtonWrapper>
-                <RadioButtonWrapper>
-                <Valueholder>
-                  <ChechkBox />
-                  Widowed
+                  <Label htmlFor="18">18-20</Label>
                 </Valueholder>
-                </RadioButtonWrapper>
-                <RadioButtonWrapper>
+              </RadioButtonWrapper>
+              <RadioButtonWrapper>
                 <Valueholder>
-                  <RadioInput
-                    type="checkbox"
-                    id="others"
-                    name="role"
-                    value="others"
-                    onClick={() => setOthers(!other)}
+                  <RadioButton
+                    name="ageRange"
+                    id="21"
+                    onChange={change}
+                    value="21-29"
+                    checked={state.ageRange?.includes("21-29") ? true : false}
                   />
-                  Others
+                  <Label htmlFor="21">21-29</Label>
                 </Valueholder>
-                </RadioButtonWrapper>
-                <InputOthers
-                  type="text"
-                  placeholder="Specify for others"
-                  display={other ? "flex" : "none"}
-                ></InputOthers>
-              </div>
-            </Form>
-          </div>
-
-          <div style={{ marginTop: "3%" }}>
-            <KBTextXl fontWeight={500}>Employment status</KBTextXl>
-            <p>
-              Select one or more of the most predominant of your audience or
-              specify for “others”
-            </p>
-            <Form>
-              <div style={{ marginTop: "2%" }}>
-                <RadioButtonWrapper>
+              </RadioButtonWrapper>
+              <RadioButtonWrapper>
                 <Valueholder>
-                  <ChechkBox />
-                  Employed
-                </Valueholder>
-                </RadioButtonWrapper>
-                <RadioButtonWrapper>
-                <Valueholder>
-                  <ChechkBox />
-                  Self Employed
-                </Valueholder>
-                </RadioButtonWrapper>
-                <RadioButtonWrapper>
-                <Valueholder>
-                  <ChechkBox />
-                  Unemployed
-                </Valueholder>
-                </RadioButtonWrapper>
-                <RadioButtonWrapper>
-                <Valueholder>
-                  <ChechkBox />
-                  Retired
-                </Valueholder>
-                </RadioButtonWrapper>
-                <RadioButtonWrapper>
-                <Valueholder>
-                  <ChechkBox />
-                  Disable
-                </Valueholder>
-                </RadioButtonWrapper>
-                <RadioButtonWrapper>
-                <Valueholder>
-                  <RadioInput
-                    type="checkbox"
-                    id="others"
-                    name="role"
-                    value="others"
-                    onClick={() => setOthers(!other)}
+                  <RadioButton
+                    name="ageRange"
+                    id="30"
+                    onChange={change}
+                    value="30-39"
+                    checked={state.ageRange?.includes("30-39") ? true : false}
                   />
-                  Others
+                  <Label htmlFor="30">30-39</Label>
                 </Valueholder>
-                </RadioButtonWrapper>
-                <InputOthers
-                  type="text"
-                  placeholder="Specify for others"
-                  display={other ? "flex" : "none"}
-                ></InputOthers>
-              </div>
-            </Form>
-          </div>
+              </RadioButtonWrapper>
+              <RadioButtonWrapper>
+                <Valueholder>
+                  <RadioButton
+                    name="ageRange"
+                    id="40"
+                    onChange={change}
+                    value="40-49"
+                    checked={state.ageRange?.includes("40-49") ? true : false}
+                  />
+                  <Label htmlFor="40">40-49</Label>
+                </Valueholder>
+              </RadioButtonWrapper>
+              <RadioButtonWrapper>
+                <Valueholder>
+                  <RadioButton
+                    name="ageRange"
+                    id="50"
+                    onChange={change}
+                    value="50-59"
+                    checked={state.ageRange?.includes("50-59") ? true : false}
+                  />
+                  <Label htmlFor="50">50-59</Label>
+                </Valueholder>
+              </RadioButtonWrapper>
+              <RadioButtonWrapper>
+                <Valueholder>
+                  <RadioButton
+                    name="ageRange"
+                    id="60"
+                    onChange={change}
+                    value="60 and older"
+                    checked={
+                      state.ageRange?.includes("60 and older") ? true : false
+                    }
+                  />
+                  <Label htmlFor="60">60 and older</Label>
+                </Valueholder>
+              </RadioButtonWrapper>
+            </div>
+          </Form>
+        </div>
 
-          <div style={{ marginTop: "3%" }}>
-            <KBTextXl fontWeight={500}>Educational level</KBTextXl>
-            <p>
-              Select one or more of the most predominant of your audience or
-              specify for “others”
-            </p>
-            <Form>
-              <div style={{ marginTop: "2%" }}>
-                <RadioButtonWrapper>
+        <div style={{ marginTop: "2%" }}>
+          <KBTextXl fontWeight={500}>Income range</KBTextXl>
+          <BudgetSubtitle>
+            What income range (in Naira) best describes the people connected to
+            your event?
+          </BudgetSubtitle>
+          <Form>
+            <div style={{ marginTop: "2%" }}>
+              <RadioButtonWrapper>
                 <Valueholder>
-                  <ChechkBox />
-                  High School
+                  <RadioButton
+                    name="income"
+                    id="0"
+                    onChange={change}
+                    value="0 - 49,999"
+                    checked={
+                      state.income?.includes("0 - 49,999") ? true : false
+                    }
+                  />
+                  <Label htmlFor="0">0 - 49,999</Label>
                 </Valueholder>
-                </RadioButtonWrapper>
-                <RadioButtonWrapper>
+              </RadioButtonWrapper>
+              <RadioButtonWrapper>
                 <Valueholder>
-                  <ChechkBox />
-                  College/Polytechnic
+                  <RadioButton
+                    onChange={change}
+                    value="50,000 - 99,999"
+                    name="income"
+                    id="50,000"
+                    checked={
+                      state.income?.includes("50,000 - 99,999") ? true : false
+                    }
+                  />
+                  <Label htmlFor="50,000">50,000 - 99,999</Label>
                 </Valueholder>
-                </RadioButtonWrapper>
-                <RadioButtonWrapper>
+              </RadioButtonWrapper>
+              <RadioButtonWrapper>
                 <Valueholder>
-                  <ChechkBox />
-                  Bachelor’s
+                  <RadioButton
+                    name="income"
+                    id="100,000"
+                    onChange={change}
+                    value="100,000 and above"
+                    checked={
+                      state.income?.includes("100,000 and above") ? true : false
+                    }
+                  />
+                  <Label htmlFor="100,000">100,000 and above</Label>
                 </Valueholder>
-                </RadioButtonWrapper>
-                <RadioButtonWrapper>
+              </RadioButtonWrapper>
+            </div>
+          </Form>
+        </div>
+
+        <div style={{ marginTop: "2%" }}>
+          <KBTextXl fontWeight={500}>Gender</KBTextXl>
+          <BudgetSubtitle>
+            Select one or more of the most predominant of your audience or
+            specify for others
+          </BudgetSubtitle>
+          <Form>
+            <div style={{ marginTop: "2%" }}>
+              <RadioButtonWrapper>
                 <Valueholder>
-                  <ChechkBox />
-                  Master’s
+                  <ChechkBox
+                    name="genderList"
+                    id="male"
+                    value="Male"
+                    checked={state.genderList?.includes("Male") ? true : false}
+                    onChange={handleCheckboxChange}
+                  />
+                  <Label htmlFor="male">Male</Label>
                 </Valueholder>
-                </RadioButtonWrapper>
-                <RadioButtonWrapper>
+              </RadioButtonWrapper>
+              <RadioButtonWrapper>
+                <Valueholder>
+                  <ChechkBox
+                    name="genderList"
+                    id="female"
+                    value="Female"
+                    checked={
+                      state.genderList?.includes("Female") ? true : false
+                    }
+                    onChange={handleCheckboxChange}
+                  />
+                  <Label htmlFor="female">Female</Label>
+                </Valueholder>
+              </RadioButtonWrapper>
+
+              <RadioButtonWrapper>
                 <Valueholder>
                   <RadioInput
                     type="checkbox"
-                    id="others"
-                    name="role"
-                    value="others"
-                    onClick={() => setOthers(!other)}
+                    id="otherGender"
+                    name="genderList"
+                    onClick={() => setOtherGender(!otherGender)}
                   />
-                  Others
-                  </Valueholder>
-                </RadioButtonWrapper>
-                <InputOthers
-                  type="text"
-                  placeholder="Specify for others"
-                  display={other ? "flex" : "none"}
-                ></InputOthers>
-              </div>
-            </Form>
-            <ButtonContainer>
-              <AlternativeButton2 onClick={navigateBack}
+                  <Label htmlFor="otherGender">Others</Label>
+                </Valueholder>
+              </RadioButtonWrapper>
+              <InputOthers
+                name="genderList"
+                type="text"
+                placeholder="Specify for others(separating each with comma[,])"
+                display={otherGender ? "flex" : "none"}
+                defaultValue={state.genderListNew.join(", ")}
+                onChange={(e) => setGender(e.target.value)}
+                // onBlur={handleOtherInputBlur}
+              ></InputOthers>
+            </div>
+          </Form>
+        </div>
+
+        <div style={{ marginTop: "2%" }}>
+          <KBTextXl fontWeight={500}>Religion</KBTextXl>
+          <BudgetSubtitle>
+            Select one or more of the most predominant of your audience or
+            specify for “others”
+          </BudgetSubtitle>
+          <Form>
+            <div style={{ marginTop: "2%" }}>
+              <RadioButtonWrapper>
+                <Valueholder>
+                  <ChechkBox
+                    name="religionList"
+                    id="christianity"
+                    value="Christianity"
+                    checked={
+                      state.religionList?.includes("Christianity")
+                        ? true
+                        : false
+                    }
+                    onChange={handleCheckboxChange}
+                  />
+                  <Label htmlFor="christianity">Christianity</Label>
+                </Valueholder>
+              </RadioButtonWrapper>
+              <RadioButtonWrapper>
+                <Valueholder>
+                  <ChechkBox
+                    name="religionList"
+                    id="islam"
+                    value="Islam"
+                    checked={
+                      state.religionList?.includes("Islam") ? true : false
+                    }
+                    onChange={handleCheckboxChange}
+                  />
+                  <Label htmlFor="islam">Islam</Label>
+                </Valueholder>
+              </RadioButtonWrapper>
+              <RadioButtonWrapper>
+                <Valueholder>
+                  <RadioInput
+                    type="checkbox"
+                    id="otherReligion"
+                    name="religionList"
+                    onClick={() => setOtherReligion(!otherReligion)}
+                  />
+                  <Label htmlFor="otherReligion">Others</Label>
+                </Valueholder>
+              </RadioButtonWrapper>
+              <InputOthers
+                name="religionList"
+                type="text"
+                placeholder="Specify for others(separating each with comma[,])"
+                display={otherReligion ? "flex" : "none"}
+                defaultValue={state.religionListNew.join(", ")}
+                onChange={(e) => setReligion(e.target.value)}
+              ></InputOthers>
+            </div>
+          </Form>
+        </div>
+
+        <div style={{ marginTop: "2%" }}>
+          <KBTextXl fontWeight={500}>Marital Status</KBTextXl>
+          <BudgetSubtitle>
+            Select one or more of the most predominant of your audience or
+            specify for “others”
+          </BudgetSubtitle>
+          <Form>
+            <div style={{ marginTop: "2%" }}>
+              <RadioButtonWrapper>
+                <Valueholder>
+                  <ChechkBox
+                    name="maritalStatusList"
+                    id="single"
+                    value="Single"
+                    checked={
+                      state.maritalStatusList?.includes("Single") ? true : false
+                    }
+                    onChange={handleCheckboxChange}
+                  />
+                  <Label htmlFor="single">Single</Label>
+                </Valueholder>
+              </RadioButtonWrapper>
+              <RadioButtonWrapper>
+                <Valueholder>
+                  <ChechkBox
+                    name="maritalStatusList"
+                    id="married"
+                    value="Married"
+                    checked={
+                      state.maritalStatusList?.includes("Married")
+                        ? true
+                        : false
+                    }
+                    onChange={handleCheckboxChange}
+                  />
+                  <Label htmlFor="married">Married</Label>
+                </Valueholder>
+              </RadioButtonWrapper>
+              <RadioButtonWrapper>
+                <Valueholder>
+                  <ChechkBox
+                    name="maritalStatusList"
+                    id="divorced"
+                    value="Divorced"
+                    checked={
+                      state.maritalStatusList?.includes("Divorced")
+                        ? true
+                        : false
+                    }
+                    onChange={handleCheckboxChange}
+                  />
+                  <Label htmlFor="divorced">Divorced</Label>
+                </Valueholder>
+              </RadioButtonWrapper>
+              <RadioButtonWrapper>
+                <Valueholder>
+                  <ChechkBox
+                    name="maritalStatusList"
+                    id="widowed"
+                    value="Widowed"
+                    checked={
+                      state.maritalStatusList?.includes("Widowed")
+                        ? true
+                        : false
+                    }
+                    onChange={handleCheckboxChange}
+                  />
+                  <Label htmlFor="widowed">Widowed</Label>
+                </Valueholder>
+              </RadioButtonWrapper>
+              <RadioButtonWrapper>
+                <Valueholder>
+                  <RadioInput
+                    type="checkbox"
+                    id="otherStatus"
+                    name="maritalStatusList"
+                    onClick={() => setOtherStatus(!otherStatus)}
+                  />
+                  <Label htmlFor="otherStatus">Others</Label>
+                </Valueholder>
+              </RadioButtonWrapper>
+              <InputOthers
+                type="text"
+                name="maritalStatusList"
+                placeholder="Specify for others(separating each with comma[,])"
+                display={otherStatus ? "flex" : "none"}
+                defaultValue={state.maritalStatusListNew.join(", ")}
+                onChange={(e) => setStatus(e.target.value)}
+              ></InputOthers>
+            </div>
+          </Form>
+        </div>
+
+        <div style={{ marginTop: "2%" }}>
+          <KBTextXl fontWeight={500}>Employment status</KBTextXl>
+          <BudgetSubtitle>
+            Select one or more of the most predominant of your audience or
+            specify for “others”
+          </BudgetSubtitle>
+          <Form>
+            <div style={{ marginTop: "2%" }}>
+              <RadioButtonWrapper>
+                <Valueholder>
+                  <ChechkBox
+                    name="employmentStatusList"
+                    id="employed"
+                    value="Employed"
+                    checked={
+                      state.employmentStatusList?.includes("Employed")
+                        ? true
+                        : false
+                    }
+                    onChange={handleCheckboxChange}
+                  />
+                  <Label htmlFor="employed">Employed</Label>
+                </Valueholder>
+              </RadioButtonWrapper>
+              <RadioButtonWrapper>
+                <Valueholder>
+                  <ChechkBox
+                    name="employmentStatusList"
+                    id="selfEmployed"
+                    value="Self Employed"
+                    checked={
+                      state.employmentStatusList?.includes("Self Employed")
+                        ? true
+                        : false
+                    }
+                    onChange={handleCheckboxChange}
+                  />
+                  <Label htmlFor="selfEmployed">Self Employed</Label>
+                </Valueholder>
+              </RadioButtonWrapper>
+              <RadioButtonWrapper>
+                <Valueholder>
+                  <ChechkBox
+                    name="employmentStatusList"
+                    id="unemployed"
+                    value="Unemployed"
+                    checked={
+                      state.employmentStatusList?.includes("Unemployed")
+                        ? true
+                        : false
+                    }
+                    onChange={handleCheckboxChange}
+                  />
+                  <Label htmlFor="unemployed">Unemployed</Label>
+                </Valueholder>
+              </RadioButtonWrapper>
+              <RadioButtonWrapper>
+                <Valueholder>
+                  <ChechkBox
+                    name="employmentStatusList"
+                    id="retired"
+                    value="Retired"
+                    checked={
+                      state.employmentStatusList?.includes("Retired")
+                        ? true
+                        : false
+                    }
+                    onChange={handleCheckboxChange}
+                  />
+                  <Label htmlFor="retired">Retired</Label>
+                </Valueholder>
+              </RadioButtonWrapper>
+              <RadioButtonWrapper>
+                <Valueholder>
+                  <RadioInput
+                    type="checkbox"
+                    id="otherEmployment"
+                    name="employmentStatusList"
+                    onClick={() => setOtherEmployment(!otherEmployment)}
+                  />
+                  <Label htmlFor="otherEmployment">Others</Label>
+                </Valueholder>
+              </RadioButtonWrapper>
+              <InputOthers
+                type="text"
+                name="employmentStatusList"
+                placeholder="Specify for others(separating each with comma[,])"
+                display={otherEmployment ? "flex" : "none"}
+                defaultValue={state.employmentStatusListNew.join(", ")}
+                onChange={(e) => setEmployment(e.target.value)}
+              ></InputOthers>
+            </div>
+          </Form>
+        </div>
+
+        <div style={{ marginTop: "2%" }}>
+          <KBTextXl fontWeight={500}>Educational level</KBTextXl>
+          <BudgetSubtitle>
+            Select one or more of the most predominant of your audience or
+            specify for “others”
+          </BudgetSubtitle>
+          <Form>
+            <div style={{ marginTop: "2%" }}>
+              <RadioButtonWrapper>
+                <Valueholder>
+                  <ChechkBox
+                    name="educationLevelList"
+                    id="highSchool"
+                    value="High School"
+                    checked={
+                      state.educationLevelList?.includes("High School")
+                        ? true
+                        : false
+                    }
+                    onChange={handleCheckboxChange}
+                  />
+                  <Label htmlFor="highSchool">High School</Label>
+                </Valueholder>
+              </RadioButtonWrapper>
+              <RadioButtonWrapper>
+                <Valueholder>
+                  <ChechkBox
+                    name="educationLevelList"
+                    id="college/poly"
+                    value="College/Polytechnic"
+                    checked={
+                      state.educationLevelList?.includes("College/Polytechnic")
+                        ? true
+                        : false
+                    }
+                    onChange={handleCheckboxChange}
+                  />
+                  <Label htmlFor="college/poly">College/Polytechnic</Label>
+                </Valueholder>
+              </RadioButtonWrapper>
+              <RadioButtonWrapper>
+                <Valueholder>
+                  <ChechkBox
+                    name="educationLevelList"
+                    id="bachelor"
+                    value="Bachelor's"
+                    checked={
+                      state.educationLevelList?.includes("Bachelor's")
+                        ? true
+                        : false
+                    }
+                    onChange={handleCheckboxChange}
+                  />
+                  <Label htmlFor="bachelor">Bachelor’s</Label>
+                </Valueholder>
+              </RadioButtonWrapper>
+              <RadioButtonWrapper>
+                <Valueholder>
+                  <ChechkBox
+                    name="educationLevelList"
+                    id="masters"
+                    value="Master's"
+                    checked={
+                      state.educationLevelList?.includes("Master's")
+                        ? true
+                        : false
+                    }
+                    onChange={handleCheckboxChange}
+                  />
+                  <Label htmlFor="masters">Master’s</Label>
+                </Valueholder>
+              </RadioButtonWrapper>
+              <RadioButtonWrapper>
+                <Valueholder>
+                  <RadioInput
+                    type="checkbox"
+                    name="educationLevelList"
+                    id="otherEducation"
+                    onClick={() => setOtherEducation(!otherEducation)}
+                  />
+                  <Label htmlFor="otherEducation">Others</Label>
+                </Valueholder>
+              </RadioButtonWrapper>
+              <InputOthers
+                type="text"
+                name="educationLevelList"
+                placeholder="Specify for others(separating each with comma[,])"
+                display={otherEducation ? "flex" : "none"}
+                defaultValue={state.educationLevelListNew.join(", ")}
+                onChange={(e) => setEducation(e.target.value)}
+              ></InputOthers>
+            </div>
+          </Form>
+
+          {location.pathname === "/eventPlanPreview" ? null : (
+            <ButtonContainer
+              display={component ? "flex" : "none"}
+              style={{ margin: "0rem" }}
+            >
+              <AlternativeButton2
+                onClick={navigateBack}
                 style={{
                   color: "#FF2957",
                   fontWeight: "600",
@@ -447,10 +699,10 @@ const navigateNext = () => {
                 Save & Continue
               </PrimaryButton>
             </ButtonContainer>
-          </div>
+          )}
         </div>
       </div>
-    </div>
+    </BudgetInventoryContainer>
   );
 };
 

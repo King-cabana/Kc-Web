@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { editCheckbox } from "../../redux/slices/createEventSlice";
 import {
@@ -30,8 +30,9 @@ import "../../App.css";
 import "../../modal.css";
 import { BsChevronRight, BsChevronDown } from "react-icons/bs";
 
-const Inventory = () => {
+const Inventory = ({ padding }) => {
   const navigate = useNavigate();
+  const location = useLocation();
   const dispatch = useDispatch();
   const state = useSelector((state) => state.createEvent);
 
@@ -66,16 +67,19 @@ const Inventory = () => {
   };
   return (
     <>
-      <BudgetInventoryContainer>
-        <BudgetInventoryHeader>
-          <BudgetTitle1>Budget & Take Inventory</BudgetTitle1>
-          <BudgetInventorySubtitle>
-            In order to capture the range of tangible benefits your organization
-            has to offer, you need to prepare an inventory of your assets.
-          </BudgetInventorySubtitle>
-        </BudgetInventoryHeader>
+      <BudgetInventoryContainer style={{ padding: padding }}>
+        {location.pathname === "/eventPlanPreview" ? null : (
+          <BudgetInventoryHeader>
+            <BudgetTitle1>Budget & Take Inventory</BudgetTitle1>
+            <BudgetInventorySubtitle>
+              In order to capture the range of tangible benefits your
+              organization has to offer, you need to prepare an inventory of
+              your assets.
+            </BudgetInventorySubtitle>
+          </BudgetInventoryHeader>
+        )}
 
-        <BudgetSection>
+        <BudgetSection style={{ height: "100%" }}>
           <BudgetTitle2>Take Inventory</BudgetTitle2>
           <BudgetUpload>
             <BudgetSubtitle style={{ fontWeight: "400" }}>

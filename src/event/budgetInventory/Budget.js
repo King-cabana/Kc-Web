@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-
+import { useNavigate, useLocation } from "react-router-dom";
 import {
   PrimaryButton,
   PrimaryButton3,
@@ -27,8 +26,10 @@ import {
   CustomWrapper,
 } from "./BudgetStyled";
 
-const Budget = () => {
+const Budget = ({ padding }) => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const [component, setComponent] = useState(true);
   const [selectedFile, setSelectedFile] = useState(null);
   const [loading, setLoading] = useState(false);
   const [file, setFile] = useState("");
@@ -55,6 +56,8 @@ const Budget = () => {
       data.append("upload_preset", "kingCabana");
       data.append("resource_type", "raw");
       setLoading(true);
+      setIsSuccess(false);
+      setSelectedFile(null);
       try {
         const response = await axios.post(
           "https://api.cloudinary.com/v1_1/dcanx4ftd/raw/upload",
@@ -87,7 +90,6 @@ const Budget = () => {
       setSelectedFile({ name: budgetData });
     }
   }, []);
-
   useEffect(() => {
     const MAX_FILE_SIZE = 1024; // 1MB
     if (!state?.eventBudgetTemplateUrl) {
@@ -107,7 +109,6 @@ const Budget = () => {
     setIsSuccess(true);
     setisDisabled(false);
   }, [file]);
-
   const handleSubmit = async function (e) {
     e.preventDefault();
     navigate("/createevent/budget&inventory/2");
@@ -115,16 +116,19 @@ const Budget = () => {
 
   return (
     <>
-      <BudgetInventoryContainer>
-        <BudgetInventoryHeader>
-          <BudgetTitle1>Budget & Take Inventory</BudgetTitle1>
-          <BudgetInventorySubtitle>
-            In order to capture the range of tangible benefits your organization
-            has to offer, you need to prepare an inventory of your assets.
-          </BudgetInventorySubtitle>
-        </BudgetInventoryHeader>
+      <BudgetInventoryContainer style={{ padding: padding }}>
+        {location.pathname === "/eventPlanPreview" ? null : (
+          <BudgetInventoryHeader>
+            <BudgetTitle1>Budget & Take Inventory</BudgetTitle1>
+            <BudgetInventorySubtitle>
+              In order to capture the range of tangible benefits your
+              organization has to offer, you need to prepare an inventory of
+              your assets.
+            </BudgetInventorySubtitle>
+          </BudgetInventoryHeader>
+        )}
 
-        <BudgetSection>
+        <BudgetSection style={{ height: "50%" }}>
           <BudgetTitle2>Budget</BudgetTitle2>
           <BudgetUpload>
             <BudgetSubtitle>Event Budget Template</BudgetSubtitle>
@@ -145,17 +149,24 @@ const Budget = () => {
                 </CustomWrapper>
                 <PrimaryButton3>Upload</PrimaryButton3>
               </FileWrapper>
-              <Supported>
-                Support files; JPG, PNG, JPEG, DOCX, PDF, CSV
-              </Supported>
-              <Supported
-                style={{
-                  color: "#ff2957",
-                }}
-              >
-                Not more than 1mb
-              </Supported>
-              <div>{selectedFile && `${selectedFile.name}`}</div>
+
+              {isSuccess ? null : (
+                <>
+                  <Supported>
+                    Support files; JPG, PNG, JPEG, DOCX, PDF, CSV
+                  </Supported>
+                  <Supported
+                    style={{
+                      color: "#ff2957",
+                    }}
+                  >
+                    Not more than 1mb
+                  </Supported>
+                </>
+              )}
+              <BudgetInventorySubtitle>
+                {selectedFile && `${selectedFile.name}`}
+              </BudgetInventorySubtitle>
               {isSuccess ? (
                 <div
                   style={{
@@ -165,14 +176,11 @@ const Budget = () => {
                     alignItems: "center",
                   }}
                 >
-                  <p style={{ color: "green", marginRight: "1rem" }}>
+                  <BudgetInventorySubtitle
+                    style={{ color: "green", marginRight: "1rem" }}
+                  >
                     File uploaded successfully
-                  </p>
-                  <img
-                    src={file}
-                    style={{ width: "50px", height: "50px" }}
-                    alt=""
-                  />
+                  </BudgetInventorySubtitle>
                 </div>
               ) : null}
               {loading ? (
@@ -184,21 +192,28 @@ const Budget = () => {
                 {!file && errorMsg}
               </p>
 
-              <ButtonContainer>
-                <AlternativeButton2
-                  style={{
-                    color: "#FF2957",
-                    fontWeight: "600",
-                    marginRight: "2rem",
-                  }}
-                  onClick={() => navigate("/createevent/defineaudience/1")}
-                >
-                  Back
-                </AlternativeButton2>
-                <PrimaryButton onClick={handleSubmit} disabled={isDisabled}>
-                  Save & Continue
-                </PrimaryButton>
-              </ButtonContainer>
+              {location.pathname === "/eventPlanPreview" ? null : (
+                <div>
+                  <ButtonContainer
+                    display={component ? "flex" : "none"}
+                    style={{ margin: "0rem" }}
+                  >
+                    <AlternativeButton2
+                      style={{
+                        color: "#FF2957",
+                        fontWeight: "600",
+                        marginRight: "2rem",
+                      }}
+                      onClick={() => navigate("/createevent/defineaudience/1")}
+                    >
+                      Back
+                    </AlternativeButton2>
+                    <PrimaryButton onClick={handleSubmit} disabled={isDisabled}>
+                      Save & Continue
+                    </PrimaryButton>
+                  </ButtonContainer>
+                </div>
+              )}
             </FormContainer>
           </BudgetUpload>
         </BudgetSection>

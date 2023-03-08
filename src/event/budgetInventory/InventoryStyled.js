@@ -68,7 +68,7 @@ export const ModalText = styled.p`
 `;
 
 export const InventorySection = styled.section`
-  margin-top: 1.5rem;
+  margin-top: 0.5rem;
 `;
 
 export const CheckboxWrapper = styled.div`
@@ -76,10 +76,10 @@ export const CheckboxWrapper = styled.div`
 `;
 
 export const Check = styled.div`
-  margin-bottom: 2px;
+  margin-bottom: 5px;
   border: 1px solid rgba(0, 104, 255, 0.1);
   border-radius: 10px;
-  padding: 15px 20px;
+  padding: 8px 20px;
   display: flex;
   align-items: center;
   cursor: pointer;
@@ -100,13 +100,13 @@ export const CheckDetails = styled.details`
 export const CheckSummary = styled.summary`
   border: 1px solid rgba(0, 104, 255, 0.1);
   background-color: rgba(0, 104, 255, 0.1);
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.1rem;
   border-radius: 10px;
-  padding: 15px;
+  padding: 8px;
   padding-right: 40px;
   font-weight: 400;
-  font-size: 20px;
-  line-height: 30px;
+  font-size: 18px;
+  line-height: 25px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -122,11 +122,11 @@ export const CheckSummary = styled.summary`
 `;
 
 export const CheckInput = styled.input`
-  -ms-transform: scale(2); /* IE */
-  -moz-transform: scale(2); /* FF */
-  -webkit-transform: scale(2); /* Safari and Chrome */
-  -o-transform: scale(2); /* Opera */
-  transform: scale(2);
+  -ms-transform: scale(1.2); /* IE */
+  -moz-transform: scale(1.2); /* FF */
+  -webkit-transform: scale(1.2); /* Safari and Chrome */
+  -o-transform: scale(1.2); /* Opera */
+  transform: scale(1.2);
   padding: 10px;
 
   @media screen and (max-width: 960px) {
@@ -140,9 +140,9 @@ export const CheckInput = styled.input`
 
 export const CheckLabel = styled.label`
   font-weight: 400;
-  font-size: 20px;
-  line-height: 30px;
-  margin-left: 2rem;
+  font-size: 18px;
+  line-height: 25px;
+  margin-left: 1.2rem;
 
   @media screen and (max-width: 960px) {
     font-size: 12px;

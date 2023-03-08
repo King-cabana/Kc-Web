@@ -72,8 +72,8 @@ export const Form = styled.form`
   flex-direction: column;
 
   label {
-    font-weight: 500;
-    font-size: 12px;
+    /* font-weight: 500;
+    font-size: 12px; */
     margin-top: 3%;
   }
 
@@ -121,14 +121,15 @@ export const RadioButtonWrapper = styled.div`
   align-items: center;
   padding: 1%;
   line-height: 2rem;
-  margin: 1%;
+  margin: 0.5rem 1%;
 `;
 export const RadioButton = styled.input.attrs({
   type: "radio",
   //   value: 'Submit'
-  name: "name",
+  // name: "name",
 })`
   &:hover {
+    cursor: pointer;
   }
 `;
 
