@@ -38,11 +38,11 @@ const DefineAudience = () => {
 const navigate= useNavigate();
 
 const navigateBack = () => {
-    navigate('/test/eventdetails/4');
+    navigate('/createevent/eventdetails/4');
   };
 
 const navigateNext = () => {
-  navigate('/test/budget&inventory/1');
+  navigate('/createevent/budget&inventory/1');
 }
 
 

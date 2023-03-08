@@ -30,6 +30,11 @@ export const PrimaryButton = styled.button`
     /* width: 80px;
     height: 35px; */
   }
+
+  @media screen and (orientation: landscape) and (max-width: 960px){
+    height: 50px;
+    width: 120px;
+  }
 `;
 
 export const ModalPrimaryButton = styled(PrimaryButton)`
@@ -94,7 +99,16 @@ export const AlternativeButton = styled.button`
     color: white;
     border: 1.5px solid rgba(255, 41, 87, 0.6);
   }
+
+  @media screen and (orientation: landscape) and (max-width: 960px){
+    height: 50px;
+    width: 120px;
+    font-size: 10px
+  }
 `;
+
+
+
 export const AlternativeButton2 = styled.button`
   width: 150px;
   height: 50px;

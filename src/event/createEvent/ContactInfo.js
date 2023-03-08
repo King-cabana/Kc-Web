@@ -34,11 +34,11 @@ const ContactInfo = () => {
   const navigate= useNavigate();
 
   const navigateBack = () => {
-    navigate('/test/eventdetails/3');
+    navigate('/createevent/eventdetails/3');
   };
 
 const navigateNext = () => {
-  navigate('/test/defineaudience/1');
+  navigate('/createevent/defineaudience/1');
 }
 
   const handleSubmit = async function (e) {

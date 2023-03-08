@@ -15,6 +15,7 @@ const FirstCreateEvent = () => {
     const [correctFileSize, setCorrectFileSize] = useState(false);
     const [isSuccess, setIsSuccess] = useState(false);
     const [isDisabled, setIsDisabled] = useState(true);
+    
 
 const navigate= useNavigate();
 
@@ -52,7 +53,7 @@ const navigate= useNavigate();
   
     const handleSubmit = async function (e) {
       e.preventDefault();
-      navigate("/test/eventdetails/2");
+      navigate("/createevent/eventdetails/2");
       console.log(file);
     };
   

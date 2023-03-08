@@ -110,7 +110,7 @@ const Budget = () => {
 
   const handleSubmit = async function (e) {
     e.preventDefault();
-    navigate("/test/budget&inventory/2");
+    navigate("/createevent/budget&inventory/2");
   };
 
   return (
@@ -191,7 +191,7 @@ const Budget = () => {
                     fontWeight: "600",
                     marginRight: "2rem",
                   }}
-                  onClick={() => navigate("/defineAudience")}
+                  onClick={() => navigate("/createevent/defineaudience/1")}
                 >
                   Back
                 </AlternativeButton2>

@@ -182,6 +182,12 @@ export const CardHolder = styled.div`
     /* padding-left: 5% ; */
     row-gap: 2%;
   }
+
+  @media screen and (orientation: landscape) and (max-width: 960px){
+    background-color: red;
+    width: 100%;
+    display: inline-block;
+  }
 `;
 
 export const ExploreMore = styled.div`

@@ -18,11 +18,11 @@ const SecondCreateEvent = () => {
   const navigate= useNavigate();
 
   const navigateBack = () => {
-    navigate('/test/eventdetails/1');
+    navigate('/createevent/eventdetails/1');
   };
 
 const navigateNext = () => {
-  navigate('/test/eventdetails/3');
+  navigate('/createevent/eventdetails/3');
 }
 
 

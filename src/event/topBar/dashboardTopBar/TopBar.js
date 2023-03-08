@@ -18,7 +18,10 @@ import { SlBell } from "react-icons/sl";
 // import Profile from "../../../images/pexels-george-ikwegbu-2379429.jpg";
 import { RiArrowDownSLine } from "react-icons/ri";
 import { KBTextM } from "../../../components/fonts/fontSize";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { clearUserDetails } from "../../../redux/slices/userDetailsSlice";
+import { useNavigate } from "react-router";
+import { toast } from "react-toastify";
 
 
 
@@ -27,7 +30,16 @@ const TopBar = () => {
 const user = useSelector(state=>state.userDetails)
 
 function showDropDown() {
-  document.getElementById("myDropdown").classList.toggle("show");
+  document.getElementById("myDropdown").classList.toggle("myDropdown");
+}
+
+const dispatch = useDispatch()
+const navigate = useNavigate();
+
+const handleLogout =  () =>{
+  dispatch(clearUserDetails())
+  toast.success("logout!");
+  // navigate("/home")
 }
 
 window.onclick = function(event) {
@@ -36,8 +48,8 @@ window.onclick = function(event) {
     var i;
     for (i = 0; i < dropdowns.length; i++) {
       var openDropdown = dropdowns[i];
-      if (openDropdown.classList.contains('show')) {
-        openDropdown.classList.remove('show');
+      if (openDropdown.classList.contains("show")) {
+        openDropdown.classList.remove("show");
       }
     }
   }
@@ -94,7 +106,7 @@ window.onclick = function(event) {
               </div> 
                 <hr style={{color:'#0068FF', padding:'auto'}}/>
                 <DropdownContentLink>Account settings</DropdownContentLink>
-                <DropdownContentLink>Logout</DropdownContentLink>
+                <DropdownContentLink onClick={handleLogout}>Logout</DropdownContentLink>
              </DropdownContent>
             </Dropdown>
               
