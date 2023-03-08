@@ -16,6 +16,7 @@ import { PrimaryButton } from "../../components/button/button";
 import Budget from "../budgetInventory/Budget";
 import Inventory from "../budgetInventory/Inventory";
 import { AiOutlineLeftCircle, AiOutlineRightCircle } from "react-icons/ai";
+import DefineAudience from "../pages/DefineAudience";
 
 const styles = {
   root: {
@@ -41,12 +42,12 @@ const EventPlanPreview = () => {
     const handleClick = direction === "left" ? handleBack : handleNext;
     const disable =
       (direction === "left" && index === 0) ||
-      (direction === "right" && index === 1);
-    const styling = {
-      swipe: {
-        display: `${(props) => (props.display ? props.display : "flex")}`,
-      },
-    };
+      (direction === "right" && index === 2);
+    // const styling = {
+    //   swipe: {
+    //     display: `${(props) => (props.display ? props.display : "flex")}`,
+    //   },
+    // };
 
     return (
       <div
@@ -85,11 +86,12 @@ const EventPlanPreview = () => {
             enableMouseEvents={true}
             style={{ height: "100%" }}
           >
+            <DefineAudience padding="0.5rem 1.5rem" />
             <Budget padding="0.1rem" />
             <Inventory padding="0.1rem" />
           </SwipeableViews>
           <Pagination
-            dots={2}
+            dots={3}
             index={index}
             onChangeIndex={handleChangeIndex}
           />

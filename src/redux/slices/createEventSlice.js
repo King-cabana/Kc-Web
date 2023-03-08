@@ -1,13 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
-// import produce from "immer";
+import { checkBox } from "../../event/pages/checkBoxData";
 
 const initialState = {
   tags: [],
   genderList: [],
+  genderListNew: [],
   religionList: [],
+  religionListNew: [],
   educationLevelList: [],
+  educationLevelListNew: [],
   maritalStatusList: [],
+  maritalStatusListNew: [],
   employmentStatusList: [],
+  employmentStatusListNew: [],
   exclusiveContent: [],
   otherOnline: [],
   signage: [],
@@ -32,7 +37,25 @@ export const createEventSlice = createSlice({
       Object.assign(state, { [category]: item });
       //   console.log(payload);
     },
+    addToList: (state, action) => {
+      const { listType, newItem } = action.payload;
+      const newList = newItem
+        .trim()
+        .split(",")
+        .map((item) => item.trim());
+      const updatedList = [...state[listType], ...newList];
+      const uniqueList = [...new Set(updatedList)];
+      const filteredList = uniqueList.filter((item) => item !== "");
+      const finalArray = [
+        ...[...state[listType]].filter((x) => checkBox[listType].includes(x)),
+        ...newList,
+      ];
 
+      console.log(finalArray, newList);
+
+      state[listType] = finalArray.filter((x) => x !== "");
+      state[`${listType}New`] = newList.filter((x) => x !== "");
+    },
     clearEvent: (state) => {
       Object.keys(state).forEach((each) =>
         Object.assign(state, { [each]: "" })
@@ -41,7 +64,7 @@ export const createEventSlice = createSlice({
   },
 });
 
-export const { editGenerally, clearEvent, editCheckbox } =
+export const { editGenerally, clearEvent, editCheckbox, addToList } =
   createEventSlice.actions;
 
 export default createEventSlice.reducer;

@@ -26,7 +26,7 @@ import {
   CustomWrapper,
 } from "./BudgetStyled";
 
-const Budget = ({ padding, height }) => {
+const Budget = ({ padding }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const [component, setComponent] = useState(true);
@@ -90,7 +90,6 @@ const Budget = ({ padding, height }) => {
       setSelectedFile({ name: budgetData });
     }
   }, []);
-
   useEffect(() => {
     const MAX_FILE_SIZE = 1024; // 1MB
     if (!state?.eventBudgetTemplateUrl) {
@@ -110,7 +109,6 @@ const Budget = ({ padding, height }) => {
     setIsSuccess(true);
     setisDisabled(false);
   }, [file]);
-
   const handleSubmit = async function (e) {
     e.preventDefault();
     navigate("/test/budget&inventory/2");

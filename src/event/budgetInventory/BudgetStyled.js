@@ -13,6 +13,18 @@ export const BudgetInventoryContainer = styled.div`
   }
 `;
 
+export const DefineAudienceForm = styled.form`
+  width: 100%;
+  height: 100%;
+  padding: 2rem;
+  background: ${(prop) =>
+    prop.background ? prop.background : `url(${budgetBackground})`};
+
+  @media screen and (max-width: 960px) {
+    padding: 1rem;
+  }
+`;
+
 export const BudgetInventoryHeader = styled.div`
   max-width: 100%;
   display: flex;
@@ -103,7 +115,7 @@ export const BudgetSubtitle = styled.p`
 export const BudgetUpload = styled.section`
   display: flex;
   flex-direction: column;
-  padding: 2rem 1rem;
+  padding: 0.5rem 1rem 2rem 1rem;
 
   @media screen and (max-width: 960px) {
     padding: 1rem 0;
