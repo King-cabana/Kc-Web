@@ -165,14 +165,15 @@ export const CheckBoxInput = styled.div`
 
 export const InputText = styled.label`
   font-weight: 500;
-  font-size: ${(props) => (props.fontSize ? props.fontSize : "20px")};
-  line-height: 30px;
+  font-size: ${(props) => (props.fontSize ? props.fontSize : "18px")};
+  line-height: 26px;
   align-items: center;
   color: #484848;
   margin-bottom: 1rem;
 
   @media screen and (max-width: 960px) {
-    font-size: 15px;
+    font-size: 12px;
+    line-height: 18px;
   }
 `;
 

@@ -42,9 +42,9 @@ const SocialProfile = () => {
   const dispatch = useDispatch();
   const state = useSelector((state) => state.profile);
 
-  useEffect(() => {
-    console.log(authToken);
-  }, []);
+  // useEffect(() => {
+  //   console.log(authToken);
+  // }, []);
 
   const toggleOthers = () => {
     if (visibility === true) {
@@ -137,7 +137,7 @@ const SocialProfile = () => {
                 type="url"
                 placeholder="https://example.com/"
                 name="website"
-                value={state.website}
+                defaultValue={state.website}
                 onChange={change}
               />
             </InputSeg>
@@ -148,7 +148,7 @@ const SocialProfile = () => {
                 type="url"
                 placeholder="https://linkedin.com/*****"
                 name="linkedIn"
-                value={state.linkedIn}
+                defaultValue={state.linkedIn}
                 onChange={change}
               />
             </InputSeg>
@@ -159,7 +159,7 @@ const SocialProfile = () => {
                 type="url"
                 placeholder="https://instagram.com/*****"
                 name="instagram"
-                value={state.instagram}
+                defaultValue={state.instagram}
                 onChange={change}
               />
             </InputSeg>
@@ -170,7 +170,7 @@ const SocialProfile = () => {
                 type="url"
                 placeholder="https://twitter.com/*****"
                 name="twitter"
-                value={state.twitter}
+                defaultValue={state.twitter}
                 onChange={change}
               />
             </InputSeg>
@@ -181,7 +181,7 @@ const SocialProfile = () => {
                 type="url"
                 placeholder="https://facebook.com/*****"
                 name="faceBook"
-                value={state.faceBook}
+                defaultValue={state.faceBook}
                 onChange={change}
               />
             </InputSeg>
@@ -192,7 +192,7 @@ const SocialProfile = () => {
                 type="url"
                 placeholder="https://others.com/"
                 name="otherHandle"
-                value={state.otherHandle}
+                defaultValue={state.otherHandle}
                 onChange={change}
               />
             </InputSeg>
@@ -210,7 +210,7 @@ const SocialProfile = () => {
                   type="radio"
                   id="patron"
                   name="guarantorRole"
-                  value="Patron"
+                  defaultValue="Patron"
                   onChange={change}
                   onClick={toggleOthers}
                   checked={
@@ -225,7 +225,7 @@ const SocialProfile = () => {
                   type="radio"
                   id="staff"
                   name="guarantorRole"
-                  value="Staff Adviser"
+                  defaultValue="Staff Adviser"
                   onChange={change}
                   onClick={toggleOthers}
                   checked={
@@ -242,7 +242,7 @@ const SocialProfile = () => {
                   type="radio"
                   id="coordinators"
                   name="guarantorRole"
-                  value="Coordinator"
+                  defaultValue="Coordinator"
                   onChange={change}
                   onClick={toggleOthers}
                   checked={
@@ -259,7 +259,7 @@ const SocialProfile = () => {
                   id="others"
                   name="guarantorRole"
                   onChange={change}
-                  value="Other"
+                  defaultValue="Other"
                   checked={
                     state.guarantorRole?.includes("Other") ? true : false
                   }
@@ -271,7 +271,7 @@ const SocialProfile = () => {
                   type="text"
                   placeholder="Enter others"
                   name="guarantorRole"
-                  value={state.guarantorRole}
+                  defaultValue={state.guarantorRole}
                   onChange={change}
                 />
               </InputBoxOther>
@@ -290,7 +290,7 @@ const SocialProfile = () => {
                 type="text"
                 placeholder="Enter Full Name of Secondary Contact"
                 name="secondaryContactFullName"
-                value={state.secondaryContactFullName}
+                defaultValue={state.secondaryContactFullName}
                 onChange={change}
                 required
               />
@@ -304,7 +304,7 @@ const SocialProfile = () => {
                 type="text"
                 placeholder="Enter Company/Business Name"
                 name="companyName"
-                value={state.companyName}
+                defaultValue={state.companyName}
                 onChange={change}
                 required
               />
@@ -318,7 +318,7 @@ const SocialProfile = () => {
                 type="text"
                 placeholder="Enter Job Role"
                 name="jobRole"
-                value={state.jobRole}
+                defaultValue={state.jobRole}
                 onChange={change}
                 required
               />
@@ -332,7 +332,7 @@ const SocialProfile = () => {
                 type="text"
                 placeholder="Enter Office Address"
                 name="officeAddress"
-                value={state.officeAddress}
+                defaultValue={state.officeAddress}
                 onChange={change}
                 required
               />
@@ -346,7 +346,7 @@ const SocialProfile = () => {
                 type="tel"
                 placeholder="E.g: +2348022345661"
                 name="secondaryContactPhoneNumber"
-                value={state.secondaryContactPhoneNumber}
+                defaultValue={state.secondaryContactPhoneNumber}
                 onChange={change}
                 required
                 minLength={5}
@@ -361,7 +361,7 @@ const SocialProfile = () => {
                 pattern="^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$"
                 placeholder="E.g: email@example.com"
                 name="secondaryContactEmail"
-                value={state.secondaryContactEmail}
+                defaultValue={state.secondaryContactEmail}
                 onChange={change}
               />
             </InputSeg>

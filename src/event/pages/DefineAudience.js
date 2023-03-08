@@ -8,7 +8,6 @@ import {
   InputOthers,
   Valueholder,
 } from "../../globalStyles";
-import { KBTextXl } from "../../components/fonts/fontSize";
 import { ButtonContainer, Label } from "./DefineAudienceStyled";
 import {
   AlternativeButton2,
@@ -20,7 +19,7 @@ import {
   BudgetInventoryContainer,
   BudgetInventoryHeader,
   BudgetInventorySubtitle,
-  BudgetSubtitle,
+  BudgetSection,
   BudgetTitle1,
 } from "../budgetInventory/BudgetStyled";
 import {
@@ -28,6 +27,7 @@ import {
   editCheckbox,
   addToList,
 } from "../../redux/slices/createEventSlice";
+import { InputText } from "../createEvent/FirstCreateEventStyled";
 
 const DefineAudience = ({ padding }) => {
   const dispatch = useDispatch();
@@ -107,27 +107,32 @@ const DefineAudience = ({ padding }) => {
         padding: padding,
       }}
     >
-      <BudgetInventoryHeader>
-        <BudgetTitle1>Define Audience</BudgetTitle1>
-        <BudgetInventorySubtitle>
-          Define your audience in terms of everyone who cares about what you do
-          and the larger theme, not just the people who will attend.
-        </BudgetInventorySubtitle>
-      </BudgetInventoryHeader>
-      <div
-        style={{
-          width: "100%",
-          backgroundColor: "white",
-          overflowY: "scroll",
-          padding: "2% 3%",
-          margin: "2rem 0rem 5rem 0rem",
-        }}
-      >
+      {location.pathname === "/eventPlanPreview" ? null : (
+        <BudgetInventoryHeader>
+          <BudgetTitle1>Define Audience</BudgetTitle1>
+          <BudgetInventorySubtitle>
+            Define your audience in terms of everyone who cares about what you
+            do and the larger theme, not just the people who will attend.
+          </BudgetInventorySubtitle>
+        </BudgetInventoryHeader>
+      )}
+      <BudgetSection>
         <div>
-          <KBTextXl fontWeight={500}>Age </KBTextXl>
-          <BudgetSubtitle>
+          {location.pathname === "/eventPlanPreview" ? (
+            <BudgetInventoryHeader style={{ marginBottom: "1rem" }}>
+              <BudgetTitle1>Define Audience</BudgetTitle1>
+              <BudgetInventorySubtitle>
+                Define your audience in terms of everyone who cares about what
+                you do and the larger theme, not just the people who will
+                attend.
+              </BudgetInventorySubtitle>
+            </BudgetInventoryHeader>
+          ) : null}
+
+          <InputText>Age</InputText>
+          <BudgetInventorySubtitle>
             What age range best describes your community?
-          </BudgetSubtitle>
+          </BudgetInventorySubtitle>
           <Form>
             <div style={{ marginTop: "0.5%" }}>
               <RadioButtonWrapper>
@@ -223,11 +228,11 @@ const DefineAudience = ({ padding }) => {
         </div>
 
         <div style={{ marginTop: "2%" }}>
-          <KBTextXl fontWeight={500}>Income range</KBTextXl>
-          <BudgetSubtitle>
+          <InputText fontWeight={500}>Income range</InputText>
+          <BudgetInventorySubtitle>
             What income range (in Naira) best describes the people connected to
             your event?
-          </BudgetSubtitle>
+          </BudgetInventorySubtitle>
           <Form>
             <div style={{ marginTop: "2%" }}>
               <RadioButtonWrapper>
@@ -277,11 +282,11 @@ const DefineAudience = ({ padding }) => {
         </div>
 
         <div style={{ marginTop: "2%" }}>
-          <KBTextXl fontWeight={500}>Gender</KBTextXl>
-          <BudgetSubtitle>
+          <InputText fontWeight={500}>Gender</InputText>
+          <BudgetInventorySubtitle>
             Select one or more of the most predominant of your audience or
             specify for others
-          </BudgetSubtitle>
+          </BudgetInventorySubtitle>
           <Form>
             <div style={{ marginTop: "2%" }}>
               <RadioButtonWrapper>
@@ -335,11 +340,11 @@ const DefineAudience = ({ padding }) => {
         </div>
 
         <div style={{ marginTop: "2%" }}>
-          <KBTextXl fontWeight={500}>Religion</KBTextXl>
-          <BudgetSubtitle>
+          <InputText fontWeight={500}>Religion</InputText>
+          <BudgetInventorySubtitle>
             Select one or more of the most predominant of your audience or
             specify for “others”
-          </BudgetSubtitle>
+          </BudgetInventorySubtitle>
           <Form>
             <div style={{ marginTop: "2%" }}>
               <RadioButtonWrapper>
@@ -396,11 +401,11 @@ const DefineAudience = ({ padding }) => {
         </div>
 
         <div style={{ marginTop: "2%" }}>
-          <KBTextXl fontWeight={500}>Marital Status</KBTextXl>
-          <BudgetSubtitle>
+          <InputText fontWeight={500}>Marital Status</InputText>
+          <BudgetInventorySubtitle>
             Select one or more of the most predominant of your audience or
             specify for “others”
-          </BudgetSubtitle>
+          </BudgetInventorySubtitle>
           <Form>
             <div style={{ marginTop: "2%" }}>
               <RadioButtonWrapper>
@@ -489,11 +494,11 @@ const DefineAudience = ({ padding }) => {
         </div>
 
         <div style={{ marginTop: "2%" }}>
-          <KBTextXl fontWeight={500}>Employment status</KBTextXl>
-          <BudgetSubtitle>
+          <InputText fontWeight={500}>Employment status</InputText>
+          <BudgetInventorySubtitle>
             Select one or more of the most predominant of your audience or
             specify for “others”
-          </BudgetSubtitle>
+          </BudgetInventorySubtitle>
           <Form>
             <div style={{ marginTop: "2%" }}>
               <RadioButtonWrapper>
@@ -584,11 +589,11 @@ const DefineAudience = ({ padding }) => {
         </div>
 
         <div style={{ marginTop: "2%" }}>
-          <KBTextXl fontWeight={500}>Educational level</KBTextXl>
-          <BudgetSubtitle>
+          <InputText fontWeight={500}>Educational level</InputText>
+          <BudgetInventorySubtitle>
             Select one or more of the most predominant of your audience or
             specify for “others”
-          </BudgetSubtitle>
+          </BudgetInventorySubtitle>
           <Form>
             <div style={{ marginTop: "2%" }}>
               <RadioButtonWrapper>
@@ -695,7 +700,7 @@ const DefineAudience = ({ padding }) => {
             </ButtonContainer>
           )}
         </div>
-      </div>
+      </BudgetSection>
     </BudgetInventoryContainer>
   );
 };

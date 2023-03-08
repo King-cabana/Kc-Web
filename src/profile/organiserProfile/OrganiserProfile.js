@@ -219,7 +219,7 @@ const OrganiserProfile = () => {
                 placeholder="Enter name"
                 name="organizerName"
                 onChange={change}
-                value={state.organizerName}
+                defaultValue={state.organizerName}
                 required
               />
             </InputSeg>
@@ -233,7 +233,7 @@ const OrganiserProfile = () => {
                 placeholder="E.g: email@example.com"
                 name="profileEmail"
                 onChange={change}
-                value={state.profileEmail}
+                defaultValue={state.profileEmail}
                 title="Email format: xxx@xxxx.xxx)"
                 pattern="^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$"
                 required
@@ -249,7 +249,7 @@ const OrganiserProfile = () => {
                 placeholder="E.g: +2348022345661"
                 name="phoneNumber"
                 onChange={change}
-                value={state.phoneNumber}
+                defaultValue={state.phoneNumber}
                 required
                 minLength={5}
               />
@@ -264,7 +264,7 @@ const OrganiserProfile = () => {
                 placeholder="E.g: 19, Isaac Mike Street, Thomas Avenue"
                 name="address"
                 onChange={change}
-                value={state.address}
+                defaultValue={state.address}
                 required
               />
             </InputSeg>
@@ -279,7 +279,7 @@ const OrganiserProfile = () => {
                   placeholder="E.g: Kaduna State"
                   name="state"
                   onChange={change}
-                  value={state.state}
+                  defaultValue={state.state}
                   required
                 />
               </InputSeg>
@@ -293,7 +293,7 @@ const OrganiserProfile = () => {
                   placeholder="E.g: Nigeria"
                   name="country"
                   onChange={change}
-                  value={state.country}
+                  defaultValue={state.country}
                   required
                 />
               </InputSeg>
@@ -314,7 +314,7 @@ const OrganiserProfile = () => {
                 placeholder="Write a short bio: 250 characters maximum"
                 maxLength={250}
                 onChange={change}
-                value={state.organizerDetails}
+                defaultValue={state.organizerDetails}
                 required
               />
             </InputSeg>

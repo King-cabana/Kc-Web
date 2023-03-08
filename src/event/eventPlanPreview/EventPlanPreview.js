@@ -17,6 +17,7 @@ import Budget from "../budgetInventory/Budget";
 import Inventory from "../budgetInventory/Inventory";
 import { AiOutlineLeftCircle, AiOutlineRightCircle } from "react-icons/ai";
 import DefineAudience from "../pages/DefineAudience";
+import FirstCreateEvent from "../createEvent/FirstCreateEvent";
 
 const styles = {
   root: {
@@ -42,7 +43,7 @@ const EventPlanPreview = () => {
     const handleClick = direction === "left" ? handleBack : handleNext;
     const disable =
       (direction === "left" && index === 0) ||
-      (direction === "right" && index === 2);
+      (direction === "right" && index === 3);
     return (
       <div
         className={`arrow arrow-${direction}${disable ? " disabled" : ""}`}
@@ -80,12 +81,13 @@ const EventPlanPreview = () => {
             enableMouseEvents={true}
             style={{ height: "100%" }}
           >
+            <FirstCreateEvent padding="0.1rem" />
             <DefineAudience padding="0.5rem 1.5rem" />
             <Budget padding="0.1rem" />
             <Inventory padding="0.1rem" />
           </SwipeableViews>
           <Pagination
-            dots={3}
+            dots={4}
             index={index}
             onChangeIndex={handleChangeIndex}
           />
