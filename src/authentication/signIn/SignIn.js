@@ -34,6 +34,9 @@ const SignIn = () => {
     setVisibility(!visible);
   };
 
+  const token = localStorage.getItem('token');
+  const isAuthenticated = !!token;
+
   const InputType = visible ? "text" : "password";
 
   const navigate = useNavigate();
@@ -51,7 +54,12 @@ const SignIn = () => {
       const response = await login(email, password);
       dispatch(setUserDetails(response?.data))
       toast.success("login successfully!");
-      navigate("/createProfile");
+      
+      if (isAuthenticated) {
+        navigate("/dashboard");
+      } else {
+        navigate("/createProfile");
+      }
     } catch (error) {
       setLoading(false);
       toast.error(error.response.data);
@@ -60,6 +68,7 @@ const SignIn = () => {
       setPassword("");
     }
   };
+
 
   return (
     <AuthBackground>

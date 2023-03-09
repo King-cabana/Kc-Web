@@ -45,6 +45,13 @@ const verifyEmail = async (otp) => {
 
 const login = async (email, password, final = () => null) => {
   try {
+
+    const token = localStorage.getItem("token");
+    const headers = {};
+    if (token) {
+      headers.Authorization = `Bearer ${token}`;
+    }
+
     const response = await axios.post(
       API_URL_2 + "login",
       {
@@ -52,11 +59,16 @@ const login = async (email, password, final = () => null) => {
         password,
       },
       {
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          ...headers,
+          "Content-Type": "application/json",
+        },
       }
     );
+
     if (response.data.data) {
       localStorage.setItem("user", JSON.stringify(response.data.data));
+      localStorage.setItem("token", response.data.data.token);
     }
     return response.data;
   } catch (error) {

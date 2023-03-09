@@ -29,7 +29,6 @@ import {
 const Budget = ({ padding }) => {
   const navigate = useNavigate();
   const location = useLocation();
-  const [component, setComponent] = useState(true);
   const [selectedFile, setSelectedFile] = useState(null);
   const [loading, setLoading] = useState(false);
   const [file, setFile] = useState("");
@@ -38,9 +37,7 @@ const Budget = ({ padding }) => {
   const [isDisabled, setisDisabled] = useState(true);
   const dispatch = useDispatch();
   const state = useSelector((state) => state.createEvent);
-  // useEffect(() => {
-  //   console.log(state);
-  // }, [state]);
+
   const handleFileChange = async (e) => {
     const MAX_FILE_SIZE = 1024; // 1MB
     const file = e.target.files[0];
@@ -91,6 +88,7 @@ const Budget = ({ padding }) => {
     }
   }, []);
   useEffect(() => {
+    console.log(state);
     const MAX_FILE_SIZE = 1024; // 1MB
     if (!state?.eventBudgetTemplateUrl) {
       setErrorMsg("*Please a choose file*");
@@ -194,10 +192,7 @@ const Budget = ({ padding }) => {
 
               {location.pathname === "/eventPlanPreview" ? null : (
                 <div>
-                  <ButtonContainer
-                    display={component ? "flex" : "none"}
-                    style={{ margin: "0rem" }}
-                  >
+                  <ButtonContainer style={{ margin: "0rem" }}>
                     <AlternativeButton2
                       style={{
                         color: "#FF2957",

@@ -43,12 +43,6 @@ const EventPlanPreview = () => {
     const disable =
       (direction === "left" && index === 0) ||
       (direction === "right" && index === 2);
-    // const styling = {
-    //   swipe: {
-    //     display: `${(props) => (props.display ? props.display : "flex")}`,
-    //   },
-    // };
-
     return (
       <div
         className={`arrow arrow-${direction}${disable ? " disabled" : ""}`}

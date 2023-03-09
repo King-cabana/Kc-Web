@@ -21,8 +21,9 @@ export const SidebarNav = styled.nav`
   transition: 350ms;
   z-index: 10;
   /* padding-top: 1%; */
-  /* position: fixed; */
-  /* top: 62px; */
+  position: fixed;
+  top: 62px;
+  
 
   @media screen and (max-width: 480px) {
     width: 100%;
@@ -43,18 +44,20 @@ export const SidebarWrap = styled.div`
 `;
 
 export const ContentBody = styled.div`
-  /* height: 100%; */
   background-color: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
   width: 80%;
   position: relative;
-  overflow-y: scroll;
-  /* max-height: 85vh; */
+  /* overflow-y: scroll;   */
+  margin-left: 20%;
+  top: 62px;
+
 
   @media screen and (max-width: 480px) {
     width: 100%;
+    margin-left: 0;
   }
 `;
 

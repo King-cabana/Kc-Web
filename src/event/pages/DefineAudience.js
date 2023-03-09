@@ -33,21 +33,20 @@ const DefineAudience = ({ padding }) => {
   const dispatch = useDispatch();
   const state = useSelector((state) => state.createEvent);
   const location = useLocation();
-  const [component, setComponent] = useState(true);
   const [otherGender, setOtherGender] = useState(
-    Boolean(state.genderListNew.length)
+    Boolean(state.genderListNew?.length)
   );
   const [otherReligion, setOtherReligion] = useState(
-    Boolean(state.religionListNew.length)
+    Boolean(state.religionListNew?.length)
   );
   const [otherStatus, setOtherStatus] = useState(
-    Boolean(state.maritalStatusListNew.length)
+    Boolean(state.maritalStatusListNew?.length)
   );
   const [otherEmployment, setOtherEmployment] = useState(
-    Boolean(state.employmentStatusListNew.length)
+    Boolean(state.employmentStatusListNew?.length)
   );
   const [otherEducation, setOtherEducation] = useState(
-    Boolean(state.educationLevelListNew.length)
+    Boolean(state.educationLevelListNew?.length)
   );
   const [progress, setProgress] = useState(0);
   const [gender, setGender] = useState("");
@@ -68,7 +67,7 @@ const navigate= useNavigate();
     const updatedArr = checked
       ? [...arr, value]
       : arr.filter((item) => item !== value);
-    console.log(updatedArr);
+    // console.log(updatedArr);
     dispatch(editCheckbox({ category: name, item: updatedArr }));
   };
 
@@ -99,7 +98,8 @@ const navigate= useNavigate();
           addToList({ listType: "educationLevelList", newItem: education })
         )
       : dispatch(addToList({ listType: "educationLevelList", newItem: "" }));
-    // navigate('/createevent/budget&inventory/1');
+    navigate('/createevent/budget&inventory/1');
+
   };
 
   return (
@@ -329,9 +329,8 @@ const navigate= useNavigate();
                 type="text"
                 placeholder="Specify for others(separating each with comma[,])"
                 display={otherGender ? "flex" : "none"}
-                defaultValue={state.genderListNew.join(", ")}
+                defaultValue={state.genderListNew?.join(", ")}
                 onChange={(e) => setGender(e.target.value)}
-                // onBlur={handleOtherInputBlur}
               ></InputOthers>
             </div>
           </Form>
@@ -391,7 +390,7 @@ const navigate= useNavigate();
                 type="text"
                 placeholder="Specify for others(separating each with comma[,])"
                 display={otherReligion ? "flex" : "none"}
-                defaultValue={state.religionListNew.join(", ")}
+                defaultValue={state.religionListNew?.join(", ")}
                 onChange={(e) => setReligion(e.target.value)}
               ></InputOthers>
             </div>
@@ -484,7 +483,7 @@ const navigate= useNavigate();
                 name="maritalStatusList"
                 placeholder="Specify for others(separating each with comma[,])"
                 display={otherStatus ? "flex" : "none"}
-                defaultValue={state.maritalStatusListNew.join(", ")}
+                defaultValue={state.maritalStatusListNew?.join(", ")}
                 onChange={(e) => setStatus(e.target.value)}
               ></InputOthers>
             </div>
@@ -579,7 +578,7 @@ const navigate= useNavigate();
                 name="employmentStatusList"
                 placeholder="Specify for others(separating each with comma[,])"
                 display={otherEmployment ? "flex" : "none"}
-                defaultValue={state.employmentStatusListNew.join(", ")}
+                defaultValue={state.employmentStatusListNew?.join(", ")}
                 onChange={(e) => setEmployment(e.target.value)}
               ></InputOthers>
             </div>
@@ -674,17 +673,14 @@ const navigate= useNavigate();
                 name="educationLevelList"
                 placeholder="Specify for others(separating each with comma[,])"
                 display={otherEducation ? "flex" : "none"}
-                defaultValue={state.educationLevelListNew.join(", ")}
+                defaultValue={state.educationLevelListNew?.join(", ")}
                 onChange={(e) => setEducation(e.target.value)}
               ></InputOthers>
             </div>
           </Form>
 
           {location.pathname === "/eventPlanPreview" ? null : (
-            <ButtonContainer
-              display={component ? "flex" : "none"}
-              style={{ margin: "0rem" }}
-            >
+            <ButtonContainer style={{ margin: "0rem" }}>
               <AlternativeButton2
                 onClick={navigateBack}
                 style={{

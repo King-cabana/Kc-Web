@@ -201,6 +201,7 @@ export const JointContainer = styled.div`
 
   @media screen and (max-width: 960px) {
     width: 120px;
+    /* z-index: -100; */
   }
 `;
 

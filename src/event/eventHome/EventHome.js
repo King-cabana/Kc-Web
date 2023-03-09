@@ -47,11 +47,10 @@ import backgroundPicture from "../../images/dashboardBackgroundPicture.png";
 import logo from "../../images/dashboardLogo.png";
 import "../../modal.css";
 import { TbEdit } from "react-icons/tb";
-import { FaBars } from "react-icons/fa";
 import { useNavigate } from "react-router";
 import { setEventOrganizerProfile } from "../../redux/slices/eventOrganizerProfileSlice";
 
-const   EventHome = () => {
+const EventHome = () => {
   const dispatch = useDispatch();
   const state = useSelector((state) => state.eventOrganizerProfile);
   const [modal, setModal] = useState(true);
@@ -98,8 +97,7 @@ const   EventHome = () => {
       <OverallContainer>
         <HeaderContainer>
           <WelcomeCenter>
-            <HamburgerWrapper>
-            </HamburgerWrapper>
+            <HamburgerWrapper></HamburgerWrapper>
             <WelcomeText>
               {state?.organizerName ? state?.organizerName : "Organizer's Name"}
             </WelcomeText>

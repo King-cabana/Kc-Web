@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Redirect, Routes, Route } from "react-router-dom";
 import React, { Suspense, lazy } from "react";
 import "./App.css";
 
@@ -13,7 +13,7 @@ import ForgotPassword from "./authentication/forgotPassword/ForgotPassword";
 import ForgotPasswordOtp from "./authentication/forgotPassword/ForgotPasswordOtp";
 import ResetPasswordSuccess from "./authentication/signIn/ResetPasswordSuccess";
 
-import SecondCreateEvent from "./event/createEvent/SecondCreateEvent";
+// import SecondCreateEvent from "./event/createEvent/SecondCreateEvent";
 import FirstCreateEvent from "./event/createEvent/FirstCreateEvent";
 import Sidebar from "./event/Dashboard/Sidebar";
 // import DashboardHome from "./event/pages/DashboardHome";
@@ -28,8 +28,8 @@ import Settings from "./event/pages/Settings";
 import LoadingScreen from "./LoadingScreen";
 
 // Budget createEvent form
-import ContactInfo from "./event/createEvent/ContactInfo";
-import TimeLineEvent from "./event/createEvent/TimeLineEvent";
+// import ContactInfo from "./event/createEvent/ContactInfo";
+// import TimeLineEvent from "./event/createEvent/TimeLineEvent";
 import DefineAudience from "./event/pages/DefineAudience";
 import Budget from "./event/budgetInventory/Budget";
 import Inventory from "./event/budgetInventory/Inventory";
@@ -57,6 +57,7 @@ const CreateEvent = lazy(() => import("./event/pages/CreateEvent"))
 
 
 function App() {
+
   return (
     <Suspense fallback={<LoadingScreen />}>
       <>
@@ -97,7 +98,7 @@ function App() {
             <Route path="verifyemail" element={<VerifyEmail />} />
             <Route path="/createevent/:name/:number" element={<CreateEvent />} />
 
-            <Route
+           <Route
               path="/dashboard"
               element={
                 <Sidebar>
@@ -105,6 +106,7 @@ function App() {
                 </Sidebar>
               }
             />
+            
             <Route
               path="/event/create"
               element={
