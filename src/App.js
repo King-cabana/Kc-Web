@@ -19,6 +19,8 @@ import FirstCreateEvent from "./event/createEvent/FirstCreateEvent";
 import Sidebar from "./event/Dashboard/Sidebar";
 import DashboardHome from "./event/pages/DashboardHome";
 import CreateEvent from "./event/pages/CreateEvent";
+
+
 import EmptyEvent from "./event/pages/NoEvent";
 import SponsorEvent from "./event/pages/SponsorEvent";
 import EventHistory from "./event/pages/EventHistory";
@@ -42,6 +44,8 @@ import OrganiserProfile from "./profile/organiserProfile/OrganiserProfile";
 import SocialProfile from "./profile/socialProfile/SocialProfile";
 import ResetPasswordSuccess from "./authentication/signIn/ResetPasswordSuccess";
 import LoadingScreen from "./LoadingScreen";
+import EventPlanning from "./event/eventPlanning/EventPlanning";
+import GuestRegistration from "./event/guestRegistration/GuestRegistration";
 
 const Home = lazy(() => import("./pages/landingPage/Home"));
 const Waitlist = lazy(() => import("./pages/waitlist/WaitlistForm"));
@@ -72,7 +76,8 @@ function App() {
               path="/resetpasswordsuccess"
               element={<ResetPasswordSuccess />}
             />
-
+            <Route path="/planning" element={<EventPlanning />} />
+            <Route path="/guest" element={<GuestRegistration />} />
             <Route path="signupsuccess" element={<SignUpSuccess />} />
             <Route path="verifyemail" element={<VerifyEmail />} />
 
@@ -83,17 +88,13 @@ function App() {
               element={
                 <Sidebar>
                   <DashboardHome />
-                </Sidebar>
-              }
-            />
+                </Sidebar>}/>
             <Route
               path="/event/create"
               element={
                 <Sidebar>
                   <DashboardHome />
-                </Sidebar>
-              }
-            />
+                </Sidebar>}/>
             <Route
               path="/event/noEvent"
               element={
