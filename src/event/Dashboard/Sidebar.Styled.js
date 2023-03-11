@@ -65,14 +65,15 @@ export const ContentBody = styled.div`
 export const Nav = styled.div`
   height: 40px;
   display: flex;
-  /* display: hidden; */
   justify-content: flex-start;
   align-items: center;
   position: absolute;
   top: 0;
   left: 0;
+  margin-left: -4%;
+
   @media screen and (max-width: "480px") {
-    /* display: block; */
+    
   }
 `;
 

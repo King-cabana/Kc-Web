@@ -281,99 +281,99 @@ const EditOrganiserProfile = () => {
       {
         op: "replace",
         path: "/profileEmail",
-        value: incomingData.profileEmail,
+        value: incomingData?.profileEmail,
       },
-      { op: "replace", path: "/phoneNumber", value: incomingData.phoneNumber },
+      { op: "replace", path: "/phoneNumber", value: incomingData?.phoneNumber },
       {
         op: "replace",
         path: "/address/houseNo",
-        value: incomingData.address.houseNo,
+        value: incomingData?.address?.houseNo,
       },
       {
         op: "replace",
         path: "/address/street",
-        value: incomingData.address.street,
+        value: incomingData?.address?.street,
       },
       {
         op: "replace",
         path: "/address/city",
-        value: incomingData.address.city,
+        value: incomingData?.address?.city,
       },
       {
         op: "replace",
         path: "/address/state",
-        value: incomingData.address.state,
+        value: incomingData?.address?.state,
       },
       {
         op: "replace",
         path: "/address/country",
-        value: incomingData.address.country,
+        value: incomingData?.address?.country,
       },
       {
         op: "replace",
         path: "/organizerDetails",
-        value: incomingData.organizerDetails,
+        value: incomingData?.organizerDetails,
       },
-      { op: "replace", path: "/website", value: incomingData.website },
-      { op: "replace", path: "/linkedIn", value: incomingData.linkedIn },
-      { op: "replace", path: "/instagram", value: incomingData.instagram },
-      { op: "replace", path: "/twitter", value: incomingData.twitter },
-      { op: "replace", path: "/faceBook", value: incomingData.faceBook },
-      { op: "replace", path: "/otherHandle", value: incomingData.otherHandle },
+      { op: "replace", path: "/website", value: incomingData?.website },
+      { op: "replace", path: "/linkedIn", value: incomingData?.linkedIn },
+      { op: "replace", path: "/instagram", value: incomingData?.instagram },
+      { op: "replace", path: "/twitter", value: incomingData?.twitter },
+      { op: "replace", path: "/faceBook", value: incomingData?.faceBook },
+      { op: "replace", path: "/otherHandle", value: incomingData?.otherHandle },
       {
         op: "replace",
         path: "/guarantorRole",
-        value: incomingData.guarantorRole,
+        value: incomingData?.guarantorRole,
       },
       {
         op: "replace",
         path: "/guarantor/secondaryContactFullName",
-        value: incomingData.guarantor.secondaryContactFullName,
+        value: incomingData?.guarantor?.secondaryContactFullName,
       },
       {
         op: "replace",
         path: "/guarantor/companyName",
-        value: incomingData.guarantor.companyName,
+        value: incomingData?.guarantor?.companyName,
       },
       {
         op: "replace",
         path: "/guarantor/jobRole",
-        value: incomingData.guarantor.jobRole,
+        value: incomingData?.guarantor?.jobRole,
       },
       {
         op: "replace",
         path: "/guarantor/officeAddress/houseNo",
-        value: incomingData.guarantor.officeAddress.houseNo,
+        value: incomingData?.guarantor?.officeAddress.houseNo,
       },
       {
         op: "replace",
         path: "/guarantor/officeAddress/street",
-        value: incomingData.guarantor.officeAddress.street,
+        value: incomingData?.guarantor?.officeAddress?.street,
       },
       {
         op: "replace",
         path: "/guarantor/officeAddress/city",
-        value: incomingData.guarantor.officeAddress.city,
+        value: incomingData?.guarantor?.officeAddress?.city,
       },
       {
         op: "replace",
         path: "/guarantor/officeAddress/state",
-        value: incomingData.guarantor.officeAddress.state,
+        value: incomingData?.guarantor?.officeAddress?.state,
       },
       {
         op: "replace",
         path: "/guarantor/officeAddress/country",
-        value: incomingData.guarantor.officeAddress.country,
+        value: incomingData?.guarantor?.officeAddress?.country,
       },
       {
         op: "replace",
         path: "/guarantor/secondaryContactPhoneNumber",
-        value: incomingData.guarantor.secondaryContactPhoneNumber,
+        value: incomingData?.guarantor?.secondaryContactPhoneNumber,
       },
       {
         op: "replace",
         path: "/guarantor/secondaryContactEmail",
-        value: incomingData.guarantor.secondaryContactEmail,
+        value: incomingData?.guarantor?.secondaryContactEmail,
       },
     ];
     try {
@@ -548,7 +548,7 @@ const EditOrganiserProfile = () => {
                   placeholder="E.g: 18 or Number 12 or Km 14 or Room 347 or...?"
                   name="houseNo"
                   onChange={addressChange}
-                  defaultValue={incomingData?.address.houseNo}
+                  defaultValue={incomingData?.address?.houseNo}
                 />
               </InputSeg>
 
@@ -559,7 +559,7 @@ const EditOrganiserProfile = () => {
                   placeholder="E.g: Mike Smith Avenue"
                   name="street"
                   onChange={addressChange}
-                  defaultValue={incomingData?.address.street}
+                  defaultValue={incomingData?.address?.street}
                 />
               </InputSeg>
             </Wrapper>
@@ -572,7 +572,7 @@ const EditOrganiserProfile = () => {
                   placeholder="E.g: Ikeja"
                   name="city"
                   onChange={addressChange}
-                  defaultValue={incomingData?.address.city}
+                  defaultValue={incomingData?.address?.city}
                 />
               </InputSeg>
 
@@ -583,7 +583,7 @@ const EditOrganiserProfile = () => {
                   placeholder="E.g: Kaduna State"
                   name="state"
                   onChange={addressChange}
-                  defaultValue={incomingData?.address.state}
+                  defaultValue={incomingData?.address?.state}
                 />
               </InputSeg>
 
@@ -594,7 +594,7 @@ const EditOrganiserProfile = () => {
                   placeholder="E.g: Nigeria"
                   name="country"
                   onChange={addressChange}
-                  defaultValue={incomingData?.address.country}
+                  defaultValue={incomingData?.address?.country}
                 />
               </InputSeg>
             </Wrapper>
@@ -603,8 +603,8 @@ const EditOrganiserProfile = () => {
               <InputText>
                 Organizer's Details{" "}
                 <Asterix>
-                  {incomingData?.organizerDetails.length ||
-                    incomingData?.organizerDetails.length}
+                  {incomingData?.organizerDetails?.length ||
+                    incomingData?.organizerDetails?.length}
                   /250 Characters*
                 </Asterix>
               </InputText>
@@ -762,8 +762,8 @@ const EditOrganiserProfile = () => {
               <InputText>
                 Full name of {""}
                 {incomingData?.guarantorRole
-                  ? incomingData?.guarantorRole.charAt(0).toUpperCase() +
-                    incomingData?.guarantorRole.slice(1)
+                  ? incomingData?.guarantorRole?.charAt(0).toUpperCase() +
+                    incomingData?.guarantorRole?.slice(1)
                   : "Secondary Contact"}{" "}
               </InputText>
               <Input
@@ -771,7 +771,7 @@ const EditOrganiserProfile = () => {
                 placeholder="Enter Full Name of Secondary Contact"
                 name="secondaryContactFullName"
                 // defaultValue={state.guarantor?.secondaryContactFullName}
-                defaultValue={incomingData?.guarantor.secondaryContactFullName}
+                defaultValue={incomingData?.guarantor?.secondaryContactFullName}
                 onChange={guarantorChange}
               />
             </InputSeg>
@@ -783,7 +783,7 @@ const EditOrganiserProfile = () => {
                 placeholder="Enter Company/Business Name"
                 name="companyName"
                 // defaultValue={state.guarantor?.companyName}
-                defaultValue={incomingData?.guarantor.companyName}
+                defaultValue={incomingData?.guarantor?.companyName}
                 onChange={guarantorChange}
               />
             </InputSeg>
@@ -795,7 +795,7 @@ const EditOrganiserProfile = () => {
                 placeholder="Enter Job Role"
                 name="jobRole"
                 // defaultValue={state.guarantor?.jobRole}
-                defaultValue={incomingData?.guarantor.jobRole}
+                defaultValue={incomingData?.guarantor?.jobRole}
                 onChange={guarantorChange}
               />
             </InputSeg>
@@ -809,7 +809,7 @@ const EditOrganiserProfile = () => {
                   placeholder="E.g: 18 or Number 12 or Km 14 or Room 347 or...?"
                   name="houseNo"
                   onChange={guarantorAddressChange}
-                  defaultValue={incomingData?.guarantor.officeAddress?.houseNo}
+                  defaultValue={incomingData?.guarantor?.officeAddress?.houseNo}
                 />
               </InputSeg>
 
@@ -820,7 +820,7 @@ const EditOrganiserProfile = () => {
                   placeholder="E.g: Mike Smith Avenue"
                   name="street"
                   onChange={guarantorAddressChange}
-                  defaultValue={incomingData?.guarantor.officeAddress?.street}
+                  defaultValue={incomingData?.guarantor?.officeAddress?.street}
                 />
               </InputSeg>
             </Wrapper>
@@ -833,7 +833,7 @@ const EditOrganiserProfile = () => {
                   placeholder="E.g: Ikeja"
                   name="city"
                   onChange={guarantorAddressChange}
-                  defaultValue={incomingData?.guarantor.officeAddress?.city}
+                  defaultValue={incomingData?.guarantor?.officeAddress?.city}
                 />
               </InputSeg>
 
@@ -844,7 +844,7 @@ const EditOrganiserProfile = () => {
                   placeholder="E.g: Kaduna State"
                   name="state"
                   onChange={guarantorAddressChange}
-                  defaultValue={incomingData?.guarantor.officeAddress?.state}
+                  defaultValue={incomingData?.guarantor?.officeAddress?.state}
                 />
               </InputSeg>
 
@@ -855,7 +855,7 @@ const EditOrganiserProfile = () => {
                   placeholder="E.g: Nigeria"
                   name="country"
                   onChange={guarantorAddressChange}
-                  defaultValue={incomingData?.guarantor.officeAddress?.country}
+                  defaultValue={incomingData?.guarantor?.officeAddress?.country}
                 />
               </InputSeg>
             </Wrapper>
@@ -868,7 +868,7 @@ const EditOrganiserProfile = () => {
                 name="secondaryContactPhoneNumber"
                 // defaultValue={state.guarantor?.secondaryContactPhoneNumber}
                 defaultValue={
-                  incomingData?.guarantor.secondaryContactPhoneNumber
+                  incomingData?.guarantor?.secondaryContactPhoneNumber
                 }
                 onChange={guarantorChange}
                 minLength={5}
@@ -884,7 +884,7 @@ const EditOrganiserProfile = () => {
                 placeholder="E.g: email@example.com"
                 name="secondaryContactEmail"
                 // defaultValue={state.guarantor?.secondaryContactEmail}
-                defaultValue={incomingData?.guarantor.secondaryContactEmail}
+                defaultValue={incomingData?.guarantor?.secondaryContactEmail}
                 onChange={guarantorChange}
               />
             </InputSeg>
