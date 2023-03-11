@@ -32,22 +32,21 @@ import { InputText } from "../createEvent/FirstCreateEventStyled";
 const DefineAudience = ({ padding }) => {
   const dispatch = useDispatch();
   const state = useSelector((state) => state.createEvent);
-  const navigate = useNavigate();
   const location = useLocation();
   const [otherGender, setOtherGender] = useState(
-    Boolean(state.genderListNew.length)
+    Boolean(state.genderListNew?.length)
   );
   const [otherReligion, setOtherReligion] = useState(
-    Boolean(state.religionListNew.length)
+    Boolean(state.religionListNew?.length)
   );
   const [otherStatus, setOtherStatus] = useState(
-    Boolean(state.maritalStatusListNew.length)
+    Boolean(state.maritalStatusListNew?.length)
   );
   const [otherEmployment, setOtherEmployment] = useState(
-    Boolean(state.employmentStatusListNew.length)
+    Boolean(state.employmentStatusListNew?.length)
   );
   const [otherEducation, setOtherEducation] = useState(
-    Boolean(state.educationLevelListNew.length)
+    Boolean(state.educationLevelListNew?.length)
   );
   const [progress, setProgress] = useState(0);
   const [gender, setGender] = useState("");
@@ -55,6 +54,8 @@ const DefineAudience = ({ padding }) => {
   const [status, setStatus] = useState("");
   const [employment, setEmployment] = useState("");
   const [education, setEducation] = useState("");
+
+const navigate= useNavigate();
 
   const change = (e) => {
     dispatch(editGenerally({ name: e.target.name, value: e.target.value }));
@@ -72,7 +73,8 @@ const DefineAudience = ({ padding }) => {
 
   const navigateBack = (e) => {
     e.preventDefault();
-    navigate("/test/eventdetails/4");
+    console.log(state);
+    navigate('/createevent/eventdetails/4');
   };
 
   const navigateNext = (e) => {
@@ -96,8 +98,8 @@ const DefineAudience = ({ padding }) => {
           addToList({ listType: "educationLevelList", newItem: education })
         )
       : dispatch(addToList({ listType: "educationLevelList", newItem: "" }));
-    navigate("/test/budget&inventory/1");
-    // console.log(state);
+    navigate('/createevent/budget&inventory/1');
+
   };
 
   return (
@@ -332,7 +334,7 @@ const DefineAudience = ({ padding }) => {
                 type="text"
                 placeholder="Specify for others(separating each with comma[,])"
                 display={otherGender ? "flex" : "none"}
-                defaultValue={state.genderListNew.join(", ")}
+                defaultValue={state.genderListNew?.join(", ")}
                 onChange={(e) => setGender(e.target.value)}
               ></InputOthers>
             </div>
@@ -393,7 +395,7 @@ const DefineAudience = ({ padding }) => {
                 type="text"
                 placeholder="Specify for others(separating each with comma[,])"
                 display={otherReligion ? "flex" : "none"}
-                defaultValue={state.religionListNew.join(", ")}
+                defaultValue={state.religionListNew?.join(", ")}
                 onChange={(e) => setReligion(e.target.value)}
               ></InputOthers>
             </div>
@@ -486,7 +488,7 @@ const DefineAudience = ({ padding }) => {
                 name="maritalStatusList"
                 placeholder="Specify for others(separating each with comma[,])"
                 display={otherStatus ? "flex" : "none"}
-                defaultValue={state.maritalStatusListNew.join(", ")}
+                defaultValue={state.maritalStatusListNew?.join(", ")}
                 onChange={(e) => setStatus(e.target.value)}
               ></InputOthers>
             </div>
@@ -581,7 +583,7 @@ const DefineAudience = ({ padding }) => {
                 name="employmentStatusList"
                 placeholder="Specify for others(separating each with comma[,])"
                 display={otherEmployment ? "flex" : "none"}
-                defaultValue={state.employmentStatusListNew.join(", ")}
+                defaultValue={state.employmentStatusListNew?.join(", ")}
                 onChange={(e) => setEmployment(e.target.value)}
               ></InputOthers>
             </div>
@@ -676,7 +678,7 @@ const DefineAudience = ({ padding }) => {
                 name="educationLevelList"
                 placeholder="Specify for others(separating each with comma[,])"
                 display={otherEducation ? "flex" : "none"}
-                defaultValue={state.educationLevelListNew.join(", ")}
+                defaultValue={state.educationLevelListNew?.join(", ")}
                 onChange={(e) => setEducation(e.target.value)}
               ></InputOthers>
             </div>

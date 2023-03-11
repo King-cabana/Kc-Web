@@ -37,7 +37,7 @@ const EmptyEvent = () => {
             </LottieWrapper>
             <NoContentText>You have no event created yet.</NoContentText>
           </NoEventCenter>
-          <ButtonLink to="/firstCreateEvent">
+          <ButtonLink to="/createevent/eventdetails/1">
             <PrimaryButton>Create event</PrimaryButton>
           </ButtonLink>
         </NoEventContainer>

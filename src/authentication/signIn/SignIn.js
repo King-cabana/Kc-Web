@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router";
 import {
   AuthBackground,
@@ -34,6 +34,9 @@ const SignIn = () => {
     setVisibility(!visible);
   };
 
+  const token = localStorage.getItem('token');
+  const isAuthenticated = !!token;
+
   const InputType = visible ? "text" : "password";
 
   const navigate = useNavigate();
@@ -46,20 +49,31 @@ const SignIn = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
-      setLoading(true);
       const response = await login(email, password);
       dispatch(setUserDetails(response?.data))
       toast.success("login successfully!");
-      navigate("/createProfile");
+      
+      if (isAuthenticated) {
+        navigate("/dashboard");
+      } else {
+        navigate("/createProfile");
+      }
     } catch (error) {
       setLoading(false);
-      toast.error(error.response.data);
+      if(error?.response?.status === 401){
+        toast.error("Invalid email or password");
+      } else{
+          error?.response? toast.error(error?.response?.data?.message): 
+          toast.error(error.message)}
+
     } finally {
       setEmail("");
       setPassword("");
     }
   };
+
 
   return (
     <AuthBackground>

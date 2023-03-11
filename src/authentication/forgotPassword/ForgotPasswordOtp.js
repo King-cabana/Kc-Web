@@ -1,4 +1,4 @@
-import React, { useDispatch, useState } from "react";
+import React, { useState } from "react";
 import OtpInput from "react-otp-input";
 import { LongButton, Form, AuthBackground } from "../../globalStyles";
 import { VerifyBody } from "./../signup/SignUpStyled";
@@ -14,6 +14,7 @@ const ForgotPasswordOtp = () => {
   const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();

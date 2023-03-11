@@ -36,6 +36,10 @@ const Inventory = ({ padding }) => {
   const dispatch = useDispatch();
   const state = useSelector((state) => state.createEvent);
 
+  const navigateBack = () => {
+    navigate("/createevent/budget&inventory/1")
+  }
+
   const [exclusive, setExclusive] = useState(false);
   const [otherOnline, setOtherOnline] = useState(false);
   const [signage, setSignage] = useState(false);
@@ -990,7 +994,7 @@ const Inventory = ({ padding }) => {
 
             <ButtonContainer>
               <AlternativeButton2
-                onClick={() => navigate("/budget")}
+                onClick={navigateBack}
                 style={{
                   color: "#FF2957",
                   fontWeight: "600",

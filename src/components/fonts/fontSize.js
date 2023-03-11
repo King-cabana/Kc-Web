@@ -87,4 +87,15 @@ export const KBTextXs = styled.p`
   line-height: 18px;
   font-weight: ${(props) => props.fontWeight};
   color: ${(props) => props.color};
+
+  && span{
+    color: #ff2957;
+  }
 `;
+
+export const ErrorText = styled.p`
+  color: red;
+  font-size: 10px;
+  text-align: left;
+  margin-top: 2%;
+`

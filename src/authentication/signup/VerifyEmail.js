@@ -1,4 +1,4 @@
-import React, { useDispatch, useState } from "react";
+import React, { useState } from "react";
 import OtpInput from "react-otp-input";
 import { LongButton, Form, AuthBackground } from "../../globalStyles";
 import { VerifyBody } from "./SignUpStyled";

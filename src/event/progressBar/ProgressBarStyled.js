@@ -15,10 +15,12 @@ export const KCProgressBarHolder = styled.div`
 `;
 
 export const KCProgressBar = styled.div`
-  width: 80%;
+  width: 75%;
   height: 100px;
   border-radius: 5px;
   display: flex;
+  justify-content: center;
+  align-items: center;
 
   @media screen and (max-width: 480px) {
     width: 100%;
@@ -52,7 +54,7 @@ export const ProgressStages = styled.div`
 
 
   @media screen and (max-width: 480px) {
-    padding: 2%;
+    /* padding: 2%; */
   }
 `;
 
@@ -105,10 +107,17 @@ export const ProgressStages3 = styled.div`
 
 export const ProgressStageInner = styled.div`
   height: inherit;
+  width: 100%;
   line-height: 2rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
+  padding: 10px;
+  color: ${(props)=>props.color ? props.color: "black"};
+  font-weight: ${(props)=>props.fontWeight ? props.fontWeight: "regular"};
+
+ 
 
   @media screen and (max-width: 480px) {
     line-height: 1.3em;
@@ -122,6 +131,8 @@ export const ProgressStageCounter = styled.div`
   align-items: center;
   width: max-content;
   gap: 10px;
+  
+
 
   @media screen and (max-width: 480px) {
     width: inherit;

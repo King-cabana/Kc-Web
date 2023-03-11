@@ -55,24 +55,29 @@ const EventHome = () => {
   const state = useSelector((state) => state.eventOrganizerProfile);
   const [modal, setModal] = useState(true);
   const navigate = useNavigate();
-
   useEffect(() => {
     const fetchOrganizerProfile = async () => {
-      const { data } = await axios.get(
-        `http://localhost:8081/profiles/${state?.id}`,
-        {
-          headers: {
-            Authorization: authToken,
-          },
-        }
-      );
-      // const { data } = await axios.get(`http://localhost:8080/eventuser/2`);
-      console.log(data);
-      dispatch(setEventOrganizerProfile(data));
+      try {
+        const { data } = await axios.get(
+          `http://localhost:8081/profiles/${state?.id}`,
+          {
+            headers: {
+              Authorization: authToken,
+            },
+          }
+        );
+        console.log(data);
+        dispatch(setEventOrganizerProfile(data));
+      } catch (error) {
+        console.log(error);
+        // handle error here
+      }
     };
     fetchOrganizerProfile();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    return () => {
+      // cleanup code here
+    };
+  }, [state?.id]);
 
   const navitgateToEditOrganiserProfile = () => {
     navigate("/organiserProfile/home/edit");

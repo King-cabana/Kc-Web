@@ -7,6 +7,7 @@ import {
   ContentSection,
   EventCard,
   NavButtonHolder,
+  TypeTextHolder,
 } from "./HomeStyled";
 import {
   CardHolder,
@@ -51,7 +52,6 @@ import {
   KBTextL,
   KBTextM,
 } from "../../components/fonts/fontSize";
-import { useState } from "react";
 
 
 const Home = () => {
@@ -64,6 +64,7 @@ const Home = () => {
       <HeroSection>
         <BgOverlay>
           <ContentHolder>
+            <TypeTextHolder>
             <KBDisplayL style={{ margin: "auto 0" }}>
               Dreams do come true.
               <br />{" "}
@@ -83,6 +84,7 @@ const Home = () => {
                 />
               </span>
             </KBDisplayL>
+            </TypeTextHolder>
             <KBTextL>
               Connecting People | Creating Memories | Capturing Value
             </KBTextL>
@@ -147,7 +149,7 @@ const Home = () => {
         </NavButtonHolder>
       </ContentSection>
 
-      <ASContentSection style={{ backgroundColor: "#FEF5F7" }}>
+       <ASContentSection style={{ backgroundColor: "#FEF5F7" }}>
         <ASSectionInner>
           <ASContent>
             <ASContentInner>
@@ -240,7 +242,7 @@ const Home = () => {
           </div>
         </ASContent>
       </ReadySection>
-      <Footer />
+      <Footer /> 
     </>
   );
 };

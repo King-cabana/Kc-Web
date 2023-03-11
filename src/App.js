@@ -17,18 +17,18 @@ import SecondCreateEvent from "./event/createEvent/SecondCreateEvent";
 import FirstCreateEvent from "./event/createEvent/FirstCreateEvent";
 import Sidebar from "./event/Dashboard/Sidebar";
 // import DashboardHome from "./event/pages/DashboardHome";
-import CreateEvent from "./event/pages/CreateEvent";
+import Event from "./event/pages/Event";
 import EmptyEvent from "./event/pages/NoEvent";
 import SponsorEvent from "./event/pages/SponsorEvent";
 import EventHistory from "./event/pages/EventHistory";
 import EventAnalytics from "./event/pages/EventAnalytics";
 import Settings from "./event/pages/Settings";
 
-import Test from "./event/pages/Test";
+// import CreateEvent from "./event/pages/CreateEvent";
 import LoadingScreen from "./LoadingScreen";
 
 // Budget createEvent form
-import ContactInfo from "./event/createEvent/ContactInfo";
+// import ContactInfo from "./event/createEvent/ContactInfo";
 import TimeLineEvent from "./event/createEvent/TimeLineEvent";
 import DefineAudience from "./event/pages/DefineAudience";
 import Budget from "./event/budgetInventory/Budget";
@@ -53,6 +53,7 @@ const Signup = lazy(() => import("./authentication/signup/SignUp"));
 const AboutUs = lazy(() => import("./pages/aboutUs/AboutUs"));
 const DashboardHome = lazy(() => import("./event/pages/DashboardHome"));
 const SignIn = lazy(() => import("./authentication/signIn/SignIn"));
+const CreateEvent = lazy(() => import("./event/pages/CreateEvent"));
 
 function App() {
   return (
@@ -93,7 +94,11 @@ function App() {
             />
             <Route path="signupsuccess" element={<SignUpSuccess />} />
             <Route path="verifyemail" element={<VerifyEmail />} />
-            <Route path="/test/:name/:number" element={<Test />} />
+            <Route
+              path="/createevent/:name/:number"
+              element={<CreateEvent />}
+            />
+
             <Route
               path="/dashboard"
               element={
@@ -102,6 +107,7 @@ function App() {
                 </Sidebar>
               }
             />
+
             <Route
               path="/event/create"
               element={
@@ -168,7 +174,7 @@ function App() {
               element={
                 <Sidebar>
                   {" "}
-                  <CreateEvent />{" "}
+                  <Event />{" "}
                 </Sidebar>
               }
             />

@@ -8,9 +8,16 @@ export const TopBarContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid #FF2957;
+  background-color: white;
   /* box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1); */
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
 
   @media screen and (max-width: 480px) {
+    z-index: 9999999;
     width: 100%;
   }
 `;
@@ -88,7 +95,7 @@ export const Dropdown = styled.div`
 `
 
 export const DropDownBtn = styled.button`
-  padding: 5px;
+  padding: 6px;
   background-color: transparent;
   font-size: 16px;
   border: none;
@@ -96,10 +103,11 @@ export const DropDownBtn = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
+
 `
 
 export const DropdownContent = styled.div`
-  display: block;
+  display: none;
   position: absolute;
   float: right;
   right: 0;
@@ -109,6 +117,14 @@ export const DropdownContent = styled.div`
   min-width: 250px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
+
+  & #myDropdown{
+    display: block;
+  }
+
+  &.show {
+    display: block;
+  }
 `
 export const DropdownContentLink = styled(Link)`
   color: black;

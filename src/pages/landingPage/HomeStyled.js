@@ -14,12 +14,22 @@ export const HeroSection = styled.div`
     background-size: cover;
     background-position: right;
   }
+
+  @media screen and (orientation: landscape) and (max-width: 960px){
+    width: 100%;
+    height: 100vh;
+  }
 `;
 
 export const BgOverlay = styled.div`
   height: 100vh;
   width: 100%;
   background: rgba(49, 38, 49, 0.8);
+
+  @media screen and (orientation: landscape) and (max-width: 960px){
+    width: 100%;
+    height: 100vh;
+  }
 `;
 
 export const ContentHolder = styled.div`
@@ -45,7 +55,7 @@ export const ContentHolder = styled.div`
   }
 
   @media screen and (max-width: 480px) {
-    padding-top: 20%;
+    padding-top: 15%;
     display: block;
     width: 100vw;
     text-align: center;
@@ -75,7 +85,36 @@ export const ContentHolder = styled.div`
       font-size: 58px;
     }
   }
+
+  @media screen and (orientation: landscape) and (max-width: 960px){
+    width: 100%;
+    padding-top: 0;
+    padding: 5%;
+    height: inherit;
+    /* display: flex; */
+
+    h1 {
+    color: white;
+    line-height: 1.2;
+    font-size: 48px;
+    padding-top: 10px;
+  }
+
+  }
 `;
+
+export const TypeTextHolder = styled.div`
+
+@media screen and (max-width: 480px){
+  height: 45vh;
+}
+
+@media screen and (min-width: 481px) and (max-width: 960px){
+  height: 35vh;
+ 
+} 
+
+`
 
 export const BtnHolder = styled.div`
   display: flex;
@@ -92,6 +131,15 @@ export const BtnHolder = styled.div`
     align-content: center !important;
     justify-items: center !important ;
     margin: auto;
+  }
+
+  @media screen and (orientation: landscape) and (max-width: 960px){
+    width: 40%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
   }
 `;
 

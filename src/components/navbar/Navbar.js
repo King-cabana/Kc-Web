@@ -11,11 +11,10 @@ import {
   NavMobile,
   NavBarLink,
   NavButtonLink,
-  AccessButton,
 } from "./Navbar.styled";
 import Logo from "../../images/kingCabanaLogo.svg";
 import { NavGroup } from "./Navbar.styled";
-import { AlternativeButton, AltNavBtn, PryNavBtn } from "../button/button";
+import { AltNavBtn, PryNavBtn } from "../button/button";
 // import SignIn from '../../pages/authentication/signIn/SignIn';
 
 const Navbar = () => {

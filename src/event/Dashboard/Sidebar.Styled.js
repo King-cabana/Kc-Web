@@ -21,14 +21,16 @@ export const SidebarNav = styled.nav`
   transition: 350ms;
   z-index: 10;
   /* padding-top: 1%; */
-  /* position: fixed; */
-  /* top: 62px; */
+  position: fixed;
+  top: 62px;
+  
 
   @media screen and (max-width: 480px) {
     width: 100%;
     position: fixed;
-    z-index: 1000;
-    display: ${({ sidebar }) => (sidebar ? "flex" : "block")};
+    z-index: 9999999;
+    display: block;
+    /* display: ${({ sidebar }) => (sidebar ? "flex" : "block")}; */
     left: 0;
     top: 15vh;
   }
@@ -43,18 +45,20 @@ export const SidebarWrap = styled.div`
 `;
 
 export const ContentBody = styled.div`
-  /* height: 100%; */
   background-color: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
   width: 80%;
   position: relative;
-  overflow-y: scroll;
-  /* max-height: 85vh; */
+  /* overflow-y: scroll;   */
+  margin-left: 20%;
+  top: 62px;
+
 
   @media screen and (max-width: 480px) {
     width: 100%;
+    margin-left: 0;
   }
 `;
 

@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { HiOutlineEye, HiOutlineEyeOff } from "react-icons/hi";
-import { KBDisplayXs, KBTextXs } from "../../components/fonts/fontSize";
+import { ErrorText, KBDisplayXs, KBTextXs } from "../../components/fonts/fontSize";
 import {
   AuthBackground,
   Div,
@@ -25,8 +25,8 @@ const SignUp = () => {
   const [click, setClick] = useState(false);
   const [visible, setVisibility] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [disabledButton, setdisableButton] = useState(true);
-  // const [email, setEmail] = useState("");
+  const [disabledButton, setDisabledButton] = useState(true);
+  const [errors, setErrors] = useState({});
 
   const [inputs, setInput] = useState({
     fullName: "",
@@ -35,12 +35,16 @@ const SignUp = () => {
     confirmPassword: "",
   });
 
-  function inputChange(e) {
-    setInput({ ...inputs, [e.target.name]: e.target.value }); 
-    setdisableButton(false);
-  }
+  const [allFieldsFilled, setAllFieldsFilled] = useState(false);
 
-  const [errors, setErrors] = useState({});
+  function inputChange(e) {
+    setInput({ ...inputs, [e.target.name]: e.target.value });
+  
+    const isFilled = Object.values(inputs).every((value) => value.trim() !== "");
+    setAllFieldsFilled(isFilled);
+  
+    setDisabledButton(!isFilled || !allFieldsFilled);
+  }
 
   const handleClick = () => {
     setClick(!click);
@@ -51,32 +55,35 @@ const SignUp = () => {
 
   function handleValidation(e) {
     setErrors(Validation(inputs));
+    // setDisabledButton(Object.keys(errors).length > 0);
   }
-
-  // useEffect(()=>{
-  //   handleSignUp();
-  // },[errors])
 
   const navigate = useNavigate();
 
   const handleSignUp = async (e) => {
     e.preventDefault();
-    handleValidation();
+    setLoading(true);
     try {
-      setLoading(true);
-      const res= await register(inputs);
-      console.log(res)
-      toast.success("Successful, An Otp has been sent to your inbox");
+      await register(inputs);
+      toast.success("Success, An Otp as been sent to your inbox.")
       navigate("/verifyemail");
     } catch (error) {
       setLoading(false);
-      toast.error(error.response.data);
-    } finally {
-      setInput("");
+      // toast.error(error?.response?.data);
+      error?.response? toast.error(error?.response?.data?.message): 
+      toast.error(error.message)
+    } finally{
+      setInput({
+        fullName: "",
+        email: "",
+        password: "",
+        confirmPassword: "",
+      });
+      
     }
-
     sessionStorage.setItem("email", inputs.email);
   };
+  
 
   return (
     <AuthBackground>
@@ -93,54 +100,30 @@ const SignUp = () => {
           <Form onSubmit={handleSignUp}>
             <label style={{ marginBottom: "2%" }}>Full Name</label>
             <InputFieldWrapper>
-              <input
-                placeholder="Enter your name"
-                name="fullName"
-                onChange={inputChange}
-              ></input>
+              <input placeholder="Enter your name" name="fullName" onChange={inputChange}
+              />
             </InputFieldWrapper>
             {errors.fullName && (
-              <p
-                style={{
-                  color: "red",
-                  fontSize: "10px",
-                  textAlign: "left",
-                  marginTop: "2%",
-                }}
-              >
+              <ErrorText>
                 {errors.fullName}
-              </p>
+              </ErrorText>
             )}
 
             <label style={{ marginBottom: "2%" }}>E-mail</label>
             <InputFieldWrapper>
-              <input
-                placeholder="Enter your E-mail"
-                name="email"
-                onChange={inputChange}
-              ></input>
+              <input placeholder="Enter your E-mail" name="email" onChange={inputChange}
+              />
             </InputFieldWrapper>
             {errors.email && (
-              <p
-                style={{
-                  color: "red",
-                  fontSize: "10px",
-                  textAlign: "left",
-                  marginTop: "2%",
-                }}
-              >
+              <ErrorText>
                 {errors.email}
-              </p>
+              </ErrorText>
             )}
 
             <label style={{ marginBottom: "2%" }}>Password</label>
             <InputFieldWrapper>
-              <input
-                placeholder="Create a password"
-                type={InputType}
-                name="password"
-                onChange={inputChange}
-              ></input>
+              <input placeholder="Create a password" type={InputType} name="password" onChange={inputChange}
+              />
               {click ? (
                 <HiOutlineEyeOff
                   onClick={handleClick}
@@ -164,38 +147,20 @@ const SignUp = () => {
               )}
             </InputFieldWrapper>
             {errors.password && (
-              <p
-                style={{
-                  color: "red",
-                  fontSize: "10px",
-                  textAlign: "left",
-                  marginTop: "2%",
-                }}
-              >
+              <ErrorText>
                 {errors.password}
-              </p>
+              </ErrorText>
             )}
 
             <label style={{ marginBottom: "2%" }}>Confirm Password</label>
             <InputFieldWrapper>
-              <input
-                placeholder="Re-enter password"
-                type={"password"}
-                name="confirmPassword"
-                onChange={inputChange}
-              ></input>
+              <input placeholder="Re-enter password" type={"password"} name="confirmPassword" onChange={inputChange}
+              />
             </InputFieldWrapper>
             {errors.confirmPassword && (
-              <p
-                style={{
-                  color: "red",
-                  fontSize: "10px",
-                  textAlign: "left",
-                  marginTop: "2%",
-                }}
-              >
+              <ErrorText>
                 {errors.confirmPassword}
-              </p>
+              </ErrorText>
             )}
 
             <div
@@ -210,14 +175,15 @@ const SignUp = () => {
                 }}
               >
                 I agree to King Cabana’s{" "}
-                <span style={{ color: "#ff2957" }}>Terms of service</span> and{" "}
-                <span style={{ color: "#ff2957" }}>Privacy Policy</span>
+                <span>Terms of service</span> and{" "}
+                <span>Privacy Policy</span>
               </KBTextXs>
             </div>
             <LongButton
               style={{ marginTop: "5%" }}
               type="submit"
               disabled={disabledButton}
+              onClick={handleValidation}
             >
               {loading ? <ImSpinner6 size={"1.5rem"} /> : "Sign up"}
             </LongButton>
@@ -277,10 +243,8 @@ const SignUp = () => {
 
           <LogInLink to="/logIn">
             Already have an account?
-            <span
-              style={{ color: "#ff2957", fontWeight: "500", textAlign: "left" }}
-            >
-              {" Login"}
+            <span>
+              Login
             </span>
           </LogInLink>
         </SignUpContent>

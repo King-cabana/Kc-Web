@@ -13,9 +13,10 @@ import {
   ProgressStages2Outter,
   ProgressStages3Outter,
 } from "./ProgressBarStyled";
-import {IoIosCheckmarkCircle} from "react-icons/io"
+import { IoIosCheckmarkCircle } from "react-icons/io";
 
 const ProgressBar = ({ setActive, name, number }) => {
+  const [activeColor, setActiveColor] = useState(false);
   const [progress, setProgress] = useState({
     eventdetails: 0,
     defineaudience: 0,
@@ -25,6 +26,7 @@ const ProgressBar = ({ setActive, name, number }) => {
   useEffect(() => {
     if (name === "eventdetails") {
       setProgress({ ...progress, eventdetails: number });
+      setActiveColor(true)
     }
     if (name === "defineaudience") {
       setProgress({ ...progress, eventdetails: 4, defineaudience: number });
@@ -44,38 +46,65 @@ const ProgressBar = ({ setActive, name, number }) => {
       <KCProgressBar>
         <ProgressStagesOutter>
           <ProgressStages onClick={() => setActive("details")}>
-            <ProgressStageInner>
-              <ProgressStageCounter>
-                <NumberHolder>{progress.eventdetails === 4? <IoIosCheckmarkCircle/> : 1}</NumberHolder>
-                Event Details
-              </ProgressStageCounter>
-              {progress.eventdetails}/4
+            <ProgressStageInner
+              color={activeColor && "#FFBC15"}
+              fontWeight={activeColor && "500"}
+            >
+              <div>
+                <ProgressStageCounter>
+                  <NumberHolder>
+                    {progress.eventdetails === 4 ? <IoIosCheckmarkCircle /> : 1}
+                  </NumberHolder>
+                  Event Details
+                </ProgressStageCounter>
+                {progress.eventdetails}/4
+              </div>
             </ProgressStageInner>
           </ProgressStages>
         </ProgressStagesOutter>
 
         <ProgressStages2Outter>
           <ProgressStages2 onClick={() => setActive("audience")}>
-            <ProgressStageInner>
-              <ProgressStageCounter>
-                <NumberHolder>{progress.defineaudience === 1? <IoIosCheckmarkCircle/> : 2}</NumberHolder>
-                Define Audience
-              </ProgressStageCounter>
-              {progress.defineaudience}/1
+            <ProgressStageInner
+              color={activeColor && "#FFBC15"}
+              fontWeight={activeColor && "500"}
+            >
+              <div>
+                <ProgressStageCounter>
+                  <NumberHolder>
+                    {progress.defineaudience === 1 ? (
+                      <IoIosCheckmarkCircle />
+                    ) : (
+                      2
+                    )}
+                  </NumberHolder>
+                  Define Audience
+                </ProgressStageCounter>
+                {progress.defineaudience}/1
+              </div>
             </ProgressStageInner>
           </ProgressStages2>
         </ProgressStages2Outter>
 
         <ProgressStages3Outter>
-          <ProgressStages3
-            onClick={() => setActive("budget")}
-          >
-            <ProgressStageInner>
-              <ProgressStageCounter>
-                <NumberHolder>{progress["budget&inventory"] === 2? <IoIosCheckmarkCircle/> : 3}</NumberHolder>
-                Budget & Take Inventory
-              </ProgressStageCounter>
-              {progress["budget&inventory"]}/2
+          <ProgressStages3 onClick={() => setActive("budget")}>
+            <ProgressStageInner
+              color={activeColor && "#FFBC15"}
+              fontWeight={activeColor && "500"}
+            >
+              <div>
+                <ProgressStageCounter>
+                  <NumberHolder>
+                    {progress["budget&inventory"] === 2 ? (
+                      <IoIosCheckmarkCircle />
+                    ) : (
+                      3
+                    )}
+                  </NumberHolder>
+                  Budget & Take Inventory
+                </ProgressStageCounter>
+                {progress["budget&inventory"]}/2
+              </div>
             </ProgressStageInner>
           </ProgressStages3>
         </ProgressStages3Outter>
