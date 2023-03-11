@@ -113,7 +113,7 @@ const FirstCreateEvent = ({ padding }) => {
   const handleSubmit = async function (e) {
     e.preventDefault();
     navigate("/test/eventdetails/2");
-    console.log(file);
+    console.log(state);
   };
 
   return (
@@ -271,7 +271,7 @@ const FirstCreateEvent = ({ padding }) => {
                 Event description
                 <BudgetInventorySubtitle>
                   What is the purpose of this event{" "}
-                  <Asterix>
+                  <Asterix style={{ fontSize: "12px" }}>
                     {" - "}
                     {state?.eventDescription?.length}/250 Characters
                   </Asterix>

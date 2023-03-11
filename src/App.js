@@ -151,9 +151,9 @@ function App() {
               }
             />
             <Route path="/firstCreateEvent" element={<FirstCreateEvent />} />
-            {/* <Route path="/secondCreateEvent" element={<SecondCreateEvent />} />
-            <Route path="/contactInfo" element={<ContactInfo />} />
-            <Route path="/timeLineEvent" element={<TimeLineEvent />} /> */}
+            <Route path="/secondCreateEvent" element={<SecondCreateEvent />} />
+            {/* <Route path="/contactInfo" element={<ContactInfo />} /> */}
+            <Route path="/timeLineEvent" element={<TimeLineEvent />} />
             <Route
               path="/home"
               element={

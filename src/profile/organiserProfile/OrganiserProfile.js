@@ -56,7 +56,6 @@ const OrganiserProfile = () => {
     dispatch(editProfile({ name: "userEmail", value: userData.email }));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
   const handleFileChange = async (e) => {
     const MAX_FILE_SIZE = 1024; // 1MB
     const file = e.target.files[0];
@@ -98,7 +97,6 @@ const OrganiserProfile = () => {
       }
     }
   };
-
   useEffect(() => {
     if (!file) {
       setErrorMsg("*Please choose an image*");
@@ -108,7 +106,6 @@ const OrganiserProfile = () => {
     setErrorMsg("");
     setIsSuccess(true);
   }, [file]);
-
   const handleLogoFileChange = async (e) => {
     const MAX_FILE_SIZE = 1024; // 1MB
     const logoFile = e.target.files[0];
@@ -150,7 +147,6 @@ const OrganiserProfile = () => {
       }
     }
   };
-
   useEffect(() => {
     if (!logoFile) {
       setLogoErrorMsg("*Please choose an image*");
@@ -160,7 +156,6 @@ const OrganiserProfile = () => {
     setLogoErrorMsg("");
     setLogoIsSuccess(true);
   }, [logoFile]);
-
   useEffect(() => {
     if (
       logoFile &&
@@ -186,7 +181,6 @@ const OrganiserProfile = () => {
     state.country,
     state.organizerDetails,
   ]);
-
   const change = (e) => {
     dispatch(editProfile({ name: e.target.name, value: e.target.value }));
   };
@@ -301,10 +295,13 @@ const OrganiserProfile = () => {
 
             <InputSeg>
               <InputText>
-                Event Organizer's Details{" "}
+                Event Organizer's Details {" - "}
                 <Asterix>
-                  *{" - "}
-                  {state?.organizerDetails?.length}/250 Characters
+                  *
+                  {state?.organizerDetails?.length
+                    ? state?.organizerDetails?.length
+                    : "0"}
+                  /250 Characters
                 </Asterix>
               </InputText>
               <MyTextArea
