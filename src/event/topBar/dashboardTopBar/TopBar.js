@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { LogoLink } from "../../../components/navbar/Navbar.styled";
 import {
   TopBarContainer,
@@ -21,8 +21,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { clearUserDetails } from "../../../redux/slices/userDetailsSlice";
 import { useNavigate } from "react-router";
 import { toast } from "react-toastify";
+import { BtnHolderLink, ModalButtonContainer, ModalText, PopUpComponent, PopUpOverlay } from "../../budgetInventory/InventoryStyled";
+import { AlternativeButton2, ModalPrimaryButton } from "../../../components/button/button";
 
 const TopBar = () => {
+
+  const [modal, setModal] = useState(false);
+
+   // Modal Contitions
+   if (modal) {document.body.classList.add("active-modal");} else {document.body.classList.remove("active-modal");}
+  const showModal = !modal && "notShown";
+
   const user = useSelector((state) => state.userDetails);
 
   function showDropDown() {
@@ -35,7 +44,7 @@ const TopBar = () => {
   const handleLogout = () => {
     dispatch(clearUserDetails());
     toast.success("Logout!");
-    setTimeout(() => navigate("/"), 200);
+    // setTimeout(() => navigate("/"), 200);
   };
 
   // Close dropdown if the user clicks outside of it
@@ -52,6 +61,8 @@ const TopBar = () => {
   };
 
   return (
+    <>
+    {modal && <PopUpOverlay></PopUpOverlay>}
     <TopBarContainer>
       <TopBarLogo>
         <LogoLink to="/">
@@ -126,7 +137,7 @@ const TopBar = () => {
                   </div>
                   <hr style={{ color: "#0068FF", padding: "auto" }} />
                   <DropdownContentLink>Account settings</DropdownContentLink>
-                  <DropdownContentLink onClick={handleLogout}>
+                  <DropdownContentLink onClick={() => setModal(!modal)}>
                     Logout
                   </DropdownContentLink>
                 </DropdownContent>
@@ -136,6 +147,32 @@ const TopBar = () => {
         </ItemsHolder>
       </TopBarItemHolder>
     </TopBarContainer>
+
+    <div className={`${showModal}`}>
+              {/* <div> */}
+              <PopUpComponent>
+                <ModalText>
+                 Are you sure you want to Logout?
+                </ModalText>
+
+                <ModalButtonContainer>
+                  <BtnHolderLink>
+                    <AlternativeButton2
+                      onClick={() => setModal(!modal)}
+                      style={{
+                        color: "#FF2957",
+                      }}>
+                      Cancel
+                    </AlternativeButton2>
+                  </BtnHolderLink>
+
+                  <BtnHolderLink to="/">
+                    <ModalPrimaryButton onClick={handleLogout}>Yes, Logout</ModalPrimaryButton>
+                  </BtnHolderLink>
+                </ModalButtonContainer>
+              </PopUpComponent>
+            </div>
+    </>
   );
 };
 

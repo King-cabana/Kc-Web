@@ -52,7 +52,6 @@ import {
   KBTextL,
   KBTextM,
 } from "../../components/fonts/fontSize";
-import { useState } from "react";
 
 
 const Home = () => {

@@ -90,15 +90,25 @@ const EditOrganiserProfile = () => {
 
   useEffect(() => {
     const fetchOrganizerProfile = async () => {
-      const { data } = await axios.get(
-        `http://localhost:8081/profiles/${state.id}`
-      );
-      dispatch(setEventOrganizerProfile(data));
-      setIncomingData(data);
+      try {
+        const { data } = await axios.get(
+          `http://localhost:8081/profiles/${state.id}`
+        );
+        dispatch(setEventOrganizerProfile(data));
+        setIncomingData(data);
+      } catch (error) {
+        console.log(error);
+        // handle error here
+      }
     };
+  
     fetchOrganizerProfile();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  
+    // return a cleanup function
+    return () => {
+      // cleanup code here
+    };
+  }, [state.id]);
 
   // useEffect(() => {
   //   console.log(incomingData);

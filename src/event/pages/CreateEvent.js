@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import CreateEventTopBar from "../topBar/CreateEventTopBar/CreateEventTopBar";
 import ProgressBar from "../progressBar/ProgressBar";
-import { BodyHolder, WavyBackground } from "./CreateEventStyled";
+import { WavyBackground } from "./CreateEventStyled";
 import Layout from "../../components/layoutComponent/Layout";
 import DefineAudience from "./DefineAudience";
 import Budget from "../budgetInventory/Budget";

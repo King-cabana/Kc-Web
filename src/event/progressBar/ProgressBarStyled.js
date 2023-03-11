@@ -1,4 +1,3 @@
-import { pureFinalPropsSelectorFactory } from "react-redux/es/connect/selectorFactory";
 import styled from "styled-components";
 
 export const KCProgressBarHolder = styled.div`

@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { RiArrowDownSLine } from "react-icons/ri";
+import React, { useState } from "react";
 import { SidebarData } from "./SidebarData";
 import SubMenu from "./SubMenu";
 import TopBar from "../topBar/dashboardTopBar/TopBar";
@@ -43,9 +42,9 @@ const Sidebar = ({ children }) => {
         <ContentBody>
           <Nav>
             <NavIcon to="#" onClick={showSidebar}>
-              {!sidebar && <FaIcons.FaBars />}
+              {!sidebar && <AiIcons.AiOutlineClose/>}
 
-              {sidebar && <AiIcons.AiOutlineClose />}
+              {sidebar && <FaIcons.FaBars />}
             </NavIcon>
           </Nav>
           {children}

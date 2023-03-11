@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { ContactLogoBody } from "../../pages/contactUs/ContactUsStyled";
 
 const initialState = {isSignedIn:false, details:{}};
 

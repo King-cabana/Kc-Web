@@ -53,8 +53,12 @@ const OrganiserProfile = () => {
 
   useEffect(() => {
     const userData = JSON.parse(localStorage.getItem("user") || "{}");
-    dispatch(editProfile({ name: "userEmail", value: userData.email }));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    dispatch(editProfile({ name: "userEmail", value: userData?.email }));
+  
+    // return a cleanup function
+    return () => {
+      // cleanup code here
+    };
   }, []);
 
   const handleFileChange = async (e) => {

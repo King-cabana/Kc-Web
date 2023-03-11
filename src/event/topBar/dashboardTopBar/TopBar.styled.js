@@ -17,6 +17,7 @@ export const TopBarContainer = styled.div`
   z-index: 1;
 
   @media screen and (max-width: 480px) {
+    z-index: 9999999;
     width: 100%;
   }
 `;

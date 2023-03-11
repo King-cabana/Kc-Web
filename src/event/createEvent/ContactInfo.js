@@ -1,12 +1,9 @@
 import React, { useState } from "react";
-import { ButtonContainer } from "../budgetInventory/BudgetStyled";
 import {ContactInfoContainer,ContactInfoHeader,ContactInfoTitle1,ContactInfoSubtitle,ContactInfoSection,ContactInfoTitle2,ContactInfoUpload,
         ContactInfoLabel,ContactInfoInput, ContactInfoPadding,Radio,RadioInput,RadioLabel,OthersInput,} from "./ContactInfoStyled";
   import {PopUpOverlay,BtnHolderLink,PopUpComponent,ModalText,ModalButtonContainer,} from "../budgetInventory/InventoryStyled";
-import { PrimaryButton,ModalPrimaryButton,AlternativeButton2,} from "../../components/button/button";
+import { ModalPrimaryButton,AlternativeButton2,} from "../../components/button/button";
 import "../../App.css";
-import CreateEventTopBar from "../topBar/CreateEventTopBar/CreateEventTopBar";
-import ProgressBar from "../progressBar/ProgressBar";
 import { useNavigate } from 'react-router';
 import { DownBtn, DownButtonBox, DownButtonFull, DownButtonOutline } from "./SecondCreateEventStyled";
 

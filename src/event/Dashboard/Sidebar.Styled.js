@@ -28,8 +28,9 @@ export const SidebarNav = styled.nav`
   @media screen and (max-width: 480px) {
     width: 100%;
     position: fixed;
-    z-index: 1000;
-    display: ${({ sidebar }) => (sidebar ? "flex" : "block")};
+    z-index: 9999999;
+    display: block;
+    /* display: ${({ sidebar }) => (sidebar ? "flex" : "block")}; */
     left: 0;
     top: 15vh;
   }

@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 export const PopUpOverlay = styled.div`
-  z-index: 8;
+  z-index: 9999;
   width: 100%;
   height: 100%;
   top: 0;
@@ -14,7 +14,7 @@ export const PopUpOverlay = styled.div`
 `;
 
 export const PopUpComponent = styled.div`
-  z-index: 100;
+  z-index: 99999;
   position: fixed;
   top: 50%;
   left: 50%;

@@ -59,11 +59,10 @@ export const LogInLink = styled(Link)`
     color: black;
   }
   
-
   span {
     text-decoration: none;
     color:#ff2957;
-    font-weight:600; 
+    font-weight:500; 
   }
 `;
 

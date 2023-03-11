@@ -1,4 +1,4 @@
-import { Redirect, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import React, { Suspense, lazy } from "react";
 import "./App.css";
 
