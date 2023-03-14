@@ -56,11 +56,10 @@ import {
 
 const Home = () => {
 
-  
   return (
     <>
       <Navbar />
-
+      
       <HeroSection>
         <BgOverlay>
           <ContentHolder>
@@ -243,6 +242,7 @@ const Home = () => {
         </ASContent>
       </ReadySection>
       <Footer /> 
+     
     </>
   );
 };

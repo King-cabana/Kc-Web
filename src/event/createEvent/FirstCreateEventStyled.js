@@ -40,7 +40,11 @@ export const Input = styled.input`
   -moz-appearance: textfield;
 
   @media screen and (max-width: 960px) {
-    height: 50px;
+    height: 40px;
+    ::placeholder {
+      font-size: 12px;
+      line-height: 18px;
+    }
   }
 
   ::-webkit-inner-spin-button {
@@ -165,14 +169,35 @@ export const CheckBoxInput = styled.div`
 
 export const InputText = styled.label`
   font-weight: 500;
-  font-size: ${(props) => (props.fontSize ? props.fontSize : "20px")};
-  line-height: 30px;
+  font-size: ${(props) => (props.fontSize ? props.fontSize : "18px")};
+  line-height: 26px;
   align-items: center;
   color: #484848;
   margin-bottom: 1rem;
 
   @media screen and (max-width: 960px) {
-    font-size: 15px;
+    font-size: 12px;
+    line-height: 18px;
+  }
+`;
+
+export const SmallerInputText = styled(InputText)`
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
+  font-size: 16px;
+  line-height: 18px;
+  width: 40%;
+  margin-left: 1rem;
+  margin-top: 1rem;
+
+  @media screen and (max-width: 960px) {
+    font-size: 11px;
+    line-height: 14px;
+    width: auto;
+  }
+  @media screen and (max-width: 320px) {
+    margin-left: 0.3rem;
   }
 `;
 

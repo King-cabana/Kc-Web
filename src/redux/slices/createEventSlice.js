@@ -56,10 +56,27 @@ export const createEventSlice = createSlice({
         Object.assign(state, { [each]: "" })
       );
     },
+    addTag: (state, action) => {
+      if (state.tags.length < 5) {
+        state.tags.push(action.payload);
+      }
+    },
+    removeTag: (state, action) => {
+      const index = state.tags.findIndex((tag) => tag === action.payload);
+      if (index !== -1) {
+        state.tags.splice(index, 1);
+      }
+    },
   },
 });
 
-export const { editGenerally, clearEvent, editCheckbox, addToList } =
-  createEventSlice.actions;
+export const {
+  editGenerally,
+  clearEvent,
+  editCheckbox,
+  addToList,
+  addTag,
+  removeTag,
+} = createEventSlice.actions;
 
 export default createEventSlice.reducer;

@@ -95,6 +95,10 @@ export const BudgetSection = styled.section`
     padding: 0.5rem;
     margin-bottom: 5rem;
   }
+  @media screen and (max-width: 300px) {
+    margin: 0 0.1rem;
+    margin-bottom: 5rem;
+  }
 `;
 
 export const BudgetSubtitle = styled.p`

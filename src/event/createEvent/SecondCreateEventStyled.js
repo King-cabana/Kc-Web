@@ -85,9 +85,10 @@ background-color: rgba(0, 104, 255, 0.1);
 } */
 
   @media screen and (max-width: 960px) {
-    width: 60px;
+    width: auto;
     height: 30px;
-    font-size: 6.5px;
+    padding: 0.5rem;
+    font-size: 8px;
   }
 `;
 
@@ -192,9 +193,16 @@ export const EventInput = styled.div`
   }
 
   @media screen and (max-width: 960px) {
+    height: 50px;
     input {
       width: 100%;
       height: 50px;
+      padding: 0.3rem;
+    }
+  }
+  @media screen and (max-width: 300px) {
+    input {
+      padding: 0.3rem;
     }
   }
 `;
@@ -311,4 +319,13 @@ export const DownButtonFull = styled.button`
     padding: 8px 2px;
     margin-top: 10px;
   }
+`;
+
+export const InputTime = styled.input.attrs({ type: "time" })`
+  color: black;
+`;
+
+export const InputDate = styled.input.attrs({ type: "date" })`
+  color: black;
+  padding: 0rem;
 `;

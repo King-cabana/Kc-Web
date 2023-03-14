@@ -267,7 +267,7 @@ const EventHome = () => {
                   Create an event right away.
                 </ChecklistSubHeading>
               </Wrapper>
-              <ButtonLink to="/firstCreateEvent">
+              <ButtonLink to="/createevent/eventdetails/1">
                 <PrimaryButton2>Start here</PrimaryButton2>
               </ButtonLink>
             </ItemsContainer>

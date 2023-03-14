@@ -103,16 +103,11 @@ const EditOrganiserProfile = () => {
     };
   
     fetchOrganizerProfile();
-  
     // return a cleanup function
     return () => {
       // cleanup code here
     };
   }, [state.id]);
-
-  // useEffect(() => {
-  //   console.log(incomingData);
-  // }, [incomingData]);
 
   const change = (e) => {
     setIncomingData({ ...incomingData, [e.target.name]: e.target.value });
@@ -142,7 +137,6 @@ const EditOrganiserProfile = () => {
       },
     });
   };
-
   const handleFileChange = async (e) => {
     const MAX_FILE_SIZE = 1024; // 1MB
     const file = e.target.files[0];
@@ -188,7 +182,6 @@ const EditOrganiserProfile = () => {
       }
     }
   };
-
   useEffect(() => {
     if (!file) {
       setIsSuccess(false);
@@ -200,7 +193,6 @@ const EditOrganiserProfile = () => {
       setSuccessMsg(false);
     }, 3000);
   }, [file]);
-
   const handleLogoFileChange = async (e) => {
     const MAX_FILE_SIZE = 1024; // 1MB
     const logoFile = e.target.files[0];
@@ -246,7 +238,6 @@ const EditOrganiserProfile = () => {
       }
     }
   };
-
   useEffect(() => {
     if (!logoFile) {
       setLogoIsSuccess(false);
@@ -258,7 +249,6 @@ const EditOrganiserProfile = () => {
       setLogoSuccessMsg(false);
     }, 3000);
   }, [logoFile]);
-
   const toggleOthers = () => {
     if (visibility === true) {
       setVisibility(false);
@@ -267,7 +257,6 @@ const EditOrganiserProfile = () => {
   const discardNavigate = () => {
     navigate("/home");
   };
-
   const saveNavigate = async (e) => {
     e.preventDefault();
     setSending(true);
@@ -478,7 +467,7 @@ const EditOrganiserProfile = () => {
                   id="logoFile"
                   accept="image/png, image/jpeg, image/jpg"
                   name="logoUrl"
-                  // defaultValue={incomingData?.logoUrl}
+                  defaultValue={incomingData?.logoUrl}
                 />
                 <ErrorMessages>{logoErrorMsg}</ErrorMessages>
                 {logoSuccessMsg ? (
@@ -507,7 +496,6 @@ const EditOrganiserProfile = () => {
                 placeholder="Enter name"
                 name="organizerName"
                 onChange={change}
-                // defaultValue={state.organizerName}
                 defaultValue={incomingData?.organizerName}
               />
             </InputSeg>
@@ -519,7 +507,6 @@ const EditOrganiserProfile = () => {
                 placeholder="E.g: email@example.com"
                 name="profileEmail"
                 onChange={change}
-                // defaultValue={state?.email}
                 defaultValue={incomingData?.profileEmail}
                 title="Email format: xxx@xxxx.xxx)"
                 pattern="^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$"
@@ -533,7 +520,6 @@ const EditOrganiserProfile = () => {
                 placeholder="E.g: +2348022345661"
                 name="phoneNumber"
                 onChange={change}
-                // defaultValue={state?.phoneNumber}
                 defaultValue={incomingData?.phoneNumber}
                 minLength={5}
               />
@@ -615,7 +601,6 @@ const EditOrganiserProfile = () => {
                 placeholder="Write a short bio: 250 characters maximum"
                 maxLength={250}
                 onChange={change}
-                // defaultValue={state?.organizerDetails}
                 defaultValue={incomingData?.organizerDetails}
               />
             </InputSeg>
@@ -627,7 +612,6 @@ const EditOrganiserProfile = () => {
                 type="url"
                 placeholder="https://example.com/"
                 name="website"
-                // defaultValue={state?.website}
                 defaultValue={incomingData?.website}
                 onChange={change}
               />
@@ -639,7 +623,6 @@ const EditOrganiserProfile = () => {
                 type="url"
                 placeholder="https://linkedin.com/*****"
                 name="linkedIn"
-                // defaultValue={state?.linkedIn}
                 defaultValue={incomingData?.linkedIn}
                 onChange={change}
               />
@@ -651,7 +634,6 @@ const EditOrganiserProfile = () => {
                 type="url"
                 placeholder="https://instagram.com/*****"
                 name="instagram"
-                // defaultValue={state?.instagram}
                 defaultValue={incomingData?.instagram}
                 onChange={change}
               />
@@ -663,7 +645,6 @@ const EditOrganiserProfile = () => {
                 type="url"
                 placeholder="https://twitter.com/*****"
                 name="twitter"
-                // defaultValue={state?.twitter}
                 defaultValue={incomingData?.twitter}
                 onChange={change}
               />
@@ -675,7 +656,6 @@ const EditOrganiserProfile = () => {
                 type="url"
                 placeholder="https://facebook.com/*****"
                 name="faceBook"
-                // defaultValue={state?.faceBook}
                 defaultValue={incomingData?.faceBook}
                 onChange={change}
               />
@@ -687,7 +667,6 @@ const EditOrganiserProfile = () => {
                 type="url"
                 placeholder="https://others.com/"
                 name="otherHandle"
-                // defaultValue={state?.otherHandle}
                 defaultValue={incomingData?.otherHandle}
                 onChange={change}
               />
@@ -751,7 +730,6 @@ const EditOrganiserProfile = () => {
                   type="text"
                   placeholder="Enter others"
                   name="guarantorRole"
-                  // defaultValue={state?.guarantorRole}
                   defaultValue={incomingData?.guarantorRole}
                   onChange={change}
                 />
@@ -772,6 +750,7 @@ const EditOrganiserProfile = () => {
                 name="secondaryContactFullName"
                 // defaultValue={state.guarantor?.secondaryContactFullName}
                 defaultValue={incomingData?.guarantor?.secondaryContactFullName}
+
                 onChange={guarantorChange}
               />
             </InputSeg>
@@ -784,6 +763,7 @@ const EditOrganiserProfile = () => {
                 name="companyName"
                 // defaultValue={state.guarantor?.companyName}
                 defaultValue={incomingData?.guarantor?.companyName}
+
                 onChange={guarantorChange}
               />
             </InputSeg>
@@ -796,6 +776,7 @@ const EditOrganiserProfile = () => {
                 name="jobRole"
                 // defaultValue={state.guarantor?.jobRole}
                 defaultValue={incomingData?.guarantor?.jobRole}
+
                 onChange={guarantorChange}
               />
             </InputSeg>
@@ -866,7 +847,6 @@ const EditOrganiserProfile = () => {
                 type="tel"
                 placeholder="E.g: +2348022345661"
                 name="secondaryContactPhoneNumber"
-                // defaultValue={state.guarantor?.secondaryContactPhoneNumber}
                 defaultValue={
                   incomingData?.guarantor?.secondaryContactPhoneNumber
                 }
@@ -885,6 +865,7 @@ const EditOrganiserProfile = () => {
                 name="secondaryContactEmail"
                 // defaultValue={state.guarantor?.secondaryContactEmail}
                 defaultValue={incomingData?.guarantor?.secondaryContactEmail}
+
                 onChange={guarantorChange}
               />
             </InputSeg>

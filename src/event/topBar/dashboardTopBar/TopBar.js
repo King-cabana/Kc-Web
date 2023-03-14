@@ -33,6 +33,7 @@ import {
   AlternativeButton2,
   ModalPrimaryButton,
 } from "../../../components/button/button";
+import { clearProfile } from "../../../redux/slices/profileSlice";
 
 const TopBar = () => {
   const [modal, setModal] = useState(false);
@@ -55,7 +56,8 @@ const TopBar = () => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    dispatch(clearUserDetails());
+    // dispatch(clearUserDetails(), clearProfile());
+    dispatch(clearProfile())
     toast.success("Logout!");
     // setTimeout(() => navigate("/"), 200);
   };
@@ -105,11 +107,13 @@ const TopBar = () => {
 
                 <Dropdown>
                   <DropDownBtn onClick={showDropDown} className="dropbtn">
-                    <RiArrowDownSLine
+                    {/* <RiArrowDownSLine
                       style={{
                         cursor: "pointer",
+                        zIndex:'1000'
                       }}
-                    />
+                      onClick={showDropDown}
+                    /> */}
                   </DropDownBtn>
                   <DropdownContent id="myDropdown" className="dropdown-content">
                     <div

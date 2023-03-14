@@ -54,13 +54,11 @@ const OrganiserProfile = () => {
   useEffect(() => {
     const userData = JSON.parse(localStorage.getItem("user") || "{}");
     dispatch(editProfile({ name: "userEmail", value: userData?.email }));
-  
     // return a cleanup function
     return () => {
       // cleanup code here
     };
   }, []);
-
   const handleFileChange = async (e) => {
     const MAX_FILE_SIZE = 1024; // 1MB
     const file = e.target.files[0];
@@ -102,7 +100,6 @@ const OrganiserProfile = () => {
       }
     }
   };
-
   useEffect(() => {
     if (!file) {
       setErrorMsg("*Please choose an image*");
@@ -112,7 +109,6 @@ const OrganiserProfile = () => {
     setErrorMsg("");
     setIsSuccess(true);
   }, [file]);
-
   const handleLogoFileChange = async (e) => {
     const MAX_FILE_SIZE = 1024; // 1MB
     const logoFile = e.target.files[0];
@@ -154,7 +150,6 @@ const OrganiserProfile = () => {
       }
     }
   };
-
   useEffect(() => {
     if (!logoFile) {
       setLogoErrorMsg("*Please choose an image*");
@@ -164,7 +159,6 @@ const OrganiserProfile = () => {
     setLogoErrorMsg("");
     setLogoIsSuccess(true);
   }, [logoFile]);
-
   useEffect(() => {
     if (
       logoFile &&
@@ -190,7 +184,6 @@ const OrganiserProfile = () => {
     state.country,
     state.organizerDetails,
   ]);
-
   const change = (e) => {
     dispatch(editProfile({ name: e.target.name, value: e.target.value }));
   };
@@ -223,7 +216,7 @@ const OrganiserProfile = () => {
                 placeholder="Enter name"
                 name="organizerName"
                 onChange={change}
-                value={state.organizerName}
+                defaultValue={state.organizerName}
                 required
               />
             </InputSeg>
@@ -237,7 +230,7 @@ const OrganiserProfile = () => {
                 placeholder="E.g: email@example.com"
                 name="profileEmail"
                 onChange={change}
-                value={state.profileEmail}
+                defaultValue={state.profileEmail}
                 title="Email format: xxx@xxxx.xxx)"
                 pattern="^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$"
                 required
@@ -253,7 +246,7 @@ const OrganiserProfile = () => {
                 placeholder="E.g: +2348022345661"
                 name="phoneNumber"
                 onChange={change}
-                value={state.phoneNumber}
+                defaultValue={state.phoneNumber}
                 required
                 minLength={5}
               />
@@ -268,7 +261,7 @@ const OrganiserProfile = () => {
                 placeholder="E.g: 19, Isaac Mike Street, Thomas Avenue"
                 name="address"
                 onChange={change}
-                value={state.address}
+                defaultValue={state.address}
                 required
               />
             </InputSeg>
@@ -283,7 +276,7 @@ const OrganiserProfile = () => {
                   placeholder="E.g: Kaduna State"
                   name="state"
                   onChange={change}
-                  value={state.state}
+                  defaultValue={state.state}
                   required
                 />
               </InputSeg>
@@ -297,7 +290,7 @@ const OrganiserProfile = () => {
                   placeholder="E.g: Nigeria"
                   name="country"
                   onChange={change}
-                  value={state.country}
+                  defaultValue={state.country}
                   required
                 />
               </InputSeg>
@@ -305,10 +298,13 @@ const OrganiserProfile = () => {
 
             <InputSeg>
               <InputText>
-                Event Organizer's Details{" "}
+                Event Organizer's Details {" - "}
                 <Asterix>
-                  *{" - "}
-                  {state?.organizerDetails?.length}/250 Characters
+                  *
+                  {state?.organizerDetails?.length
+                    ? state?.organizerDetails?.length
+                    : "0"}
+                  /250 Characters
                 </Asterix>
               </InputText>
               <MyTextArea
@@ -318,7 +314,7 @@ const OrganiserProfile = () => {
                 placeholder="Write a short bio: 250 characters maximum"
                 maxLength={250}
                 onChange={change}
-                value={state.organizerDetails}
+                defaultValue={state.organizerDetails}
                 required
               />
             </InputSeg>
