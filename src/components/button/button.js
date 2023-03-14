@@ -31,8 +31,8 @@ export const PrimaryButton = styled.button`
     width: auto;
   }
 
-  @media screen and (orientation: landscape) and (max-width: 960px){
-    height: 50px;
+  @media screen and (orientation: landscape) and (max-width: 960px) {
+    height: 35px;
     width: 120px;
   }
 `;
@@ -100,14 +100,12 @@ export const AlternativeButton = styled.button`
     border: 1.5px solid rgba(255, 41, 87, 0.6);
   }
 
-  @media screen and (orientation: landscape) and (max-width: 960px){
+  @media screen and (orientation: landscape) and (max-width: 960px) {
     height: 50px;
     width: 120px;
-    font-size: 10px
+    font-size: 10px;
   }
 `;
-
-
 
 export const AlternativeButton2 = styled.button`
   width: 150px;

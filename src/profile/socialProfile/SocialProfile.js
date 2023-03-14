@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { authToken } from "../../redux/service/authService";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router";
@@ -41,10 +40,7 @@ const SocialProfile = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const state = useSelector((state) => state.profile);
-
-  // useEffect(() => {
-  //   console.log(authToken);
-  // }, []);
+  const user = useSelector((state) => state.userDetails);
 
   const toggleOthers = () => {
     if (visibility === true) {
@@ -82,12 +78,12 @@ const SocialProfile = () => {
     setIsDisabled(true);
     try {
       const { data } = await axios.post(
-        "http://localhost:8081/profiles/create/",
+        "http://localhost:8080/profiles/create/",
         state,
         {
           headers: {
             "Content-Type": "application/json",
-            Authorization: authToken,
+            Authorization: `Bearer ${user.token}`,
           },
         }
       );

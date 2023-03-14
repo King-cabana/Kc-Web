@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { authToken } from "../../redux/service/authService";
 import axios from "axios";
 import {
   OverallContainer,
@@ -53,20 +52,23 @@ import { setEventOrganizerProfile } from "../../redux/slices/eventOrganizerProfi
 const EventHome = () => {
   const dispatch = useDispatch();
   const state = useSelector((state) => state.eventOrganizerProfile);
+  const user = useSelector((state) => state.userDetails);
   const [modal, setModal] = useState(true);
   const navigate = useNavigate();
+
   useEffect(() => {
     const fetchOrganizerProfile = async () => {
       try {
         const { data } = await axios.get(
-          `http://localhost:8081/profiles/${state?.id}`,
+          `http://localhost:8080/profiles/${state?.id}`,
           {
             headers: {
-              Authorization: authToken,
+              Authorization: `Bearer ${user.token}`,
             },
           }
         );
         console.log(data);
+        console.log(user);
         dispatch(setEventOrganizerProfile(data));
       } catch (error) {
         console.log(error);

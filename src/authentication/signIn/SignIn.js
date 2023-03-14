@@ -21,6 +21,7 @@ import { toast } from "react-toastify";
 import { ImSpinner6 } from "react-icons/im";
 import { setUserDetails } from "../../redux/slices/userDetailsSlice";
 import { useDispatch } from "react-redux";
+import { setUserToken } from "../../redux/slices/userDetailsSlice";
 
 const SignIn = () => {
   const [click, setClick] = useState(false);
@@ -34,7 +35,7 @@ const SignIn = () => {
     setVisibility(!visible);
   };
 
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem("token");
   const isAuthenticated = !!token;
 
   const InputType = visible ? "text" : "password";
@@ -45,16 +46,21 @@ const SignIn = () => {
     navigate("/forgotpassword");
   };
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const handleLogin = async (e) => {
     e.preventDefault();
     setLoading(true);
     try {
       const response = await login(email, password);
-      dispatch(setUserDetails(response?.data))
+      dispatch(setUserDetails(response?.data));
       toast.success("login successfully!");
-      
+
+      const userToken = localStorage.getItem("bearerToken") || "{}";
+      dispatch(setUserToken({ name: "token", value: userToken }));
+      console.log(userToken);
+      // return a cleanup function
+      navigate("/createProfile");
       if (isAuthenticated) {
         navigate("/dashboard");
       } else {
@@ -62,18 +68,18 @@ const SignIn = () => {
       }
     } catch (error) {
       setLoading(false);
-      if(error?.response?.status === 401){
+      if (error?.response?.status === 401) {
         toast.error("Invalid email or password");
-      } else{
-          error?.response? toast.error(error?.response?.data?.message): 
-          toast.error(error.message)}
-
+      } else {
+        error?.response
+          ? toast.error(error?.response?.data?.message)
+          : toast.error(error.message);
+      }
     } finally {
       setEmail("");
       setPassword("");
     }
   };
-
 
   return (
     <AuthBackground>
@@ -145,7 +151,7 @@ const SignIn = () => {
                   gap: "5px",
                 }}
               >
-                <input type="checkbox" ></input>
+                <input type="checkbox"></input>
                 <KBTextXs
                   style={{
                     textAlign: "center",

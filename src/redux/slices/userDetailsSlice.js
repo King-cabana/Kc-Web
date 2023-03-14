@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {isSignedIn:false, details:{}};
+const initialState = { isSignedIn: false, details: {} };
 
 const userDetailsSlice = createSlice({
   name: "userdetails",
@@ -9,19 +9,25 @@ const userDetailsSlice = createSlice({
     setUserDetails: (state, action) => {
       // state = action.payload
       Object.assign(state, {
-        isSignedIn:true, details:action.payload
-      })
+        isSignedIn: true,
+        details: action.payload,
+      });
       // return { message: action.payload };
+    },
+    setUserToken: (state, { payload }) => {
+      Object.assign(state, { [payload.name]: payload.value });
     },
     clearUserDetails: (state, action) => {
       Object.assign(state, {
-        isSignedIn:false, details:{}
-      })
+        isSignedIn: false,
+        details: {},
+      });
     },
   },
 });
 
 // const { reducer, actions } = userDetailsSlice;
 
-export const { setUserDetails, clearUserDetails } = userDetailsSlice.actions
+export const { setUserDetails, clearUserDetails, setUserToken } =
+  userDetailsSlice.actions;
 export default userDetailsSlice.reducer;

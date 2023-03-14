@@ -55,13 +55,13 @@ import {
 } from "../../components/button/button";
 import { useNavigate } from "react-router";
 import { toast } from "react-toastify";
-import { authToken } from "../../redux/service/authService";
 
 const EditOrganiserProfile = () => {
   const [modal, setModal] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const state = useSelector((state) => state.eventOrganizerProfile);
+  const user = useSelector((state) => state.userDetails);
   const [incomingData, setIncomingData] = useState();
   const toggleModal = () => {
     setModal(!modal);
@@ -92,7 +92,12 @@ const EditOrganiserProfile = () => {
     const fetchOrganizerProfile = async () => {
       try {
         const { data } = await axios.get(
-          `http://localhost:8081/profiles/${state.id}`
+          `http://localhost:8080/profiles/${state?.id}`,
+          {
+            headers: {
+              Authorization: `Bearer ${user.token}`,
+            },
+          }
         );
         dispatch(setEventOrganizerProfile(data));
         setIncomingData(data);
@@ -101,7 +106,7 @@ const EditOrganiserProfile = () => {
         // handle error here
       }
     };
-  
+
     fetchOrganizerProfile();
     // return a cleanup function
     return () => {
@@ -257,6 +262,7 @@ const EditOrganiserProfile = () => {
   const discardNavigate = () => {
     navigate("/home");
   };
+
   const saveNavigate = async (e) => {
     e.preventDefault();
     setSending(true);
@@ -264,8 +270,18 @@ const EditOrganiserProfile = () => {
     const patchData = [
       {
         op: "replace",
+        path: "/backgroundPictureUrl",
+        value: incomingData.backgroundPictureUrl,
+      },
+      {
+        op: "replace",
+        path: "/logoUrl",
+        value: incomingData.logoUrl,
+      },
+      {
+        op: "replace",
         path: "/organizerName",
-        value: incomingData?.organizerName,
+        value: incomingData.organizerName,
       },
       {
         op: "replace",
@@ -367,12 +383,12 @@ const EditOrganiserProfile = () => {
     ];
     try {
       const { data } = await axios.patch(
-        `http://localhost:8081/profiles/${state?.id}`,
+        `http://localhost:8080/profiles/${state?.id}`,
         patchData,
         {
           headers: {
             "Content-Type": "application/json",
-            Authorization: authToken,
+            Authorization: `Bearer ${user.token}`,
           },
         }
       );
@@ -534,7 +550,7 @@ const EditOrganiserProfile = () => {
                   placeholder="E.g: 18 or Number 12 or Km 14 or Room 347 or...?"
                   name="houseNo"
                   onChange={addressChange}
-                  defaultValue={incomingData?.address.houseNo}
+                  defaultValue={incomingData?.address?.houseNo}
                 />
               </InputSeg>
 
@@ -545,7 +561,7 @@ const EditOrganiserProfile = () => {
                   placeholder="E.g: Mike Smith Avenue"
                   name="street"
                   onChange={addressChange}
-                  defaultValue={incomingData?.address.street}
+                  defaultValue={incomingData?.address?.street}
                 />
               </InputSeg>
             </Wrapper>
@@ -558,7 +574,7 @@ const EditOrganiserProfile = () => {
                   placeholder="E.g: Ikeja"
                   name="city"
                   onChange={addressChange}
-                  defaultValue={incomingData?.address.city}
+                  defaultValue={incomingData?.address?.city}
                 />
               </InputSeg>
 
@@ -569,7 +585,7 @@ const EditOrganiserProfile = () => {
                   placeholder="E.g: Kaduna State"
                   name="state"
                   onChange={addressChange}
-                  defaultValue={incomingData?.address.state}
+                  defaultValue={incomingData?.address?.state}
                 />
               </InputSeg>
 
@@ -580,7 +596,7 @@ const EditOrganiserProfile = () => {
                   placeholder="E.g: Nigeria"
                   name="country"
                   onChange={addressChange}
-                  defaultValue={incomingData?.address.country}
+                  defaultValue={incomingData?.address?.country}
                 />
               </InputSeg>
             </Wrapper>
@@ -589,8 +605,8 @@ const EditOrganiserProfile = () => {
               <InputText>
                 Organizer's Details{" "}
                 <Asterix>
-                  {incomingData?.organizerDetails.length ||
-                    incomingData?.organizerDetails.length}
+                  {incomingData?.organizerDetails?.length ||
+                    incomingData?.organizerDetails?.length}
                   /250 Characters*
                 </Asterix>
               </InputText>
@@ -686,6 +702,11 @@ const EditOrganiserProfile = () => {
                   value={"Patron"}
                   onChange={change}
                   onClick={toggleOthers}
+                  checked={
+                    incomingData?.guarantorRole?.includes("Patron")
+                      ? true
+                      : false
+                  }
                 />
                 <label htmlFor="patron">Patron</label>
               </CheckBoxInput>
@@ -698,6 +719,11 @@ const EditOrganiserProfile = () => {
                   value={"Staff Adviser"}
                   onChange={change}
                   onClick={toggleOthers}
+                  checked={
+                    incomingData?.guarantorRole?.includes("Staff Adviser")
+                      ? true
+                      : false
+                  }
                 />
                 <label htmlFor="staff">Staff Adviser</label>
               </CheckBoxInput>
@@ -710,6 +736,11 @@ const EditOrganiserProfile = () => {
                   value={"Coordinator"}
                   onChange={change}
                   onClick={toggleOthers}
+                  checked={
+                    incomingData?.guarantorRole?.includes("Coordinator")
+                      ? true
+                      : false
+                  }
                 />
                 <label htmlFor="coordinators">Coordinator</label>
               </CheckBoxInput>
@@ -722,6 +753,11 @@ const EditOrganiserProfile = () => {
                   name="guarantorRole"
                   onChange={change}
                   value={"Other"}
+                  checked={
+                    incomingData?.guarantorRole?.includes("Other")
+                      ? true
+                      : false
+                  }
                 />
                 <label htmlFor="others">Others (please specify role)</label>
               </CheckBoxInput>
@@ -748,7 +784,7 @@ const EditOrganiserProfile = () => {
                 type="text"
                 placeholder="Enter Full Name of Secondary Contact"
                 name="secondaryContactFullName"
-                defaultValue={incomingData?.guarantor.secondaryContactFullName}
+                defaultValue={incomingData?.guarantor?.secondaryContactFullName}
                 onChange={guarantorChange}
               />
             </InputSeg>
@@ -759,7 +795,7 @@ const EditOrganiserProfile = () => {
                 type="text"
                 placeholder="Enter Company/Business Name"
                 name="companyName"
-                defaultValue={incomingData?.guarantor.companyName}
+                defaultValue={incomingData?.guarantor?.companyName}
                 onChange={guarantorChange}
               />
             </InputSeg>
@@ -770,7 +806,7 @@ const EditOrganiserProfile = () => {
                 type="text"
                 placeholder="Enter Job Role"
                 name="jobRole"
-                defaultValue={incomingData?.guarantor.jobRole}
+                defaultValue={incomingData?.guarantor?.jobRole}
                 onChange={guarantorChange}
               />
             </InputSeg>
@@ -784,7 +820,7 @@ const EditOrganiserProfile = () => {
                   placeholder="E.g: 18 or Number 12 or Km 14 or Room 347 or...?"
                   name="houseNo"
                   onChange={guarantorAddressChange}
-                  defaultValue={incomingData?.guarantor.officeAddress?.houseNo}
+                  defaultValue={incomingData?.guarantor?.officeAddress?.houseNo}
                 />
               </InputSeg>
 
@@ -795,7 +831,7 @@ const EditOrganiserProfile = () => {
                   placeholder="E.g: Mike Smith Avenue"
                   name="street"
                   onChange={guarantorAddressChange}
-                  defaultValue={incomingData?.guarantor.officeAddress?.street}
+                  defaultValue={incomingData?.guarantor?.officeAddress?.street}
                 />
               </InputSeg>
             </Wrapper>
@@ -808,7 +844,7 @@ const EditOrganiserProfile = () => {
                   placeholder="E.g: Ikeja"
                   name="city"
                   onChange={guarantorAddressChange}
-                  defaultValue={incomingData?.guarantor.officeAddress?.city}
+                  defaultValue={incomingData?.guarantor?.officeAddress?.city}
                 />
               </InputSeg>
 
@@ -819,7 +855,7 @@ const EditOrganiserProfile = () => {
                   placeholder="E.g: Kaduna State"
                   name="state"
                   onChange={guarantorAddressChange}
-                  defaultValue={incomingData?.guarantor.officeAddress?.state}
+                  defaultValue={incomingData?.guarantor?.officeAddress?.state}
                 />
               </InputSeg>
 
@@ -830,7 +866,7 @@ const EditOrganiserProfile = () => {
                   placeholder="E.g: Nigeria"
                   name="country"
                   onChange={guarantorAddressChange}
-                  defaultValue={incomingData?.guarantor.officeAddress?.country}
+                  defaultValue={incomingData?.guarantor?.officeAddress?.country}
                 />
               </InputSeg>
             </Wrapper>
@@ -842,7 +878,7 @@ const EditOrganiserProfile = () => {
                 placeholder="E.g: +2348022345661"
                 name="secondaryContactPhoneNumber"
                 defaultValue={
-                  incomingData?.guarantor.secondaryContactPhoneNumber
+                  incomingData?.guarantor?.secondaryContactPhoneNumber
                 }
                 onChange={guarantorChange}
                 minLength={5}
@@ -857,7 +893,7 @@ const EditOrganiserProfile = () => {
                 pattern="^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$"
                 placeholder="E.g: email@example.com"
                 name="secondaryContactEmail"
-                defaultValue={incomingData?.guarantor.secondaryContactEmail}
+                defaultValue={incomingData?.guarantor?.secondaryContactEmail}
                 onChange={guarantorChange}
               />
             </InputSeg>
