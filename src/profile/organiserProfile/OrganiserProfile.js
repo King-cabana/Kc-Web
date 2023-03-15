@@ -112,7 +112,7 @@ const OrganiserProfile = () => {
   const handleLogoFileChange = async (e) => {
     const MAX_FILE_SIZE = 1024; // 1MB
     const logoFile = e.target.files[0];
-    const logoFileSizeKiloBytes = logoFile.size / 1024;
+    const logoFileSizeKiloBytes = logoFile?.size / 1024;
 
     if (logoFileSizeKiloBytes > MAX_FILE_SIZE) {
       setLogoErrorMsg("*Image size is greater than 1mb*");

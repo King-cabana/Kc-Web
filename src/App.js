@@ -45,6 +45,8 @@ import EditOrganiserProfile from "./profile/EditOrganiserProfile/EditOrganiserPr
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import EventPlanning from "./event/eventPlanning/EventPlanning";
+import GuestRegistration from "./event/guestRegistration/GuestRegistration";
 
 const Home = lazy(() => import("./pages/landingPage/Home"));
 const ContactUs = lazy(() => import("./pages/contactUs/ContactUs"));
@@ -92,6 +94,8 @@ function App() {
               path="/resetpasswordsuccess"
               element={<ResetPasswordSuccess />}
             />
+            <Route path="/planning" element={<EventPlanning />} />
+            <Route path="/guest" element={<GuestRegistration />} />
             <Route path="signupsuccess" element={<SignUpSuccess />} />
             <Route path="verifyemail" element={<VerifyEmail />} />
             <Route
@@ -107,7 +111,6 @@ function App() {
                 </Sidebar>
               }
             />
-
             <Route
               path="/event/create"
               element={

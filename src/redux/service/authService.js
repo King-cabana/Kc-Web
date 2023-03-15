@@ -1,8 +1,9 @@
 import axios from "axios";
 
+
 const API_URL = "http://localhost:8081/eventuser/";
 const API_URL_2 = "http://localhost:8081/";
-const authToken = ""
+
 const register = async (payload) => {
   try {
     const response = await axios.post(
@@ -38,7 +39,6 @@ const verifyEmail = async (otp) => {
 
 const login = async (email, password, final = () => null) => {
   try {
-
     const token = localStorage.getItem("token");
     const headers = {};
     if (token) {
@@ -61,7 +61,11 @@ const login = async (email, password, final = () => null) => {
     if (response.data.data) {
       localStorage.setItem("user", JSON.stringify(response.data.data));
     }
-    return response.data;
+    const authorizationHeader = response.headers.get("Authorization");
+    const bearerToken = authorizationHeader.split(" ")[1];
+    localStorage.setItem("bearerToken", bearerToken);
+
+    return response;
   } catch (error) {
     throw error;
   } finally {
@@ -135,5 +139,4 @@ export {
   forgotPasswordOtp,
   resetPassword,
   logout,
-  authToken,
 };

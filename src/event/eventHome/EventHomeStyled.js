@@ -462,11 +462,14 @@ export const Wrapper = styled.div`
 `;
 
 export const ImagesContainer = styled.section`
+  /* border: 2px solid green; */
+  /* background-color: #ff2957; */
   width: 100%;
+  /* height: 240px; */
   position: relative;
   top: 0;
   left: 0;
-  background-size: contain;
+  border-radius: 10px;
 `;
 
 export const BackgroundPicture = styled.img`
@@ -475,8 +478,8 @@ export const BackgroundPicture = styled.img`
   left: 0;
   border-radius: 10px;
   width: 100%;
-  height: 238px;
-  object-fit: contain;
+  height: 240px;
+  object-fit: cover;
 
   @media screen and (max-width: 960px) {
     height: 200px;
@@ -497,6 +500,8 @@ export const LogoPicture = styled.img`
   position: absolute;
   top: 150px;
   left: 60px;
+  object-fit: cover;
+  background-color: #f5f5f5;
 
   @media screen and (max-width: 960px) {
     top: 120px;

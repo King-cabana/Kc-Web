@@ -67,37 +67,35 @@ const navigate= useNavigate();
     const updatedArr = checked
       ? [...arr, value]
       : arr.filter((item) => item !== value);
-    // console.log(updatedArr);
     dispatch(editCheckbox({ category: name, item: updatedArr }));
   };
 
   const navigateBack = (e) => {
     e.preventDefault();
-    console.log(state);
-    navigate('/createevent/eventdetails/4');
+    navigate('/createevent/eventdetails/3');
   };
 
   const navigateNext = (e) => {
     e.preventDefault();
-    gender
-      ? dispatch(addToList({ listType: "genderList", newItem: gender }))
-      : dispatch(addToList({ listType: "genderList", newItem: "" }));
-    religion
-      ? dispatch(addToList({ listType: "religionList", newItem: religion }))
-      : dispatch(addToList({ listType: "religionList", newItem: "" }));
-    status
-      ? dispatch(addToList({ listType: "maritalStatusList", newItem: status }))
-      : dispatch(addToList({ listType: "maritalStatusList", newItem: "" }));
-    employment
-      ? dispatch(
-          addToList({ listType: "employmentStatusList", newItem: employment })
-        )
-      : dispatch(addToList({ listType: "employmentStatusList", newItem: "" }));
-    education
-      ? dispatch(
-          addToList({ listType: "educationLevelList", newItem: education })
-        )
-      : dispatch(addToList({ listType: "educationLevelList", newItem: "" }));
+    // gender
+    //   ? dispatch(addToList({ listType: "genderList", newItem: gender }))
+    //   : dispatch(addToList({ listType: "genderList", newItem: "" }));
+    // religion
+    //   ? dispatch(addToList({ listType: "religionList", newItem: religion }))
+    //   : dispatch(addToList({ listType: "religionList", newItem: "" }));
+    // status
+    //   ? dispatch(addToList({ listType: "maritalStatusList", newItem: status }))
+    //   : dispatch(addToList({ listType: "maritalStatusList", newItem: "" }));
+    // employment
+    //   ? dispatch(
+    //       addToList({ listType: "employmentStatusList", newItem: employment })
+    //     )
+    //   : dispatch(addToList({ listType: "employmentStatusList", newItem: "" }));
+    // education
+    //   ? dispatch(
+    //       addToList({ listType: "educationLevelList", newItem: education })
+    //     )
+    //   : dispatch(addToList({ listType: "educationLevelList", newItem: "" }));
     navigate('/createevent/budget&inventory/1');
 
   };

@@ -30,35 +30,31 @@ const Footer = () => {
             <img
               src={LogoWhite}
               alt="King Cabana Logo"
-              style={{ width: "120px" }}
-            />
+              style={{ width: "120px" }}/>
             <p>371, Borno Way, Alagomeji</p>
             <p>(+234) 808 831 118 8</p>
             <a href="info@kingcabana.com">info@kingcabana.com</a>
-
             <IconHolder>
               <SocialIcon href="info@kingcabana.com">
                 <div>
-                  <img src={Linkedin} alt="" />
+                  <img src={Linkedin} alt=""/>
                 </div>
               </SocialIcon>
               <SocialIcon
                 href="https://twitter.com/KingCabanaHQ"
-                target="_blank"
-              >
+                target="_blank">
                 <div>
-                  <img src={Twitter} alt="" />
+                  <img src={Twitter} alt=""/>
                 </div>
               </SocialIcon>
               <SocialIcon href="info@kingcabana.com">
                 <div>
-                  <img src={Facebook} alt="" />
+                  <img src={Facebook} alt=""/>
                 </div>
               </SocialIcon>
               <SocialIcon
                 href="https://www.instagram.com/kingcabanahq/"
-                target="_blank"
-              >
+                target="_blank">
                 <div>
                   <img src={Instagram} alt="" />
                 </div>
@@ -108,15 +104,13 @@ const Footer = () => {
                   width: "20px",
                   height: "20px",
                   margin: "auto",
-                }}
-              />
+                }}/>
               Applestore
             </EventButton>
           </EventButtonHolder>
           <ScrollButton />
         </FooterContent>
         <FooterLine />
-
         <BottomLogo>
           <p>@ 2022</p>
           <img src={LogoWhite} alt="" width="80px" height="80px" />

@@ -20,8 +20,7 @@ const Card = () => {
           <ImageHolder>
             <img src={cards.img} alt={cards.name} />
           </ImageHolder>
-
-          <CardContentHolder>
+            <CardContentHolder>
             <EventHeader>{cards.title}</EventHeader>
             <EventOrganizer>{cards.subTitle}</EventOrganizer>
             <DateAndTime>{cards.time}</DateAndTime>

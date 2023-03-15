@@ -56,9 +56,8 @@ const SecondCreateEvent = ({ padding }) => {
 
   const navigateNext = (e) => {
     e.preventDefault();
-    // navigate("/test/eventdetails/3");
     navigate("/createevent/eventdetails/3");
-    console.log(state);
+    // console.log(state);
   };
 
   return (

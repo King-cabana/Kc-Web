@@ -47,8 +47,8 @@ const TimeLineEvent = ({ padding }) => {
   const handleAddTag = () => {
     if (newTag !== "") {
       // Check if the new todo already exists in the array
-      const alreadyExists = state.tags.some((tag) => tag === newTag);
-      if (!alreadyExists && state.tags.length < 5) {
+      const alreadyExists = state?.tags?.some((tag) => tag === newTag);
+      if (!alreadyExists && state?.tags?.length < 5) {
         dispatch(addTag(newTag));
       }
       setNewTag("");
@@ -59,7 +59,7 @@ const TimeLineEvent = ({ padding }) => {
     dispatch(removeTag(tag));
   };
   // Render the list of tags
-  const tagList = state.tags.map((tag, index) => (
+  const tagList = state?.tags?.map((tag, index) => (
     <div key={index}>
       <EventButton style={{ marginRight: "1rem", marginBottom: "0.5rem" }}>
         {tag}
@@ -78,7 +78,7 @@ const TimeLineEvent = ({ padding }) => {
   };
 
   const navigateNext = () => {
-    navigate("/createevent/eventdetails/4");
+    navigate("/createevent/defineaudience/1");
     console.log(state);
   };
 

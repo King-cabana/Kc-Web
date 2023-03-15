@@ -59,7 +59,6 @@ const Home = () => {
   return (
     <>
       <Navbar />
-      
       <HeroSection>
         <BgOverlay>
           <ContentHolder>
@@ -78,9 +77,7 @@ const Home = () => {
                   cursor
                   cursorStyle="_"
                   typeSpeed={100}
-                  deleteSpeed={100}
-                  delaySpeed={1000}
-                />
+                  deleteSpeed={100}/>
               </span>
             </KBDisplayL>
             </TypeTextHolder>
@@ -101,7 +98,6 @@ const Home = () => {
           </ContentHolder>
         </BgOverlay>
       </HeroSection>
-
       <ContentSection>
         <KBDisplayM
           style={{
@@ -110,13 +106,11 @@ const Home = () => {
             color: "#484848",
             fontWeight: "600",
             marginBottom: " 1%",
-          }}
-        >
+          }}>
           Event Categories
         </KBDisplayM>
         <KBTextL
-          style={{ color: "#484848", fontWeight: "500", textAlign: "center" }}
-        >
+          style={{ color: "#484848", fontWeight: "500", textAlign: "center" }}>
           Explore the most trending
         </KBTextL>
         <CardHolder>
@@ -169,7 +163,6 @@ const Home = () => {
           <ASImage img={Img} />
         </ASSectionInner>
       </ASContentSection>
-
       <SponsorSection>
         <KBDisplayM fontWeight="600" color="#484848;">
           Leverage for being an Event sponsor

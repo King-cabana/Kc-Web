@@ -20,6 +20,7 @@ import { RiArrowDownSLine } from "react-icons/ri";
 import { KBTextM } from "../../../components/fonts/fontSize";
 import { useDispatch, useSelector } from "react-redux";
 import { clearUserDetails } from "../../../redux/slices/userDetailsSlice";
+import { clearEventOrganizerProfile } from "../../../redux/slices/eventOrganizerProfileSlice";
 import { useNavigate } from "react-router";
 import { toast } from "react-toastify";
 import {
@@ -34,6 +35,7 @@ import {
   ModalPrimaryButton,
 } from "../../../components/button/button";
 import { clearProfile } from "../../../redux/slices/profileSlice";
+import Caret from "../../../images/caret-down-svgrepo-com.svg"
 
 const TopBar = () => {
   const [modal, setModal] = useState(false);
@@ -97,23 +99,26 @@ const TopBar = () => {
                     alignItems: "center",
                   }}
                 >
-                  {user?.details?.fullName
+                  {user?.details?.data?.fullName
                     ?.split(" ")
                     ?.map((x) => x && x[0])
                     ?.join("")}
                 </ProfilePicture>
 
-                <KBTextM>{user?.details?.fullName}</KBTextM>
+                <KBTextM>{user?.details?.data?.fullName}</KBTextM>
 
                 <Dropdown>
                   <DropDownBtn onClick={showDropDown} className="dropbtn">
-                    {/* <RiArrowDownSLine
+                    <RiArrowDownSLine
                       style={{
                         cursor: "pointer",
                         zIndex:'1000'
                       }}
                       onClick={showDropDown}
-                    /> */}
+                    />
+                    {/* <BiCaretDown/>
+                    <img src={Caret} alt="" /> */}
+
                   </DropDownBtn>
                   <DropdownContent id="myDropdown" className="dropdown-content">
                     <div
@@ -131,17 +136,17 @@ const TopBar = () => {
                           alignItems: "center",
                         }}
                       >
-                        {user?.details?.fullName
+                        {user?.details?.data?.fullName
                           ?.split(" ")
                           ?.map((x) => x && x[0])
                           ?.join("")}
                       </ProfilePicture>
                       <div>
                         <p style={{ fontWeight: "500" }}>
-                          {user?.details?.fullName}
+                          {user?.details?.data?.fullName}
                         </p>
                         <p style={{ fontSize: "12px" }}>
-                          {user?.details?.email}
+                          {user?.details?.data?.email}
                         </p>
                       </div>
                     </div>

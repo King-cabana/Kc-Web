@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { authToken } from "../../redux/service/authService";
 import axios from "axios";
 import {
   OverallContainer,
@@ -53,8 +52,10 @@ import { setEventOrganizerProfile } from "../../redux/slices/eventOrganizerProfi
 const EventHome = () => {
   const dispatch = useDispatch();
   const state = useSelector((state) => state.eventOrganizerProfile);
+  const user = useSelector((state) => state.userDetails);
   const [modal, setModal] = useState(true);
   const navigate = useNavigate();
+
   useEffect(() => {
     const fetchOrganizerProfile = async () => {
       try {
@@ -62,11 +63,12 @@ const EventHome = () => {
           `http://localhost:8081/profiles/${state?.id}`,
           {
             headers: {
-              Authorization: authToken,
+              Authorization: `Bearer ${user.token}`,
             },
           }
         );
         console.log(data);
+        console.log(user);
         dispatch(setEventOrganizerProfile(data));
       } catch (error) {
         console.log(error);
@@ -152,7 +154,7 @@ const EventHome = () => {
 
             <ButtonsContainer>
               <Wrap>
-                <ButtonLink to="/firstCreateEvent">
+                <ButtonLink to="/createevent/eventdetails/1">
                   <PrimaryButton>Create event</PrimaryButton>
                 </ButtonLink>
               </Wrap>

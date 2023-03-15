@@ -55,13 +55,13 @@ import {
 } from "../../components/button/button";
 import { useNavigate } from "react-router";
 import { toast } from "react-toastify";
-import { authToken } from "../../redux/service/authService";
 
 const EditOrganiserProfile = () => {
   const [modal, setModal] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const state = useSelector((state) => state.eventOrganizerProfile);
+  const user = useSelector((state) => state.userDetails);
   const [incomingData, setIncomingData] = useState();
   const toggleModal = () => {
     setModal(!modal);
@@ -92,7 +92,12 @@ const EditOrganiserProfile = () => {
     const fetchOrganizerProfile = async () => {
       try {
         const { data } = await axios.get(
-          `http://localhost:8081/profiles/${state.id}`
+          `http://localhost:8081/profiles/${state?.id}`,
+          {
+            headers: {
+              Authorization: `Bearer ${user.token}`,
+            },
+          }
         );
         dispatch(setEventOrganizerProfile(data));
         setIncomingData(data);
@@ -101,7 +106,7 @@ const EditOrganiserProfile = () => {
         // handle error here
       }
     };
-  
+
     fetchOrganizerProfile();
     // return a cleanup function
     return () => {
@@ -257,6 +262,7 @@ const EditOrganiserProfile = () => {
   const discardNavigate = () => {
     navigate("/home");
   };
+
   const saveNavigate = async (e) => {
     e.preventDefault();
     setSending(true);
@@ -264,105 +270,115 @@ const EditOrganiserProfile = () => {
     const patchData = [
       {
         op: "replace",
+        path: "/backgroundPictureUrl",
+        value: incomingData.backgroundPictureUrl,
+      },
+      {
+        op: "replace",
+        path: "/logoUrl",
+        value: incomingData.logoUrl,
+      },
+      {
+        op: "replace",
         path: "/organizerName",
-        value: incomingData?.organizerName,
+        value: incomingData.organizerName,
       },
       {
         op: "replace",
         path: "/profileEmail",
-        value: incomingData?.profileEmail,
+        value: incomingData.profileEmail,
       },
-      { op: "replace", path: "/phoneNumber", value: incomingData?.phoneNumber },
+      { op: "replace", path: "/phoneNumber", value: incomingData.phoneNumber },
       {
         op: "replace",
         path: "/address/houseNo",
-        value: incomingData?.address?.houseNo,
+        value: incomingData.address.houseNo,
       },
       {
         op: "replace",
         path: "/address/street",
-        value: incomingData?.address?.street,
+        value: incomingData.address.street,
       },
       {
         op: "replace",
         path: "/address/city",
-        value: incomingData?.address?.city,
+        value: incomingData.address.city,
       },
       {
         op: "replace",
         path: "/address/state",
-        value: incomingData?.address?.state,
+        value: incomingData.address.state,
       },
       {
         op: "replace",
         path: "/address/country",
-        value: incomingData?.address?.country,
+        value: incomingData.address.country,
       },
       {
         op: "replace",
         path: "/organizerDetails",
-        value: incomingData?.organizerDetails,
+        value: incomingData.organizerDetails,
       },
-      { op: "replace", path: "/website", value: incomingData?.website },
-      { op: "replace", path: "/linkedIn", value: incomingData?.linkedIn },
-      { op: "replace", path: "/instagram", value: incomingData?.instagram },
-      { op: "replace", path: "/twitter", value: incomingData?.twitter },
-      { op: "replace", path: "/faceBook", value: incomingData?.faceBook },
-      { op: "replace", path: "/otherHandle", value: incomingData?.otherHandle },
+      { op: "replace", path: "/website", value: incomingData.website },
+      { op: "replace", path: "/linkedIn", value: incomingData.linkedIn },
+      { op: "replace", path: "/instagram", value: incomingData.instagram },
+      { op: "replace", path: "/twitter", value: incomingData.twitter },
+      { op: "replace", path: "/faceBook", value: incomingData.faceBook },
+      { op: "replace", path: "/otherHandle", value: incomingData.otherHandle },
       {
         op: "replace",
         path: "/guarantorRole",
-        value: incomingData?.guarantorRole,
+        value: incomingData.guarantorRole,
       },
       {
         op: "replace",
         path: "/guarantor/secondaryContactFullName",
-        value: incomingData?.guarantor?.secondaryContactFullName,
+        value: incomingData.guarantor.secondaryContactFullName,
       },
       {
         op: "replace",
         path: "/guarantor/companyName",
-        value: incomingData?.guarantor?.companyName,
+        value: incomingData.guarantor.companyName,
       },
       {
         op: "replace",
         path: "/guarantor/jobRole",
-        value: incomingData?.guarantor?.jobRole,
+        value: incomingData.guarantor.jobRole,
       },
       {
         op: "replace",
         path: "/guarantor/officeAddress/houseNo",
-        value: incomingData?.guarantor?.officeAddress.houseNo,
+        value: incomingData.guarantor.officeAddress.houseNo,
       },
       {
         op: "replace",
         path: "/guarantor/officeAddress/street",
-        value: incomingData?.guarantor?.officeAddress?.street,
+        value: incomingData.guarantor.officeAddress.street,
       },
       {
         op: "replace",
         path: "/guarantor/officeAddress/city",
-        value: incomingData?.guarantor?.officeAddress?.city,
+        value: incomingData.guarantor.officeAddress.city,
       },
       {
         op: "replace",
         path: "/guarantor/officeAddress/state",
-        value: incomingData?.guarantor?.officeAddress?.state,
+        value: incomingData.guarantor.officeAddress.state,
       },
       {
         op: "replace",
         path: "/guarantor/officeAddress/country",
-        value: incomingData?.guarantor?.officeAddress?.country,
+        value: incomingData.guarantor.officeAddress.country,
       },
       {
         op: "replace",
         path: "/guarantor/secondaryContactPhoneNumber",
-        value: incomingData?.guarantor?.secondaryContactPhoneNumber,
+        value: incomingData.guarantor.secondaryContactPhoneNumber,
       },
       {
         op: "replace",
         path: "/guarantor/secondaryContactEmail",
-        value: incomingData?.guarantor?.secondaryContactEmail,
+        value: incomingData.guarantor.secondaryContactEmail,
       },
     ];
     try {
@@ -372,7 +388,7 @@ const EditOrganiserProfile = () => {
         {
           headers: {
             "Content-Type": "application/json",
-            Authorization: authToken,
+            Authorization: `Bearer ${user.token}`,
           },
         }
       );
@@ -686,6 +702,11 @@ const EditOrganiserProfile = () => {
                   value={"Patron"}
                   onChange={change}
                   onClick={toggleOthers}
+                  checked={
+                    incomingData?.guarantorRole?.includes("Patron")
+                      ? true
+                      : false
+                  }
                 />
                 <label htmlFor="patron">Patron</label>
               </CheckBoxInput>
@@ -698,6 +719,11 @@ const EditOrganiserProfile = () => {
                   value={"Staff Adviser"}
                   onChange={change}
                   onClick={toggleOthers}
+                  checked={
+                    incomingData?.guarantorRole?.includes("Staff Adviser")
+                      ? true
+                      : false
+                  }
                 />
                 <label htmlFor="staff">Staff Adviser</label>
               </CheckBoxInput>
@@ -710,6 +736,11 @@ const EditOrganiserProfile = () => {
                   value={"Coordinator"}
                   onChange={change}
                   onClick={toggleOthers}
+                  checked={
+                    incomingData?.guarantorRole?.includes("Coordinator")
+                      ? true
+                      : false
+                  }
                 />
                 <label htmlFor="coordinators">Coordinator</label>
               </CheckBoxInput>
@@ -722,6 +753,11 @@ const EditOrganiserProfile = () => {
                   name="guarantorRole"
                   onChange={change}
                   value={"Other"}
+                  checked={
+                    incomingData?.guarantorRole?.includes("Other")
+                      ? true
+                      : false
+                  }
                 />
                 <label htmlFor="others">Others (please specify role)</label>
               </CheckBoxInput>
@@ -740,17 +776,15 @@ const EditOrganiserProfile = () => {
               <InputText>
                 Full name of {""}
                 {incomingData?.guarantorRole
-                  ? incomingData?.guarantorRole?.charAt(0).toUpperCase() +
-                    incomingData?.guarantorRole?.slice(1)
+                  ? incomingData?.guarantorRole.charAt(0).toUpperCase() +
+                    incomingData?.guarantorRole.slice(1)
                   : "Secondary Contact"}{" "}
               </InputText>
               <Input
                 type="text"
                 placeholder="Enter Full Name of Secondary Contact"
                 name="secondaryContactFullName"
-                // defaultValue={state.guarantor?.secondaryContactFullName}
                 defaultValue={incomingData?.guarantor?.secondaryContactFullName}
-
                 onChange={guarantorChange}
               />
             </InputSeg>
@@ -761,9 +795,7 @@ const EditOrganiserProfile = () => {
                 type="text"
                 placeholder="Enter Company/Business Name"
                 name="companyName"
-                // defaultValue={state.guarantor?.companyName}
                 defaultValue={incomingData?.guarantor?.companyName}
-
                 onChange={guarantorChange}
               />
             </InputSeg>
@@ -774,9 +806,7 @@ const EditOrganiserProfile = () => {
                 type="text"
                 placeholder="Enter Job Role"
                 name="jobRole"
-                // defaultValue={state.guarantor?.jobRole}
                 defaultValue={incomingData?.guarantor?.jobRole}
-
                 onChange={guarantorChange}
               />
             </InputSeg>
@@ -863,9 +893,7 @@ const EditOrganiserProfile = () => {
                 pattern="^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$"
                 placeholder="E.g: email@example.com"
                 name="secondaryContactEmail"
-                // defaultValue={state.guarantor?.secondaryContactEmail}
                 defaultValue={incomingData?.guarantor?.secondaryContactEmail}
-
                 onChange={guarantorChange}
               />
             </InputSeg>
