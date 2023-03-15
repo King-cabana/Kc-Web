@@ -56,7 +56,7 @@ export const ContentBody = styled.div`
   top: 62px;
 
 
-  @media screen and (max-width: 480px) {
+  @media screen and (max-width: 960px) {
     width: 100%;
     margin-left: 0;
   }
@@ -72,8 +72,8 @@ export const Nav = styled.div`
   left: 0;
   margin-left: -4%;
 
-  @media screen and (max-width: "480px") {
-    
+  @media screen and (max-width: "960px") {
+    margin-left: 0;
   }
 `;
 

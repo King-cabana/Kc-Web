@@ -60,7 +60,7 @@ const EventHome = () => {
     const fetchOrganizerProfile = async () => {
       try {
         const { data } = await axios.get(
-          `http://localhost:8080/profiles/${state?.id}`,
+          `http://localhost:8081/profiles/${state?.id}`,
           {
             headers: {
               Authorization: `Bearer ${user.token}`,
@@ -154,7 +154,7 @@ const EventHome = () => {
 
             <ButtonsContainer>
               <Wrap>
-                <ButtonLink to="/firstCreateEvent">
+                <ButtonLink to="/createevent/eventdetails/1">
                   <PrimaryButton>Create event</PrimaryButton>
                 </ButtonLink>
               </Wrap>

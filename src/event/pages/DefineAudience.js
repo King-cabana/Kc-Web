@@ -55,7 +55,7 @@ const DefineAudience = ({ padding }) => {
   const [employment, setEmployment] = useState("");
   const [education, setEducation] = useState("");
 
-const navigate= useNavigate();
+  const navigate = useNavigate();
 
   const change = (e) => {
     dispatch(editGenerally({ name: e.target.name, value: e.target.value }));
@@ -67,14 +67,12 @@ const navigate= useNavigate();
     const updatedArr = checked
       ? [...arr, value]
       : arr.filter((item) => item !== value);
-    // console.log(updatedArr);
     dispatch(editCheckbox({ category: name, item: updatedArr }));
   };
 
   const navigateBack = (e) => {
     e.preventDefault();
-    console.log(state);
-    navigate('/createevent/eventdetails/4');
+    navigate("/createevent/eventdetails/3");
   };
 
   const navigateNext = (e) => {
@@ -98,8 +96,7 @@ const navigate= useNavigate();
           addToList({ listType: "educationLevelList", newItem: education })
         )
       : dispatch(addToList({ listType: "educationLevelList", newItem: "" }));
-    navigate('/createevent/budget&inventory/1');
-
+    navigate("/createevent/budget&inventory/1");
   };
 
   return (

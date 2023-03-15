@@ -209,7 +209,7 @@ const OrganiserProfile = () => {
             <EventHeader1>Set up your Event Organizer's Profile</EventHeader1>
             <InputSeg>
               <InputText>
-                Event Organizer's Name <Asterix>*</Asterix>
+                Event Organization's Name <Asterix>*</Asterix>
               </InputText>
               <Input
                 type="text"

@@ -29,12 +29,12 @@ const ProgressBar = ({ setActive, name, number }) => {
       setActiveColor(name);
     }
     if (name === "defineaudience") {
-      setProgress({ ...progress, eventdetails: 4, defineaudience: number });
+      setProgress({ ...progress, eventdetails: 3, defineaudience: number });
     }
     if (name === "budget&inventory") {
       setProgress({
         ...progress,
-        eventdetails: 4,
+        eventdetails: 3,
         defineaudience: 1,
         "budget&inventory": number,
       });
@@ -53,11 +53,11 @@ const ProgressBar = ({ setActive, name, number }) => {
               <div>
                 <ProgressStageCounter>
                   <NumberHolder>
-                    {progress.eventdetails === 4  ? <IoIosCheckmarkCircle /> : 1}
+                    {progress.eventdetails === 3  ? <IoIosCheckmarkCircle /> : 1}
                   </NumberHolder>
                   Event Details
                 </ProgressStageCounter>
-                {progress.eventdetails}/4
+                {progress.eventdetails}/3
               </div>
             </ProgressStageInner>
           </ProgressStages>
@@ -66,7 +66,7 @@ const ProgressBar = ({ setActive, name, number }) => {
         <ProgressStages2Outter>
           <ProgressStages2 onClick={() => setActive("audience")}>
             <ProgressStageInner
-              color={name === "defineaudience" && "#FFBC15"}
+              color={(name === "defineaudience" || number) && "#FFBC15"}
               fontWeight={activeColor && "500"}
             >
               <div>
@@ -89,7 +89,7 @@ const ProgressBar = ({ setActive, name, number }) => {
         <ProgressStages3Outter>
           <ProgressStages3 onClick={() => setActive("budget")}>
             <ProgressStageInner
-              color={name === "budget&inventory" && "#FFBC15"}
+              color={(name === "budget&inventory" || number) && "#FFBC15"}
               fontWeight={activeColor && "500"}
             >
               <div>

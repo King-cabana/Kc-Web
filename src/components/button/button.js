@@ -27,9 +27,10 @@ export const PrimaryButton = styled.button`
     font-size: 10px;
     line-height: 12px;
     padding: 0.2rem 0.5rem;
-    /* height: 35px;
-    width: auto; */
   }
+    /* height: 35px;
+    width: auto;
+  } */
 
   @media screen and (orientation: landscape) and (max-width: 960px) {
     height: 35px;
