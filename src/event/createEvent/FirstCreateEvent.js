@@ -112,7 +112,7 @@ const FirstCreateEvent = ({ padding }) => {
   }, [file]);
   const handleSubmit = async function (e) {
     e.preventDefault();
-    navigate("/test/eventdetails/2");
+    navigate("/createevent/eventdetails/2");
     console.log(state);
   };
 

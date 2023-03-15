@@ -61,11 +61,11 @@ const SignIn = () => {
       console.log(userToken);
       // return a cleanup function
       navigate("/createProfile");
-      if (isAuthenticated) {
-        navigate("/dashboard");
-      } else {
+      // if (isAuthenticated) {
+      //   navigate("/dashboard");
+      // } else {
         navigate("/createProfile");
-      }
+      // }
     } catch (error) {
       setLoading(false);
       if (error?.response?.status === 401) {

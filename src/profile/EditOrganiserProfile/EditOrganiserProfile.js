@@ -92,7 +92,7 @@ const EditOrganiserProfile = () => {
     const fetchOrganizerProfile = async () => {
       try {
         const { data } = await axios.get(
-          `http://localhost:8080/profiles/${state?.id}`,
+          `http://localhost:8081/profiles/${state?.id}`,
           {
             headers: {
               Authorization: `Bearer ${user.token}`,
@@ -383,7 +383,7 @@ const EditOrganiserProfile = () => {
     ];
     try {
       const { data } = await axios.patch(
-        `http://localhost:8080/profiles/${state?.id}`,
+        `http://localhost:8081/profiles/${state?.id}`,
         patchData,
         {
           headers: {

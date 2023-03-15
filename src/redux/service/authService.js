@@ -1,11 +1,9 @@
 import axios from "axios";
-// import { store } from "../../store";
-// import setMessage from "../slices/messageSlice";
 
-const API_URL = "http://localhost:8080/eventuser/";
-const API_URL_2 = "http://localhost:8080/";
-const authToken =
-  "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJha2lubnVzaXRvc2luYmVuZWRpY3RAZ21haWwuY29tIiwicm9sZXMiOlsiRVZFTlRfT1JHQU5JWkVSIl0sImV4cCI6MTY3ODQ3MTU2NH0.FcbxGeRM9ybuWaprAnNATcTyRxAiulGDziJY2sqpIqKX49Eu-8jjqkb4UBsVkNVSKlbV4Wyg1vdvoBj8tcM0gQ";
+
+const API_URL = "http://localhost:8081/eventuser/";
+const API_URL_2 = "http://localhost:8081/";
+
 const register = async (payload) => {
   try {
     const response = await axios.post(
@@ -141,5 +139,4 @@ export {
   forgotPasswordOtp,
   resetPassword,
   logout,
-  authToken,
 };

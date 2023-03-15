@@ -59,7 +59,7 @@ const TimeLineEvent = ({ padding }) => {
     dispatch(removeTag(tag));
   };
   // Render the list of tags
-  const tagList = state.tags.map((tag, index) => (
+  const tagList = state?.tags?.map((tag, index) => (
     <div key={index}>
       <EventButton style={{ marginRight: "1rem", marginBottom: "0.5rem" }}>
         {tag}
@@ -74,11 +74,11 @@ const TimeLineEvent = ({ padding }) => {
     dispatch(editGenerally({ name: e.target.name, value: e.target.value }));
   };
   const navigateBack = () => {
-    navigate("/test/eventdetails/2");
+    navigate("/createevent/eventdetails/2");
   };
 
   const navigateNext = () => {
-    navigate("/test/eventdetails/4");
+    navigate("/createevent/defineaudience/1");
     console.log(state);
   };
 

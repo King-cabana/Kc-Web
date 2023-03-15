@@ -16,7 +16,7 @@ export const SidebarNav = styled.nav`
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
   height: 100vh;
   overflow-y: scroll;
-  display: flex;
+  display: flex !important;
   justify-content: center;
   transition: 350ms;
   z-index: 10;
@@ -29,8 +29,8 @@ export const SidebarNav = styled.nav`
     width: 100%;
     position: fixed;
     z-index: 9999999;
-    display: block;
-    /* display: ${({ sidebar }) => (sidebar ? "flex" : "block")}; */
+    /* display: block; */
+    display: ${({ sidebar }) => (sidebar ? "block" : "none")};
     left: 0;
     top: 15vh;
   }
@@ -56,7 +56,7 @@ export const ContentBody = styled.div`
   top: 62px;
 
 
-  @media screen and (max-width: 480px) {
+  @media screen and (max-width: 960px) {
     width: 100%;
     margin-left: 0;
   }
@@ -65,14 +65,15 @@ export const ContentBody = styled.div`
 export const Nav = styled.div`
   height: 40px;
   display: flex;
-  /* display: hidden; */
   justify-content: flex-start;
   align-items: center;
   position: absolute;
   top: 0;
   left: 0;
-  @media screen and (max-width: "480px") {
-    /* display: block; */
+  margin-left: -4%;
+
+  @media screen and (max-width: "960px") {
+    margin-left: 0;
   }
 `;
 
