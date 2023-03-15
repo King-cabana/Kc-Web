@@ -72,8 +72,7 @@ export const Form = styled.form`
   flex-direction: column;
 
   label {
-    /* font-weight: 500;
-    font-size: 12px; */
+  
     margin-top: 3%;
   }
 

@@ -11,6 +11,7 @@ import {
   Dropdown,
   DropdownContent,
   DropdownContentLink,
+  Inner,
 } from "./TopBar.styled";
 import Logo from "../../../images/KCLogo.svg";
 import SearchBar from "../../../components/searchBar/SearchBar";
@@ -33,6 +34,7 @@ import {
   AlternativeButton2,
   ModalPrimaryButton,
 } from "../../../components/button/button";
+import { clearProfile } from "../../../redux/slices/profileSlice";
 
 const TopBar = () => {
   const [modal, setModal] = useState(false);
@@ -55,13 +57,12 @@ const TopBar = () => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    // dispatch(clearUserDetails());
-    dispatch(clearEventOrganizerProfile());
+    // dispatch(clearUserDetails(), clearProfile());
+    dispatch(clearProfile());
     toast.success("Logout!");
     // setTimeout(() => navigate("/"), 200);
   };
 
-  // Close dropdown if the user clicks outside of it
   window.onclick = function (event) {
     if (!event.target.matches(".dropbtn")) {
       const dropdowns = document.getElementsByClassName("dropdown-content");
@@ -83,20 +84,12 @@ const TopBar = () => {
             <img src={Logo} alt="King Cabana Logo" />
           </LogoLink>
         </TopBarLogo>
+        <SearchBar />
         <TopBarItemHolder>
-          <SearchBar />
           <ItemsHolder>
             <ItemsHolderInner>
-              <SlBell style={{ cursor: "pointer" }} />
-              <div
-                style={{
-                  width: "max-content",
-                  display: "flex",
-                  gap: "10px",
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-              >
+              <Inner>
+                <SlBell style={{ cursor: "pointer" }} />
                 <ProfilePicture
                   style={{
                     border: "1px solid #FF2957",
@@ -105,21 +98,23 @@ const TopBar = () => {
                     alignItems: "center",
                   }}
                 >
-                  {user?.details?.data?.fullName
+                  {user?.details?.fullName
                     ?.split(" ")
                     ?.map((x) => x && x[0])
                     ?.join("")}
                 </ProfilePicture>
 
-                <KBTextM>{user?.details?.data?.fullName}</KBTextM>
+                <KBTextM>{user?.details?.fullName}</KBTextM>
 
                 <Dropdown>
                   <DropDownBtn onClick={showDropDown} className="dropbtn">
-                    <RiArrowDownSLine
+                    {/* <RiArrowDownSLine
                       style={{
                         cursor: "pointer",
+                        zIndex:'1000'
                       }}
-                    />
+                      onClick={showDropDown}
+                    /> */}
                   </DropDownBtn>
                   <DropdownContent id="myDropdown" className="dropdown-content">
                     <div
@@ -137,17 +132,17 @@ const TopBar = () => {
                           alignItems: "center",
                         }}
                       >
-                        {user?.details?.data?.fullName
+                        {user?.details?.fullName
                           ?.split(" ")
                           ?.map((x) => x && x[0])
                           ?.join("")}
                       </ProfilePicture>
                       <div>
                         <p style={{ fontWeight: "500" }}>
-                          {user?.details?.data?.fullName}
+                          {user?.details?.fullName}
                         </p>
                         <p style={{ fontSize: "12px" }}>
-                          {user?.details?.data?.email}
+                          {user?.details?.email}
                         </p>
                       </div>
                     </div>
@@ -158,14 +153,13 @@ const TopBar = () => {
                     </DropdownContentLink>
                   </DropdownContent>
                 </Dropdown>
-              </div>
+              </Inner>
             </ItemsHolderInner>
           </ItemsHolder>
         </TopBarItemHolder>
       </TopBarContainer>
 
       <div className={`${showModal}`}>
-        {/* <div> */}
         <PopUpComponent>
           <ModalText>Are you sure you want to Logout?</ModalText>
 
@@ -181,11 +175,11 @@ const TopBar = () => {
               </AlternativeButton2>
             </BtnHolderLink>
 
-            {/* <BtnHolderLink to="/"> */}
-            <ModalPrimaryButton onClick={handleLogout}>
-              Yes, Logout
-            </ModalPrimaryButton>
-            {/* </BtnHolderLink> */}
+            <BtnHolderLink to="/">
+              <ModalPrimaryButton onClick={handleLogout}>
+                Yes, Logout
+              </ModalPrimaryButton>
+            </BtnHolderLink>
           </ModalButtonContainer>
         </PopUpComponent>
       </div>

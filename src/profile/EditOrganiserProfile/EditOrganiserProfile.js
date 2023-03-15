@@ -286,99 +286,99 @@ const EditOrganiserProfile = () => {
       {
         op: "replace",
         path: "/profileEmail",
-        value: incomingData.profileEmail,
+        value: incomingData?.profileEmail,
       },
-      { op: "replace", path: "/phoneNumber", value: incomingData.phoneNumber },
+      { op: "replace", path: "/phoneNumber", value: incomingData?.phoneNumber },
       {
         op: "replace",
         path: "/address/houseNo",
-        value: incomingData.address.houseNo,
+        value: incomingData?.address?.houseNo,
       },
       {
         op: "replace",
         path: "/address/street",
-        value: incomingData.address.street,
+        value: incomingData?.address?.street,
       },
       {
         op: "replace",
         path: "/address/city",
-        value: incomingData.address.city,
+        value: incomingData?.address?.city,
       },
       {
         op: "replace",
         path: "/address/state",
-        value: incomingData.address.state,
+        value: incomingData?.address?.state,
       },
       {
         op: "replace",
         path: "/address/country",
-        value: incomingData.address.country,
+        value: incomingData?.address?.country,
       },
       {
         op: "replace",
         path: "/organizerDetails",
-        value: incomingData.organizerDetails,
+        value: incomingData?.organizerDetails,
       },
-      { op: "replace", path: "/website", value: incomingData.website },
-      { op: "replace", path: "/linkedIn", value: incomingData.linkedIn },
-      { op: "replace", path: "/instagram", value: incomingData.instagram },
-      { op: "replace", path: "/twitter", value: incomingData.twitter },
-      { op: "replace", path: "/faceBook", value: incomingData.faceBook },
-      { op: "replace", path: "/otherHandle", value: incomingData.otherHandle },
+      { op: "replace", path: "/website", value: incomingData?.website },
+      { op: "replace", path: "/linkedIn", value: incomingData?.linkedIn },
+      { op: "replace", path: "/instagram", value: incomingData?.instagram },
+      { op: "replace", path: "/twitter", value: incomingData?.twitter },
+      { op: "replace", path: "/faceBook", value: incomingData?.faceBook },
+      { op: "replace", path: "/otherHandle", value: incomingData?.otherHandle },
       {
         op: "replace",
         path: "/guarantorRole",
-        value: incomingData.guarantorRole,
+        value: incomingData?.guarantorRole,
       },
       {
         op: "replace",
         path: "/guarantor/secondaryContactFullName",
-        value: incomingData.guarantor.secondaryContactFullName,
+        value: incomingData?.guarantor?.secondaryContactFullName,
       },
       {
         op: "replace",
         path: "/guarantor/companyName",
-        value: incomingData.guarantor.companyName,
+        value: incomingData?.guarantor?.companyName,
       },
       {
         op: "replace",
         path: "/guarantor/jobRole",
-        value: incomingData.guarantor.jobRole,
+        value: incomingData?.guarantor?.jobRole,
       },
       {
         op: "replace",
         path: "/guarantor/officeAddress/houseNo",
-        value: incomingData.guarantor.officeAddress.houseNo,
+        value: incomingData?.guarantor?.officeAddress.houseNo,
       },
       {
         op: "replace",
         path: "/guarantor/officeAddress/street",
-        value: incomingData.guarantor.officeAddress.street,
+        value: incomingData?.guarantor?.officeAddress?.street,
       },
       {
         op: "replace",
         path: "/guarantor/officeAddress/city",
-        value: incomingData.guarantor.officeAddress.city,
+        value: incomingData?.guarantor?.officeAddress?.city,
       },
       {
         op: "replace",
         path: "/guarantor/officeAddress/state",
-        value: incomingData.guarantor.officeAddress.state,
+        value: incomingData?.guarantor?.officeAddress?.state,
       },
       {
         op: "replace",
         path: "/guarantor/officeAddress/country",
-        value: incomingData.guarantor.officeAddress.country,
+        value: incomingData?.guarantor?.officeAddress?.country,
       },
       {
         op: "replace",
         path: "/guarantor/secondaryContactPhoneNumber",
-        value: incomingData.guarantor.secondaryContactPhoneNumber,
+        value: incomingData?.guarantor?.secondaryContactPhoneNumber,
       },
       {
         op: "replace",
         path: "/guarantor/secondaryContactEmail",
-        value: incomingData.guarantor.secondaryContactEmail,
+        value: incomingData?.guarantor?.secondaryContactEmail,
       },
     ];
     try {
@@ -776,8 +776,8 @@ const EditOrganiserProfile = () => {
               <InputText>
                 Full name of {""}
                 {incomingData?.guarantorRole
-                  ? incomingData?.guarantorRole.charAt(0).toUpperCase() +
-                    incomingData?.guarantorRole.slice(1)
+                  ? incomingData?.guarantorRole?.charAt(0).toUpperCase() +
+                    incomingData?.guarantorRole?.slice(1)
                   : "Secondary Contact"}{" "}
               </InputText>
               <Input

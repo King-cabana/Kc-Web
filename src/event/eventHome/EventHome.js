@@ -67,8 +67,8 @@ const EventHome = () => {
             },
           }
         );
-        console.log(data);
-        console.log(user);
+        // console.log(data);
+        // console.log(user);
         dispatch(setEventOrganizerProfile(data));
       } catch (error) {
         console.log(error);
@@ -269,7 +269,7 @@ const EventHome = () => {
                   Create an event right away.
                 </ChecklistSubHeading>
               </Wrapper>
-              <ButtonLink to="/firstCreateEvent">
+              <ButtonLink to="/createevent/eventdetails/1">
                 <PrimaryButton2>Start here</PrimaryButton2>
               </ButtonLink>
             </ItemsContainer>

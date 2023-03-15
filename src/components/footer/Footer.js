@@ -82,9 +82,7 @@ const Footer = () => {
               <li>Help center</li>
             </ul>
           </FooterLinksHolder>
-          {/* <FooterLinksHolder>
-                <p>Download app on</p>
-                </FooterLinksHolder> */}
+      
           <EventButtonHolder>
             <p style={{ color: "white", fontSize: "14px", marginBottom: "5%" }}>
               Download app on

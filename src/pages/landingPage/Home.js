@@ -53,34 +53,33 @@ import {
   KBTextM,
 } from "../../components/fonts/fontSize";
 
-
 const Home = () => {
-
-  
   return (
     <>
       <Navbar />
+
       <HeroSection>
         <BgOverlay>
           <ContentHolder>
             <TypeTextHolder>
-            <KBDisplayL style={{ margin: "auto 0" }}>
-              Dreams do come true.
-              <br />{" "}
-              <span style={{ color: "#FFBC15", fontWeight: "bold" }}>
-                <Typewriter
-                  words={[
-                    "Create Memories",
-                    "Secure Sponsorships",
-                    "Assess Target Markets",
-                  ]}
-                  loop={Infinity}
-                  cursor
-                  cursorStyle="_"
-                  typeSpeed={100}
-                  deleteSpeed={100}/>
-              </span>
-            </KBDisplayL>
+              <KBDisplayL style={{ margin: "auto 0" }}>
+                Dreams do come true.
+                <br />{" "}
+                <span style={{ color: "#FFBC15", fontWeight: "bold" }}>
+                  <Typewriter
+                    words={[
+                      "Create Memories",
+                      "Secure Sponsorships",
+                      "Assess Target Markets",
+                    ]}
+                    loop={Infinity}
+                    cursor
+                    cursorStyle="_"
+                    typeSpeed={100}
+                    deleteSpeed={100}
+                  />
+                </span>
+              </KBDisplayL>
             </TypeTextHolder>
             <KBTextL>
               Connecting People | Creating Memories | Capturing Value
@@ -91,7 +90,7 @@ const Home = () => {
                 <PrimaryButton fontWeight="600">Create Event</PrimaryButton>
               </NavButtonLink>
               <NavButtonLink to="/signup">
-                <AlternativeButton fontWeight="600" color='white'>
+                <AlternativeButton fontWeight="600" color="white">
                   Sponsor Events
                 </AlternativeButton>
               </NavButtonLink>
@@ -107,11 +106,13 @@ const Home = () => {
             color: "#484848",
             fontWeight: "600",
             marginBottom: " 1%",
-          }}>
+          }}
+        >
           Event Categories
         </KBDisplayM>
         <KBTextL
-          style={{ color: "#484848", fontWeight: "500", textAlign: "center" }}>
+          style={{ color: "#484848", fontWeight: "500", textAlign: "center" }}
+        >
           Explore the most trending
         </KBTextL>
         <CardHolder>
@@ -143,7 +144,7 @@ const Home = () => {
         </NavButtonHolder>
       </ContentSection>
 
-       <ASContentSection style={{ backgroundColor: "#FEF5F7" }}>
+      <ASContentSection style={{ backgroundColor: "#FEF5F7" }}>
         <ASSectionInner>
           <ASContent>
             <ASContentInner>
@@ -235,7 +236,7 @@ const Home = () => {
           </div>
         </ASContent>
       </ReadySection>
-      <Footer /> 
+      <Footer />
     </>
   );
 };

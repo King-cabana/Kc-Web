@@ -87,7 +87,7 @@ const SocialProfile = () => {
           },
         }
       );
-      console.log(data);
+      // console.log(data);
       dispatch(setEventOrganizerProfile(data));
       navigate("/home");
       toast.success("Form Submitted Successfully");

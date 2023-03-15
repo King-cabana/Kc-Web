@@ -74,11 +74,11 @@ const TimeLineEvent = ({ padding }) => {
     dispatch(editGenerally({ name: e.target.name, value: e.target.value }));
   };
   const navigateBack = () => {
-    navigate("/test/eventdetails/2");
+    navigate("/createevent/eventdetails/2");
   };
 
   const navigateNext = () => {
-    navigate("/test/eventdetails/4");
+    navigate("/createevent/eventdetails/4");
     console.log(state);
   };
 
