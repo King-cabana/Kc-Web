@@ -2,40 +2,49 @@ import styled from "styled-components";
 import size from "./device";
 
 export const GuestRegistrationDiv = styled.div`
-  padding-left: 3%;
+  width: 100%;
+  
 `;
 
-export const Header = styled.h2`
-  margin-top: -2.5%;
-  line-height: 32px;
-  font-size: 24px;
-  font-weight: 700;
+export const Header = styled.p`
+
+  @media screen and (min-width: 414px){
+    font-size: 0.7rem;
+    padding-right: 6%;
+  };
+
+  @media screen and (max-width: 385px){
+    font-size: 0.7rem;
+  };
+
+  @media screen and (min-width: 280px){
+    font-size: 0.6rem;
+  };
+
+  font-size: 20px;
+  font-weight: 600;
   display: flex;
   flex-direction: row;
-  float: right;
-  padding-right: 10%;
-  font-style: normal;
 `;
 
-export const Plan = styled.h3`
-  padding-left: 1%;
-  line-height: 30px;
-  display: inline;
-  font-weight: 400;
+export const Plan = styled.p`
   color: red;
-  font-style: normal;
+
+  @media screen and (min-width: 280px){
+    font-size: 0.6rem;
+  };
 `;
 
 export const TableDiv = styled.div`
-  width: 70%;
+  width: 100%;
   h3 {
     font-family: "Poppins";
     font-style: normal;
     font-weight: 600;
     font-size: 1.5rem;
-    line-height: 2;
+    /* line-height: 2; */
     color: #484848;
-    margin: 10px 0;
+    /* margin: 10px 0; */
   }
   p {
     font-family: "Poppins";
@@ -44,6 +53,30 @@ export const TableDiv = styled.div`
     font-size: 1.2rem;
     line-height: 3;
     color: #484848;
+
+    @media screen and (min-width: 414px){
+    font-size: 1.5rem;
+  };
+
+  @media screen and (max-width: 385px){
+    font-size: 1.5rem;
+  };
+
+  @media screen and (min-width: 280px){
+    font-size: 1rem;
+  };
+
+  }
+
+  @media screen and (min-width: 360px) and (max-width: 560px) {
+    p {
+      padding-left: 10px;
+      padding-right: 10px; 
+      line-height: 40px;
+      word-wrap: break-word;
+      margin-bottom: 20px ;
+    }
+
   }
 `;
 
@@ -81,11 +114,24 @@ export const GuestDetails = styled.div`
   }
 
   p {
+
+    @media screen and (min-width: 414px){
+    font-size: 1.5rem;
+  };
+
+  @media screen and (max-width: 385px){
+    font-size: 1.5rem;
+  };
+
+  @media screen and (min-width: 280px){
+    font-size: 1rem;
+  };
+
     font-family: "Poppins";
     font-style: normal;
     font-weight: 400;
     font-size: 1.2rem;
-    line-height: 3;
+    line-height: 2;
     color: #484848;
   }
 `;
@@ -94,8 +140,10 @@ export const Tags = styled.div`
   width: 400%;
   display: flex;
   flex-direction: row;
-  gap: 10px;
-  height: 20%;
+  gap: 30px;
+  height: 18%;
+  margin-right: 100%;
+
 
   ul {
     color: #484848;
@@ -104,28 +152,36 @@ export const Tags = styled.div`
     background: #f6e9ec;
     border-radius: 20px;
   }
+  
+  @media screen and (min-width: 414px){
+    font-size: 0.7rem;
+    /* padding-right: 6%; */
+  };
+
+  @media screen and (max-width: 385px){
+    font-size: 0.7rem;
+  };
+
+  @media screen and (min-width: 280px){
+    font-size: 0.6rem;
+  };
 `;
+
+export const HeaderHolder =styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`
 
 export const Page = styled.div`
     justify-content: center;
-    margin-left: 7%;
-
-    @media screen and (max-width: 375px) {
-      .plan_ {
-        margin-top: -2%;
-        font-size: 9px;
-      }
-      .prev_ {
-        font-size: 12px;
-      }
-    }
-
-    @media screen and (max-width: 414px) {
-      .plan_ {
-        font-size: 10px;
-      }
-      .prev_ {
-        font-size: 13px;
-      }
-  }
-`;;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 0 3%;
+    `;
+  
+   
+   
