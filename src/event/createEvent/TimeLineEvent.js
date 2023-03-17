@@ -33,8 +33,8 @@ import {
   TagsWrapper,
 } from "./TimeLineEventsStyled";
 import {
-  PrimaryButton,
   AlternativeButton2,
+  AbsolutePrimaryButton,
 } from "../../components/button/button";
 
 const TimeLineEvent = ({ padding }) => {
@@ -178,9 +178,9 @@ const TimeLineEvent = ({ padding }) => {
             >
               Back
             </AlternativeButton2>
-            <PrimaryButton onClick={navigateNext}>
+            <AbsolutePrimaryButton onClick={navigateNext}>
               Save & Continue
-            </PrimaryButton>
+            </AbsolutePrimaryButton>
           </ButtonContainer>
         )}
       </BudgetInventoryContainer>

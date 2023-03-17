@@ -3,7 +3,10 @@ import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, useLocation } from "react-router-dom";
 import { ButtonContainer, Label } from "../pages/DefineAudienceStyled";
-import { PrimaryButton, PrimaryButton3 } from "../../components/button/button";
+import {
+  AbsolutePrimaryButton,
+  PrimaryButton3,
+} from "../../components/button/button";
 import { EventSubSection } from "../createEvent/TimeLineEventsStyled";
 import { Input, InputText, MyTextArea } from "./FirstCreateEventStyled";
 import {
@@ -292,9 +295,9 @@ const FirstCreateEvent = ({ padding }) => {
 
         {location.pathname === "/eventPlanPreview" ? null : (
           <ButtonContainer style={{ margin: "0rem" }}>
-            <PrimaryButton onClick={handleSubmit}>
+            <AbsolutePrimaryButton onClick={handleSubmit}>
               Save & Continue
-            </PrimaryButton>
+            </AbsolutePrimaryButton>
           </ButtonContainer>
         )}
       </BudgetInventoryContainer>

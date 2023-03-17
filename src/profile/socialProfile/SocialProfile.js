@@ -13,13 +13,7 @@ import {
 } from "../createProfile/CreateProfileStyled";
 import kingCabanaLogo from "../../images/kingCabanaLogo.svg";
 import { EventHeader1 } from "../../event/createEvent/TimeLineEventsStyled";
-import {
-  ButtonSave,
-  InputSeg,
-  SaveBox,
-  TransparentButton,
-  Asterix,
-} from "../organiserProfile/OrganiserProfileStyled";
+import { InputSeg, Asterix } from "../organiserProfile/OrganiserProfileStyled";
 import {
   CheckBoxInput,
   Input,
@@ -27,11 +21,15 @@ import {
   InputText,
   SmallText,
 } from "../../event/createEvent/FirstCreateEventStyled";
-import { LongButton1 } from "../manageProfile/ManageProfileStyled";
 import { clearProfile, editProfile } from "../../redux/slices/profileSlice";
 import axios from "axios";
 import { ImSpinner6 } from "react-icons/im";
 import { setEventOrganizerProfile } from "../../redux/slices/eventOrganizerProfileSlice";
+import { ButtonContainer } from "../../event/budgetInventory/BudgetStyled";
+import {
+  AbsolutePrimaryButton,
+  AlternativeButton2,
+} from "../../components/button/button";
 
 const SocialProfile = () => {
   const [visibility, setVisibility] = useState(false);
@@ -78,7 +76,7 @@ const SocialProfile = () => {
     setIsDisabled(true);
     try {
       const { data } = await axios.post(
-        "http://localhost:8081/profiles/create/",
+        "http://localhost:8080/profiles/create/",
         state,
         {
           headers: {
@@ -91,6 +89,7 @@ const SocialProfile = () => {
       dispatch(setEventOrganizerProfile(data));
       navigate("/home");
       toast.success("Form Submitted Successfully");
+      dispatch(clearProfile());
     } catch (error) {
       console.log(error);
       if (error.response.data === "Profile already exists") {
@@ -105,8 +104,6 @@ const SocialProfile = () => {
         toast.error("Error Submitting Form");
         navigate("/createProfile");
       }
-    } finally {
-      dispatch(clearProfile());
     }
   };
 
@@ -364,18 +361,25 @@ const SocialProfile = () => {
           </ProfileSection>
         </ProfileContent>
 
-        <SaveBox>
-          <ButtonSave>
-            <TransparentButton onClick={navigateBack}>Back</TransparentButton>
-            <LongButton1 onClick={navigateNext} disabled={isDisabled}>
-              {sending ? (
-                <ImSpinner6 size={"1.5rem"} />
-              ) : (
-                "Proceed to Dashboard"
-              )}
-            </LongButton1>
-          </ButtonSave>
-        </SaveBox>
+        <ButtonContainer style={{ margin: "0rem", zIndex: "999" }}>
+          <AlternativeButton2
+            onClick={navigateBack}
+            style={{
+              color: "#FF2957",
+              fontWeight: "600",
+              marginRight: "2rem",
+            }}
+          >
+            Back
+          </AlternativeButton2>
+          <AbsolutePrimaryButton
+            onClick={navigateNext}
+            disabled={isDisabled}
+            style={{ width: "auto", padding: "0rem 0.5rem" }}
+          >
+            {sending ? <ImSpinner6 size={"1.5rem"} /> : "Proceed to Dashboard"}
+          </AbsolutePrimaryButton>
+        </ButtonContainer>
       </ProfileContainer>
     </>
   );

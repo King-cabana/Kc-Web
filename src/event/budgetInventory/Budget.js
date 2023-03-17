@@ -3,7 +3,7 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useLocation } from "react-router-dom";
 import {
-  PrimaryButton,
+  AbsolutePrimaryButton,
   PrimaryButton3,
   AlternativeButton2,
 } from "../../components/button/button";
@@ -203,9 +203,12 @@ const Budget = ({ padding }) => {
                     >
                       Back
                     </AlternativeButton2>
-                    <PrimaryButton onClick={handleSubmit} disabled={isDisabled}>
+                    <AbsolutePrimaryButton
+                      onClick={handleSubmit}
+                      disabled={isDisabled}
+                    >
                       Save & Continue
-                    </PrimaryButton>
+                    </AbsolutePrimaryButton>
                   </ButtonContainer>
                 </div>
               )}

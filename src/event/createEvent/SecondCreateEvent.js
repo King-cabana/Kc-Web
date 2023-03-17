@@ -31,7 +31,7 @@ import {
   ButtonContainer,
 } from "../budgetInventory/BudgetStyled";
 import {
-  PrimaryButton,
+  AbsolutePrimaryButton,
   AlternativeButton2,
 } from "../../components/button/button";
 
@@ -316,9 +316,9 @@ const SecondCreateEvent = ({ padding }) => {
             >
               Back
             </AlternativeButton2>
-            <PrimaryButton onClick={navigateNext}>
+            <AbsolutePrimaryButton onClick={navigateNext}>
               Save & Continue
-            </PrimaryButton>
+            </AbsolutePrimaryButton>
           </ButtonContainer>
         )}
       </BudgetInventoryContainer>

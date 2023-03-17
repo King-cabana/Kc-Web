@@ -14,7 +14,7 @@ import {
   BudgetSubtitle,
 } from "./BudgetStyled";
 import {
-  PrimaryButton,
+  AbsolutePrimaryButton,
   AlternativeButton2,
 } from "../../components/button/button";
 import {
@@ -37,8 +37,8 @@ const Inventory = ({ padding }) => {
   const state = useSelector((state) => state.createEvent);
 
   const navigateBack = () => {
-    navigate("/createevent/budget&inventory/1")
-  }
+    navigate("/createevent/budget&inventory/1");
+  };
 
   const [exclusive, setExclusive] = useState(false);
   const [otherOnline, setOtherOnline] = useState(false);
@@ -1003,9 +1003,9 @@ const Inventory = ({ padding }) => {
               >
                 Back
               </AlternativeButton2>
-              <PrimaryButton onClick={handleSubmit}>
+              <AbsolutePrimaryButton onClick={handleSubmit}>
                 Save & Submit
-              </PrimaryButton>
+              </AbsolutePrimaryButton>
             </ButtonContainer>
           </BudgetUpload>
         </BudgetSection>

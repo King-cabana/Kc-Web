@@ -11,7 +11,7 @@ import {
 import { ButtonContainer, Label } from "./DefineAudienceStyled";
 import {
   AlternativeButton2,
-  PrimaryButton,
+  AbsolutePrimaryButton,
 } from "../../components/button/button";
 import { RadioInput } from "../createEvent/ContactInfoStyled";
 import { useNavigate, useLocation } from "react-router-dom";
@@ -693,9 +693,9 @@ const DefineAudience = ({ padding }) => {
               >
                 Back
               </AlternativeButton2>
-              <PrimaryButton onClick={navigateNext}>
+              <AbsolutePrimaryButton onClick={navigateNext}>
                 Save & Continue
-              </PrimaryButton>
+              </AbsolutePrimaryButton>
             </ButtonContainer>
           )}
         </div>

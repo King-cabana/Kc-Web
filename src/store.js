@@ -3,6 +3,7 @@ import { persistReducer, persistStore } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import profileSlice from "./redux/slices/profileSlice";
 import createEventSlice from "./redux/slices/createEventSlice";
+import eventCreatedSlice from "./redux/slices/eventCreatedSlice";
 import eventOrganizerProfileSlice from "./redux/slices/eventOrganizerProfileSlice";
 import messageSlice from "./redux/slices/userDetailsSlice";
 import otpSlice from "./redux/slices/otpSlice";
@@ -18,7 +19,8 @@ const reducer = combineReducers({
   eventOrganizerProfile: eventOrganizerProfileSlice,
   otp: otpSlice,
   createEvent: createEventSlice,
-  userDetails : userDetailsSlice,
+  eventCreated: eventCreatedSlice,
+  userDetails: userDetailsSlice,
 });
 
 const persistedReducer = persistReducer(persistConfig, reducer);

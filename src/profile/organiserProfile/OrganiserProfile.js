@@ -12,7 +12,6 @@ import {
   Supported,
   MyTextArea,
 } from "../../event/createEvent/FirstCreateEventStyled";
-import { DownButtonFull } from "../../event/createEvent/SecondCreateEventStyled";
 import { EventHeader1 } from "../../event/createEvent/TimeLineEventsStyled";
 import kingCabanaLogo from "../../images/kingCabanaLogo.svg";
 import {
@@ -24,15 +23,13 @@ import {
   ProfileSection,
   ShapedBackground,
 } from "../createProfile/CreateProfileStyled";
-import {
-  InputSeg,
-  SaveBox,
-  ButtonSave,
-  TransparentButton,
-  Asterix,
-  Wrapper,
-} from "./OrganiserProfileStyled";
+import { InputSeg, Asterix, Wrapper } from "./OrganiserProfileStyled";
 import { ImSpinner6 } from "react-icons/im";
+import { ButtonContainer } from "../../event/budgetInventory/BudgetStyled";
+import {
+  AbsolutePrimaryButton,
+  AlternativeButton2,
+} from "../../components/button/button";
 
 const OrganiserProfile = () => {
   const [file, setFile] = useState("");
@@ -446,14 +443,22 @@ const OrganiserProfile = () => {
             ></div>
           </ProfileSection>
         </ProfileContent>
-        <SaveBox>
-          <ButtonSave>
-            <TransparentButton onClick={navigateBack}>Back</TransparentButton>
-            <DownButtonFull onClick={navigateNext} disabled={isDisabled}>
-              {sending ? <ImSpinner6 size={"1.5em"} /> : "Next"}
-            </DownButtonFull>
-          </ButtonSave>
-        </SaveBox>
+
+        <ButtonContainer style={{ margin: "0rem", zIndex: "999" }}>
+          <AlternativeButton2
+            onClick={navigateBack}
+            style={{
+              color: "#FF2957",
+              fontWeight: "600",
+              marginRight: "2rem",
+            }}
+          >
+            Back
+          </AlternativeButton2>
+          <AbsolutePrimaryButton onClick={navigateNext} disabled={isDisabled}>
+            {sending ? <ImSpinner6 size={"1.5em"} /> : "Next"}
+          </AbsolutePrimaryButton>
+        </ButtonContainer>
       </ProfileContainer>
     </div>
   );

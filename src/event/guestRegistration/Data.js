@@ -1,14 +1,9 @@
+const a = "Lagos eventsssssssssssss";
+const b = "Lagos events";
+const c = "Lagos events";
+const d = "Lagos events";
+const e = "Lagos events";
 
-const a = ("Lagos events")
-const b = ("Lagos events")
-const c = ("Lagos events")
-const d = ("Lagos events")
-const e = ("Lagos events")
-        
-const tags = [
+const mockTags = [a, b, c, d, e];
 
-    a, b, c, d, e, 
-  
-] 
-
-export {tags};
+export { mockTags };

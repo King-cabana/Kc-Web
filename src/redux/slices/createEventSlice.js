@@ -25,6 +25,20 @@ const initialState = {
   causeTieIn: [],
 };
 
+const clearObject = (obj) => {
+  const newObj = {};
+  for (const key in obj) {
+    if (Array.isArray(obj[key])) {
+      newObj[key] = [];
+    } else if (typeof obj[key] === "string") {
+      newObj[key] = "";
+    } else {
+      newObj[key] = obj[key];
+    }
+  }
+  return newObj;
+};
+
 export const createEventSlice = createSlice({
   name: "createEvent",
   initialState,
@@ -51,11 +65,6 @@ export const createEventSlice = createSlice({
       state[listType] = finalArray.filter((x) => x !== "");
       state[`${listType}New`] = newList.filter((x) => x !== "");
     },
-    clearEvent: (state) => {
-      Object.keys(state).forEach((each) =>
-        Object.assign(state, { [each]: "" })
-      );
-    },
     addTag: (state, action) => {
       if (state.tags.length < 5) {
         state.tags.push(action.payload);
@@ -66,6 +75,9 @@ export const createEventSlice = createSlice({
       if (index !== -1) {
         state.tags.splice(index, 1);
       }
+    },
+    clearEvent: (state) => {
+      return clearObject(initialState);
     },
   },
 });

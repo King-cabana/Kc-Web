@@ -1,20 +1,119 @@
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { toast } from "react-toastify";
 import {
   Page,
-  TableDiv,
-  GuestRegistrationDiv,
-  CreatePublishButton,
   Tags,
   Header,
   Plan,
   HeaderHolder,
+  Wrapper,
 } from "./GuestRegistrationStyled";
-import Guest from "./Guest";
-import location from "../../../src/images/location.svg";
-import calendar from "../../../src/images/calendar.svg";
-import backSign from "../../../src/images/backSign.svg";
+import { setEventOrganizerProfile } from "../../redux/slices/eventOrganizerProfileSlice";
+import { setEventCreated } from "../../redux/slices/eventCreatedSlice";
+import { mockTags } from "./Data";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router";
 import drummer from "../../../src/images/drummer.png";
-import { tags } from "./Data.js";
+import { AiOutlineLeft, AiTwotoneCalendar } from "react-icons/ai";
+import {
+  BackgroundPicture,
+  ImagesContainer,
+} from "../eventHome/EventHomeStyled";
+import {
+  BudgetInventorySubtitle,
+  BudgetSection,
+  BudgetTitle1,
+  BudgetTitle2,
+  ButtonContainer,
+} from "../budgetInventory/BudgetStyled";
+import { AbsolutePrimaryButton } from "../../components/button/button";
+import { clearEvent } from "../../redux/slices/createEventSlice";
+import { ImSpinner6 } from "react-icons/im";
+
 const GuestRegistration = () => {
+  const state = useSelector((state) => state.createEvent);
+  const organizer = useSelector((state) => state.eventOrganizerProfile);
+  const user = useSelector((state) => state.userDetails);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [sending, setSending] = useState(false);
+  const [isDisabled, setIsDisabled] = useState(false);
+
+  useEffect(() => {
+    const fetchOrganizerProfile = async () => {
+      try {
+        const { data } = await axios.get(
+          `http://localhost:8080/profiles/${organizer?.id}`,
+          {
+            headers: {
+              Authorization: `Bearer ${user.token}`,
+            },
+          }
+        );
+        dispatch(setEventOrganizerProfile(data));
+      } catch (error) {
+        console.log(error);
+        // handle error here
+      }
+    };
+    fetchOrganizerProfile();
+    return () => {
+      // cleanup code here
+    };
+  }, [organizer?.id]);
+
+  const eventTags = state?.tags
+    ? state?.tags.map((tag) => <ul key={tag}>{tag}</ul>)
+    : mockTags.map((tag) => <ul key={mockTags.values}>{tag}</ul>);
+
+  // exclude some data before posting
+  const allKeys = Object.keys(state);
+  const keysToSend = allKeys.filter(
+    (key) =>
+      key !== "genderListNew" &&
+      key !== "religionListNew" &&
+      key !== "maritalStatusListNew" &&
+      key !== "employmentStatusListNew" &&
+      key !== "educationLevelListNew" &&
+      !(Array.isArray(state[key]) && state[key]?.length === 0)
+  );
+  const dataToSend = {};
+  keysToSend.forEach((key) => {
+    dataToSend[key] = state[key];
+  });
+  ///////////////////////////////////
+
+  const navigateNext = async (e) => {
+    e.preventDefault();
+    console.log(dataToSend);
+
+    try {
+      setSending(true);
+      setIsDisabled(true);
+      const { data } = await axios.post(
+        "http://localhost:8080/events/create",
+        state,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${user.token}`,
+          },
+        }
+      );
+      console.log(data);
+      dispatch(setEventCreated(data));
+      // navigate("/submitted");
+      toast.success("You have created event Successfully");
+      dispatch(clearEvent());
+    } catch (error) {
+      console.log(error);
+      toast.error("Error Creating Event");
+      setIsDisabled(false);
+      setSending(false);
+    }
+  };
+
   return (
     <Page>
       <HeaderHolder>
@@ -22,80 +121,85 @@ const GuestRegistration = () => {
           style={{
             display: "flex",
             width: "fit-content",
-            gap: "10px",
+            gap: "2px",
             justifyContent: "center",
             alignItems: "center",
           }}
         >
-          <img
-            src={backSign}
-            // style={{ marginTop: "6%", paddingLeft: "3%" }}
-            alt="back"
-            style={{ width: "fit-content" }}
-          />
-          {/* <p>Event Plan Preview</p>/ */}
-          <Plan className="plan_">Event Plan Preview</Plan>
+          <AiOutlineLeft color="#FF2957" />
+          <Plan className="plan_">Preview</Plan>
         </div>
         <Header className="prev_">Guest Registration Preview</Header>
       </HeaderHolder>
 
-      <GuestRegistrationDiv style={{ paddingBottom: "3%" }}>
-        <img
-          style={{ marginTop: "1%", width: "100%", marginBottom: "20px" }}
-          src={drummer}
-          alt="drummer"
+      <ImagesContainer>
+        <BackgroundPicture
+          src={state?.eventBannerUrl ? state?.eventBannerUrl : drummer}
+          alt="Background Picture"
         />
-        <TableDiv>
-          <h3>Drummer's club</h3>
-          <p>
-            Lorem ipsum dolor sit amet consectetur. Eget aliquam at leo diam
-          </p>
-          <h3>Event description</h3>
-          <p>
-            Event Description Lorem ipsum dolor sit amet consectetur. Arcu
-            gravida non egestas purus eu feugiat nunc turpis fusce. Convallis
-            etiam habitasse in donec velit. Urna congue eu praesent amet aliquam
-            est. Sed quam orci metus ut amet. Pulvinar proin malesuada mauris
-            sed sed. Hac aenean nisl sed tellus nisi phasellus sagittis justo.
-            Nibh porttitor sit volutpat morbi posuere. Est massa iaculis laoreet
-            tristique at cras mus aliquet. Vitae ut rhoncus senectus sed. (250
-            Characters limit)
-          </p>
-          <h3>Estimated Attendance</h3>
-          <p>2000</p>
-        </TableDiv>
-        <Guest
-          image={calendar}
-          title="Date and Time"
-          desc="Friday March 3rd, 2023, 10:00am WAT.Saturday"
-          descTwo="March 4th, 2023, 1:00pm WAT."
-        />
-        <Guest
-          image={location}
-          title="Location"
-          desc="Suite 13 Bola Ahmed Shopping Complex Oyetayo Street"
-          descTwo="Oshodi Isolo, Nigeria"
-        />
-        <div style={{ marginTop: "25px" }}>
-          <h3>Tags</h3>
-          <div style={{}}>
-            <Tags style={{ padding: "1%" }}>
-              {tags.map((tag) => (
-                <ul>{tag}</ul>
-              ))}
-            </Tags>
-            <Tags style={{ paddingLeft: "1%" }}>
-              {tags.map((tag) => (
-                <ul>{tag}</ul>
-              ))}
-            </Tags>
-          </div>
-        </div>
+      </ImagesContainer>
+      {/* <TableDiv> */}
 
-        <CreatePublishButton>
-          <button>Publish</button>
-        </CreatePublishButton>
-      </GuestRegistrationDiv>
+      <BudgetSection>
+        <BudgetTitle1>
+          {organizer?.organizerName
+            ? organizer?.organizerName
+            : "Organizer's Name"}
+        </BudgetTitle1>
+        <BudgetInventorySubtitle
+          style={{ marginBottom: "0.5rem", marginTop: "0px" }}
+        >
+          {organizer?.organizerDetails
+            ? organizer?.organizerDetails
+            : "Organizer's Details: Lorem Ipsum ghas hwwss"}
+        </BudgetInventorySubtitle>
+        <BudgetTitle2>
+          {state?.eventName ? state?.eventName : "Event Name"}
+        </BudgetTitle2>
+        <BudgetInventorySubtitle style={{ marginBottom: "1rem" }}>
+          {state?.eventTheme
+            ? state?.eventTheme
+            : "Event Theme: lorem Ips lorem Ipusum"}
+        </BudgetInventorySubtitle>
+        <BudgetTitle2>Event description</BudgetTitle2>
+        <BudgetInventorySubtitle style={{ marginBottom: "1rem" }}>
+          {state?.eventDescription
+            ? state?.eventDescription
+            : "Event Description"}
+        </BudgetInventorySubtitle>
+        <BudgetTitle2>Estimated Attendance</BudgetTitle2>
+        <BudgetInventorySubtitle style={{ marginBottom: "1rem" }}>
+          {state?.estimatedAttendance ? state?.estimatedAttendance : "0000"}
+        </BudgetInventorySubtitle>
+        <Wrapper>
+          <AiTwotoneCalendar color="#FF2957" size="1.5em" />
+          <BudgetTitle2>Date and Time</BudgetTitle2>
+        </Wrapper>
+        <BudgetInventorySubtitle style={{ marginBottom: "1rem" }}>
+          (yyyy-mm-dd, 24hours format) <br />
+          {state?.eventStartDate
+            ? state?.eventStartDate
+            : "Event start date"},{" "}
+          {state?.eventStartTime ? state?.eventStartTime : "Event start time"}{" "}
+          {/* Friday March 3rd, 2023, 10:00am WAT. */}
+        </BudgetInventorySubtitle>
+
+        <Wrapper>
+          <AiTwotoneCalendar color="#FF2957" size="1.5em" />
+          <BudgetTitle2>Location</BudgetTitle2>
+        </Wrapper>
+        <BudgetInventorySubtitle style={{ marginBottom: "1rem" }}>
+          {state?.eventAddress ? state?.eventAddress : "Event Physical address"}
+        </BudgetInventorySubtitle>
+        <BudgetTitle2>Tags</BudgetTitle2>
+        <Tags style={{ padding: "1% 0%" }}>{eventTags}</Tags>
+      </BudgetSection>
+
+      <ButtonContainer style={{ margin: "0rem" }}>
+        <AbsolutePrimaryButton onClick={navigateNext} disabled={isDisabled}>
+          {sending ? <ImSpinner6 size={"1.5rem"} /> : "Publish"}
+        </AbsolutePrimaryButton>
+      </ButtonContainer>
     </Page>
   );
 };

@@ -12,7 +12,7 @@ import {
   ButtonContainer,
 } from "../budgetInventory/BudgetStyled";
 import { Space } from "./EventPlanPreviewStyled";
-import { PrimaryButton } from "../../components/button/button";
+import { AbsolutePrimaryButton } from "../../components/button/button";
 import Budget from "../budgetInventory/Budget";
 import Inventory from "../budgetInventory/Inventory";
 import { AiOutlineLeftCircle, AiOutlineRightCircle } from "react-icons/ai";
@@ -63,7 +63,7 @@ const EventPlanPreview = () => {
   const handleSubmit = async function (e) {
     e.preventDefault();
     console.log(state);
-    navigate("/budget");
+    navigate("/guest");
   };
   return (
     <>
@@ -101,7 +101,9 @@ const EventPlanPreview = () => {
         {renderArrow("right")}
 
         <ButtonContainer display={"flex"}>
-          <PrimaryButton onClick={handleSubmit}>Done</PrimaryButton>
+          <AbsolutePrimaryButton onClick={handleSubmit}>
+            Done
+          </AbsolutePrimaryButton>
         </ButtonContainer>
       </BudgetInventoryContainer>
     </>

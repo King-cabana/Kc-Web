@@ -7,21 +7,28 @@ import {
 import { BtnHolderLink } from "./InventoryStyled";
 import { SubmittedContainer, SubmittedButtons } from "./SubmittedStyled";
 import {
-  PrimaryButton,
+  AbsolutePrimaryButton,
   //   PrimaryButton3,
   AlternativeButton2,
 } from "../../components/button/button";
+import Lottie from "lottie-react";
+import animationData from "../../lotties/102001-success-icon.json";
+import { AnimationContainer } from "../../globalStyles";
 
 const Submitted = () => {
   return (
     <SubmittedContainer>
-      <BudgetTitle1>Submitted</BudgetTitle1>
-      <BudgetInventorySubtitle>
-        You’ve successfully created an event.
+      <AnimationContainer>
+        <Lottie animationData={animationData} loop={true} />
+      </AnimationContainer>
+      <BudgetInventorySubtitle
+        style={{ marginBottom: "1rem", fontWeight: "600" }}
+      >
+        Event created successfully.
       </BudgetInventorySubtitle>
 
       <SubmittedButtons>
-        <AlternativeButton2
+        {/* <AlternativeButton2
           style={{
             color: "#FF2957",
             fontWeight: "600",
@@ -29,34 +36,24 @@ const Submitted = () => {
           }}
         >
           Share
-        </AlternativeButton2>
+        </AlternativeButton2> */}
         <AlternativeButton2
           style={{
             color: "#FF2957",
             fontWeight: "600",
           }}
         >
-          Copy URL
+          Copy & Share URL
         </AlternativeButton2>
       </SubmittedButtons>
 
       <ButtonContainer>
-        <AlternativeButton2
-          style={{
-            color: "#FF2957",
-            fontWeight: "600",
-            marginRight: "2rem",
-          }}
-        >
-          Preview & Edit
-        </AlternativeButton2>
-
         <BtnHolderLink to="/home">
-          <PrimaryButton
+          <AbsolutePrimaryButton
           //  onClick={handleSubmit} disabled={isDisabled}
           >
             Done
-          </PrimaryButton>
+          </AbsolutePrimaryButton>
         </BtnHolderLink>
       </ButtonContainer>
     </SubmittedContainer>

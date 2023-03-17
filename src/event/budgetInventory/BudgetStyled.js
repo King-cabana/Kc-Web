@@ -55,14 +55,14 @@ export const BudgetTitle1 = styled.h1`
 export const BudgetTitle2 = styled.h1`
   /* width: 100%; */
   /* height: 100%; */
-  font-weight: 700;
-  font-size: 24px;
+  font-weight: 600;
+  font-size: 21px;
   line-height: 32px;
 
   color: #484848;
 
   @media screen and (max-width: 960px) {
-    font-size: 14px;
+    font-size: 12px;
     line-height: 20px;
   }
 `;
