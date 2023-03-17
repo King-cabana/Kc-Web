@@ -59,12 +59,15 @@ const TimeLineEvent = ({ padding }) => {
     dispatch(removeTag(tag));
   };
   // Render the list of tags
-  const tagList = state?.tags?.map((tag, index) => (
+  const tagList = state?.tags.map((tag, index) => (
     <div key={index}>
-      <EventButton style={{ marginRight: "1rem", marginBottom: "0.5rem" }}>
+      <EventButton
+        style={{ marginRight: "1rem", marginBottom: "0.2rem", width: "auto" }}
+      >
         {tag}
         <Delete onClick={() => handleRemoveTag(tag)}>
           <AiOutlineClose />
+          {/* ... */}
         </Delete>
       </EventButton>
     </div>

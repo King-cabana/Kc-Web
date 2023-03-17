@@ -8,6 +8,7 @@ import {
   Plan,
   HeaderHolder,
   Wrapper,
+  HR,
 } from "./GuestRegistrationStyled";
 import { setEventOrganizerProfile } from "../../redux/slices/eventOrganizerProfileSlice";
 import { setEventCreated } from "../../redux/slices/eventCreatedSlice";
@@ -65,7 +66,7 @@ const GuestRegistration = () => {
 
   const eventTags = state?.tags
     ? state?.tags.map((tag) => <ul key={tag}>{tag}</ul>)
-    : mockTags.map((tag) => <ul key={mockTags.values}>{tag}</ul>);
+    : mockTags.map((tag) => <ul key={mockTags}>{tag}</ul>);
 
   // exclude some data before posting
   const allKeys = Object.keys(state);
@@ -103,7 +104,7 @@ const GuestRegistration = () => {
       );
       console.log(data);
       dispatch(setEventCreated(data));
-      // navigate("/submitted");
+      navigate("/submitted");
       toast.success("You have created event Successfully");
       dispatch(clearEvent());
     } catch (error) {
@@ -153,10 +154,13 @@ const GuestRegistration = () => {
             ? organizer?.organizerDetails
             : "Organizer's Details: Lorem Ipsum ghas hwwss"}
         </BudgetInventorySubtitle>
+        <HR />
+
         <BudgetTitle2>
-          {state?.eventName ? state?.eventName : "Event Name"}
+          Event Name: {state?.eventName ? state?.eventName : "Event Name"}
         </BudgetTitle2>
         <BudgetInventorySubtitle style={{ marginBottom: "1rem" }}>
+          THEME:{" "}
           {state?.eventTheme
             ? state?.eventTheme
             : "Event Theme: lorem Ips lorem Ipusum"}

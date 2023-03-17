@@ -43,7 +43,7 @@ const Submitted = () => {
             fontWeight: "600",
           }}
         >
-          Copy & Share URL
+          Copy & Share Link
         </AlternativeButton2>
       </SubmittedButtons>
 

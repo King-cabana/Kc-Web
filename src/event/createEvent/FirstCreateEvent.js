@@ -235,7 +235,7 @@ const FirstCreateEvent = ({ padding }) => {
                         : false
                     }
                   />
-                  <Label htmlFor="corporate">Corporate/Formal Event</Label>
+                  <Label htmlFor="corporate">Corporate Event</Label>
                 </Valueholder>
               </RadioButtonWrapper>
               <RadioButtonWrapper>
@@ -251,9 +251,7 @@ const FirstCreateEvent = ({ padding }) => {
                         : false
                     }
                   />
-                  <Label htmlFor="nonCorporate">
-                    Non-Corporate/Informal Event
-                  </Label>
+                  <Label htmlFor="nonCorporate">Non-Corporate Event</Label>
                 </Valueholder>
               </RadioButtonWrapper>
               {/* input section  */}

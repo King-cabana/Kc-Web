@@ -52,6 +52,7 @@ import {
   PrimaryButton,
   ModalPrimaryButton,
   AlternativeButton2,
+  AbsolutePrimaryButton,
 } from "../../components/button/button";
 import { useNavigate } from "react-router";
 import { toast } from "react-toastify";
@@ -905,9 +906,12 @@ const EditOrganiserProfile = () => {
             ></div>
 
             <ButtonWrapper>
-              <PrimaryButton onClick={saveNavigate} disabled={isDisabled}>
+              <AbsolutePrimaryButton
+                onClick={saveNavigate}
+                disabled={isDisabled}
+              >
                 {sending ? <ImSpinner6 size={"1.5rem"} /> : "Save"}
-              </PrimaryButton>
+              </AbsolutePrimaryButton>
             </ButtonWrapper>
           </EditForm>
           <div className={`${showModal}`}>

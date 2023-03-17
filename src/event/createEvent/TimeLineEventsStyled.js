@@ -156,6 +156,7 @@ export const EventButton = styled.button`
   color: #ff2957;
   width: 119px;
   height: 42px;
+  height: 28px;
   border: 1px solid #ff2957;
   border-radius: 20px;
   background: transparent;
@@ -230,9 +231,9 @@ export const TagsWrapper = styled.section`
   }
   @media screen and (max-width: 426px) {
     /* flex-direction: column; */
-    grid-template-columns: 1fr 1fr 1fr;
-  }
-  @media screen and (max-width: 300px) {
     grid-template-columns: 1fr 1fr;
+  }
+  @media screen and (max-width: 350px) {
+    grid-template-columns: 1fr;
   }
 `;

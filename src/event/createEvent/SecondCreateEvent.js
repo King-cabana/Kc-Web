@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { editGenerally } from "../../redux/slices/createEventSlice";
 import { BiLinkAlt } from "react-icons/bi";
@@ -43,6 +43,21 @@ const SecondCreateEvent = ({ padding }) => {
   const dispatch = useDispatch();
   const location = useLocation();
   const state = useSelector((state) => state.createEvent);
+  const keyContact = useSelector((state) => state.eventOrganizerProfile);
+
+  useEffect(() => {
+    dispatch(
+      editGenerally({
+        name: "keyContactEmail",
+        value: keyContact?.profileEmail,
+      })
+    );
+    console.log(keyContact?.profileEmail);
+    // return a cleanup function
+    return () => {
+      // cleanup code here
+    };
+  }, []);
 
   const change = (e) => {
     dispatch(editGenerally({ name: e.target.name, value: e.target.value }));

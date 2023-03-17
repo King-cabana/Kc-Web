@@ -21,7 +21,7 @@ export const Header = styled.p`
 `;
 
 export const Plan = styled.p`
-  color: red;
+  color: #ff2957;
   font-weight: 400;
   font-size: 18px;
   line-height: 26px;
@@ -84,4 +84,13 @@ export const Page = styled.div`
   /* align-items: center; */
   width: 100%;
   padding: 0 3%;
+`;
+
+export const HR = styled.hr`
+  border: none;
+  border-top: 3px double #ff2957;
+  color: #ff2957;
+  overflow: visible;
+  text-align: center;
+  height: 5px;
 `;
