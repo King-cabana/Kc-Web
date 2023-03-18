@@ -58,8 +58,8 @@ const TopBar = () => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    // dispatch(clearUserDetails(), clearProfile());
-    dispatch(clearProfile());
+    dispatch(clearUserDetails());
+    // dispatch(clearProfile());
     toast.success("Logout!");
     // setTimeout(() => navigate("/"), 200);
   };

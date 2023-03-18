@@ -122,8 +122,7 @@ export const Dropdown = styled.div`
 
 export const DropDownBtn = styled.button`
   padding: 6px;
-  background-color: red;
-  font-size: 16px;
+  /* font-size: 16px; */
   border: none;
   cursor: pointer;
   display: flex;

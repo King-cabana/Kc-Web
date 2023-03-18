@@ -92,7 +92,7 @@ const SocialProfile = () => {
       navigate("/home");
       toast.success("Form Submitted Successfully");
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       if (error.response.data === "Profile already exists") {
         navigate("/createProfile");
         toast.error("Profile already exists");

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import {
   AuthBackground,
@@ -20,8 +20,9 @@ import { login } from "../../redux/service/authService";
 import { toast } from "react-toastify";
 import { ImSpinner6 } from "react-icons/im";
 import { setUserDetails } from "../../redux/slices/userDetailsSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setUserToken } from "../../redux/slices/userDetailsSlice";
+
 
 const SignIn = () => {
   const [click, setClick] = useState(false);
@@ -29,15 +30,15 @@ const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  // const [profile, setProfile] = useState("");
 
   const handleClick = () => {
     setClick(!click);
     setVisibility(!visible);
   };
 
-  const token = localStorage.getItem("token");
-  const isAuthenticated = !!token;
-
+  const {isSignedIn}= useSelector(state => state.userDetails)
+ 
   const InputType = visible ? "text" : "password";
 
   const navigate = useNavigate();
@@ -47,6 +48,28 @@ const SignIn = () => {
   };
 
   const dispatch = useDispatch();
+  useEffect(() =>{
+    if (isSignedIn) {
+      navigate("/dashboard");
+    }   
+  }, [isSignedIn, navigate])
+
+  const checkProfile = async (email, token) => {
+    try {
+      const response = await fetch(
+        `http://localhost:8081/profiles/email?email=${email}`,
+        {
+          method: "GET",
+          headers: {
+            "Authorization": `Bearer ${token}`
+          }
+        }
+      );
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  }  
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -58,14 +81,7 @@ const SignIn = () => {
 
       const userToken = localStorage.getItem("bearerToken") || "{}";
       dispatch(setUserToken({ name: "token", value: userToken }));
-      console.log(userToken);
-      // return a cleanup function
-      navigate("/createProfile");
-      // if (isAuthenticated) {
-      //   navigate("/dashboard");
-      // } else {
-        navigate("/createProfile");
-      // }
+      console.log(checkProfile(email));
     } catch (error) {
       setLoading(false);
       if (error?.response?.status === 401) {
