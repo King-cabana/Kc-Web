@@ -14,21 +14,24 @@ import {
 import Lottie from "lottie-react";
 import animationData from "../../lotties/102001-success-icon.json";
 import { AnimationContainer } from "../../globalStyles";
+import CreateEventTopBar from "../topBar/CreateEventTopBar/CreateEventTopBar";
 
 const Submitted = () => {
   return (
-    <SubmittedContainer>
-      <AnimationContainer>
-        <Lottie animationData={animationData} loop={true} />
-      </AnimationContainer>
-      <BudgetInventorySubtitle
-        style={{ marginBottom: "1rem", fontWeight: "600" }}
-      >
-        Event created successfully.
-      </BudgetInventorySubtitle>
+    <>
+      <CreateEventTopBar />
+      <SubmittedContainer>
+        <AnimationContainer>
+          <Lottie animationData={animationData} loop={true} />
+        </AnimationContainer>
+        <BudgetInventorySubtitle
+          style={{ marginBottom: "1rem", fontWeight: "600" }}
+        >
+          Event created successfully.
+        </BudgetInventorySubtitle>
 
-      <SubmittedButtons>
-        {/* <AlternativeButton2
+        <SubmittedButtons>
+          {/* <AlternativeButton2
           style={{
             color: "#FF2957",
             fontWeight: "600",
@@ -37,26 +40,27 @@ const Submitted = () => {
         >
           Share
         </AlternativeButton2> */}
-        <AlternativeButton2
-          style={{
-            color: "#FF2957",
-            fontWeight: "600",
-          }}
-        >
-          Copy & Share Link
-        </AlternativeButton2>
-      </SubmittedButtons>
-
-      <ButtonContainer>
-        <BtnHolderLink to="/home">
-          <AbsolutePrimaryButton
-          //  onClick={handleSubmit} disabled={isDisabled}
+          <AlternativeButton2
+            style={{
+              color: "#FF2957",
+              fontWeight: "600",
+            }}
           >
-            Done
-          </AbsolutePrimaryButton>
-        </BtnHolderLink>
-      </ButtonContainer>
-    </SubmittedContainer>
+            Copy & Share Link
+          </AlternativeButton2>
+        </SubmittedButtons>
+
+        <ButtonContainer>
+          <BtnHolderLink to="/home">
+            <AbsolutePrimaryButton
+            //  onClick={handleSubmit} disabled={isDisabled}
+            >
+              Done
+            </AbsolutePrimaryButton>
+          </BtnHolderLink>
+        </ButtonContainer>
+      </SubmittedContainer>
+    </>
   );
 };
 
