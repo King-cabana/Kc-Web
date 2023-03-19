@@ -93,7 +93,7 @@ const GuestRegistration = () => {
       setSending(true);
       setIsDisabled(true);
       const { data } = await axios.post(
-        "http://localhost:8080/events/create",
+        "http://localhost:8081/events/create",
         state,
         {
           headers: {

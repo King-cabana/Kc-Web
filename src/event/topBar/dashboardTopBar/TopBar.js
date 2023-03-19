@@ -35,7 +35,6 @@ import {
   ModalPrimaryButton,
 } from "../../../components/button/button";
 import { clearProfile } from "../../../redux/slices/profileSlice";
-import Caret from "../../../images/caret-down-svgrepo-com.svg";
 
 const TopBar = () => {
   const [modal, setModal] = useState(false);
@@ -109,15 +108,7 @@ const TopBar = () => {
 
                 <Dropdown>
                   <DropDownBtn onClick={showDropDown} className="dropbtn">
-                    <RiArrowDownSLine
-                      style={{
-                        cursor: "pointer",
-                        zIndex: "1000",
-                      }}
-                      onClick={showDropDown}
-                    />
-                    {/* <BiCaretDown/>
-                    <img src={Caret} alt="" /> */}
+                    <RiArrowDownSLine/>
                   </DropDownBtn>
                   <DropdownContent id="myDropdown" className="dropdown-content">
                     <div

@@ -60,7 +60,7 @@ const EventHome = () => {
     const fetchOrganizerProfile = async () => {
       try {
         const { data } = await axios.get(
-          `http://localhost:8080/profiles/${state?.id}`,
+          `http://localhost:1/profiles/${state?.id}`,
           {
             headers: {
               Authorization: `Bearer ${user.token}`,
