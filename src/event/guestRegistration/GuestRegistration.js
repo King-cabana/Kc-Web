@@ -9,14 +9,21 @@ import {
   HeaderHolder,
   Wrapper,
   HR,
+  Like,
+  Container,
 } from "./GuestRegistrationStyled";
 import { setEventOrganizerProfile } from "../../redux/slices/eventOrganizerProfileSlice";
 import { setEventCreated } from "../../redux/slices/eventCreatedSlice";
-import { mockTags } from "./Data";
 import { useSelector, useDispatch } from "react-redux";
-import { useNavigate } from "react-router";
-import drummer from "../../../src/images/drummer.png";
-import { AiOutlineLeft, AiTwotoneCalendar } from "react-icons/ai";
+import { useNavigate, useLocation } from "react-router";
+import banner from "../../../src/images/bgBanner.jpg";
+import {
+  AiOutlineLeft,
+  AiTwotoneCalendar,
+  AiOutlineHeart,
+} from "react-icons/ai";
+import { FcLike } from "react-icons/fc";
+import { BsUpload } from "react-icons/bs";
 import {
   BackgroundPicture,
   ImagesContainer,
@@ -31,6 +38,7 @@ import {
 import { AbsolutePrimaryButton } from "../../components/button/button";
 import { clearEvent } from "../../redux/slices/createEventSlice";
 import { ImSpinner6 } from "react-icons/im";
+import TopBar from "../../components/topBar/TopBar";
 
 const GuestRegistration = () => {
   const state = useSelector((state) => state.createEvent);
@@ -38,8 +46,10 @@ const GuestRegistration = () => {
   const user = useSelector((state) => state.userDetails);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
   const [sending, setSending] = useState(false);
   const [isDisabled, setIsDisabled] = useState(false);
+  const [like, setLike] = useState(false);
 
   useEffect(() => {
     const fetchOrganizerProfile = async () => {
@@ -66,7 +76,7 @@ const GuestRegistration = () => {
 
   const eventTags = state?.tags
     ? state?.tags.map((tag) => <ul key={tag}>{tag}</ul>)
-    : mockTags.map((tag) => <ul key={mockTags}>{tag}</ul>);
+    : null;
 
   // exclude some data before posting
   const allKeys = Object.keys(state);
@@ -116,95 +126,125 @@ const GuestRegistration = () => {
   };
 
   return (
-    <Page>
-      <HeaderHolder>
-        <div
-          style={{
-            display: "flex",
-            width: "fit-content",
-            gap: "2px",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <AiOutlineLeft color="#FF2957" />
-          <Plan className="plan_">Preview</Plan>
-        </div>
-        <Header className="prev_">Guest Registration Preview</Header>
-      </HeaderHolder>
+    <>
+      {location.pathname === "/guestView" ? (
+        <TopBar marginBottom="1rem" />
+      ) : null}
+      <Page>
+        {location.pathname === "/guest" ? (
+          <HeaderHolder>
+            <div
+              style={{
+                display: "flex",
+                width: "fit-content",
+                gap: "2px",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <AiOutlineLeft color="#FF2957" />
+              <Plan
+                className="plan_"
+                onClick={() => navigate("/eventPlanPreview")}
+              >
+                Preview
+              </Plan>
+            </div>
+            <Header className="prev_">Guest Registration Preview</Header>
+          </HeaderHolder>
+        ) : null}
 
-      <ImagesContainer>
-        <BackgroundPicture
-          src={state?.eventBannerUrl ? state?.eventBannerUrl : drummer}
-          alt="Background Picture"
-        />
-      </ImagesContainer>
-      {/* <TableDiv> */}
+        <ImagesContainer>
+          <BackgroundPicture
+            src={state?.eventBannerUrl ? state?.eventBannerUrl : banner}
+            alt="Background Picture"
+          />
+        </ImagesContainer>
+        {/* <TableDiv> */}
 
-      <BudgetSection>
-        <BudgetTitle1>
-          {organizer?.organizerName
-            ? organizer?.organizerName
-            : "Organizer's Name"}
-        </BudgetTitle1>
-        <BudgetInventorySubtitle
-          style={{ marginBottom: "0.5rem", marginTop: "0px" }}
-        >
-          {organizer?.organizerDetails
-            ? organizer?.organizerDetails
-            : "Organizer's Details: Lorem Ipsum ghas hwwss"}
-        </BudgetInventorySubtitle>
-        <HR />
+        <BudgetSection>
+          <BudgetTitle1>
+            {organizer?.organizerName
+              ? organizer?.organizerName
+              : "Organizer's Name"}
+          </BudgetTitle1>
+          <BudgetInventorySubtitle
+            style={{ marginBottom: "0.5rem", marginTop: "0px" }}
+          >
+            {organizer?.organizerDetails
+              ? organizer?.organizerDetails
+              : "Organizer's Details"}
+          </BudgetInventorySubtitle>
+          <HR />
 
-        <BudgetTitle2>
-          Event Name: {state?.eventName ? state?.eventName : "Event Name"}
-        </BudgetTitle2>
-        <BudgetInventorySubtitle style={{ marginBottom: "1rem" }}>
-          THEME:{" "}
-          {state?.eventTheme
-            ? state?.eventTheme
-            : "Event Theme: lorem Ips lorem Ipusum"}
-        </BudgetInventorySubtitle>
-        <BudgetTitle2>Event description</BudgetTitle2>
-        <BudgetInventorySubtitle style={{ marginBottom: "1rem" }}>
-          {state?.eventDescription
-            ? state?.eventDescription
-            : "Event Description"}
-        </BudgetInventorySubtitle>
-        <BudgetTitle2>Estimated Attendance</BudgetTitle2>
-        <BudgetInventorySubtitle style={{ marginBottom: "1rem" }}>
-          {state?.estimatedAttendance ? state?.estimatedAttendance : "0000"}
-        </BudgetInventorySubtitle>
-        <Wrapper>
-          <AiTwotoneCalendar color="#FF2957" size="1.5em" />
-          <BudgetTitle2>Date and Time</BudgetTitle2>
-        </Wrapper>
-        <BudgetInventorySubtitle style={{ marginBottom: "1rem" }}>
-          (yyyy-mm-dd, 24hours format) <br />
-          {state?.eventStartDate
-            ? state?.eventStartDate
-            : "Event start date"},{" "}
-          {state?.eventStartTime ? state?.eventStartTime : "Event start time"}{" "}
-          {/* Friday March 3rd, 2023, 10:00am WAT. */}
-        </BudgetInventorySubtitle>
+          <BudgetTitle2>
+            <Container>
+              <div style={{ width: "85%" }}>
+                Event Name: {state?.eventName ? state?.eventName : ""}
+              </div>
+              {location.pathname === "/guestView" ? (
+                <Container>
+                  <Like marginRight="0.5rem" onClick={() => setLike(!like)}>
+                    <FcLike display={like === true ? "flex" : "none"} />
+                    <AiOutlineHeart
+                      display={like === false ? "flex" : "none"}
+                    />
+                  </Like>
 
-        <Wrapper>
-          <AiTwotoneCalendar color="#FF2957" size="1.5em" />
-          <BudgetTitle2>Location</BudgetTitle2>
-        </Wrapper>
-        <BudgetInventorySubtitle style={{ marginBottom: "1rem" }}>
-          {state?.eventAddress ? state?.eventAddress : "Event Physical address"}
-        </BudgetInventorySubtitle>
-        <BudgetTitle2>Tags</BudgetTitle2>
-        <Tags style={{ padding: "1% 0%" }}>{eventTags}</Tags>
-      </BudgetSection>
+                  <Like>
+                    <BsUpload cursor="pointer" />
+                  </Like>
+                </Container>
+              ) : null}
+            </Container>
+          </BudgetTitle2>
+          <BudgetInventorySubtitle style={{ marginBottom: "1rem" }}>
+            <b>THEME</b>: {state?.eventTheme ? state?.eventTheme : ""}{" "}
+          </BudgetInventorySubtitle>
+          <BudgetTitle2>Event description</BudgetTitle2>
+          <BudgetInventorySubtitle style={{ marginBottom: "1rem" }}>
+            {state?.eventDescription ? state?.eventDescription : ""}
+          </BudgetInventorySubtitle>
+          <BudgetTitle2>Estimated Attendance</BudgetTitle2>
+          <BudgetInventorySubtitle style={{ marginBottom: "1rem" }}>
+            {state?.estimatedAttendance ? state?.estimatedAttendance : "---"}
+          </BudgetInventorySubtitle>
+          <Wrapper>
+            <AiTwotoneCalendar color="#FF2957" size="1.5em" />
+            <BudgetTitle2>Date and Time</BudgetTitle2>
+          </Wrapper>
+          <BudgetInventorySubtitle style={{ marginBottom: "1rem" }}>
+            (yyyy-mm-dd, 24hours format) <br />
+            {state?.eventStartDate ? state?.eventStartDate : ""}---{" "}
+            {state?.eventStartTime ? state?.eventStartTime : ""}
+          </BudgetInventorySubtitle>
 
-      <ButtonContainer style={{ margin: "0rem" }}>
-        <AbsolutePrimaryButton onClick={navigateNext} disabled={isDisabled}>
-          {sending ? <ImSpinner6 size={"1.5rem"} /> : "Publish"}
-        </AbsolutePrimaryButton>
-      </ButtonContainer>
-    </Page>
+          <Wrapper>
+            <AiTwotoneCalendar color="#FF2957" size="1.5em" />
+            <BudgetTitle2>Location</BudgetTitle2>
+          </Wrapper>
+          <BudgetInventorySubtitle style={{ marginBottom: "1rem" }}>
+            {state?.eventAddress ? state?.eventAddress : ""}
+          </BudgetInventorySubtitle>
+          <BudgetTitle2>Tags</BudgetTitle2>
+          <Tags style={{ padding: "1% 0%" }}>{eventTags}</Tags>
+        </BudgetSection>
+
+        <ButtonContainer style={{ margin: "0rem" }}>
+          {location.pathname === "/guest" ? (
+            <AbsolutePrimaryButton onClick={navigateNext} disabled={isDisabled}>
+              <>{sending ? <ImSpinner6 size={"1.5rem"} /> : "Publish"}</>
+            </AbsolutePrimaryButton>
+          ) : null}
+
+          {location.pathname === "/guestView" ? (
+            <AbsolutePrimaryButton onClick={() => navigate("/aboutUs")}>
+              Register
+            </AbsolutePrimaryButton>
+          ) : null}
+        </ButtonContainer>
+      </Page>
+    </>
   );
 };
 
