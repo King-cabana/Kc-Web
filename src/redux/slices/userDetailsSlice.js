@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+  import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = { isSignedIn: false, details: {} };
 
@@ -23,10 +23,10 @@ const userDetailsSlice = createSlice({
         details: {},
       });
     },
+    
   },
-});
+}); 
 
-// const { reducer, actions } = userDetailsSlice;
 
 export const { setUserDetails, clearUserDetails, setUserToken } =
   userDetailsSlice.actions;

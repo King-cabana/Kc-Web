@@ -91,7 +91,7 @@ const SocialProfile = () => {
       toast.success("Form Submitted Successfully");
       dispatch(clearProfile());
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       if (error.response.data === "Profile already exists") {
         navigate("/createProfile");
         toast.error("Profile already exists");
