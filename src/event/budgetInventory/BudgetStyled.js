@@ -55,6 +55,7 @@ export const BudgetTitle1 = styled.h1`
 export const BudgetTitle2 = styled.h1`
   /* width: 100%; */
   /* height: 100%; */
+
   font-weight: 600;
   font-size: 21px;
   line-height: 32px;
@@ -153,7 +154,7 @@ export const ButtonContainer = styled.footer`
   left: 0;
 
   @media screen and (max-width: 960px) {
-    height: 70px;
+    height: 60px;
     padding: 0px 40px;
   }
 `;

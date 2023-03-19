@@ -25,6 +25,7 @@ export const Plan = styled.p`
   font-weight: 400;
   font-size: 18px;
   line-height: 26px;
+  cursor: pointer;
 
   @media screen and (max-width: 960px) {
     font-size: 12px;
@@ -93,4 +94,25 @@ export const HR = styled.hr`
   overflow: visible;
   text-align: center;
   height: 5px;
+`;
+
+export const Like = styled.section`
+  display: ${(props) => (props.display ? props.display : "flex")};
+  cursor: pointer;
+  margin-right: ${(props) => (props.marginRight ? props.marginRight : "0rem")};
+
+  &:hover {
+    color: #969699;
+  }
+`;
+
+export const Container = styled.section`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+
+  @media screen and (max-width: 550px) {
+    gap: 0rem;
+  }
 `;

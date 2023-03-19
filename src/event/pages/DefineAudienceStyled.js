@@ -16,7 +16,7 @@ export const ButtonContainer = styled.footer`
   left: 0;
 
   @media screen and (max-width: 960px) {
-    height: 70px;
+    height: 60px;
     padding: 0px 40px;
   }
 `;

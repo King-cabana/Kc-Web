@@ -20,6 +20,7 @@ import DefineAudience from "../pages/DefineAudience";
 import FirstCreateEvent from "../createEvent/FirstCreateEvent";
 import SecondCreateEvent from "../createEvent/SecondCreateEvent";
 import TimeLineEvent from "../createEvent/TimeLineEvent";
+import CreateEventTopBar from "../topBar/CreateEventTopBar/CreateEventTopBar";
 
 const styles = {
   root: {
@@ -67,6 +68,7 @@ const EventPlanPreview = () => {
   };
   return (
     <>
+      <CreateEventTopBar />
       <BudgetInventoryContainer style={{ marginBottom: "0rem" }}>
         <BudgetInventoryHeader>
           <BudgetTitle1>Event Plan Preview</BudgetTitle1>
