@@ -28,7 +28,7 @@ const Registered = () => {
           <Lottie animationData={animationData} loop={true} />
         </AnimationContainer>
         <BudgetTitle1 style={{ marginBottom: "1rem", fontWeight: "600" }}>
-          Well Done!
+          Well done!
         </BudgetTitle1>
 
         <div style={{ width: "90%" }}>
