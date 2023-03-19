@@ -238,7 +238,7 @@ const GuestRegistration = () => {
           ) : null}
 
           {location.pathname === "/guestView" ? (
-            <AbsolutePrimaryButton onClick={() => navigate("/aboutUs")}>
+            <AbsolutePrimaryButton onClick={() => navigate("/registered")}>
               Register
             </AbsolutePrimaryButton>
           ) : null}

@@ -31,15 +31,6 @@ const Submitted = () => {
         </BudgetInventorySubtitle>
 
         <SubmittedButtons>
-          {/* <AlternativeButton2
-          style={{
-            color: "#FF2957",
-            fontWeight: "600",
-            marginRight: "1rem",
-          }}
-        >
-          Share
-        </AlternativeButton2> */}
           <AlternativeButton2
             style={{
               color: "#FF2957",
