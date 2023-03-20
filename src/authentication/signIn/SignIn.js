@@ -23,7 +23,6 @@ import { setUserDetails } from "../../redux/slices/userDetailsSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { setUserToken } from "../../redux/slices/userDetailsSlice";
 
-
 const SignIn = () => {
   const [click, setClick] = useState(false);
   const [visible, setVisibility] = useState(false);
@@ -37,8 +36,8 @@ const SignIn = () => {
     setVisibility(!visible);
   };
 
-  const {isSignedIn}= useSelector(state => state.userDetails)
- 
+  const { isSignedIn } = useSelector((state) => state.userDetails);
+
   const InputType = visible ? "text" : "password";
 
   const navigate = useNavigate();
@@ -48,28 +47,33 @@ const SignIn = () => {
   };
 
   const dispatch = useDispatch();
-  useEffect(() =>{
-    if (isSignedIn) {
-      navigate("/dashboard");
-    }   
-  }, [isSignedIn, navigate])
+  // useEffect(() =>{
+  //   if (isSignedIn) {
+  //     navigate("/dashboard");
+  //   }
+  // }, [isSignedIn, navigate])
 
-  const checkProfile = async (email, token) => {
+  // console.log(localStorage.getItem("bearerToken") )
+    const checkProfile = async (email) => {
+    const token =  localStorage.getItem("bearerToken")
     try {
-      const response = await fetch(
+      const data = await fetch(
         `http://localhost:8081/profiles/email?email=${email}`,
         {
           method: "GET",
           headers: {
-            "Authorization": `Bearer ${token}`
-          }
+            Authorization: `Bearer ${token}`,
+          },
         }
       );
-      console.log(response);
+      const response = await data.json();
+      navigate('/dashboard')
+      return response;
     } catch (error) {
-      console.log(error);
+      // console.log(error)
+      navigate('/createProfile')
     }
-  }  
+  };
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -78,10 +82,11 @@ const SignIn = () => {
       const response = await login(email, password);
       dispatch(setUserDetails(response?.data));
       toast.success("login successfully!");
-
+      console.log(response);
       const userToken = localStorage.getItem("bearerToken") || "{}";
       dispatch(setUserToken({ name: "token", value: userToken }));
-      console.log(checkProfile(email));
+      checkProfile(email, userToken);
+
     } catch (error) {
       setLoading(false);
       if (error?.response?.status === 401) {

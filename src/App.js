@@ -47,6 +47,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import EventPlanning from "./event/eventPlanning/EventPlanning";
 import GuestRegistration from "./event/guestRegistration/GuestRegistration";
+import GuestContact from "./event/guestRegistration/GuestContact";
 import TopBar from "./components/topBar/TopBar";
 
 const Home = lazy(() => import("./pages/landingPage/Home"));
@@ -80,6 +81,7 @@ function App() {
             <Route path="/manageProfile" element={<ManageProfile />} />
             <Route path="/organizerProfile" element={<OrganiserProfile />} />
             <Route path="/socialProfile" element={<SocialProfile />} />
+            <Route path="/guestcontact" element={<GuestContact/>}/>
             <Route
               path="/organiserProfile/home/edit"
               element={<EditOrganiserProfile />}
