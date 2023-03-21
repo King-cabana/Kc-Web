@@ -101,6 +101,7 @@ function App() {
             <Route path="/planning" element={<EventPlanning />} />
             <Route path="/guest" element={<GuestRegistration />} />
             <Route path="/guestView" element={<GuestView />} />
+            <Route path="/guestView/:id" element={<GuestView />} />
             <Route path="/registered" element={<Registered />} />
             <Route path="signupsuccess" element={<SignUpSuccess />} />
             <Route path="verifyemail" element={<VerifyEmail />} />
