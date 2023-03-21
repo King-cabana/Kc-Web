@@ -30,6 +30,12 @@ export const NavLogo = styled.div`
   width: 12vw;
   cursor: pointer;
 
+<<<<<<< HEAD
+
+
+
+=======
+>>>>>>> 75483f8dd9db8532a22badc3603cd11367d82b59
   img {
     width: 35;
   }
