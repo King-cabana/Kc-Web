@@ -48,6 +48,7 @@ import "../../modal.css";
 import { TbEdit } from "react-icons/tb";
 import { useNavigate } from "react-router";
 import { setEventOrganizerProfile } from "../../redux/slices/eventOrganizerProfileSlice";
+import { API_URL_2 } from "../../redux/service/authService";
 
 const EventHome = () => {
   const dispatch = useDispatch();
@@ -59,14 +60,11 @@ const EventHome = () => {
   useEffect(() => {
     const fetchOrganizerProfile = async () => {
       try {
-        const { data } = await axios.get(
-          `http://localhost:8080/profiles/${state?.id}`,
-          {
-            headers: {
-              Authorization: `Bearer ${user.token}`,
-            },
-          }
-        );
+        const { data } = await axios.get(API_URL_2 + `profiles/${state?.id}`, {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+          },
+        });
         // console.log(data);
         // console.log(user);
         dispatch(setEventOrganizerProfile(data));

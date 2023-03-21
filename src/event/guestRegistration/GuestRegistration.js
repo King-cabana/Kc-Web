@@ -9,21 +9,14 @@ import {
   HeaderHolder,
   Wrapper,
   HR,
-  Like,
   Container,
 } from "./GuestRegistrationStyled";
 import { setEventOrganizerProfile } from "../../redux/slices/eventOrganizerProfileSlice";
 import { setEventCreated } from "../../redux/slices/eventCreatedSlice";
 import { useSelector, useDispatch } from "react-redux";
-import { useNavigate, useLocation } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import banner from "../../../src/images/bgBanner.jpg";
-import {
-  AiOutlineLeft,
-  AiTwotoneCalendar,
-  AiOutlineHeart,
-} from "react-icons/ai";
-import { FcLike } from "react-icons/fc";
-import { BsUpload } from "react-icons/bs";
+import { AiOutlineLeft, AiTwotoneCalendar } from "react-icons/ai";
 import {
   BackgroundPicture,
   ImagesContainer,
@@ -38,18 +31,18 @@ import {
 import { AbsolutePrimaryButton } from "../../components/button/button";
 import { clearEvent } from "../../redux/slices/createEventSlice";
 import { ImSpinner6 } from "react-icons/im";
-import TopBar from "../../components/topBar/TopBar";
+import { API_URL_2 } from "../../redux/service/authService";
+import CreateEventTopBar from "../topBar/CreateEventTopBar/CreateEventTopBar";
 
 const GuestRegistration = () => {
+  // const { id } = useParams();
   const state = useSelector((state) => state.createEvent);
   const organizer = useSelector((state) => state.eventOrganizerProfile);
   const user = useSelector((state) => state.userDetails);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const location = useLocation();
   const [sending, setSending] = useState(false);
   const [isDisabled, setIsDisabled] = useState(false);
-  const [like, setLike] = useState(false);
 
   useEffect(() => {
     const fetchOrganizerProfile = async () => {
@@ -65,7 +58,6 @@ const GuestRegistration = () => {
         dispatch(setEventOrganizerProfile(data));
       } catch (error) {
         console.log(error);
-        // handle error here
       }
     };
     fetchOrganizerProfile();
@@ -74,10 +66,7 @@ const GuestRegistration = () => {
     };
   }, [organizer?.id]);
 
-  const eventTags = state?.tags
-    ? state?.tags.map((tag) => <ul key={tag}>{tag}</ul>)
-    : null;
-
+  const eventTags = state?.tags.map((tag) => <ul key={tag}>{tag}</ul>);
   // exclude some data before posting
   const allKeys = Object.keys(state);
   const keysToSend = allKeys.filter(
@@ -87,6 +76,8 @@ const GuestRegistration = () => {
       key !== "maritalStatusListNew" &&
       key !== "employmentStatusListNew" &&
       key !== "educationLevelListNew" &&
+      key !== "organizerName" &&
+      key !== "organizerDetails" &&
       !(Array.isArray(state[key]) && state[key]?.length === 0)
   );
   const dataToSend = {};
@@ -94,29 +85,25 @@ const GuestRegistration = () => {
     dataToSend[key] = state[key];
   });
   ///////////////////////////////////
-
   const navigateNext = async (e) => {
     e.preventDefault();
     console.log(dataToSend);
-
     try {
       setSending(true);
       setIsDisabled(true);
-      const { data } = await axios.post(
-        "http://localhost:8080/events/create",
-        state,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${user.token}`,
-          },
-        }
-      );
+      const { data } = await axios.post(API_URL_2 + "events/create", state, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${user.token}`,
+        },
+      });
       console.log(data);
       dispatch(setEventCreated(data));
       navigate("/submitted");
       toast.success("You have created event Successfully");
       dispatch(clearEvent());
+      localStorage.removeItem("banner");
+      localStorage.removeItem("budget");
     } catch (error) {
       console.log(error);
       toast.error("Error Creating Event");
@@ -127,32 +114,28 @@ const GuestRegistration = () => {
 
   return (
     <>
-      {location.pathname === "/guestView" ? (
-        <TopBar marginBottom="1rem" />
-      ) : null}
+      <CreateEventTopBar />
       <Page>
-        {location.pathname === "/guest" ? (
-          <HeaderHolder>
-            <div
-              style={{
-                display: "flex",
-                width: "fit-content",
-                gap: "2px",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
+        <HeaderHolder>
+          <div
+            style={{
+              display: "flex",
+              width: "fit-content",
+              gap: "2px",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <AiOutlineLeft color="#FF2957" />
+            <Plan
+              className="plan_"
+              onClick={() => navigate("/eventPlanPreview")}
             >
-              <AiOutlineLeft color="#FF2957" />
-              <Plan
-                className="plan_"
-                onClick={() => navigate("/eventPlanPreview")}
-              >
-                Preview
-              </Plan>
-            </div>
-            <Header className="prev_">Guest Registration Preview</Header>
-          </HeaderHolder>
-        ) : null}
+              Preview
+            </Plan>
+          </div>
+          <Header className="prev_">Guest Registration Preview</Header>
+        </HeaderHolder>
 
         <ImagesContainer>
           <BackgroundPicture
@@ -160,7 +143,6 @@ const GuestRegistration = () => {
             alt="Background Picture"
           />
         </ImagesContainer>
-        {/* <TableDiv> */}
 
         <BudgetSection>
           <BudgetTitle1>
@@ -168,47 +150,30 @@ const GuestRegistration = () => {
               ? organizer?.organizerName
               : "Organizer's Name"}
           </BudgetTitle1>
-          <BudgetInventorySubtitle
-            style={{ marginBottom: "0.5rem", marginTop: "0px" }}
-          >
-            {organizer?.organizerDetails
-              ? organizer?.organizerDetails
-              : "Organizer's Details"}
+
+          <BudgetInventorySubtitle>
+            Theme: {state?.eventTheme ? state?.eventTheme : "---"}
           </BudgetInventorySubtitle>
-          <HR />
+          <BudgetTitle2>Event description</BudgetTitle2>
+          <BudgetInventorySubtitle>
+            {state?.eventDescription ? state?.eventDescription : "---"}
+          </BudgetInventorySubtitle>
 
           <BudgetTitle2>
             <Container>
               <div style={{ width: "85%" }}>
-                Event Name: {state?.eventName ? state?.eventName : ""}
+                Organizer:{" "}
+                {state?.fullName ? state?.fullName : "Organizer's Name"}
               </div>
-              {location.pathname === "/guestView" ? (
-                <Container>
-                  <Like marginRight="0.5rem" onClick={() => setLike(!like)}>
-                    <FcLike display={like === true ? "flex" : "none"} />
-                    <AiOutlineHeart
-                      display={like === false ? "flex" : "none"}
-                    />
-                  </Like>
-
-                  <Like>
-                    <BsUpload cursor="pointer" />
-                  </Like>
-                </Container>
-              ) : null}
             </Container>
           </BudgetTitle2>
-          <BudgetInventorySubtitle style={{ marginBottom: "1rem" }}>
-            <b>THEME</b>: {state?.eventTheme ? state?.eventTheme : ""}{" "}
-          </BudgetInventorySubtitle>
-          <BudgetTitle2>Event description</BudgetTitle2>
-          <BudgetInventorySubtitle style={{ marginBottom: "1rem" }}>
-            {state?.eventDescription ? state?.eventDescription : ""}
-          </BudgetInventorySubtitle>
+          <HR />
+
           <BudgetTitle2>Estimated Attendance</BudgetTitle2>
           <BudgetInventorySubtitle style={{ marginBottom: "1rem" }}>
             {state?.estimatedAttendance ? state?.estimatedAttendance : "---"}
           </BudgetInventorySubtitle>
+
           <Wrapper>
             <AiTwotoneCalendar color="#FF2957" size="1.5em" />
             <BudgetTitle2>Date and Time</BudgetTitle2>
@@ -224,24 +189,19 @@ const GuestRegistration = () => {
             <BudgetTitle2>Location</BudgetTitle2>
           </Wrapper>
           <BudgetInventorySubtitle style={{ marginBottom: "1rem" }}>
-            {state?.eventAddress ? state?.eventAddress : ""}
+            {state?.eventAddress ? state?.eventAddress : "---"}
           </BudgetInventorySubtitle>
+
           <BudgetTitle2>Tags</BudgetTitle2>
-          <Tags style={{ padding: "1% 0%" }}>{eventTags}</Tags>
+          <Tags style={{ padding: "1% 0%" }}>
+            {state?.tags ? eventTags : "---"}
+          </Tags>
         </BudgetSection>
 
         <ButtonContainer style={{ margin: "0rem" }}>
-          {location.pathname === "/guest" ? (
-            <AbsolutePrimaryButton onClick={navigateNext} disabled={isDisabled}>
-              <>{sending ? <ImSpinner6 size={"1.5rem"} /> : "Publish"}</>
-            </AbsolutePrimaryButton>
-          ) : null}
-
-          {location.pathname === "/guestView" ? (
-            <AbsolutePrimaryButton onClick={() => navigate("/registered")}>
-              Register
-            </AbsolutePrimaryButton>
-          ) : null}
+          <AbsolutePrimaryButton onClick={navigateNext} disabled={isDisabled}>
+            <>{sending ? <ImSpinner6 size={"1.5rem"} /> : "Publish"}</>
+          </AbsolutePrimaryButton>
         </ButtonContainer>
       </Page>
     </>

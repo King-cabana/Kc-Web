@@ -4,19 +4,9 @@ import { AnimationContainer } from "../../globalStyles";
 import Lottie from "lottie-react";
 import animationData from "../../lotties/102001-success-icon.json";
 import { Paragraph } from "./RegisteredStyled";
-import {
-  BudgetInventorySubtitle,
-  BudgetTitle1,
-  ButtonContainer,
-} from "../budgetInventory/BudgetStyled";
-import {
-  SubmittedButtons,
-  SubmittedContainer,
-} from "../budgetInventory/SubmittedStyled";
-import {
-  AbsolutePrimaryButton,
-  AlternativeButton2,
-} from "../../components/button/button";
+import { BudgetTitle1, ButtonContainer } from "../budgetInventory/BudgetStyled";
+import { SubmittedContainer } from "../budgetInventory/SubmittedStyled";
+import { AbsolutePrimaryButton } from "../../components/button/button";
 import { BtnHolderLink } from "../budgetInventory/InventoryStyled";
 
 const Registered = () => {
@@ -33,8 +23,8 @@ const Registered = () => {
 
         <div style={{ width: "90%" }}>
           <Paragraph>
-            You’ve successfully registered for an event. A ticket has been sent
-            to your mail.
+            You have successfully registered for the event. A ticket has been
+            sent to your mail.
           </Paragraph>
           <Paragraph>Would you like to organize an event?</Paragraph>
           <Paragraph>

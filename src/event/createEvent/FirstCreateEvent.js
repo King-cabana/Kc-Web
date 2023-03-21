@@ -149,6 +149,7 @@ const FirstCreateEvent = ({ padding }) => {
                     onChange={handleFileChange}
                     name="eventBannerUrl"
                     defaultValue={file}
+                    // defaultValue={state?.eventBannerUrl}
                   />
                 </CustomWrapper>
                 <PrimaryButton3>Upload</PrimaryButton3>
@@ -215,7 +216,7 @@ const FirstCreateEvent = ({ padding }) => {
                 placeholder="Enter your Event Theme"
                 name="eventTheme"
                 onChange={change}
-                defaultValue={state.eventTheme}
+                defaultValue={state?.eventTheme}
               />
             </EventSubSection>
             {/* input section  */}
@@ -263,7 +264,7 @@ const FirstCreateEvent = ({ padding }) => {
                 placeholder="IN FIGURES: Estimated attendance to be present"
                 name="estimatedAttendance"
                 onChange={change}
-                defaultValue={state.estimatedAttendance}
+                defaultValue={state?.estimatedAttendance}
               />
             </EventSubSection>
             {/* input section  */}
@@ -285,7 +286,7 @@ const FirstCreateEvent = ({ padding }) => {
                 name="eventDescription"
                 maxLength={250}
                 onChange={change}
-                defaultValue={state.eventDescription}
+                defaultValue={state?.eventDescription}
               />
             </EventSubSection>
           </BudgetUpload>
