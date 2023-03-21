@@ -10,7 +10,7 @@ const GuestContact = () => {
 
   return (
     <>
-    <TopBar/>
+    <TopBar />
     <GuestContactBg>
         <GCBody>
             <GCFormPart>
