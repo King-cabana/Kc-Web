@@ -3,6 +3,7 @@ import logo from "../../images/kingCabanaLogo.svg";
 import { AbsolutePrimaryButton, AlternativeButton2 } from "../button/button";
 import { Container } from "./TopBarStyled";
 import { useNavigate } from "react-router";
+import zIndex from "@mui/material/styles/zIndex";
 
 const TopBar = ({ marginBottom }) => {
   const navigate = useNavigate();
@@ -34,9 +35,9 @@ const TopBar = ({ marginBottom }) => {
           </AbsolutePrimaryButton>
         </div>
       </Container>
-      <div style={{ marginBottom: marginBottom }}>
+      {/* <div style={{ marginBottom: marginBottom}}>
         <hr color="#ff2957" />
-      </div>
+      </div> */}
     </>
   );
 };

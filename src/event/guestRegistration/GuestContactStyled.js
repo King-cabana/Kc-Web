@@ -8,6 +8,7 @@ export const GuestContactBg = styled.div`
   align-items: center;
   justify-content: center;
   display: flex;
+  margin-top:80px;
 `;
 
 export const GCBody = styled.div`
@@ -19,6 +20,7 @@ export const GCBody = styled.div`
     display: flex;
     justify-content: center;
     align-item: center;
+    margin-top: 0;
 
     @media screen and (max-width: 960px) {
         height: 75vh;

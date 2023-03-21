@@ -6,7 +6,9 @@ import { GCBody, GCFormPart, GCPicPart, GuestContactBg } from "./GuestContactSty
 import { Form, InputFieldWrapper, LongButton } from "../../globalStyles";
 import TopBar from "../../components/topBar/TopBar";
 
+
 const GuestContact = () => {
+  
 
   return (
     <>

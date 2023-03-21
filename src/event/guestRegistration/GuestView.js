@@ -40,7 +40,7 @@ const GuestView = () => {
   const navigate = useNavigate();
   const [like, setLike] = useState(false);
 
-  const eventTags = event?.tags.map((tag) => <ul key={tag}>{tag}</ul>);
+  const eventTags = event?.tags?.map((tag) => <ul key={tag}>{tag}</ul>);
 
   useEffect(() => {
     const fetchEvent = async () => {
