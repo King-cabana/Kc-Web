@@ -8,8 +8,6 @@ import {
   AlternativeButton2,
 } from "../../components/button/button";
 import { editGenerally } from "../../redux/slices/createEventSlice";
-// import ProgressBar from "../progressBar/ProgressBar";
-// import CreateEventTopBar from "../topBar/CreateEventTopBar/CreateEventTopBar";
 import {
   BudgetInventoryContainer,
   BudgetInventoryHeader,

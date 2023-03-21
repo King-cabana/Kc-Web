@@ -1,14 +1,10 @@
-import React from "react";
-import {
-  BudgetTitle1,
-  BudgetInventorySubtitle,
-  ButtonContainer,
-} from "./BudgetStyled";
+import React, { useEffect } from "react";
+import { BudgetInventorySubtitle, ButtonContainer } from "./BudgetStyled";
+import { useSelector } from "react-redux";
 import { BtnHolderLink } from "./InventoryStyled";
 import { SubmittedContainer, SubmittedButtons } from "./SubmittedStyled";
 import {
   AbsolutePrimaryButton,
-  //   PrimaryButton3,
   AlternativeButton2,
 } from "../../components/button/button";
 import Lottie from "lottie-react";
@@ -17,6 +13,14 @@ import { AnimationContainer } from "../../globalStyles";
 import CreateEventTopBar from "../topBar/CreateEventTopBar/CreateEventTopBar";
 
 const Submitted = () => {
+  const event = useSelector((state) => state.eventCreated);
+
+  useEffect(() => {
+    console.log(event?.id);
+
+    // return () => controller.abort();
+  });
+
   return (
     <>
       <CreateEventTopBar />
@@ -31,20 +35,16 @@ const Submitted = () => {
         </BudgetInventorySubtitle>
 
         <SubmittedButtons>
-          {/* <AlternativeButton2
-          style={{
-            color: "#FF2957",
-            fontWeight: "600",
-            marginRight: "1rem",
-          }}
-        >
-          Share
-        </AlternativeButton2> */}
           <AlternativeButton2
             style={{
               color: "#FF2957",
               fontWeight: "600",
             }}
+            // onClick={() =>{
+            //   window.navigator.share({
+
+            //   })
+            // }}
           >
             Copy & Share Link
           </AlternativeButton2>

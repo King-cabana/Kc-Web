@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:8081/eventuser/";
-const API_URL_2 = "http://localhost:8081/";
+const API_URL = "http://localhost:8080/eventuser/";
+export const API_URL_2 = "http://localhost:8080/";
 const register = async (payload) => {
   try {
     const response = await axios.post(

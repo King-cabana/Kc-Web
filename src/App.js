@@ -47,8 +47,8 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import EventPlanning from "./event/eventPlanning/EventPlanning";
 import GuestRegistration from "./event/guestRegistration/GuestRegistration";
+import Registered from "./event/guestRegistration/Registered";
 import GuestContact from "./event/guestRegistration/GuestContact";
-import TopBar from "./components/topBar/TopBar";
 
 const Home = lazy(() => import("./pages/landingPage/Home"));
 const ContactUs = lazy(() => import("./pages/contactUs/ContactUs"));
@@ -67,7 +67,6 @@ function App() {
         <ToastContainer />
         <>
           <Routes>
-            <Route path="/guestTopBar" element={<TopBar />} />
             <Route path="/" element={<Home />} />
             <Route path="/contactUs" element={<ContactUs />} />
             <Route path="/aboutUs" element={<AboutUs />} />
@@ -81,7 +80,7 @@ function App() {
             <Route path="/manageProfile" element={<ManageProfile />} />
             <Route path="/organizerProfile" element={<OrganiserProfile />} />
             <Route path="/socialProfile" element={<SocialProfile />} />
-            <Route path="/guestcontact" element={<GuestContact/>}/>
+            <Route path="/guestcontact" element={<GuestContact />} />
             <Route
               path="/organiserProfile/home/edit"
               element={<EditOrganiserProfile />}
@@ -102,6 +101,7 @@ function App() {
             <Route path="/planning" element={<EventPlanning />} />
             <Route path="/guest" element={<GuestRegistration />} />
             <Route path="/guestView" element={<GuestView />} />
+            <Route path="/registered" element={<Registered />} />
             <Route path="signupsuccess" element={<SignUpSuccess />} />
             <Route path="verifyemail" element={<VerifyEmail />} />
             <Route

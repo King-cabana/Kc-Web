@@ -56,6 +56,7 @@ import {
 } from "../../components/button/button";
 import { useNavigate } from "react-router";
 import { toast } from "react-toastify";
+import { API_URL_2 } from "../../redux/service/authService";
 
 const EditOrganiserProfile = () => {
   const [modal, setModal] = useState(false);
@@ -92,14 +93,11 @@ const EditOrganiserProfile = () => {
   useEffect(() => {
     const fetchOrganizerProfile = async () => {
       try {
-        const { data } = await axios.get(
-          `http://localhost:8081/profiles/${state?.id}`,
-          {
-            headers: {
-              Authorization: `Bearer ${user.token}`,
-            },
-          }
-        );
+        const { data } = await axios.get(API_URL_2 + `profiles/${state?.id}`, {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+          },
+        });
         dispatch(setEventOrganizerProfile(data));
         setIncomingData(data);
       } catch (error) {
@@ -384,7 +382,7 @@ const EditOrganiserProfile = () => {
     ];
     try {
       const { data } = await axios.patch(
-        `http://localhost:8080/profiles/${state?.id}`,
+        API_URL_2 + `profiles/${state?.id}`,
         patchData,
         {
           headers: {

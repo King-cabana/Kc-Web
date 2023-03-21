@@ -52,7 +52,21 @@ const SecondCreateEvent = ({ padding }) => {
         value: keyContact?.profileEmail,
       })
     );
+    dispatch(
+      editGenerally({
+        name: "organizerName",
+        value: keyContact?.organizerName,
+      })
+    );
+    dispatch(
+      editGenerally({
+        name: "organizerDetails",
+        value: keyContact?.organizerDetails,
+      })
+    );
     console.log(keyContact?.profileEmail);
+    console.log(keyContact?.organizerName);
+    console.log(keyContact?.organizerDetails);
     // return a cleanup function
     return () => {
       // cleanup code here
@@ -71,8 +85,8 @@ const SecondCreateEvent = ({ padding }) => {
 
   const navigateNext = (e) => {
     e.preventDefault();
-    navigate("/createevent/eventdetails/3");
-    // console.log(state);
+    // navigate("/createevent/eventdetails/3");
+    console.log(state);
   };
 
   return (
