@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import {
   AuthBackground,
@@ -20,7 +20,7 @@ import { login } from "../../redux/service/authService";
 import { toast } from "react-toastify";
 import { ImSpinner6 } from "react-icons/im";
 import { setUserDetails } from "../../redux/slices/userDetailsSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setUserToken } from "../../redux/slices/userDetailsSlice";
 
 const SignIn = () => {
@@ -29,14 +29,14 @@ const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  // const [profile, setProfile] = useState("");
 
   const handleClick = () => {
     setClick(!click);
     setVisibility(!visible);
   };
 
-  const token = localStorage.getItem("token");
-  const isAuthenticated = !!token;
+  const { isSignedIn } = useSelector((state) => state.userDetails);
 
   const InputType = visible ? "text" : "password";
 
@@ -47,6 +47,33 @@ const SignIn = () => {
   };
 
   const dispatch = useDispatch();
+  // useEffect(() =>{
+  //   if (isSignedIn) {
+  //     navigate("/dashboard");
+  //   }
+  // }, [isSignedIn, navigate])
+
+  // console.log(localStorage.getItem("bearerToken") )
+    const checkProfile = async (email) => {
+    const token =  localStorage.getItem("bearerToken")
+    try {
+      const data = await fetch(
+        `http://localhost:8081/profiles/email?email=${email}`,
+        {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      const response = await data.json();
+      navigate('/dashboard')
+      return response;
+    } catch (error) {
+      // console.log(error)
+      navigate('/createProfile')
+    }
+  };
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -55,17 +82,11 @@ const SignIn = () => {
       const response = await login(email, password);
       dispatch(setUserDetails(response?.data));
       toast.success("login successfully!");
-
+      console.log(response);
       const userToken = localStorage.getItem("bearerToken") || "{}";
       dispatch(setUserToken({ name: "token", value: userToken }));
-      console.log(userToken);
-      // return a cleanup function
-      navigate("/createProfile");
-      // if (isAuthenticated) {
-      //   navigate("/dashboard");
-      // } else {
-        navigate("/createProfile");
-      // }
+      checkProfile(email, userToken);
+
     } catch (error) {
       setLoading(false);
       if (error?.response?.status === 401) {

@@ -48,6 +48,7 @@ import "react-toastify/dist/ReactToastify.css";
 import EventPlanning from "./event/eventPlanning/EventPlanning";
 import GuestRegistration from "./event/guestRegistration/GuestRegistration";
 import Registered from "./event/guestRegistration/Registered";
+import GuestContact from "./event/guestRegistration/GuestContact";
 
 const Home = lazy(() => import("./pages/landingPage/Home"));
 const ContactUs = lazy(() => import("./pages/contactUs/ContactUs"));
@@ -79,6 +80,7 @@ function App() {
             <Route path="/manageProfile" element={<ManageProfile />} />
             <Route path="/organizerProfile" element={<OrganiserProfile />} />
             <Route path="/socialProfile" element={<SocialProfile />} />
+            <Route path="/guestcontact" element={<GuestContact />} />
             <Route
               path="/organiserProfile/home/edit"
               element={<EditOrganiserProfile />}
