@@ -36,6 +36,7 @@ import {
 } from "../../components/button/button";
 
 const SecondCreateEvent = ({ padding }) => {
+  const [isDisabled, setIsDisabled] = useState(true);
   const [visibility, setVisibility] = useState(false);
   const [locationType, setLocationType] = useState("virtual");
   const [calenderType, setCalendarType] = useState("monthly");
@@ -64,14 +65,22 @@ const SecondCreateEvent = ({ padding }) => {
         value: keyContact?.organizerDetails,
       })
     );
-    console.log(keyContact?.profileEmail);
-    console.log(keyContact?.organizerName);
-    console.log(keyContact?.organizerDetails);
+    // console.log(keyContact?.profileEmail);
+    // console.log(keyContact?.organizerName);
+    // console.log(keyContact?.organizerDetails);
     // return a cleanup function
     return () => {
       // cleanup code here
     };
   }, []);
+
+  useEffect(() => {
+    if (state.eventStartDate && state.eventStartTime) {
+      setIsDisabled(false);
+    } else {
+      setIsDisabled(true);
+    }
+  }, [state.eventStartDate, state.eventStartTime]);
 
   const change = (e) => {
     dispatch(editGenerally({ name: e.target.name, value: e.target.value }));
@@ -80,13 +89,13 @@ const SecondCreateEvent = ({ padding }) => {
   const navigateBack = (e) => {
     e.preventDefault();
     navigate("/createevent/eventdetails/1");
-    console.log(state);
+    // console.log(state);
   };
 
   const navigateNext = (e) => {
     e.preventDefault();
-    // navigate("/createevent/eventdetails/3");
-    console.log(state);
+    navigate("/createevent/eventdetails/3");
+    // console.log(state);
   };
 
   return (
@@ -345,7 +354,7 @@ const SecondCreateEvent = ({ padding }) => {
             >
               Back
             </AlternativeButton2>
-            <AbsolutePrimaryButton onClick={navigateNext}>
+            <AbsolutePrimaryButton onClick={navigateNext} disabled={isDisabled}>
               Save & Continue
             </AbsolutePrimaryButton>
           </ButtonContainer>

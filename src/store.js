@@ -8,6 +8,7 @@ import eventOrganizerProfileSlice from "./redux/slices/eventOrganizerProfileSlic
 import messageSlice from "./redux/slices/userDetailsSlice";
 import otpSlice from "./redux/slices/otpSlice";
 import userDetailsSlice from "./redux/slices/userDetailsSlice";
+import counterSlice from "./redux/slices/eventProposalSponsorSlice";
 
 const persistConfig = {
   key: "kingCabana",
@@ -21,6 +22,7 @@ const reducer = combineReducers({
   createEvent: createEventSlice,
   eventCreated: eventCreatedSlice,
   userDetails: userDetailsSlice,
+  counter: counterSlice,
 });
 
 const persistedReducer = persistReducer(persistConfig, reducer);

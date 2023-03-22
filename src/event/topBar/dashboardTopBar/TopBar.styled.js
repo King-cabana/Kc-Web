@@ -13,7 +13,7 @@ export const TopBarContainer = styled.div`
   top: 0;
   left: 0;
   right: 0;
-  z-index: 1;
+  z-index: 9999999;
   background-color: white;
 
   @media screen and (max-width: 480px) {
@@ -140,7 +140,7 @@ export const DropdownContent = styled.div`
   border-radius: 10px;
   min-width: 250px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  z-index: 1;
+  z-index: 9999999;
 
   & #myDropdown {
     display: block;

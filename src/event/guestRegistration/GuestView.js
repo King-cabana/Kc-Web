@@ -28,7 +28,7 @@ import {
 import { AbsolutePrimaryButton } from "../../components/button/button";
 import TopBar from "../../components/topBar/TopBar";
 import { API_URL_2 } from "../../redux/service/authService";
-import NoPage from "../../pages/noPage/NoPage";
+import { ImLocation, ImLink } from "react-icons/im";
 
 const GuestView = () => {
   const user = useSelector((state) => state.userDetails);
@@ -43,7 +43,7 @@ const GuestView = () => {
     const fetchEvent = async () => {
       try {
         const { data } = await axios.get(API_URL_2 + `events/${id}`);
-        console.log(data);
+        // console.log(data);
         setEvent(data);
       } catch (error) {
         if (error?.response?.status === 400) {
@@ -129,13 +129,25 @@ const GuestView = () => {
           {event?.eventAddress ? (
             <>
               <Wrapper>
-                <AiTwotoneCalendar color="#FF2957" size="1.5em" />
+                <ImLocation color="#FF2957" size="1.5em" />
                 <BudgetTitle2>Location</BudgetTitle2>
               </Wrapper>
               <BudgetInventorySubtitle style={{ marginBottom: "1rem" }}>
                 {event?.eventAddress?.houseNo},{event?.eventAddress?.street},
                 {event?.eventAddress?.city},{event?.eventAddress?.state}.
                 {event?.eventAddress?.country}.
+              </BudgetInventorySubtitle>
+            </>
+          ) : null}
+
+          {event?.eventLink ? (
+            <>
+              <Wrapper>
+                <ImLink color="#FF2957" size="1.5em" />
+                <BudgetTitle2>Event Link</BudgetTitle2>
+              </Wrapper>
+              <BudgetInventorySubtitle style={{ marginBottom: "1rem" }}>
+                {event?.eventLink}
               </BudgetInventorySubtitle>
             </>
           ) : null}

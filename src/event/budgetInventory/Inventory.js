@@ -57,12 +57,12 @@ const Inventory = ({ padding }) => {
     const updatedArr = checked
       ? [...arr, value]
       : arr.filter((item) => item !== value);
-    console.log(updatedArr);
+    // console.log(updatedArr);
     dispatch(editCheckbox({ category: name, item: updatedArr }));
   };
   const handleSubmit = async function (e) {
     e.preventDefault();
-    console.log(state);
+    // console.log(state);
     navigate("/eventPlanPreview");
   };
   return (

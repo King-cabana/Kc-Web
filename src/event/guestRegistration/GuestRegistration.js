@@ -14,9 +14,10 @@ import {
 import { setEventOrganizerProfile } from "../../redux/slices/eventOrganizerProfileSlice";
 import { setEventCreated } from "../../redux/slices/eventCreatedSlice";
 import { useSelector, useDispatch } from "react-redux";
-import { useNavigate, useParams } from "react-router";
+import { useNavigate } from "react-router";
 import banner from "../../../src/images/bgBanner.jpg";
 import { AiOutlineLeft, AiTwotoneCalendar } from "react-icons/ai";
+import { ImLocation, ImLink } from "react-icons/im";
 import {
   BackgroundPicture,
   ImagesContainer,
@@ -33,9 +34,9 @@ import { clearEvent } from "../../redux/slices/createEventSlice";
 import { ImSpinner6 } from "react-icons/im";
 import { API_URL_2 } from "../../redux/service/authService";
 import CreateEventTopBar from "../topBar/CreateEventTopBar/CreateEventTopBar";
+import { increment } from "../../redux/slices/eventProposalSponsorSlice";
 
 const GuestRegistration = () => {
-  // const { id } = useParams();
   const state = useSelector((state) => state.createEvent);
   const organizer = useSelector((state) => state.eventOrganizerProfile);
   const user = useSelector((state) => state.userDetails);
@@ -99,6 +100,7 @@ const GuestRegistration = () => {
       });
       console.log(data);
       dispatch(setEventCreated(data));
+      dispatch(increment("eventCompleted"));
       navigate("/submitted");
       toast.success("You have created event Successfully");
       dispatch(clearEvent());
@@ -146,9 +148,7 @@ const GuestRegistration = () => {
 
         <BudgetSection>
           <BudgetTitle1>
-            {organizer?.organizerName
-              ? organizer?.organizerName
-              : "Organizer's Name"}
+            {state?.eventName ? state?.eventName : ""}
           </BudgetTitle1>
 
           <BudgetInventorySubtitle>
@@ -163,7 +163,7 @@ const GuestRegistration = () => {
             <Container>
               <div style={{ width: "85%" }}>
                 Organizer:{" "}
-                {state?.fullName ? state?.fullName : "Organizer's Name"}
+                {organizer?.organizerName ? state?.organizerName : ""}
               </div>
             </Container>
           </BudgetTitle2>
@@ -180,17 +180,29 @@ const GuestRegistration = () => {
           </Wrapper>
           <BudgetInventorySubtitle style={{ marginBottom: "1rem" }}>
             (yyyy-mm-dd, 24hours format) <br />
-            {state?.eventStartDate ? state?.eventStartDate : ""}---{" "}
+            {state?.eventStartDate ? state?.eventStartDate + ", " : ""}
             {state?.eventStartTime ? state?.eventStartTime : ""}
           </BudgetInventorySubtitle>
 
           <Wrapper>
-            <AiTwotoneCalendar color="#FF2957" size="1.5em" />
+            <ImLocation color="#FF2957" size="1.5em" />
             <BudgetTitle2>Location</BudgetTitle2>
           </Wrapper>
           <BudgetInventorySubtitle style={{ marginBottom: "1rem" }}>
             {state?.eventAddress ? state?.eventAddress : "---"}
           </BudgetInventorySubtitle>
+
+          {state?.eventLink ? (
+            <>
+              <Wrapper>
+                <ImLink color="#FF2957" size="1.5em" />
+                <BudgetTitle2>Event Link</BudgetTitle2>
+              </Wrapper>
+              <BudgetInventorySubtitle style={{ marginBottom: "1rem" }}>
+                {state?.eventLink}
+              </BudgetInventorySubtitle>
+            </>
+          ) : null}
 
           <BudgetTitle2>Tags</BudgetTitle2>
           <Tags style={{ padding: "1% 0%" }}>
