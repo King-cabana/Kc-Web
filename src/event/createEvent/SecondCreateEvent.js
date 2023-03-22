@@ -64,9 +64,7 @@ const SecondCreateEvent = ({ padding }) => {
         value: keyContact?.organizerDetails,
       })
     );
-    console.log(keyContact?.profileEmail);
-    console.log(keyContact?.organizerName);
-    console.log(keyContact?.organizerDetails);
+
     // return a cleanup function
     return () => {
       // cleanup code here
@@ -80,13 +78,11 @@ const SecondCreateEvent = ({ padding }) => {
   const navigateBack = (e) => {
     e.preventDefault();
     navigate("/createevent/eventdetails/1");
-    console.log(state);
   };
 
   const navigateNext = (e) => {
     e.preventDefault();
-    // navigate("/createevent/eventdetails/3");
-    console.log(state);
+    navigate("/createevent/eventdetails/3");
   };
 
   return (

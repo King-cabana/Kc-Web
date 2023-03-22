@@ -3,11 +3,16 @@ import Drums from "../../images/brian-erickson-JzZ8MofTlQw-unsplash.jpg"
 
 export const GuestContactBg = styled.div`
   width: 100%;
-  height: 100vh;
   background: #F5F5F5;
   align-items: center;
   justify-content: center;
   display: flex;
+  flex-direction: column;
+  padding-bottom: 15%;
+
+  @media screen and (max-width: 460px) {
+   padding-bottom: 50%;
+}
 `;
 
 export const GCBody = styled.div`
@@ -19,11 +24,13 @@ export const GCBody = styled.div`
     display: flex;
     justify-content: center;
     align-item: center;
+    margin-top: 5%;
 
     @media screen and (max-width: 960px) {
         height: 75vh;
         width: 90vw;
         border-radius: 3px;
+        box-shadow: none;
     }
 
 `
@@ -50,7 +57,6 @@ export const GCFormPart = styled.div`
 `
 
 export const GCPicPart = styled.div`
-// height: inherit;
 width: 30vw;
 border-radius: 0 5px 5px 0;
 background: url(${Drums}) ;
@@ -63,5 +69,16 @@ opacity: 40%;
 @media screen and (max-width: 960px){
     display: none;
 }
+`
 
+export const TagHolder = styled.div`
+    width: 100%;
+    justify-content: left;
+    align-items: center;
+    margin-top: 4%;
+    padding: 0 20%;
+
+    @media screen and (max-width: 480px){
+        padding: 0 6%;
+    }
 `

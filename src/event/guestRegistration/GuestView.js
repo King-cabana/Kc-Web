@@ -28,7 +28,6 @@ import {
 import { AbsolutePrimaryButton } from "../../components/button/button";
 import TopBar from "../../components/topBar/TopBar";
 import { API_URL_2 } from "../../redux/service/authService";
-import NoPage from "../../pages/noPage/NoPage";
 
 const GuestView = () => {
   const user = useSelector((state) => state.userDetails);
@@ -147,7 +146,7 @@ const GuestView = () => {
         </BudgetSection>
 
         <ButtonContainer style={{ margin: "0rem" }}>
-          <AbsolutePrimaryButton onClick={() => navigate("/guestcontact")}>
+          <AbsolutePrimaryButton onClick={() => navigate(`/guestcontact/${id}`)}>
             Register
           </AbsolutePrimaryButton>
         </ButtonContainer>

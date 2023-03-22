@@ -8,6 +8,7 @@ export const KCProgressBarHolder = styled.div`
   display: flex;
   padding: 0 8%;
   background-color: transparent;
+  margin-top: 65px;
 
   @media screen and (max-width: 480px) {
     width: 100%;

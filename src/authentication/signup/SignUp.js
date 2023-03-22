@@ -55,7 +55,6 @@ const SignUp = () => {
 
   function handleValidation(e) {
     setErrors(Validation(inputs));
-    // setDisabledButton(Object.keys(errors).length > 0);
   }
 
   const navigate = useNavigate();
