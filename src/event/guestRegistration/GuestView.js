@@ -1,5 +1,3 @@
-// import GuestRegistration from "./GuestRegistration";
-
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import {
@@ -30,13 +28,12 @@ import {
 import { AbsolutePrimaryButton } from "../../components/button/button";
 import TopBar from "../../components/topBar/TopBar";
 import { API_URL_2 } from "../../redux/service/authService";
-{
-  /* <GuestRegistration /> */
-}
+import NoPage from "../../pages/noPage/NoPage";
 
 const GuestView = () => {
   const user = useSelector((state) => state.userDetails);
-  const event = useSelector((state) => state.eventCreated);
+  const [event, setEvent] = useState();
+  const { id } = useParams();
   const navigate = useNavigate();
   const [like, setLike] = useState(false);
 
@@ -45,15 +42,14 @@ const GuestView = () => {
   useEffect(() => {
     const fetchEvent = async () => {
       try {
-        const { data } = await axios.get(API_URL_2 + `events/${event?.id}`, {
-          headers: {
-            Authorization: `Bearer ${user.token}`,
-          },
-        });
+        const { data } = await axios.get(API_URL_2 + `events/${id}`);
         console.log(data);
+        setEvent(data);
       } catch (error) {
-        console.log(error);
-        // handle error here
+        if (error?.response?.status === 400) {
+          navigate("*");
+        }
+        throw error;
       }
     };
     fetchEvent();
@@ -151,7 +147,7 @@ const GuestView = () => {
         </BudgetSection>
 
         <ButtonContainer style={{ margin: "0rem" }}>
-          <AbsolutePrimaryButton onClick={() => navigate("/registered")}>
+          <AbsolutePrimaryButton onClick={() => navigate("/guestcontact")}>
             Register
           </AbsolutePrimaryButton>
         </ButtonContainer>

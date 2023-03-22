@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { BudgetInventorySubtitle, ButtonContainer } from "./BudgetStyled";
 import { useSelector } from "react-redux";
 import { BtnHolderLink } from "./InventoryStyled";
@@ -11,15 +11,16 @@ import Lottie from "lottie-react";
 import animationData from "../../lotties/102001-success-icon.json";
 import { AnimationContainer } from "../../globalStyles";
 import CreateEventTopBar from "../topBar/CreateEventTopBar/CreateEventTopBar";
+import { useNavigate } from "react-router";
 
 const Submitted = () => {
+  const navigate = useNavigate();
   const event = useSelector((state) => state.eventCreated);
-
-  useEffect(() => {
-    console.log(event?.id);
-
-    // return () => controller.abort();
-  });
+  const shareDetails = {
+    title: event?.eventName,
+    url: `/guestView/${event?.id}`,
+    text: event?.eventTheme,
+  };
 
   return (
     <>
@@ -40,11 +41,9 @@ const Submitted = () => {
               color: "#FF2957",
               fontWeight: "600",
             }}
-            // onClick={() =>{
-            //   window.navigator.share({
-
-            //   })
-            // }}
+            onClick={() => {
+              window.navigator.share(shareDetails);
+            }}
           >
             Copy & Share Link
           </AlternativeButton2>
@@ -52,9 +51,7 @@ const Submitted = () => {
 
         <ButtonContainer>
           <BtnHolderLink to="/home">
-            <AbsolutePrimaryButton
-            //  onClick={handleSubmit} disabled={isDisabled}
-            >
+            <AbsolutePrimaryButton onClick={() => navigate("/home")}>
               Done
             </AbsolutePrimaryButton>
           </BtnHolderLink>
