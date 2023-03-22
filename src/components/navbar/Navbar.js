@@ -39,7 +39,6 @@ const Navbar = () => {
 
   return (
     <>
-<<<<<<< HEAD
       <IconContext.Provider value={{ size: "25px" }}>
         <Nav>
           <NavLogo>
@@ -87,46 +86,6 @@ const Navbar = () => {
           </NavContent>
         </Nav>
       </IconContext.Provider>
-=======
-    <IconContext.Provider value={{size:'25px'}}>
-    <Nav>
-      <NavLogo>
-      <LogoLink to="/">
-      <img src={Logo} alt='King Cabana Logo'/>
-      </LogoLink>
-      </NavLogo>
-      <NavContent>
-        <NavMobile onClick={handleClick}>
-          {click ? <img src={times} alt=''/> : <img src={hb} alt=''/> }
-        </NavMobile>
-        <NavItems onClick={handleClick} click={click}>
-            {/* <NavItemsInner> */}
-            <li><NavBarLink  to="/">Home</NavBarLink></li>
-           {/*  <li><NavBarLink to="/sponsors">For Sponsors</NavBarLink></li>*/} 
-           {/*  <li><NavBarLink to="/organizers">For Organizer</NavBarLink></li> */} 
-            <li><NavBarLink to="/contactUs">Contact Us</NavBarLink></li>
-            <li><NavBarLink to="/aboutUs">About Us </NavBarLink></li>
-            {/* </NavItemsInner> */}
-            <NavGroup>
-            {/* <NavSearchHolder>
-            <BiSearch size={20} cursor='pointer' style={{marginRight:'10%'}}/>
-            </NavSearchHolder> */}
-            {button ? (
-                <NavButtonLink to="/waitlist">
-                  <AccessButton>Get early access</AccessButton>
-                </NavButtonLink>
-              ) : (
-                <NavButtonLink to="/waitlist">
-                  <AccessButton>Get early access</AccessButton>
-                </NavButtonLink>
-              )}
-            </NavGroup>
-           
-        </NavItems>
-      </NavContent>
-    </Nav>
-    </IconContext.Provider>
->>>>>>> a1be72399b67e2e563ddb7b112ac59eb45b0d220
     </>
   );
 };

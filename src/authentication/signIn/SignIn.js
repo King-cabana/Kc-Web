@@ -20,7 +20,7 @@ import { login } from "../../redux/service/authService";
 import { toast } from "react-toastify";
 import { ImSpinner6 } from "react-icons/im";
 import { setUserDetails } from "../../redux/slices/userDetailsSlice";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setUserToken } from "../../redux/slices/userDetailsSlice";
 
 const SignIn = () => {
