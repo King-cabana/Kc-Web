@@ -63,7 +63,7 @@ const EventPlanPreview = () => {
   };
   const handleSubmit = async function (e) {
     e.preventDefault();
-    console.log(state);
+    // console.log(state);
     navigate("/guest");
   };
   return (

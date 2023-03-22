@@ -88,7 +88,7 @@ const GuestRegistration = () => {
   ///////////////////////////////////
   const navigateNext = async (e) => {
     e.preventDefault();
-    console.log(dataToSend);
+    // console.log(dataToSend);
     try {
       setSending(true);
       setIsDisabled(true);
@@ -98,7 +98,7 @@ const GuestRegistration = () => {
           Authorization: `Bearer ${user.token}`,
         },
       });
-      console.log(data);
+      // console.log(data);
       dispatch(setEventCreated(data));
       dispatch(increment("eventCompleted"));
       navigate("/submitted");
