@@ -1,0 +1,139 @@
+import React from "react";
+import * as BsIcons from "react-icons/bs";
+import * as MdIcons from "react-icons/md";
+import { Square2StackIcon } from "@heroicons/react/24/outline";
+import { CalendarIcon } from "@heroicons/react/24/outline";
+import { DocumentChartBarIcon } from "@heroicons/react/24/outline";
+import { BellIcon } from "@heroicons/react/24/outline";
+import { UserGroupIcon } from "@heroicons/react/24/outline";
+import { ChatBubbleLeftRightIcon } from "@heroicons/react/24/outline";
+import { ChartBarIcon } from "@heroicons/react/24/outline";
+import { CogIcon } from "@heroicons/react/24/outline";
+
+
+export const SidebarData = [
+  {
+    title: "Dashboard",
+    path: "/dashboard",
+    icon: (
+      <Square2StackIcon
+        className="h-6 h-6 text-gray-500"
+        style={{ width: "20px" }}
+        
+      />
+    ),
+  },
+
+  {
+    title: "Event",
+    // path: "/event",
+    // icon: <HiIcons.HiOutlineCalendar />
+    icon: (
+      <CalendarIcon
+        className="h-6 h-6 text-gray-500"
+        style={{ width: "20px" }}
+      />
+    ),
+
+    iconClosed: <MdIcons.MdKeyboardArrowRight />,
+    iconOpened: <MdIcons.MdKeyboardArrowDown />,
+
+    subNav: [
+      {
+        title: "Planning",
+        path: "/event/noEvent",
+        icon: <BsIcons.BsDot />,
+        cName: "sub-nav",
+      },
+      {
+        title: "History",
+        path: "/event/history",
+        icon: <BsIcons.BsDot />,
+        cName: "sub-nav",
+      },
+    ],
+  },
+
+  {
+    title: "Sponsor",
+    // path: '/report',
+    // icon: <HiIcons.HiOutlineDocumentText />,
+    icon: (
+      <DocumentChartBarIcon
+        className="h-6 h-6 text-gray-500"
+        style={{ width: "20px" }}
+      />
+    ),
+
+    iconClosed: <MdIcons.MdKeyboardArrowRight />,
+    iconOpened: <MdIcons.MdKeyboardArrowDown />,
+
+    subNav: [
+      {
+        title: "Proposal",
+        path: "/sponsor/proposal",
+        icon: <BsIcons.BsDot />,
+      },
+      {
+        title: "Matching",
+        path: "/sponsor/matching",
+        icon: <BsIcons.BsDot />,
+      },
+    ],
+  },
+  {
+    title: "Messaging",
+    path: "/messaging",
+    icon: (
+      <ChatBubbleLeftRightIcon
+        className="h-6 h-6 text-gray-500"
+        style={{ width: "20px" }}
+      />
+    ),
+  },
+  {
+    title: "Notifications",
+    path: "/notification",
+    icon: (
+      <BellIcon className="h-6 h-6 text-gray-500" style={{ width: "20px" }} />
+    ),
+  },
+  {
+    title: "Attendees Mgt",
+    path: "/attendeesmgt",
+    icon: (
+      <UserGroupIcon
+        className="h-6 h-6 text-gray-500"
+        style={{ width: "20px" }}
+      />
+    ),
+  },
+  {
+    title: "Vendors Mgt",
+    path: "/vendorsmgt",
+    icon: (
+      <Square2StackIcon
+        className="h-6 h-6 text-gray-500"
+        style={{ width: "20px" }}
+      />
+    ),
+  },
+  {
+    title: "Analytics",
+    path: "/analytics",
+    icon: (
+      <ChartBarIcon
+        className="h-6 h-6 text-gray-500"
+        style={{ width: "20px" }}
+      />
+    ),
+  },
+
+  {
+    title: "Settings",
+    path: "/settings",
+    icon: (
+      <CogIcon className="h-6 h-6 text-gray-500" style={{ width: "20px" }} />
+    ),
+  },
+];

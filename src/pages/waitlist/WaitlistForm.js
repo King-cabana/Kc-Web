@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import {
   ModalOverlay,
   LongButton,
-  SignInLink,
+  // SignInLink,
   Form,
   InputFieldWrapper,
 } from "../../globalStyles";
@@ -14,7 +14,7 @@ import {
 } from "./WaitlistFormStyled";
 import { HiOutlineMail } from "react-icons/hi";
 import { useDispatch } from "react-redux";
-import { apiFetch } from "../../redux/authSlice";
+// import { apiFetch } from "../../redux/authSlice";
 
 const Waitlist = () => {
   const [firstName, setFirstName] = useState("");
@@ -26,12 +26,12 @@ const Waitlist = () => {
   const handleJoinWaitlist = () => {
     console.log(email);
     dispatch(
-      apiFetch({
-        apiName: "",
-        body: { firstName, lastName, email, comment },
-        method: "post",
-        url: "/subscribe/register",
-      })
+      // apiFetch({
+      //   apiName: "",
+      //   body: { firstName, lastName, email, comment },
+      //   method: "post",
+      //   url: "/subscribe/register",
+      // })
     );
   };
 
@@ -96,7 +96,7 @@ const Waitlist = () => {
               ></textarea>
             </Form>
 
-            <LongButton type="button" onClick={handleJoinWaitlist}>
+            <LongButton style={{marginTop:'5%'}} type="button" onClick={handleJoinWaitlist}>
               Join Waitlist
             </LongButton>
           </Form>

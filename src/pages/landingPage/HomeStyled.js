@@ -14,12 +14,22 @@ export const HeroSection = styled.div`
     background-size: cover;
     background-position: right;
   }
+
+  @media screen and (orientation: landscape) and (max-width: 960px){
+    width: 100%;
+    height: 100vh;
+  }
 `;
 
 export const BgOverlay = styled.div`
   height: 100vh;
   width: 100%;
   background: rgba(49, 38, 49, 0.8);
+
+  @media screen and (orientation: landscape) and (max-width: 960px){
+    width: 100%;
+    height: 100vh;
+  }
 `;
 
 export const ContentHolder = styled.div`
@@ -31,24 +41,21 @@ export const ContentHolder = styled.div`
 
   h1 {
     color: white;
-    font-size: 48px;
-    padding-top: 5%;
+    padding-top: 70px;
     font-weight: bold;
+    line-height: 1.5;
   }
 
   span {
     color: #ffbc15;
-    font-size: 48px;
   }
 
   p {
     color: white;
-    font-size: 14px;
-    /* padding-top:2%; */
   }
 
   @media screen and (max-width: 480px) {
-    padding-top: 30%;
+    padding-top: 15%;
     display: block;
     width: 100vw;
     text-align: center;
@@ -56,17 +63,13 @@ export const ContentHolder = styled.div`
     justify-content: center;
     line-height: 1.3;
 
-    h1 {
-      font-size: 30px;
-    }
-
     p {
       font-size: 14px;
     }
 
     span {
       color: #ffbc15;
-      font-size: 44px;
+      font-size: 36px;
     }
   }
 
@@ -82,12 +85,42 @@ export const ContentHolder = styled.div`
       font-size: 58px;
     }
   }
+
+  @media screen and (orientation: landscape) and (max-width: 960px){
+    width: 100%;
+    padding-top: 0;
+    padding: 5%;
+    height: inherit;
+    /* display: flex; */
+
+    h1 {
+    color: white;
+    line-height: 1.2;
+    font-size: 48px;
+    padding-top: 10px;
+  }
+
+  }
 `;
+
+export const TypeTextHolder = styled.div`
+
+@media screen and (max-width: 480px){
+  height: 45vh;
+}
+
+@media screen and (min-width: 481px) and (max-width: 960px){
+  height: 35vh;
+ 
+} 
+
+`
 
 export const BtnHolder = styled.div`
   display: flex;
-  padding-top: 10%;
-  width: 24vw;
+  padding-top: 5%;
+  width: 20%;
+  gap:10px;
   justify-content: space-between;
 
   @media screen and (max-width: 960px) {
@@ -98,6 +131,15 @@ export const BtnHolder = styled.div`
     align-content: center !important;
     justify-items: center !important ;
     margin: auto;
+  }
+
+  @media screen and (orientation: landscape) and (max-width: 960px){
+    width: 40%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
   }
 `;
 
@@ -207,7 +249,7 @@ export const ASContentSection = styled.div`
 `;
 
 export const ASContent = styled.div`
-  width: 35vw;
+  width: 40vw;
   height: 60vh;
   padding: 2%;
   display: flex;
@@ -263,6 +305,7 @@ export const ASSectionInner = styled.div`
   align-items: center;
 
   @media screen and (max-width: 960px) {
+    margin-top: 10%;
     display: flex;
     flex-direction: column-reverse;
   }
@@ -271,12 +314,6 @@ export const ASSectionInner = styled.div`
 export const ASContentInner = styled.div`
   width: inherit;
 
-  h4 {
-    width: inherit;
-    font-size: 32px;
-    font-weight: 600;
-    color: #484848;
-  }
   p {
     margin-top: 10%;
     margin-bottom: 8%;
@@ -299,14 +336,6 @@ export const ASContentInner = styled.div`
       align-items: center !important;
       justify-content: center !important;
       padding: 4%;
-
-      h4 {
-        font-size: 22px;
-      }
-
-      p {
-        font-size: medium;
-      }
     }
   }
 
@@ -320,8 +349,10 @@ export const ASContentInner = styled.div`
 `;
 
 export const ASImage = styled.div`
+  /* width: 45%;
+  height: 65vh; */
   width: 45%;
-  height: 65vh;
+  height: 70vh;
   background: ${(props) => `url(${props.img})`};
   background-position: center;
   background-size: cover;
@@ -346,7 +377,7 @@ export const SponsorSection = styled.div`
   justify-content: space-between;
   align-items: center;
 
-  h4 {
+  /* h4 {
     font-size: 26px;
     font-weight: 600;
     text-align: center;
@@ -358,7 +389,7 @@ export const SponsorSection = styled.div`
     align-self: flex-start;
     text-align: left;
     margin-left: 5%;
-  }
+  } */
 
   @media screen and (max-width: 480px) {
     height: fit-content;
@@ -510,3 +541,27 @@ export const ReadySection = styled.div`
     height: fit-content;
   }
 `;
+
+export const TestButton = styled.button`
+  width: 143px;
+  height: 56px;
+  border-radius: 8px;
+  background-color: #ff2957;
+  color: white;
+  border: 1px solid transparent;
+  outline: none;
+  cursor: pointer;
+  font-weight: 600;
+
+  &:hover {
+    background-color: white;
+    color: #ff2957;
+    border: 1.5px solid #ff2957;
+  }
+
+  &:disabled {
+    background-color: rgba(255, 41, 87, 0);
+    color: white;
+  }
+`;
+

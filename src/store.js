@@ -1,36 +1,38 @@
-import { configureStore } from "@reduxjs/toolkit";
-import authSlice from "./redux/authSlice"
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import { persistReducer, persistStore } from "redux-persist";
+import storage from "redux-persist/lib/storage";
+import profileSlice from "./redux/slices/profileSlice";
+import createEventSlice from "./redux/slices/createEventSlice";
+import eventCreatedSlice from "./redux/slices/eventCreatedSlice";
+import eventOrganizerProfileSlice from "./redux/slices/eventOrganizerProfileSlice";
+import messageSlice from "./redux/slices/userDetailsSlice";
+import otpSlice from "./redux/slices/otpSlice";
+import userDetailsSlice from "./redux/slices/userDetailsSlice";
+import counterSlice from "./redux/slices/eventProposalSponsorSlice";
 
+const persistConfig = {
+  key: "kingCabana",
+  storage,
+};
+const reducer = combineReducers({
+  message: messageSlice,
+  profile: profileSlice,
+  eventOrganizerProfile: eventOrganizerProfileSlice,
+  otp: otpSlice,
+  createEvent: createEventSlice,
+  eventCreated: eventCreatedSlice,
+  userDetails: userDetailsSlice,
+  counter: counterSlice,
+});
+
+const persistedReducer = persistReducer(persistConfig, reducer);
 
 const store = configureStore({
-  reducer: {
-    user: authSlice,
-  },
-})
-
-export default store
-
-// import { configureStore, compose, applyMiddleware, combineReducers } from 'redux';
-// import thunk from 'redux-thunk';
-// import { userSigninReducer } from './reducers/userReducers';
-
-// const initialState = {
-//   userSignin: {
-//     userInfo: localStorage.getItem('userInfo')
-//       ? JSON.parse(localStorage.getItem('userInfo'))
-//       : null,
-//   }
-// }
-
-// const reducer = combineReducers({
-//   userSignin: userSigninReducer,
-// })
-
-
-// const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-// const store = configureStore(
-//   reducer,
-//   initialState,
-//   composeEnhancer(applyMiddleware(thunk))
-// );
-// export default store;
+  reducer: persistedReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }),
+});
+const persistor = persistStore(store);
+export { store, persistor };
