@@ -49,7 +49,7 @@ const GuestRegistration = () => {
     const fetchOrganizerProfile = async () => {
       try {
         const { data } = await axios.get(
-          `http://localhost:8080/profiles/${organizer?.id}`,
+          `http://localhost:8081/profiles/${organizer?.id}`,
           {
             headers: {
               Authorization: `Bearer ${user.token}`,
