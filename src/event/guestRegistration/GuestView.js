@@ -53,12 +53,9 @@ const GuestView = () => {
       }
     };
     fetchEvent();
-    return () => {
-      // cleanup code here
-    };
+    return () => {};
   }, [event?.id]);
 
-  ///////////////////////////////////
   return (
     <>
       <TopBar marginBottom="1rem" />
@@ -159,7 +156,9 @@ const GuestView = () => {
         </BudgetSection>
 
         <ButtonContainer style={{ margin: "0rem" }}>
-          <AbsolutePrimaryButton onClick={() => navigate("/guestcontact")}>
+          <AbsolutePrimaryButton
+            onClick={() => navigate(`/guestcontact/${id}`)}
+          >
             Register
           </AbsolutePrimaryButton>
         </ButtonContainer>

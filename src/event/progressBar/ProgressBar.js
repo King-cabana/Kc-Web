@@ -48,7 +48,7 @@ const ProgressBar = ({ setActive, name, number }) => {
           <ProgressStages onClick={() => setActive("details")}>
             <ProgressStageInner
               color={(name === "eventdetails" || number ) && "#FFBC15"}
-              fontWeight={activeColor && "500"}
+              // fontWeight={activeColor? (true && "500"): false}
             >
               <div>
                 <ProgressStageCounter>
@@ -67,7 +67,7 @@ const ProgressBar = ({ setActive, name, number }) => {
           <ProgressStages2 onClick={() => setActive("audience")}>
             <ProgressStageInner
               color={(name === "defineaudience" || number) && "#FFBC15"}
-              fontWeight={activeColor && "500"}
+              // fontWeight={activeColor? (true && "500"): false}
             >
               <div>
                 <ProgressStageCounter>
@@ -90,7 +90,7 @@ const ProgressBar = ({ setActive, name, number }) => {
           <ProgressStages3 onClick={() => setActive("budget")}>
             <ProgressStageInner
               color={(name === "budget&inventory" || number) && "#FFBC15"}
-              fontWeight={activeColor && "500"}
+              // fontWeight={activeColor? (true && "500"): false}
             >
               <div>
                 <ProgressStageCounter>

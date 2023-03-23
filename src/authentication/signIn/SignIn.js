@@ -29,14 +29,11 @@ const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
-  // const [profile, setProfile] = useState("");
 
   const handleClick = () => {
     setClick(!click);
     setVisibility(!visible);
   };
-
-  const { isSignedIn } = useSelector((state) => state.userDetails);
 
   const InputType = visible ? "text" : "password";
 
@@ -47,13 +44,7 @@ const SignIn = () => {
   };
 
   const dispatch = useDispatch();
-  // useEffect(() =>{
-  //   if (isSignedIn) {
-  //     navigate("/dashboard");
-  //   }
-  // }, [isSignedIn, navigate])
-
-  // console.log(localStorage.getItem("bearerToken") )
+ 
     const checkProfile = async (email) => {
     const token =  localStorage.getItem("bearerToken")
     try {
@@ -70,7 +61,6 @@ const SignIn = () => {
       navigate('/dashboard')
       return response;
     } catch (error) {
-      // console.log(error)
       navigate('/createProfile')
     }
   };

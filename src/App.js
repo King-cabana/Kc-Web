@@ -80,7 +80,7 @@ function App() {
             <Route path="/manageProfile" element={<ManageProfile />} />
             <Route path="/organizerProfile" element={<OrganiserProfile />} />
             <Route path="/socialProfile" element={<SocialProfile />} />
-            <Route path="/guestcontact" element={<GuestContact />} />
+            <Route path="/guestcontact/:id" element={<GuestContact />} />
             <Route
               path="/organiserProfile/home/edit"
               element={<EditOrganiserProfile />}
