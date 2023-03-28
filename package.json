@@ -24,7 +24,7 @@
     "react-router-dom": "^6.8.2",
     "react-scripts": "5.0.1",
     "react-simple-typewriter": "^5.0.1",
-    "react-swipeable-views": "^0.15.1",
+    "react-swipeable-views": "0.14.0",
     "react-toastify": "^9.1.1",
     "redux-persist": "^6.0.0",
     "styled-components": "^5.3.8",
@@ -53,5 +53,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "main": "index.js",
+  "repository": "https://github.com/King-cabana/Kc-Web.git",
+  "author": "Josiah ENUMAH <josiahenumah94@gmail.com>",
+  "license": "MIT"
 }
