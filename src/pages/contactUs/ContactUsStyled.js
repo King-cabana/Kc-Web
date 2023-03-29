@@ -4,15 +4,21 @@ export const Container = styled.div`
   width: 100%;
   /* height: 100%; */
   /* border: 5px solid black; */
-  padding: 0% 20%;
-  margin-bottom: 30px;
-
-  @media screen and (max-width: 768px) {
-    padding: 2% 2%;
-  }
+  padding: 0% 10%;
 `;
 export const ContainerBox = styled.div`
   margin-top: 20px;
+`;
+
+export const ContactLabel = styled.label`
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 21px;
+
+  @media screen and (max-width: 960px) {
+    font-size: 12px;
+    line-height: 21px;
+  }
 `;
 
 export const ContactMobile = styled.div`
@@ -34,37 +40,42 @@ export const ContactBody = styled.div`
   padding-left: 50px;
   margin-bottom: 10px;
   display: flex;
+  justify-content: space-around;
+  align-items: center;
 
   @media screen and (max-width: 960px) {
-    display: flex;
     flex-direction: column;
-    padding-left: 20px;
+    /* padding-left: 20px; */
   }
 `;
 
 export const ContactRight = styled.div`
-width:60%;
-padding: 1% 5%;
-@media screen and (max-width: 768px) {
-    width:100%;
-    padding: 5% 0%;
-}
-
+  width: 50%;
+  padding: 1% 5%;
+  @media screen and (max-width: 960px) {
+    width: 100%;
+    padding-top: 5%;
+  }
 `;
 
 export const ContactHeader = styled.h1`
   font-family: "Poppins";
-  font-weight: 600;
+  font-weight: 700;
   font-size: 48px;
   color: #484848;
   width: 100%;
-  margin-bottom: 50px;
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
 
-  @media screen and (max-width: 760px) {
+  @media screen and (max-width: 960px) {
     font-size: 32px;
   }
-  @media screen and (max-width: 576px) {
-    font-size: 35px;
+`;
+export const Wrapper = styled.section`
+  width: 50%;
+  @media screen and (max-width: 960px) {
+    width: 100%;
   }
 `;
 
@@ -73,13 +84,14 @@ export const ContactParagraph = styled.p`
   font-style: normal;
   font-weight: 400;
   font-size: 24px;
-  letter-spacing: 2px;
+  line-height: 30px;
   color: #484848;
   margin-bottom: 50px;
 
-  @media screen and (max-width: 768px) {
-    font-weight: 400;
-    font-size: 16px;
+  @media screen and (max-width: 960px) {
+    font-size: 14px;
+    line-height: 20px;
+    margin-bottom: 20px;
   }
 `;
 
@@ -90,11 +102,11 @@ export const ContactLogoBody = styled.div`
 export const EmailBody = styled.div`
   display: flex;
   align-items: center;
-  padding: 0px;
   margin-bottom: 30px;
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 960px) {
     width: 100%;
+    margin-bottom: 2px;
   }
 `;
 
@@ -109,7 +121,7 @@ export const EmailIcon = styled.div`
   margin-right: 20px;
   color: #ffbc15;
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 960px) {
     width: 40px;
     height: 40px;
     margin-right: 10px;
@@ -126,7 +138,7 @@ export const EmailText = styled.p`
   text-align: center;
   margin-right: 20px;
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 960px) {
     font-size: 10px;
     margin-right: 10px;
   }
@@ -135,7 +147,7 @@ export const EmailText = styled.p`
 export const EmailIconArrow = styled.div`
   color: #ffbc15;
   height: 22px;
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 960px) {
     margin-bottom: 7px;
   }
 `;
@@ -151,7 +163,7 @@ export const PhoneLogo = styled.div`
   margin-right: 20px;
   color: #ffbc15;
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 960px) {
     width: 40px;
     height: 40px;
     margin-right: 10px;
@@ -160,10 +172,10 @@ export const PhoneLogo = styled.div`
 export const PhoneBody = styled.div`
   display: flex;
   align-items: center;
-  padding: 0px;
   margin-bottom: 20px;
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 960px) {
     width: 100%;
+    margin-bottom: 0px;
   }
 `;
 
@@ -177,7 +189,7 @@ export const PhoneText = styled.p`
   color: #ffbc15;
   margin-right: 30px;
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 960px) {
     font-size: 10px;
     margin-right: 10px;
     text-align: center;
@@ -187,7 +199,7 @@ export const PhoneText = styled.p`
 export const PhoneIconArrow = styled.div`
   color: #ffbc15;
   height: 22px;
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 960px) {
     height: 15px;
     /* padding: 0% 2%; */
     margin-bottom: 15px;
@@ -226,24 +238,28 @@ export const ContactInfo = styled.h1`
   font-family: "Poppins";
   font-style: normal;
   font-weight: 600;
-  font-size: 48px;
+  font-size: 44px;
   line-height: 54px;
   color: #484848;
+
+  @media screen and (max-width: 960px) {
+    font-size: 20px;
+    line-height: 30px;
+  }
 `;
 
 export const ContactText = styled.p`
   font-family: "Poppins";
-  font-style: normal;
   font-weight: 400;
-  font-size: 24px;
+  font-size: 18px;
   line-height: 21px;
   display: flex;
   align-items: center;
-  letter-spacing: -0.3%;
   color: #000000;
 
-  @media screen and (max-width: 768px) {
-    font-size: 17px;
+  @media screen and (max-width: 960px) {
+    font-size: 12px;
+    line-height: 18px;
   }
 `;
 export const ContactInfoBody = styled.div`
@@ -268,24 +284,24 @@ export const InputInfo = styled.div`
   input::placeholder {
     font-size: 16px;
     line-height: 21px;
-    letter-spacing:-0.3%;
-    @media screen and (max-width:768px){
-        font-size: 12px;
+    letter-spacing: -0.3%;
+    @media screen and (max-width: 960px) {
+      font-size: 12px;
     }
-}
-label{
-font-family: 'Poppins';
-font-style: normal;
-font-weight: 400;
-font-size: 24px;
-line-height: 21px;
-display: flex;
-align-items: center;
-letter-spacing: -0.3%;
-color: #000000;
-margin-bottom:10px;
+  }
+  label {
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 21px;
+    display: flex;
+    align-items: center;
+    letter-spacing: -0.3%;
+    color: #000000;
+    margin-bottom: 10px;
 
-    @media screen and (max-width: 768px) {
+    @media screen and (max-width: 960px) {
       font-size: 16px;
     }
   }
@@ -300,16 +316,19 @@ margin-bottom:10px;
     cursor: pointer;
     width: 100%;
   }
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 960px) {
     width: 100%;
   }
 `;
 export const AnimationContainer = styled.div`
-  width: 40%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
   padding: 1% 10%;
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 960px) {
     width: 100%;
-    padding: 1% 0%;
+    order: -1;
   }
 `;
 
@@ -330,27 +349,24 @@ export const InputBox = styled.div`
     border: 1px solid rgba(72, 72, 72, 0.1);
     border-radius: 10px;
 
-    @media screen and (max-width: 768px) {
+    @media screen and (max-width: 960px) {
       width: 100%;
       height: 60px;
     }
   }
 
-textarea{
-display: flex;
-flex-direction: row;
-align-items: flex-start;
-padding: 15px;
-gap: 10px;
-width: 100%;
-height: 190px;
-background: #FFFFFF;
-border: 1px solid rgba(72, 72, 72, 0.1);
-border-radius: 10px;
-}
-textarea::placeholder{
-    font-size: 20px;
-}
+  textarea {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 15px;
+    gap: 10px;
+    width: 100%;
+    height: 100px;
+    background: #ffffff;
+    border: 1px solid rgba(72, 72, 72, 0.1);
+    border-radius: 10px;
+  }
 `;
 
 export const Box = styled.div`
@@ -360,31 +376,23 @@ export const Box = styled.div`
   background: #fef5f7;
   justify-content: center;
   align-items: center;
-  @media screen and (max-width: 768px) {
-    width: 100%;
-  }
 `;
 export const BoxContainer = styled.div`
   display: flex;
   width: 100%;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  margin-top: 40px;
-  margin-bottom: 40px;
-  margin-left: 150px;
-  margin-right: 150px;
-  gap: 125px;
+  padding: 5rem;
 
   img {
-    width: 600px;
-    height: 600px;
+    width: 450px;
+    height: 450px;
     border-radius: 20px;
     /* margin-left: 30px; */
 
-    @media screen and (max-width: 768px) {
+    @media screen and (max-width: 960px) {
       width: 250px;
       height: 250px;
-      margin-top: 10px;
     }
   }
 
@@ -393,39 +401,29 @@ export const BoxContainer = styled.div`
     height: 100%;
     display: flex;
     flex-direction: column;
-    height: max-content;
     justify-content: center;
     align-items: center;
-    justify-items: center;
-    align-content: center;
     text-align: center;
-    margin-top: 25px;
-    margin-left: 30px;
-    margin-right: 30px;
+
+    padding: 4rem 1rem;
   } ;
 `;
 
 export const BoxBody = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  gap: 20px;
-  margin-left: 100px;
-  margin-right: 100px;
+  width: 50%;
 
-  /* padding:0% 8%; */
-  width: 100%;
-  /* height: 80%; */
-
+  @media screen and (max-width: 1200px) {
+    margin-left: 4rem;
+  }
   @media screen and (max-width: 960px) {
-    display: flex;
-    flex-direction: column;
     height: max-content;
     justify-content: center;
     align-items: center;
-    justify-items: center;
-    align-content: center;
     text-align: center;
+    margin-left: 0rem;
+    width: 80%;
   }
 `;
 
@@ -436,9 +434,12 @@ export const BoxHeader = styled.h1`
   font-size: 48px;
   line-height: 54px;
   color: #484848;
+  margin-bottom: 1.5rem;
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 960px) {
     font-size: 32px;
+    line-height: 40px;
+    margin: 1rem 0rem;
   }
 `;
 
@@ -446,14 +447,14 @@ export const BoxParagraph = styled.p`
   font-family: "Poppins";
   font-style: normal;
   font-weight: 400;
-  font-size: 25px;
-  line-height: 36px;
+  font-size: 20px;
+  line-height: 30px;
   color: #484848;
 
-  @media screen and (max-width: 768px) {
-    font-size: 15px;
-    margin-left: 10px;
-    margin-right: 10px;
+  @media screen and (max-width: 960px) {
+    font-size: 14px;
+    line-height: 20px;
+    margin-bottom: 1rem;
   }
 `;
 
@@ -465,7 +466,7 @@ export const IconHolder = styled.div`
   width: 12%;
   justify-content: space-between;
   margin-top: 5%;
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 960px) {
     /* width: 100%; */
     /* margin-left:50px; */
     margin-right: 120px;
@@ -498,40 +499,43 @@ export const SocialIcon = styled.a`
 
 export const Location = styled.div`
   width: 100%;
-  height: 30vh;
+  height: 100%;
 `;
 export const LocationCenter = styled.div`
-  padding-top: 70px;
+  padding: 10rem;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   /* gap: 25px; */
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 960px) {
     width: 100%;
+    padding: 5rem;
   }
 `;
 
 export const LocationHeader = styled.h1`
   font-family: "Poppins";
   font-weight: 600;
-  font-size: 48px;
-  line-height: 72px;
-  top: 2681px;
-
-  @media screen and (max-width: 768px) {
-    font-size: 32px;
+  font-size: 36px;
+  line-height: 44px;
+  margin-bottom: 1.5rem;
+  @media screen and (max-width: 960px) {
+    font-size: 24px;
+    line-height: 32px;
+    margin-bottom: 0.5rem;
   }
 `;
 
 export const LocationText = styled.p`
   font-family: "Poppins";
   font-weight: 400;
-  font-size: 24px;
-  line-height: 36px;
+  font-size: 18px;
+  line-height: 28px;
 
-  @media screen and (max-width: 768px) {
-    font-size: 16px;
-    line-height: 30px;
+  @media screen and (max-width: 960px) {
+    font-size: 12px;
+    line-height: 18px;
   }
 `;

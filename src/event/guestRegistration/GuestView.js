@@ -29,6 +29,7 @@ import { AbsolutePrimaryButton } from "../../components/button/button";
 import TopBar from "../../components/topBar/TopBar";
 import { API_URL_2 } from "../../redux/service/authService";
 import { ImLocation, ImLink } from "react-icons/im";
+import { toast } from "react-toastify";
 
 const GuestView = () => {
   const user = useSelector((state) => state.userDetails);
@@ -47,7 +48,10 @@ const GuestView = () => {
         setEvent(data);
       } catch (error) {
         if (error?.response?.status === 400) {
-          navigate("*");
+          navigate("/*");
+          toast.error("Event Does Not Exist");
+          console.log("Event Does Not Exist");
+          console.log("Component rendered: ", Date.now());
         }
         throw error;
       }

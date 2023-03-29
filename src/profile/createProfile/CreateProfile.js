@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 import Lottie from "lottie-react";
 import calendarEvent from "../../lotties/calendarEvent.json";
@@ -21,10 +21,27 @@ import {
   ProfileText,
   LottieWrapper,
 } from "./CreateProfileStyled";
+import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
 
 const CreateProfile = () => {
   const navigate = useNavigate();
   const [arrow, setArrow] = useState("");
+
+  const user = useSelector((state) => state.userDetails);
+
+  useEffect(() => {
+    if (!user?.isSignedIn) {
+      navigate("/signup");
+      toast.error("Sign up or Login");
+      console.log("Sign up or Login");
+      console.log("Component rendered: ", Date.now());
+    }
+  }, [user?.isSignedIn, navigate]);
+
+  if (!user?.isSignedIn) {
+    return null;
+  }
 
   return (
     <ProfileContainer>

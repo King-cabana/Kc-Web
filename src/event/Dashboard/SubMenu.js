@@ -29,7 +29,7 @@ const SubMenu = ({ item, click = () => null }) => {
       {subnav &&
         item.subNav.map((item, index) => {
           return (
-            <DropdownLink to={item.path} key={index} onClick={click}> 
+            <DropdownLink to={item.path} key={index} onClick={click}>
               {item.icon}
               <SidebarLabel>{item.title}</SidebarLabel>
             </DropdownLink>

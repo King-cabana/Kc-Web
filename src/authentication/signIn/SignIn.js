@@ -44,12 +44,12 @@ const SignIn = () => {
   };
 
   const dispatch = useDispatch();
- 
-    const checkProfile = async (email) => {
-    const token =  localStorage.getItem("bearerToken")
+
+  const checkProfile = async (email) => {
+    const token = localStorage.getItem("bearerToken");
     try {
       const data = await fetch(
-        `http://localhost:8081/profiles/email?email=${email}`,
+        `https://api.kingcabana.com/profiles/email?email=${email}`,
         {
           method: "GET",
           headers: {
@@ -58,10 +58,10 @@ const SignIn = () => {
         }
       );
       const response = await data.json();
-      navigate('/dashboard')
+      navigate("/dashboard");
       return response;
     } catch (error) {
-      navigate('/createProfile')
+      navigate("/createProfile");
     }
   };
 
@@ -76,7 +76,6 @@ const SignIn = () => {
       const userToken = localStorage.getItem("bearerToken") || "{}";
       dispatch(setUserToken({ name: "token", value: userToken }));
       checkProfile(email, userToken);
-
     } catch (error) {
       setLoading(false);
       if (error?.response?.status === 401) {

@@ -54,8 +54,9 @@
       "last 1 safari version"
     ]
   },
+  "description": "King Cabana website",
   "main": "index.js",
   "repository": "https://github.com/King-cabana/Kc-Web.git",
-  "author": "Josiah ENUMAH <josiahenumah94@gmail.com>",
+  "author": "Shola Azeez",
   "license": "MIT"
 }
