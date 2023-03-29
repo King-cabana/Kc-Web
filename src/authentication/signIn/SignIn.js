@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router";
 import {
   AuthBackground,
@@ -20,7 +20,7 @@ import { login } from "../../redux/service/authService";
 import { toast } from "react-toastify";
 import { ImSpinner6 } from "react-icons/im";
 import { setUserDetails } from "../../redux/slices/userDetailsSlice";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch} from "react-redux";
 import { setUserToken } from "../../redux/slices/userDetailsSlice";
 
 const SignIn = () => {
@@ -49,7 +49,7 @@ const SignIn = () => {
     const token =  localStorage.getItem("bearerToken")
     try {
       const data = await fetch(
-        `http://localhost:8081/profiles/email?email=${email}`,
+        `https://api.kingcabana.com/profiles/email?email=${email}`,
         {
           method: "GET",
           headers: {
