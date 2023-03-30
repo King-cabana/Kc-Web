@@ -1,38 +1,102 @@
 import styled from "styled-components";
 
-export const EventPlanningDiv = styled.div`
-  padding: 3% 6%;
-  h2,
-  h3 {
-    font-family: "Poppins";
-    font-style: normal;
-    font-weight: 500;
-    color: #484848;
-  }
+export const EventPlanningTable = styled.table`
+  border: 1px solid rgba(0, 104, 255, 0.1);
+  width: 90%;
+  table-layout: fixed;
 
-  h2 {
-    font-size: 20px;
-  }
-
-  h3 {
-    font-size: 18px;
-  }
-  h8 {
-    text-align: center;
-    border: none;
-    border-radius: 10px;
-    padding: 10px 20px;
-    color: #fff;
-    font-size: 2rem;
+  @media screen and (max-width: 960px) {
+    width: 100%;
   }
 `;
 
-export const TableDiv = styled.div`
-  width: 53%;
-  display: flex;
-  justify-content: space-between;
-  margin-top: 5%;
-  color: grey;
+export const Heading = styled.section`
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 28px;
+  padding: 0.5rem;
+
+  @media screen and (max-width: 960px) {
+    font-size: 14px;
+    line-height: 24px;
+  }
+`;
+
+export const TdLarge = styled.td`
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 18px;
+  padding: 0.5rem;
+  border-top: 1px solid rgba(0, 104, 255, 0.1);
+  border-bottom: 1px solid rgba(0, 104, 255, 0.1);
+  white-space: nowrap;
+  width: 250px;
+
+  @media screen and (max-width: 960px) {
+    font-size: 12px;
+  }
+`;
+
+export const TdMedium = styled(TdLarge)`
+  width: 100px;
+`;
+
+export const TdSmall = styled(TdMedium)`
+  text-align: end;
+  padding-right: 1rem;
+`;
+
+export const SM = styled.span`
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  font-style: italic;
+
+  @media screen and (max-width: 960px) {
+    font-size: 10px;
+  }
+`;
+
+export const ViewButton = styled.button`
+  border-radius: 8px;
+  background-color: #ff2957;
+  color: white;
+  border: 1px solid transparent;
+  outline: none;
+  cursor: pointer;
+  font-weight: 600;
+  width: auto;
+  height: auto;
+  padding: 0.5rem;
+  font-size: 10px;
+  margin-right: 1.5rem;
+  font-weight: 600;
+  align-self: center;
+
+  &:hover {
+    background-color: rgba(255, 41, 87, 0.8);
+    color: white;
+  }
+  &:disabled {
+    background-color: rgba(255, 41, 87, 0.3);
+    color: rgba(255, 255, 255, 0.3);
+  }
+`;
+
+export const TableHead = styled.tr`
+  width: 100%;
+  overflow-x: scroll;
+  padding: 0.7rem;
+  color: #484848;
+  border: 1px solid rgba(0, 104, 255, 0.1);
+`;
+export const TableTr = styled(TableHead)`
+  cursor: pointer;
+  background-color: ${(props) => props.backgroundColor};
+
+  &:hover {
+    background-color: #f6e9ec;
+  }
 `;
 
 export const EventName = styled.div`

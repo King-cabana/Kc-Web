@@ -12,6 +12,7 @@ import {
   LottieWrapper,
   PrimaryButton,
 } from "./EmptyEventStyled";
+// import { OverallContainer } from "../eventHome/EventHomeStyled";
 // import { WelcomeText } from "../eventHome/EventHomeStyled";
 import { BsChevronRight } from "react-icons/bs";
 

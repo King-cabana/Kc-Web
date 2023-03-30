@@ -50,8 +50,8 @@ const Submitted = () => {
         </SubmittedButtons>
 
         <ButtonContainer>
-          <BtnHolderLink to="/home">
-            <AbsolutePrimaryButton onClick={() => navigate("/home")}>
+          <BtnHolderLink to="/dashboard">
+            <AbsolutePrimaryButton onClick={() => navigate("/dashboard")}>
               Done
             </AbsolutePrimaryButton>
           </BtnHolderLink>

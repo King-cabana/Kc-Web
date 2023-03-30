@@ -71,7 +71,7 @@ const ManageProfile = () => {
       teamMemberLastName: state.teamMemberLastName,
       teamMemberEmail: state.teamMemberEmail,
     });
-    navigate("/home");
+    navigate("/dashboard");
   };
 
   return (

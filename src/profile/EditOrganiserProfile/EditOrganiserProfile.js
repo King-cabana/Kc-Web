@@ -259,7 +259,7 @@ const EditOrganiserProfile = () => {
     }
   };
   const discardNavigate = () => {
-    navigate("/home");
+    navigate("/dashboard");
   };
 
   const saveNavigate = async (e) => {
@@ -394,7 +394,7 @@ const EditOrganiserProfile = () => {
       console.log(data);
       dispatch(setEventOrganizerProfile(data));
       toast.success("Profile Updated Successfully");
-      navigate("/home");
+      navigate("/dashboard");
     } catch (error) {
       console.log(error);
       toast.error("Failed to update Profile");

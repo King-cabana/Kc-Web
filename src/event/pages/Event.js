@@ -1,12 +1,12 @@
-import React from 'react';
-import EventDetails from '../eventDetails/EventDetails';
+import React from "react";
+import EventPlanning from "../eventPlanning/EventPlanning";
 
 const Event = () => {
   return (
     <>
-      <EventDetails />
+      <EventPlanning />
     </>
-  )
-}
+  );
+};
 
 export default Event;

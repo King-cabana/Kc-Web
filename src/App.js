@@ -19,6 +19,7 @@ import Sidebar from "./event/Dashboard/Sidebar";
 // import DashboardHome from "./event/pages/DashboardHome";
 import Event from "./event/pages/Event";
 import EmptyEvent from "./event/pages/NoEvent";
+// import EventPlanning from "./event/eventPlanning/EventPlanning";
 import SponsorEvent from "./event/pages/SponsorEvent";
 import EventHistory from "./event/pages/EventHistory";
 import EventAnalytics from "./event/pages/EventAnalytics";
@@ -45,7 +46,6 @@ import EditOrganiserProfile from "./profile/EditOrganiserProfile/EditOrganiserPr
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import EventPlanning from "./event/eventPlanning/EventPlanning";
 import GuestRegistration from "./event/guestRegistration/GuestRegistration";
 import Registered from "./event/guestRegistration/Registered";
 import GuestContact from "./event/guestRegistration/GuestContact";
@@ -98,7 +98,7 @@ function App() {
               path="/resetpasswordsuccess"
               element={<ResetPasswordSuccess />}
             />
-            <Route path="/planning" element={<EventPlanning />} />
+            {/* <Route path="/planning/viewEvent" element={<EventPlanning />} /> */}
             <Route path="/guest" element={<GuestRegistration />} />
             <Route path="/guestView" element={<GuestView />} />
             <Route path="/guestView/:id" element={<GuestView />} />
@@ -118,14 +118,14 @@ function App() {
                 </Sidebar>
               }
             />
-            <Route
+            {/* <Route
               path="/event/create"
               element={
                 <Sidebar>
                   <DashboardHome />
                 </Sidebar>
               }
-            />
+            /> */}
             <Route
               path="/event/noEvent"
               element={
@@ -170,21 +170,19 @@ function App() {
             <Route path="/secondCreateEvent" element={<SecondCreateEvent />} />
             {/* <Route path="/contactInfo" element={<ContactInfo />} /> */}
             <Route path="/timeLineEvent" element={<TimeLineEvent />} />
-            <Route
+            {/* <Route
               path="/home"
               element={
                 <Sidebar>
-                  {" "}
-                  <DashboardHome />{" "}
+                  <DashboardHome />
                 </Sidebar>
               }
-            />
+            /> */}
             <Route
-              path="/event/create"
+              path="/event/planning"
               element={
                 <Sidebar>
-                  {" "}
-                  <Event />{" "}
+                  <Event />
                 </Sidebar>
               }
             />
@@ -192,8 +190,7 @@ function App() {
               path="/event/sponsor"
               element={
                 <Sidebar>
-                  {" "}
-                  <SponsorEvent />{" "}
+                  <SponsorEvent />
                 </Sidebar>
               }
             />
@@ -201,8 +198,7 @@ function App() {
               path="/report/eventhistory"
               element={
                 <Sidebar>
-                  {" "}
-                  <EventHistory />{" "}
+                  <EventHistory />
                 </Sidebar>
               }
             />
@@ -210,8 +206,7 @@ function App() {
               path="/report/eventanalytics"
               element={
                 <Sidebar>
-                  {" "}
-                  <EventAnalytics />{" "}
+                  <EventAnalytics />
                 </Sidebar>
               }
             />
@@ -219,8 +214,7 @@ function App() {
               path="/settings"
               element={
                 <Sidebar>
-                  {" "}
-                  <Settings />{" "}
+                  <Settings />
                 </Sidebar>
               }
             />

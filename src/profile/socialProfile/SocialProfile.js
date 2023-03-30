@@ -84,7 +84,7 @@ const SocialProfile = () => {
       });
       // console.log(data);
       dispatch(setEventOrganizerProfile(data));
-      navigate("/home");
+      navigate("/dashboard");
       toast.success("Form Submitted Successfully");
       dispatch(clearProfile());
     } catch (error) {
