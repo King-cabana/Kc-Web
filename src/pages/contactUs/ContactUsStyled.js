@@ -21,6 +21,11 @@ export const ContactLabel = styled.label`
   }
 `;
 
+export const NoDecorationLink = styled.a`
+  cursor: pointer;
+  text-decoration: none;
+`;
+
 export const ContactMobile = styled.div`
   /* @media screen and (max-width:960px){
 display: flex;
@@ -279,7 +284,8 @@ export const InputInfo = styled.div`
   padding: 0px;
   gap: 24px;
   width: 100%;
-  height: 1042px;
+  height: 100%;
+  margin-bottom: 10rem;
 
   input::placeholder {
     font-size: 16px;
@@ -315,9 +321,14 @@ export const InputInfo = styled.div`
     border-radius: 4px;
     cursor: pointer;
     width: 100%;
+
+    &:disabled {
+      background-color: rgba(255, 41, 87, 0.3);
+      color: rgba(255, 255, 255, 0.3);
+    }
   }
   @media screen and (max-width: 960px) {
-    width: 100%;
+    margin-bottom: 5rem;
   }
 `;
 export const AnimationContainer = styled.div`
@@ -346,8 +357,17 @@ export const InputBox = styled.div`
     gap: 10px;
     width: 100%;
     height: 80px;
-    border: 1px solid rgba(72, 72, 72, 0.1);
+    border: 1px solid rgba(0, 104, 255, 0.1);
+    outline: none;
     border-radius: 10px;
+
+    &:invalid {
+      border-left: 2px solid red;
+      border-right: 2px solid red;
+    }
+    &:valid {
+      border: 1px solid rgba(0, 104, 255, 0.1);
+    }
 
     @media screen and (max-width: 960px) {
       width: 100%;
