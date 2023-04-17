@@ -205,7 +205,7 @@ const Home = () => {
         </div>
       </SponsorSection>
 
-      <TestimonialSection>
+      {/* <TestimonialSection>
         <KBDisplayM
           style={{
             marginBottom: "5%",
@@ -217,7 +217,7 @@ const Home = () => {
           Testimonials
         </KBDisplayM>
         <Testimonial />
-      </TestimonialSection>
+      </TestimonialSection> */}
 
       <ReadySection>
         <ASImage img={Subscribe}>

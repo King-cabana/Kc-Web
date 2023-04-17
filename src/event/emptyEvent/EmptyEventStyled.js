@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 
 export const OverallContainer = styled.section`
   width: 100%;
-  height: 100%;
+  height: 100vh;
+  min-height: 100%;
   padding: 0.5rem 2rem;
   margin-top: 1rem;
 
@@ -27,6 +28,7 @@ export const WelcomeHeader = styled.section`
   display: flex;
   align-items: center;
   margin-bottom: 2rem;
+  cursor: pointer;
 `;
 
 export const Txt = styled.span`
@@ -40,6 +42,10 @@ export const Txt = styled.span`
   @media screen and (max-width: 769px) {
     font-size: 16px;
     line-height: 24px;
+  }
+  @media screen and (max-width: 300px) {
+    font-size: 14px;
+    line-height: 18px;
   }
 `;
 

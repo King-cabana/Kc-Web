@@ -49,7 +49,6 @@ import {
 import backgroundPicture from "../../images/dashboardBackgroundPicture.png";
 import logo from "../../images/dashboardLogo.png";
 import {
-  PrimaryButton,
   ModalPrimaryButton,
   AlternativeButton2,
   AbsolutePrimaryButton,

@@ -19,7 +19,7 @@ import { BsChevronRight } from "react-icons/bs";
 const EmptyEvent = () => {
   return (
     <>
-      <OverallContainer>
+      <OverallContainer style={{ width: "100vw" }}>
         <NoEventContainer>
           <WelcomeHeader>
             <Txt>Event</Txt>

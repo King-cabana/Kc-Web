@@ -19,7 +19,7 @@ import Sidebar from "./event/Dashboard/Sidebar";
 // import DashboardHome from "./event/pages/DashboardHome";
 import Event from "./event/pages/Event";
 import EmptyEvent from "./event/pages/NoEvent";
-// import EventPlanning from "./event/eventPlanning/EventPlanning";
+import EventPlanning from "./event/eventPlanning/EventPlanning";
 import SponsorEvent from "./event/pages/SponsorEvent";
 import EventHistory from "./event/pages/EventHistory";
 import EventAnalytics from "./event/pages/EventAnalytics";
@@ -44,6 +44,10 @@ import OrganiserProfile from "./profile/organiserProfile/OrganiserProfile";
 import SocialProfile from "./profile/socialProfile/SocialProfile";
 import EditOrganiserProfile from "./profile/EditOrganiserProfile/EditOrganiserProfile";
 
+// proposal
+import Generated from "./proposal/Generated";
+import ProposalsList from "./proposal/ProposalsList/ProposalsList";
+
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import GuestRegistration from "./event/guestRegistration/GuestRegistration";
@@ -59,6 +63,12 @@ const DashboardHome = lazy(() => import("./event/pages/DashboardHome"));
 const SignIn = lazy(() => import("./authentication/signIn/SignIn"));
 const CreateEvent = lazy(() => import("./event/pages/CreateEvent"));
 const GuestView = lazy(() => import("./event/guestRegistration/GuestView"));
+const ViewDraftEvent = lazy(() =>
+  import("./event/eventPlanning/ViewDraftEvent")
+);
+const ViewCompletedEvent = lazy(() =>
+  import("./event/eventPlanning/ViewCompletedEvent")
+);
 
 function App() {
   return (
@@ -98,7 +108,7 @@ function App() {
               path="/resetpasswordsuccess"
               element={<ResetPasswordSuccess />}
             />
-            {/* <Route path="/planning/viewEvent" element={<EventPlanning />} /> */}
+            <Route path="/planning/viewEvent" element={<EventPlanning />} />
             <Route path="/guest" element={<GuestRegistration />} />
             <Route path="/guestView" element={<GuestView />} />
             <Route path="/guestView/:id" element={<GuestView />} />
@@ -166,18 +176,12 @@ function App() {
                 </Sidebar>
               }
             />
+            <Route path="/proposal-generated" element={<Generated />} />
+            <Route path="/event/proposal" element={<ProposalsList />} />
             <Route path="/firstCreateEvent" element={<FirstCreateEvent />} />
             <Route path="/secondCreateEvent" element={<SecondCreateEvent />} />
             {/* <Route path="/contactInfo" element={<ContactInfo />} /> */}
             <Route path="/timeLineEvent" element={<TimeLineEvent />} />
-            {/* <Route
-              path="/home"
-              element={
-                <Sidebar>
-                  <DashboardHome />
-                </Sidebar>
-              }
-            /> */}
             <Route
               path="/event/planning"
               element={
@@ -185,6 +189,14 @@ function App() {
                   <Event />
                 </Sidebar>
               }
+            />
+            <Route
+              path="/event/planning/view-draft-event/:id"
+              element={<ViewDraftEvent />}
+            />
+            <Route
+              path="/event/planning/view-completed-event/:id"
+              element={<ViewCompletedEvent />}
             />
             <Route
               path="/event/sponsor"
