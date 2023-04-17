@@ -95,13 +95,11 @@ const EventPlanPreview = () => {
           <Pagination
             dots={6}
             index={index}
-            onChangeIndex={handleChangeIndex}
-          />
+            onChangeIndex={handleChangeIndex}/>
         </div>
         <Space />
         {renderArrow("left")}
         {renderArrow("right")}
-
         <ButtonContainer display={"flex"}>
           <AbsolutePrimaryButton onClick={handleSubmit}>
             Done

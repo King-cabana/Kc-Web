@@ -1,40 +1,17 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
-import {
-  Page,
-  Tags,
-  Header,
-  Plan,
-  HeaderHolder,
-  Wrapper,
-  HR,
-  Like,
-  Container,
-} from "./GuestRegistrationStyled";
+import {Page,Tags, Header,Plan,HeaderHolder,Wrapper,HR,Like,Container} from "./GuestRegistrationStyled";
 import { setEventOrganizerProfile } from "../../redux/slices/eventOrganizerProfileSlice";
 import { setEventCreated } from "../../redux/slices/eventCreatedSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, useLocation } from "react-router";
 import banner from "../../../src/images/bgBanner.jpg";
-import {
-  AiOutlineLeft,
-  AiTwotoneCalendar,
-  AiOutlineHeart,
-} from "react-icons/ai";
+import {AiOutlineLeft,AiTwotoneCalendar,AiOutlineHeart} from "react-icons/ai";
 import { FcLike } from "react-icons/fc";
 import { BsUpload } from "react-icons/bs";
-import {
-  BackgroundPicture,
-  ImagesContainer,
-} from "../eventHome/EventHomeStyled";
-import {
-  BudgetInventorySubtitle,
-  BudgetSection,
-  BudgetTitle1,
-  BudgetTitle2,
-  ButtonContainer,
-} from "../budgetInventory/BudgetStyled";
+import {BackgroundPicture,ImagesContainer} from "../eventHome/EventHomeStyled";
+import {BudgetInventorySubtitle, BudgetSection,BudgetTitle1,BudgetTitle2,ButtonContainer} from "../budgetInventory/BudgetStyled";
 import { AbsolutePrimaryButton } from "../../components/button/button";
 import { clearEvent } from "../../redux/slices/createEventSlice";
 import { ImSpinner6 } from "react-icons/im";

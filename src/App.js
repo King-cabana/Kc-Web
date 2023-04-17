@@ -48,6 +48,10 @@ import "react-toastify/dist/ReactToastify.css";
 import EventPlanning from "./event/eventPlanning/EventPlanning";
 import GuestRegistration from "./event/guestRegistration/GuestRegistration";
 import Registered from "./event/guestRegistration/Registered";
+import ProposalPlanning from "./Proposal/ProposalPlanning";
+import ProposalPreview from "./event/proposalPreview/ProposalPreview";
+
+
 
 const Home = lazy(() => import("./pages/landingPage/Home"));
 const ContactUs = lazy(() => import("./pages/contactUs/ContactUs"));
@@ -79,33 +83,23 @@ function App() {
             <Route path="/manageProfile" element={<ManageProfile />} />
             <Route path="/organizerProfile" element={<OrganiserProfile />} />
             <Route path="/socialProfile" element={<SocialProfile />} />
-            <Route
-              path="/organiserProfile/home/edit"
-              element={<EditOrganiserProfile />}
-            />
+            <Route  path="/organiserProfile/home/edit"element={<EditOrganiserProfile />} />
             <Route path="*" element={<NoPage />} />
             <Route path="/login" element={<SignIn />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/forgotpassword" element={<ForgotPassword />} />
-            <Route
-              path="/forgotpassword-otp-verification"
-              element={<ForgotPasswordOtp />}
-            />
+            <Route path="/forgotpassword-otp-verification"element={<ForgotPasswordOtp />} />
             <Route path="/resetpassword" element={<ResetPassword />} />
-            <Route
-              path="/resetpasswordsuccess"
-              element={<ResetPasswordSuccess />}
-            />
+            <Route  path="/resetpasswordsuccess" element={<ResetPasswordSuccess />}  />
             <Route path="/planning" element={<EventPlanning />} />
             <Route path="/guest" element={<GuestRegistration />} />
+            <Route path="/Proposal" element={<ProposalPlanning />} />
+            <Route path="/ProposalPreview" element={<ProposalPreview />} />
             <Route path="/guestView" element={<GuestView />} />
             <Route path="/registered" element={<Registered />} />
             <Route path="signupsuccess" element={<SignUpSuccess />} />
             <Route path="verifyemail" element={<VerifyEmail />} />
-            <Route
-              path="/createevent/:name/:number"
-              element={<CreateEvent />}
-            />
+            <Route path="/createevent/:name/:number"element={<CreateEvent />}/>
 
             <Route
               path="/dashboard"
