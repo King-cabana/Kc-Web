@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router";
 import {
   EventPlanningTable,
   SM,
@@ -19,6 +20,7 @@ import { HiOutlineDocumentText } from "react-icons/hi";
 import { AbsolutePrimaryButton } from "../../components/button/button";
 
 const ProposalDetails = () => {
+  const navigate = useNavigate();
   const [options, setOptions] = useState(false);
 
   const toggleOptions = () => {
@@ -38,7 +40,11 @@ const ProposalDetails = () => {
               <SM>Tuesday, January 22, 2023 at 7:00 PM WAT</SM>
             </TdLarge>
             <TdMedium style={{ border: "none", textAlign: "end" }}>
-              <AbsolutePrimaryButton>Generate Proposal</AbsolutePrimaryButton>
+              <AbsolutePrimaryButton
+                onClick={() => navigate("/event/proposal/proposal-buildup")}
+              >
+                Generate Proposal
+              </AbsolutePrimaryButton>
             </TdMedium>
           </TableHead>
 

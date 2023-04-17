@@ -1,33 +1,30 @@
 import React from "react";
 import * as BsIcons from "react-icons/bs";
 import * as MdIcons from "react-icons/md";
-import { Square2StackIcon } from "@heroicons/react/24/outline";
+import { Squares2X2Icon } from "@heroicons/react/24/outline";
 import { CalendarIcon } from "@heroicons/react/24/outline";
-import { DocumentChartBarIcon } from "@heroicons/react/24/outline";
+import { BanknotesIcon } from "@heroicons/react/24/outline";
 import { BellIcon } from "@heroicons/react/24/outline";
 import { UserGroupIcon } from "@heroicons/react/24/outline";
-import { ChatBubbleLeftRightIcon } from "@heroicons/react/24/outline";
+import { ChatBubbleBottomCenterTextIcon } from "@heroicons/react/24/outline";
 import { ChartBarIcon } from "@heroicons/react/24/outline";
 import { CogIcon } from "@heroicons/react/24/outline";
-
+import { UserPlusIcon } from "@heroicons/react/24/outline";
 
 export const SidebarData = [
   {
     title: "Dashboard",
     path: "/dashboard",
     icon: (
-      <Square2StackIcon
+      <Squares2X2Icon
         className="h-6 h-6 text-gray-500"
         style={{ width: "20px" }}
-        
       />
     ),
   },
 
   {
     title: "Event",
-    // path: "/event",
-    // icon: <HiIcons.HiOutlineCalendar />
     icon: (
       <CalendarIcon
         className="h-6 h-6 text-gray-500"
@@ -41,7 +38,13 @@ export const SidebarData = [
     subNav: [
       {
         title: "Planning",
-        path: "/event/noEvent",
+        path: "/event/planning",
+        icon: <BsIcons.BsDot />,
+        cName: "sub-nav",
+      },
+      {
+        title: "Proposal",
+        path: "/event/proposal",
         icon: <BsIcons.BsDot />,
         cName: "sub-nav",
       },
@@ -56,10 +59,8 @@ export const SidebarData = [
 
   {
     title: "Sponsor",
-    // path: '/report',
-    // icon: <HiIcons.HiOutlineDocumentText />,
     icon: (
-      <DocumentChartBarIcon
+      <BanknotesIcon
         className="h-6 h-6 text-gray-500"
         style={{ width: "20px" }}
       />
@@ -82,10 +83,21 @@ export const SidebarData = [
     ],
   },
   {
+    title: "Analytics",
+    path: "/analytics",
+    icon: (
+      <ChartBarIcon
+        className="h-6 h-6 text-gray-500"
+        style={{ width: "20px" }}
+      />
+    ),
+  },
+
+  {
     title: "Messaging",
     path: "/messaging",
     icon: (
-      <ChatBubbleLeftRightIcon
+      <ChatBubbleBottomCenterTextIcon
         className="h-6 h-6 text-gray-500"
         style={{ width: "20px" }}
       />
@@ -112,17 +124,7 @@ export const SidebarData = [
     title: "Vendors Mgt",
     path: "/vendorsmgt",
     icon: (
-      <Square2StackIcon
-        className="h-6 h-6 text-gray-500"
-        style={{ width: "20px" }}
-      />
-    ),
-  },
-  {
-    title: "Analytics",
-    path: "/analytics",
-    icon: (
-      <ChartBarIcon
+      <UserPlusIcon
         className="h-6 h-6 text-gray-500"
         style={{ width: "20px" }}
       />

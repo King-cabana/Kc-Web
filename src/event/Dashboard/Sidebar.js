@@ -16,10 +16,30 @@ import { useNavigate } from "react-router";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 
+const Side = ({ sidebar, setSidebar }) => {
+  return (
+    <SidebarNav sidebar={sidebar}>
+      <SidebarWrap>
+        {SidebarData.map((item, index) => {
+          return (
+            <SubMenu
+              click={() => {
+                setSidebar(false);
+              }}
+              item={item}
+              key={index}
+              setSidebar={setSidebar}
+            />
+          );
+        })}
+      </SidebarWrap>
+    </SidebarNav>
+  );
+};
+
 const Sidebar = ({ children }) => {
   const [sidebar, setSidebar] = useState(false);
   const matches = useMediaQuery("(min-width:960px)");
-  const showSidebar = () => setSidebar(!sidebar);
   const navigate = useNavigate();
   const user = useSelector((state) => state.userDetails);
 
@@ -32,42 +52,22 @@ const Sidebar = ({ children }) => {
     }
   }, [user?.isSignedIn, navigate]);
 
+  const showSidebar = () => setSidebar(!sidebar);
+
   if (!user?.isSignedIn) {
     return null;
   }
 
-  const Side = () => {
-    return (
-      <SidebarNav sidebar={sidebar}>
-        <SidebarWrap>
-          {SidebarData.map((item, index) => {
-            return (
-              <SubMenu
-                click={() => {
-                  setSidebar(false);
-                }}
-                item={item}
-                key={index}
-              />
-            );
-          })}
-        </SidebarWrap>
-      </SidebarNav>
-    );
-  };
   return (
     <>
       <TopBar />
-
       <DisplayMode>
-        {matches && <Side />}
-        {sidebar && <Side />}
-        <ContentBody>
+        {matches && <Side sidebar={sidebar} setSidebar={setSidebar} />}
+        {sidebar && <Side sidebar={sidebar} setSidebar={setSidebar} />}
+        <ContentBody onClick={() => sidebar && setSidebar(false)}>
           <Nav>
             <NavIcon to="#" onClick={showSidebar}>
               {<FaIcons.FaBars />}
-
-              {/* {sidebar && <FaIcons.FaBars />} */}
             </NavIcon>
           </Nav>
           {children}

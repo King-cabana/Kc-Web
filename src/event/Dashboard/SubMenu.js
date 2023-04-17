@@ -1,10 +1,14 @@
 import React, { useState } from "react";
 import { SidebarLink, SidebarLabel, DropdownLink } from "./SubMenu.Styled";
 
-const SubMenu = ({ item, click = () => null }) => {
+const SubMenu = ({ item, click = () => null, setSidebar }) => {
   const [subnav, setSubnav] = useState(false);
 
-  const showSubnav = () => setSubnav(!subnav);
+
+  const showSubnav = () =>{ 
+    setSubnav(!subnav);
+    setSidebar(true);
+  }
 
   return (
     <>
@@ -26,15 +30,19 @@ const SubMenu = ({ item, click = () => null }) => {
             : null}
         </div>
       </SidebarLink>
-      {subnav &&
-        item.subNav.map((item, index) => {
-          return (
-            <DropdownLink to={item.path} key={index} onClick={click}>
-              {item.icon}
-              <SidebarLabel>{item.title}</SidebarLabel>
-            </DropdownLink>
-          );
-        })}
+      {item?.subNav?.map((subItem, index) => {
+    if (subnav) {
+      return (
+        <DropdownLink to={subItem?.path} key={index} onClick={click}>
+          {subItem?.icon}
+          <SidebarLabel>{subItem?.title}</SidebarLabel>
+        </DropdownLink>
+      );
+    } else {
+      return null;
+    }
+})}
+
     </>
   );
 };

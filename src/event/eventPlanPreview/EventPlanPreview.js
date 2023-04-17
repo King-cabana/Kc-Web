@@ -65,7 +65,7 @@ const EventPlanPreview = () => {
 
   useEffect(() => {
     if (!state?.eventName) {
-      setIsDisabled(true);
+      // setIsDisabled(true);
     }
   }, [state?.eventName]);
 
@@ -103,7 +103,8 @@ const EventPlanPreview = () => {
           <Pagination
             dots={6}
             index={index}
-            onChangeIndex={handleChangeIndex}/>
+            onChangeIndex={handleChangeIndex}
+          />
         </div>
         <Space />
         {renderArrow("left")}

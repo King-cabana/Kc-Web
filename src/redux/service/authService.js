@@ -29,6 +29,7 @@ const verifyEmail = async (otp) => {
       { headers: { "Content-Type": "application/json" } }
     );
     if (otp === response.data.otp) {
+      return response.data;
     }
     return response.data;
   } catch (error) {
