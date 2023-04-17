@@ -32,7 +32,7 @@ import { AiOutlineClose } from "react-icons/ai";
 import { addTag, removeTag } from "../../redux/slices/createEventSlice";
 import { AbsolutePrimaryButton, AlternativeButton2 } from "../../components/button/button";
 
-const EmptyEvent = () => {
+const Proposal = () => {
   const [file, setFile] = useState("");
   const [isSuccess, setIsSuccess] = useState(false);
   const [errorMsg, setErrorMsg] = useState(false);
@@ -292,4 +292,4 @@ const EmptyEvent = () => {
   );
 };
 
-export default EmptyEvent;
+export default Proposal;
