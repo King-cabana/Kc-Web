@@ -106,6 +106,7 @@ const OrganiserProfile = () => {
     setErrorMsg("");
     setIsSuccess(true);
   }, [file]);
+  
   const handleLogoFileChange = async (e) => {
     const MAX_FILE_SIZE = 1024; // 1MB
     const logoFile = e.target.files[0];

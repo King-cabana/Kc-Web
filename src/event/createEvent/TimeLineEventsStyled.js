@@ -225,6 +225,8 @@ export const Delete = styled.div`
 export const TagsWrapper = styled.section`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+  
+
   @media screen and (max-width: 960px) {
     /* flex-direction: column; */
     grid-template-columns: 1fr;

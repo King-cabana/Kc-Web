@@ -9,6 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 import Event from "./event/pages/Event";
 import EmptyEvent from "./event/pages/NoEvent";
+import Proposal from "./event/proposal/Proposal"
 import SponsorEvent from "./event/pages/SponsorEvent";
 import EventHistory from "./event/pages/EventHistory";
 import EventAnalytics from "./event/pages/EventAnalytics";
@@ -28,10 +29,10 @@ import EventPlanning from "./event/eventPlanning/EventPlanning";
 import GuestRegistration from "./event/guestRegistration/GuestRegistration";
 import Registered from "./event/guestRegistration/Registered";
 import GuestContact from "./event/guestRegistration/GuestContact";
+import VerifyEmail from "./authentication/signup/VerifyEmail";
 
 //Authentication
 const Signup = lazy(() => import("./authentication/signup/SignUp"));
-const VerifyEmail = lazy(()=>("./authentication/signup/VerifyEmail"));
 const SignIn = lazy(() => import("./authentication/signIn/SignIn"));
 const ForgotPassword = lazy(() => import("./authentication/forgotPassword/ForgotPassword"));
 const SignUpSuccess = lazy(() =>("./authentication/signup/SignUpSuccess"));
@@ -117,6 +118,14 @@ function App() {
               element={
                 <Sidebar>
                   <EmptyEvent />
+                </Sidebar>
+              }
+            />
+              <Route
+              path="/event/proposal"
+              element={
+                <Sidebar>
+                  <Proposal />
                 </Sidebar>
               }
             />

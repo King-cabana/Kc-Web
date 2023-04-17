@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { LogoLink } from "../../../components/navbar/Navbar.styled";
 import {
   TopBarContainer,
@@ -19,9 +19,9 @@ import { SlBell } from "react-icons/sl";
 import { RiArrowDownSLine } from "react-icons/ri";
 import { KBTextM } from "../../../components/fonts/fontSize";
 import { useDispatch, useSelector } from "react-redux";
-import { clearUserDetails } from "../../../redux/slices/userDetailsSlice";
+import { clearUserDetails, fetchUserDetails, setUserDetails } from "../../../redux/slices/userDetailsSlice";
 import { clearEventOrganizerProfile } from "../../../redux/slices/eventOrganizerProfileSlice";
-import { useNavigate } from "react-router";
+// import { useNavigate } from "react-router";
 import { toast } from "react-toastify";
 import {
   BtnHolderLink,
@@ -48,18 +48,18 @@ const TopBar = () => {
 
   const user = useSelector((state) => state.userDetails);
 
+  
+  const dispatch = useDispatch();
+
   function showDropDown() {
     document.getElementById("myDropdown").classList.toggle("show");
   }
 
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const handleLogout = () => {
     dispatch(clearUserDetails());
     dispatch(clearEventOrganizerProfile());
     toast.success("Logout!");
-    // setTimeout(() => navigate("/"), 200);
   };
 
   window.onclick = function (event) {
@@ -97,13 +97,13 @@ const TopBar = () => {
                     alignItems: "center",
                   }}
                 >
-                  {user?.details?.data?.fullName
+                  {user?.details?.fullName
                     ?.split(" ")
                     ?.map((x) => x && x[0])
                     ?.join("")}
                 </ProfilePicture>
 
-                <KBTextM>{user?.details?.data?.fullName}</KBTextM>
+                <KBTextM>{user?.details?.fullName}</KBTextM>
 
                 <Dropdown>
                   <DropDownBtn onClick={showDropDown} className="dropbtn">
@@ -113,29 +113,45 @@ const TopBar = () => {
                     <div
                       style={{
                         display: "flex",
-                        gap: "20px",
-                        padding: "20px",
+                        gap: "10px",
+                        padding: "15px",
                       }}
                     >
-                      <ProfilePicture
+                      <div
                         style={{
-                          border: "1px solid #FF2957",
+                          width: "50px",
                           display: "flex",
                           justifyContent: "center",
                           alignItems: "center",
                         }}
                       >
-                        {user?.details?.data?.fullName
-                          ?.split(" ")
-                          ?.map((x) => x && x[0])
-                          ?.join("")}
-                      </ProfilePicture>
+                        <ProfilePicture
+                          style={{
+                            border: "1px solid #FF2957",
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                          }}
+                        >
+                          {user?.details?.fullName
+                            ?.split(" ")
+                            ?.map((x) => x && x[0])
+                            ?.join("")}
+                        </ProfilePicture>
+                      </div>
                       <div>
                         <p style={{ fontWeight: "500" }}>
-                          {user?.details?.data?.fullName}
+                          {user?.details?.fullName}
                         </p>
-                        <p style={{ fontSize: "12px" }}>
-                          {user?.details?.data?.email}
+                        <p
+                          style={{
+                            fontSize: "12px",
+                            wordBreak: "break-all",
+                            wordWrap: "break-word",
+                            whiteSpace: "pre-wrap",
+                          }}
+                        >
+                          {user?.details?.email}
                         </p>
                       </div>
                     </div>

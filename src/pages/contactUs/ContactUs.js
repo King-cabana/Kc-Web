@@ -13,6 +13,7 @@ import {
   ContactBody,
   ContactRight,
   ContainerBox,
+  Wrapper,
   ContactHeader,
   AnimationContainer,
   ContactParagraph,
@@ -48,9 +49,8 @@ const ContactUs = () => {
         <ContactRight>
           <ContactHeader>Get in touch</ContactHeader>
           <ContactParagraph>
-            We'd be thrilled to hear from you. Our staff is always available to
-            <br />
-            ease your journey.
+            We'd be thrilled to hear from you. Our staffs are always available
+            to ease your journey.
           </ContactParagraph>
           <ContactLogoBody>
             <EmailBody>
@@ -75,18 +75,21 @@ const ContactUs = () => {
           </ContactLogoBody>
         </ContactRight>
         <AnimationContainer>
-        <Lottie 
-        animationData={animationData} 
-        loop={true}  style={{width:'400px', height:'400px', paddingRight: '15px'}}
-        />
-      </AnimationContainer>
+          <Lottie
+            animationData={animationData}
+            loop={true}
+            style={{ width: "300px", height: "300px" }}
+          />
+        </AnimationContainer>
       </ContactBody>
       <ContainerBox>
         <ContactInput />
       </ContainerBox>
       <Box>
         <BoxContainer>
-          <img src={Rectangle} alt="Rectangle" />
+          <Wrapper>
+            <img src={Rectangle} alt="Rectangle" />
+          </Wrapper>
           <BoxBody>
             <BoxHeader>Join Our Online Community</BoxHeader>
             <BoxParagraph>

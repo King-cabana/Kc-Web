@@ -114,6 +114,12 @@ const GuestRegistration = () => {
     }
   };
 
+  useEffect(() => {
+    if (!organizer?.organizerName) {
+      setIsDisabled(true);
+    }
+  }, [!organizer?.organizerName]);
+
   return (
     <>
       <CreateEventTopBar />

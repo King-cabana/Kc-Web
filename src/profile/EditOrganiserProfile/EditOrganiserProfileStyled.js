@@ -12,7 +12,6 @@ export const OverallContainer = styled.div`
   justify-content: center;
   align-items: center;
   padding: 2rem 0;
-
   @media screen and (max-width: 768px) {
     padding: 0;
   }
@@ -33,7 +32,6 @@ export const EditSection = styled.div`
   @media screen and (max-width: 960px) {
     width: 58%;
   }
-
   @media screen and (max-width: 768px) {
     width: 100%;
     height: 100%;
@@ -110,14 +108,12 @@ export const ButtonWrapper = styled.section`
   position: fixed;
   top: 5rem;
   margin-left: -2rem;
-
   @media screen and (max-width: 1200px) {
     width: 55%;
   }
   @media screen and (max-width: 960px) {
     width: 58%;
   }
-
   @media screen and (max-width: 768px) {
     width: 100%;
     top: 2rem;

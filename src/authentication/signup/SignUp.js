@@ -61,7 +61,7 @@ const SignUp = () => {
 
   const handleSignUp = async (e) => {
     e.preventDefault();
-    setLoading(true);
+    // setLoading(true);
     try {
       await register(inputs);
       toast.success("Success, An Otp as been sent to your inbox.")

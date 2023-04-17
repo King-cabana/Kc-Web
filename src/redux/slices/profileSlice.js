@@ -20,3 +20,4 @@ export const profileSlice = createSlice({
 export const { editProfile, clearProfile } = profileSlice.actions;
 
 export default profileSlice.reducer;
+
