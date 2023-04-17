@@ -7,6 +7,7 @@ import {
   InputInfo,
   InputBoxLabel,
   InputBox,
+  ContactLabel,
 } from "./ContactUsStyled";
 
 const ContactInput = () => {
@@ -26,13 +27,14 @@ const ContactInput = () => {
       <Container>
         <Form>
           <ContactInfo>Contact us</ContactInfo>
-          <ContactText>
-            Fill the form and our team is waiting to attend to you asap
+          <ContactText style={{ marginTop: "-1.5rem" }}>
+            Fill the form, our team is waiting to attend to you as soon as
+            possible.
           </ContactText>
 
           <InputInfo>
             <InputBoxLabel>
-              <label>First Name</label>
+              <ContactLabel>First Name</ContactLabel>
               <InputBox>
                 <input
                   placeholder="Enter Your First Name"
@@ -42,7 +44,7 @@ const ContactInput = () => {
               </InputBox>
             </InputBoxLabel>
             <InputBoxLabel>
-              <label>Last Name</label>
+              <ContactLabel>Last Name</ContactLabel>
               <InputBox>
                 <input
                   placeholder="Enter Your Last Name"
@@ -52,7 +54,7 @@ const ContactInput = () => {
               </InputBox>
             </InputBoxLabel>
             <InputBoxLabel>
-              <label>E - Mail</label>
+              <ContactLabel>E - Mail</ContactLabel>
               <InputBox>
                 <input
                   placeholder="Enter Your Email"
@@ -62,7 +64,7 @@ const ContactInput = () => {
               </InputBox>
             </InputBoxLabel>
             <InputBoxLabel>
-              <label>Phone Number</label>
+              <ContactLabel>Phone Number</ContactLabel>
               <InputBox>
                 <input
                   placeholder="Enter Your Phone Number"
@@ -72,7 +74,7 @@ const ContactInput = () => {
               </InputBox>
             </InputBoxLabel>
             <InputBoxLabel>
-              <label>Drop Messages</label>
+              <ContactLabel>Drop Messages</ContactLabel>
               <InputBox>
                 <textarea
                   placeholder="What will you like us to provide you?"
@@ -83,7 +85,7 @@ const ContactInput = () => {
             </InputBoxLabel>
 
             <button type="submit" onClick={sendMessage} width="250px">
-              send message
+              Send message
             </button>
           </InputInfo>
         </Form>

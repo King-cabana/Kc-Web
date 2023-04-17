@@ -42,11 +42,11 @@ import { TbEdit } from "react-icons/tb";
 import { useNavigate } from "react-router";
 import { setEventOrganizerProfile } from "../../redux/slices/eventOrganizerProfileSlice";
 import { API_URL_2 } from "../../redux/service/authService";
+import { toast } from "react-toastify";
 
 const EventHome = () => {
   const counter = useSelector((state) => state.counter);
   const eventReport = EventReportData({ counter });
-  // console.log(eventReport);
   const dispatch = useDispatch();
   const state = useSelector((state) => state.eventOrganizerProfile);
   const user = useSelector((state) => state.userDetails);

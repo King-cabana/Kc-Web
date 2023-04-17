@@ -34,9 +34,9 @@ const VerifyEmail = () => {
   }
   }
 
-  const resendCode = () => {
+  // const resendCode = () => {
 
-  }
+  // }
  
 
   return (
@@ -89,7 +89,7 @@ const VerifyEmail = () => {
               marginTop: "20px",
               cursor:'pointer'
             }}
-            onClick={resendCode}
+            // onClick={resendCode}
           >
             Resend code
           </p>

@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router";
+import { useSelector } from "react-redux";
 import {
   AuthBackground,
   Div,
@@ -20,8 +21,11 @@ import { login } from "../../redux/service/authService";
 import { toast } from "react-toastify";
 import { ImSpinner6 } from "react-icons/im";
 import { setUserDetails } from "../../redux/slices/userDetailsSlice";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setUserToken } from "../../redux/slices/userDetailsSlice";
+import { setUserProfile } from "../../redux/slices/userProfileSlice";
+import axios from "axios";
+import { setEventOrganizerProfile } from "../../redux/slices/eventOrganizerProfileSlice";
 
 const SignIn = () => {
   const [click, setClick] = useState(false);
@@ -29,6 +33,7 @@ const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const user = useSelector((state) => state.userDetails);
 
   const handleClick = () => {
     setClick(!click);
@@ -44,24 +49,22 @@ const SignIn = () => {
   };
 
   const dispatch = useDispatch();
- 
-    const checkProfile = async (email) => {
-    const token =  localStorage.getItem("bearerToken")
+
+  const checkProfile = async (email, token) => {
     try {
-      const data = await fetch(
-        `http://localhost:8081/profiles/email?email=${email}`,
+      const { data } = await axios(
+        `https://api.kingcabana.com/eventuser/email?email=${email}`,
         {
-          method: "GET",
           headers: {
             Authorization: `Bearer ${token}`,
           },
         }
       );
-      const response = await data.json();
-      navigate('/dashboard')
-      return response;
+      console.log(data?.myProfile);
+      return {state : Boolean(data?.myProfile?.id) , value : data?.myProfile }
     } catch (error) {
-      navigate('/createProfile')
+      throw error;
+      // navigate("/createProfile");
     }
   };
 
@@ -69,14 +72,21 @@ const SignIn = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      const response = await login(email, password);
-      dispatch(setUserDetails(response?.data));
+      const { data } = await login(email, password);
+      dispatch(setUserDetails(data?.data));
+      console.log(data?.data);
+      console.log(user);
       toast.success("login successfully!");
-      console.log(response);
       const userToken = localStorage.getItem("bearerToken") || "{}";
       dispatch(setUserToken({ name: "token", value: userToken }));
-      checkProfile(email, userToken);
-
+      const hasProfile = await checkProfile(email, userToken);
+      console.log(hasProfile)
+      if (hasProfile?.state) {
+        dispatch(setEventOrganizerProfile(hasProfile?.value))
+        navigate("/dashboard");
+      } else {
+        navigate("/createProfile");
+      }
     } catch (error) {
       setLoading(false);
       if (error?.response?.status === 401) {
