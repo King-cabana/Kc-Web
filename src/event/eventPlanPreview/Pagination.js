@@ -20,8 +20,7 @@ function Pagination(props) {
             color: isActive ? "#ff2957" : "#ff2957",
             zIndex: "999999",
           }}
-          onClick={() => handleClick(i)}
-        >
+          onClick={() => handleClick(i)}>
           {isActive ? "\u2022" : "\u25E6"}
         </span>
       );
@@ -36,8 +35,7 @@ function Pagination(props) {
         justifyContent: "center",
         marginTop: "-20px",
         // zIndex: "9",
-      }}
-    >
+      }}>
       {renderDots()}
     </div>
   );

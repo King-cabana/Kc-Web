@@ -44,9 +44,11 @@ import OrganiserProfile from "./profile/organiserProfile/OrganiserProfile";
 import SocialProfile from "./profile/socialProfile/SocialProfile";
 import EditOrganiserProfile from "./profile/EditOrganiserProfile/EditOrganiserProfile";
 
-// proposal
-import Generated from "./proposal/Generated";
+// Proposal
+import EmptyProposal from "./proposal/NoProposal/EmptyProposal";
+import ProposalPreview from "./proposal/proposalPreview/ProposalPreview";
 import ProposalsList from "./proposal/ProposalsList/ProposalsList";
+import Generated from "./proposal/Generated";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -110,6 +112,8 @@ function App() {
             />
             <Route path="/planning/viewEvent" element={<EventPlanning />} />
             <Route path="/guest" element={<GuestRegistration />} />
+            <Route path="/event/proposal" element={<EmptyProposal />} />
+            <Route path="/proposalPreview" element={<ProposalPreview />} />
             <Route path="/guestView" element={<GuestView />} />
             <Route path="/guestView/:id" element={<GuestView />} />
             <Route path="/registered" element={<Registered />} />

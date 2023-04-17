@@ -1,6 +1,6 @@
 {
-  "name": "kc_web",
-  "version": "0.1.0",
+  "name": "kc-web",
+  "version": "yarn start",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.10.6",
