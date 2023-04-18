@@ -12,7 +12,7 @@ import EmptyEvent from "./event/pages/NoEvent";
 // import EventPlanning from "./event/eventPlanning/EventPlanning";
 import SponsorEvent from "./event/pages/SponsorEvent";
 import EventHistory from "./event/pages/EventHistory";
-import EventAnalytics from "./event/pages/EventAnalytics";
+import EventAnalytics from "./event/pages/Analytics";
 import Settings from "./event/pages/Settings";
 
 import EventPlanPreview from "./event/eventPlanPreview/EventPlanPreview";
@@ -26,17 +26,18 @@ import SocialProfile from "./profile/socialProfile/SocialProfile";
 import EditOrganiserProfile from "./profile/EditOrganiserProfile/EditOrganiserProfile";
 
 // Proposal
-import EmptyProposal from "./proposal/NoProposal/EmptyProposal";
-import Proposal from "./proposal/Proposal";
-import ProposalPreview from "./proposal/proposalPreview/ProposalPreview";
-import Generated from "./proposal/Generated";
-import ProposalBuildup from "./proposal/proposalBuildup/ProposalBuildup";
+import EmptyProposal from "./Proposal/NoProposal/EmptyProposal";
+import Proposal from "./Proposal/Proposal";
+import ProposalPreview from "./Proposal/proposalPreview/ProposalPreview";
+import Generated from "./Proposal/Generated";
+import ProposalBuildup from "./Proposal/proposalBuildup/ProposalBuildup";
 
 import "react-toastify/dist/ReactToastify.css";
 import GuestRegistration from "./event/guestRegistration/GuestRegistration";
 import Registered from "./event/guestRegistration/Registered";
 import GuestContact from "./event/guestRegistration/GuestContact";
 import VerifyEmail from "./authentication/signup/VerifyEmail";
+import Analytics from "./event/pages/Analytics";
 
 //Authentication
 const Signup = lazy(() => import("./authentication/signup/SignUp"));
@@ -129,14 +130,7 @@ function App() {
                 </Sidebar>
               }
             />
-            {/* <Route
-              path="/event/create"
-              element={
-                <Sidebar>
-                  <DashboardHome />
-                </Sidebar>
-              }
-            /> */}
+        
             <Route
               path="/event/no-proposal"
               element={
@@ -181,7 +175,7 @@ function App() {
               path="/sponsor/matching"
               element={
                 <Sidebar>
-                  <EventAnalytics />
+                  <Analytics />
                 </Sidebar>
               }
             />
@@ -195,10 +189,6 @@ function App() {
             />
             <Route path="/proposal-generated" element={<Generated />} />
 
-            {/* <Route path="/firstCreateEvent" element={<FirstCreateEvent />} /> */}
-            {/* <Route path="/secondCreateEvent" element={<SecondCreateEvent />} /> */}
-            {/* <Route path="/contactInfo" element={<ContactInfo />} /> */}
-            {/* <Route path="/timeLineEvent" element={<TimeLineEvent />} /> */}
             <Route
               path="/event/planning"
               element={
@@ -235,7 +225,7 @@ function App() {
               path="/report/eventanalytics"
               element={
                 <Sidebar>
-                  <EventAnalytics />
+                  <Analytics />
                 </Sidebar>
               }
             />

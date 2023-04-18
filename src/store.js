@@ -8,7 +8,6 @@ import eventOrganizerProfileSlice from "./redux/slices/eventOrganizerProfileSlic
 import messageSlice from "./redux/slices/userDetailsSlice";
 import otpSlice from "./redux/slices/otpSlice";
 import userDetailsSlice from "./redux/slices/userDetailsSlice";
-import counterSlice from "./redux/slices/eventProposalSponsorSlice";
 import userProfileSlice from './redux/slices/userProfileSlice';
 import proposalSlice from './redux/slices/proposalSlice';
 
@@ -25,7 +24,6 @@ const reducer = combineReducers({
   createEvent: createEventSlice,
   eventCreated: eventCreatedSlice,
   userDetails: userDetailsSlice,
-  counter: counterSlice,
   userProfile: userProfileSlice,
   proposal: proposalSlice,
 });

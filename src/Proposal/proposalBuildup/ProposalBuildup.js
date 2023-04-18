@@ -8,7 +8,7 @@ import {
   ProposalBackground,
   ProposalInner,
   BenefitsTag,
-} from "./ProposalStyled";
+} from "./ProposalBuildupStyled";
 import { BsChevronRight } from "react-icons/bs";
 import { InputSeg } from "../../profile/organiserProfile/OrganiserProfileStyled";
 import {
@@ -17,17 +17,17 @@ import {
   Input,
   Supported,
   UploadBtn,
-} from "../createEvent/FirstCreateEventStyled";
-import { ButtonContainer, FileWrapper } from "../budgetInventory/BudgetStyled";
+} from "../../event/createEvent/FirstCreateEventStyled";
+import { ButtonContainer, FileWrapper } from "../../event/budgetInventory/BudgetStyled";
 import { editProfile } from "../../redux/slices/profileSlice";
-import { useNavigate } from "react-router";
+import {useNavigate } from "react-router";
 import {
   AddButton,
   Delete,
   EventSubSection,
   InputTagBox,
   TagsWrapper,
-} from "../createEvent/TimeLineEventsStyled";
+} from "../../event/createEvent/TimeLineEventsStyled";
 import { AiOutlineClose } from "react-icons/ai";
 import {
   AbsolutePrimaryButton,
@@ -50,7 +50,7 @@ const ProposalBuildup = () => {
   const state = useSelector((state) => state.createEvent);
   const user = useSelector((state) => state.userDetails);
 
-  //   const navigate = useNavigate();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const handleFileChange = async (e) => {
@@ -370,7 +370,7 @@ const ProposalBuildup = () => {
             </InputSeg>
             <ButtonContainer style={{ margin: "0rem" }}>
           <AlternativeButton2
-            //   onClick={navigateBack}
+              onClick={()=> navigate("/event/proposal")}
             style={{
               color: "#FF2957",
               fontWeight: "600",
