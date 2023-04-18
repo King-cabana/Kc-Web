@@ -9,7 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 import Event from "./event/pages/Event";
 import EmptyEvent from "./event/pages/NoEvent";
-import Proposal from "./event/proposal/Proposal"
+// import EventPlanning from "./event/eventPlanning/EventPlanning";
 import SponsorEvent from "./event/pages/SponsorEvent";
 import EventHistory from "./event/pages/EventHistory";
 import EventAnalytics from "./event/pages/EventAnalytics";
@@ -25,7 +25,14 @@ import OrganiserProfile from "./profile/organiserProfile/OrganiserProfile";
 import SocialProfile from "./profile/socialProfile/SocialProfile";
 import EditOrganiserProfile from "./profile/EditOrganiserProfile/EditOrganiserProfile";
 
-import EventPlanning from "./event/eventPlanning/EventPlanning";
+// Proposal
+import EmptyProposal from "./proposal/NoProposal/EmptyProposal";
+import Proposal from "./proposal/Proposal";
+import ProposalPreview from "./proposal/proposalPreview/ProposalPreview";
+import Generated from "./proposal/Generated";
+import ProposalBuildup from "./proposal/proposalBuildup/ProposalBuildup";
+
+import "react-toastify/dist/ReactToastify.css";
 import GuestRegistration from "./event/guestRegistration/GuestRegistration";
 import Registered from "./event/guestRegistration/Registered";
 import GuestContact from "./event/guestRegistration/GuestContact";
@@ -34,11 +41,17 @@ import VerifyEmail from "./authentication/signup/VerifyEmail";
 //Authentication
 const Signup = lazy(() => import("./authentication/signup/SignUp"));
 const SignIn = lazy(() => import("./authentication/signIn/SignIn"));
-const ForgotPassword = lazy(() => import("./authentication/forgotPassword/ForgotPassword"));
-const SignUpSuccess = lazy(() =>("./authentication/signup/SignUpSuccess"));
-const ResetPassword = lazy(()=>("./authentication/signIn/ResetPassword"));
-const ForgotPasswordOtp = lazy(()=>("./authentication/forgotPassword/ForgotPasswordOtp"));
-const ResetPasswordSuccess = lazy(()=>("./authentication/signIn/ResetPasswordSuccess"));
+const ForgotPassword = lazy(() =>
+  import("./authentication/forgotPassword/ForgotPassword")
+);
+const SignUpSuccess = lazy(() => "./authentication/signup/SignUpSuccess");
+const ResetPassword = lazy(() => "./authentication/signIn/ResetPassword");
+const ForgotPasswordOtp = lazy(
+  () => "./authentication/forgotPassword/ForgotPasswordOtp"
+);
+const ResetPasswordSuccess = lazy(
+  () => "./authentication/signIn/ResetPasswordSuccess"
+);
 
 //pages
 const Home = lazy(() => import("./pages/landingPage/Home"));
@@ -46,10 +59,15 @@ const ContactUs = lazy(() => import("./pages/contactUs/ContactUs"));
 const AboutUs = lazy(() => import("./pages/aboutUs/AboutUs"));
 const DashboardHome = lazy(() => import("./event/pages/DashboardHome"));
 
-
 //Event Creation
 const CreateEvent = lazy(() => import("./event/pages/CreateEvent"));
 const GuestView = lazy(() => import("./event/guestRegistration/GuestView"));
+const ViewDraftEvent = lazy(() =>
+  import("./event/eventPlanning/ViewDraftEvent")
+);
+const ViewCompletedEvent = lazy(() =>
+  import("./event/eventPlanning/ViewCompletedEvent")
+);
 
 function App() {
   return (
@@ -85,8 +103,14 @@ function App() {
               path="/resetpasswordsuccess"
               element={<ResetPasswordSuccess />}
             />
-            <Route path="/planning" element={<EventPlanning />} />
+            {/* <Route path="/planning/viewEvent" element={<EventPlanning />} /> */}
             <Route path="/guest" element={<GuestRegistration />} />
+
+            {/* <Route path="/event/proposal" element={<Proposal />} /> */}
+            <Route
+              path="/event/proposal/proposal-buildup/proposal-preview"
+              element={<ProposalPreview />}
+            />
             <Route path="/guestView" element={<GuestView />} />
             <Route path="/guestView/:id" element={<GuestView />} />
             <Route path="/registered" element={<Registered />} />
@@ -105,27 +129,35 @@ function App() {
                 </Sidebar>
               }
             />
-            <Route
+            {/* <Route
               path="/event/create"
               element={
                 <Sidebar>
                   <DashboardHome />
                 </Sidebar>
               }
-            />
+            /> */}
             <Route
-              path="/event/noEvent"
+              path="/event/no-proposal"
               element={
                 <Sidebar>
-                  <EmptyEvent />
+                  <EmptyProposal />
                 </Sidebar>
               }
             />
-              <Route
+            <Route
               path="/event/proposal"
               element={
                 <Sidebar>
                   <Proposal />
+                </Sidebar>
+              }
+            />
+            <Route
+              path="/event/proposal/proposal-buildup"
+              element={
+                <Sidebar>
+                  <ProposalBuildup />
                 </Sidebar>
               }
             />
@@ -161,30 +193,33 @@ function App() {
                 </Sidebar>
               }
             />
+            <Route path="/proposal-generated" element={<Generated />} />
+
+            {/* <Route path="/firstCreateEvent" element={<FirstCreateEvent />} /> */}
+            {/* <Route path="/secondCreateEvent" element={<SecondCreateEvent />} /> */}
+            {/* <Route path="/contactInfo" element={<ContactInfo />} /> */}
+            {/* <Route path="/timeLineEvent" element={<TimeLineEvent />} /> */}
             <Route
-              path="/home"
+              path="/event/planning"
               element={
                 <Sidebar>
-                  {" "}
-                  <DashboardHome />{" "}
+                  <Event />
                 </Sidebar>
               }
             />
             <Route
-              path="/event/create"
-              element={
-                <Sidebar>
-                  {" "}
-                  <Event />{" "}
-                </Sidebar>
-              }
+              path="/event/planning/view-draft-event/:id"
+              element={<ViewDraftEvent />}
+            />
+            <Route
+              path="/event/planning/view-completed-event/:id"
+              element={<ViewCompletedEvent />}
             />
             <Route
               path="/event/sponsor"
               element={
                 <Sidebar>
-                  {" "}
-                  <SponsorEvent />{" "}
+                  <SponsorEvent />
                 </Sidebar>
               }
             />
@@ -192,8 +227,7 @@ function App() {
               path="/report/eventhistory"
               element={
                 <Sidebar>
-                  {" "}
-                  <EventHistory />{" "}
+                  <EventHistory />
                 </Sidebar>
               }
             />
@@ -201,8 +235,7 @@ function App() {
               path="/report/eventanalytics"
               element={
                 <Sidebar>
-                  {" "}
-                  <EventAnalytics />{" "}
+                  <EventAnalytics />
                 </Sidebar>
               }
             />
@@ -210,8 +243,7 @@ function App() {
               path="/settings"
               element={
                 <Sidebar>
-                  {" "}
-                  <Settings />{" "}
+                  <Settings />
                 </Sidebar>
               }
             />

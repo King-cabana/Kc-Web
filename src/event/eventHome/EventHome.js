@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, createContext } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import InnerContainerData, { EventReportData } from "./InnerContainerData";
+import InnerContainerData from "./InnerContainerData";
 import ChecklistData, { eventCkecklistData } from "./ChecklistData";
 import axios from "axios";
 import {
@@ -24,7 +24,6 @@ import {
   CustomAlt,
   PrimaryButton,
   EventReportContainer,
-  InnerWrapper,
   ChecklistContainer,
   ChecklistHeading,
   ChecklistSubHeading,
@@ -44,19 +43,19 @@ import { setEventOrganizerProfile } from "../../redux/slices/eventOrganizerProfi
 import { API_URL_2 } from "../../redux/service/authService";
 import { toast } from "react-toastify";
 
+export const EventOrganizerContext = createContext();
+
 const EventHome = () => {
-  const counter = useSelector((state) => state.counter);
-  const eventReport = EventReportData({ counter });
   const dispatch = useDispatch();
-  const state = useSelector((state) => state.eventOrganizerProfile);
-  const user = useSelector((state) => state.userDetails);
+  const state = useSelector((state) => state?.eventOrganizerProfile);
+  const user = useSelector((state) => state?.userDetails);
   const [modal, setModal] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchOrganizerProfile = async () => {
       try {
-        const { data } = await axios.get(API_URL_2 + `profiles/${state?.id}`, {
+        const { data } = await axios.get(API_URL_2 + `profiles/${8}`, {
           headers: {
             Authorization: `Bearer ${user.token}`,
           },
@@ -88,7 +87,7 @@ const EventHome = () => {
   const showModal = !modal && "notShown";
 
   return (
-    <>
+    <EventOrganizerContext.Provider value={{ state }}>
       {modal && <PopUpOverlay onClick={toggleModal}></PopUpOverlay>}
       <OverallContainer>
         <HeaderContainer>
@@ -174,16 +173,7 @@ const EventHome = () => {
           </BioSection>
 
           <EventReportContainer>
-            <InnerWrapper>
-              {eventReport?.map((data, index) => (
-                <InnerContainerData
-                  key={index}
-                  title={data.title}
-                  options={data.options}
-                  counter={data.counter}
-                />
-              ))}
-            </InnerWrapper>
+            <InnerContainerData />
           </EventReportContainer>
 
           <ChecklistContainer>
@@ -205,7 +195,7 @@ const EventHome = () => {
           </ChecklistContainer>
         </WelcomeContainer>
       </OverallContainer>
-    </>
+    </EventOrganizerContext.Provider>
   );
 };
 

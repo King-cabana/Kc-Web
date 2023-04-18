@@ -1,4 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { ImSpinner6 } from "react-icons/im";
+import { toast } from "react-toastify";
+import { contactUs } from "../../redux/service/contactUsService";
 import {
   Container,
   Form,
@@ -11,21 +14,47 @@ import {
 } from "./ContactUsStyled";
 
 const ContactInput = () => {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [dropMessage, setDropMessage] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [isDisabled, setIsDisabled] = useState(true);
+  const [inputs, setInput] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    phoneNumber: "",
+    message: "",
+  });
 
-  async function sendMessage() {
-    let item = { firstName, lastName, email, phoneNumber, dropMessage };
-    console.log(item);
+  function inputChange(e) {
+    setInput({ ...inputs, [e.target.name]: e.target.value });
   }
+
+  const sendMessage = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setIsDisabled(true);
+    try {
+      await contactUs(inputs);
+      toast.success(
+        "Message sent successfully! One of our team will be in contact with you soon."
+      );
+    } catch (error) {
+      console.log(error);
+      toast.error("Unable to send message");
+    } finally {
+      setLoading(false);
+      document.getElementById("contact-form").reset();
+    }
+  };
+
+  useEffect(() => {
+    const hasValues = Object.values(inputs).every((val) => val.trim() !== "");
+    setIsDisabled(!hasValues);
+  }, [inputs]);
 
   return (
     <>
       <Container>
-        <Form>
+        <Form id="contact-form">
           <ContactInfo>Contact us</ContactInfo>
           <ContactText style={{ marginTop: "-1.5rem" }}>
             Fill the form, our team is waiting to attend to you as soon as
@@ -37,9 +66,11 @@ const ContactInput = () => {
               <ContactLabel>First Name</ContactLabel>
               <InputBox>
                 <input
+                  defaultValue={inputs.firstName}
+                  type="text"
                   placeholder="Enter Your First Name"
-                  value={firstName}
-                  onChange={(e) => setFirstName(e.target.value)}
+                  name="firstName"
+                  onChange={inputChange}
                 />
               </InputBox>
             </InputBoxLabel>
@@ -47,9 +78,10 @@ const ContactInput = () => {
               <ContactLabel>Last Name</ContactLabel>
               <InputBox>
                 <input
+                  type="text"
                   placeholder="Enter Your Last Name"
-                  value={lastName}
-                  onChange={(e) => setLastName(e.target.value)}
+                  name="lastName"
+                  onChange={inputChange}
                 />
               </InputBox>
             </InputBoxLabel>
@@ -57,9 +89,12 @@ const ContactInput = () => {
               <ContactLabel>E - Mail</ContactLabel>
               <InputBox>
                 <input
+                  type="email"
+                  title="Email format: xxx@xxxx.xxx)"
+                  pattern="^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$"
                   placeholder="Enter Your Email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  name="email"
+                  onChange={inputChange}
                 />
               </InputBox>
             </InputBoxLabel>
@@ -67,9 +102,11 @@ const ContactInput = () => {
               <ContactLabel>Phone Number</ContactLabel>
               <InputBox>
                 <input
+                  type="tel"
                   placeholder="Enter Your Phone Number"
-                  value={phoneNumber}
-                  onChange={(e) => setPhoneNumber(e.target.value)}
+                  name="phoneNumber"
+                  onChange={inputChange}
+                  minLength={5}
                 />
               </InputBox>
             </InputBoxLabel>
@@ -78,14 +115,14 @@ const ContactInput = () => {
               <InputBox>
                 <textarea
                   placeholder="What will you like us to provide you?"
-                  value={dropMessage}
-                  onChange={(e) => setDropMessage(e.target.value)}
+                  name="message"
+                  onChange={inputChange}
                 />
               </InputBox>
             </InputBoxLabel>
 
-            <button type="submit" onClick={sendMessage} width="250px">
-              Send message
+            <button onClick={sendMessage} width="250px" disabled={isDisabled}>
+              {loading ? <ImSpinner6 size="1.5rem" /> : "Send Message"}
             </button>
           </InputInfo>
         </Form>

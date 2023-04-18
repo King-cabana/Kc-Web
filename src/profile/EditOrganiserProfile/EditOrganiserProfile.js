@@ -49,7 +49,6 @@ import {
 import backgroundPicture from "../../images/dashboardBackgroundPicture.png";
 import logo from "../../images/dashboardLogo.png";
 import {
-  PrimaryButton,
   ModalPrimaryButton,
   AlternativeButton2,
   AbsolutePrimaryButton,
@@ -259,7 +258,7 @@ const EditOrganiserProfile = () => {
     }
   };
   const discardNavigate = () => {
-    navigate("/home");
+    navigate("/dashboard");
   };
 
   const saveNavigate = async (e) => {
@@ -394,7 +393,7 @@ const EditOrganiserProfile = () => {
       console.log(data);
       dispatch(setEventOrganizerProfile(data));
       toast.success("Profile Updated Successfully");
-      navigate("/home");
+      navigate("/dashboard");
     } catch (error) {
       console.log(error);
       toast.error("Failed to update Profile");

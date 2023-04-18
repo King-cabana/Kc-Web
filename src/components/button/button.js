@@ -39,6 +39,9 @@ export const PrimaryButton = styled.button`
 `;
 
 export const AbsolutePrimaryButton = styled(PrimaryButton)`
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
   @media screen and (max-width: 960px) {
     font-size: 10px;
     line-height: 12px;
@@ -123,10 +126,10 @@ export const AlternativeButton2 = styled.button`
   height: 50px;
   border-radius: 8px;
   background-color: transparent;
-  color: ${(props) => (props.color ? props.color : "white")};
+  color: ${(props) => (props.color ? props.color : "#ff2957")};
   border: 1px solid #ff2957;
   cursor: pointer;
-  font-weight: ${(props) => props.fontWeight};
+  font-weight: ${(props) => (props.fontWeight ? props.fontWeight : "600")};
 
   &:hover {
     color: #ff2957;

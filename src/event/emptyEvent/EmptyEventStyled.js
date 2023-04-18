@@ -3,17 +3,24 @@ import { Link } from "react-router-dom";
 
 export const OverallContainer = styled.section`
   width: 100%;
-  height: 100%;
+  height: 100vh;
+  min-height: 100%;
+  padding: 0.5rem 2rem;
+  margin-top: 1rem;
+
+  @media screen and (max-width: 960px) {
+    padding: 0rem;
+  }
 `;
 
 export const NoEventContainer = styled.div`
-  padding: 2rem 5rem;
+  /* padding: 2rem; */
   background-color: #fff;
   width: 100%;
   height: 100%;
 
-  @media screen and (max-width: 769px) {
-    padding: 1rem;
+  @media screen and (max-width: 960px) {
+    padding: 2rem 1rem;
   }
 `;
 
@@ -21,6 +28,7 @@ export const WelcomeHeader = styled.section`
   display: flex;
   align-items: center;
   margin-bottom: 2rem;
+  cursor: pointer;
 `;
 
 export const Txt = styled.span`
@@ -34,6 +42,10 @@ export const Txt = styled.span`
   @media screen and (max-width: 769px) {
     font-size: 16px;
     line-height: 24px;
+  }
+  @media screen and (max-width: 300px) {
+    font-size: 14px;
+    line-height: 18px;
   }
 `;
 

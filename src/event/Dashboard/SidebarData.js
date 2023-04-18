@@ -19,7 +19,6 @@ export const SidebarData = [
       <Squares2X2Icon
         className="h-6 h-6 text-gray-500"
         style={{ width: "20px" }}
-        
       />
     ),
   },
@@ -39,7 +38,7 @@ export const SidebarData = [
     subNav: [
       {
         title: "Planning",
-        path: "/event/noEvent",
+        path: "/event/planning",
         icon: <BsIcons.BsDot />,
         cName: "sub-nav",
       },
@@ -129,10 +128,8 @@ export const SidebarData = [
         className="h-6 h-6 text-gray-500"
         style={{ width: "20px" }}
       />
-      
     ),
   },
-  
 
   {
     title: "Settings",

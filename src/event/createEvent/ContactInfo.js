@@ -1,11 +1,39 @@
 import React, { useState } from "react";
-import {ContactInfoContainer,ContactInfoHeader,ContactInfoTitle1,ContactInfoSubtitle,ContactInfoSection,ContactInfoTitle2,ContactInfoUpload,
-        ContactInfoLabel,ContactInfoInput, ContactInfoPadding,Radio,RadioInput,RadioLabel,OthersInput,} from "./ContactInfoStyled";
-  import {PopUpOverlay,BtnHolderLink,PopUpComponent,ModalText,ModalButtonContainer,} from "../budgetInventory/InventoryStyled";
-import { ModalPrimaryButton,AlternativeButton2,} from "../../components/button/button";
+import {
+  ContactInfoContainer,
+  ContactInfoHeader,
+  ContactInfoTitle1,
+  ContactInfoSubtitle,
+  ContactInfoSection,
+  ContactInfoTitle2,
+  ContactInfoUpload,
+  ContactInfoLabel,
+  ContactInfoInput,
+  ContactInfoPadding,
+  Radio,
+  RadioInput,
+  RadioLabel,
+  OthersInput,
+} from "./ContactInfoStyled";
+import {
+  PopUpOverlay,
+  BtnHolderLink,
+  PopUpComponent,
+  ModalText,
+  ModalButtonContainer,
+} from "../budgetInventory/InventoryStyled";
+import {
+  ModalPrimaryButton,
+  AlternativeButton2,
+} from "../../components/button/button";
 import "../../App.css";
-import { useNavigate } from 'react-router';
-import { DownBtn, DownButtonBox, DownButtonFull, DownButtonOutline } from "./SecondCreateEventStyled";
+import { useNavigate } from "react-router";
+import {
+  DownBtn,
+  DownButtonBox,
+  DownButtonFull,
+  DownButtonOutline,
+} from "./SecondCreateEventStyled";
 
 const ContactInfo = () => {
   // form states
@@ -23,32 +51,45 @@ const ContactInfo = () => {
   ///////////////
   const [others, setOthers] = useState(false);
 
-   // Modal Contitions
-   if (modal) {document.body.classList.add("active-modal");} else {document.body.classList.remove("active-modal");}
+  // Modal Contitions
+  if (modal) {
+    document.body.classList.add("active-modal");
+  } else {
+    document.body.classList.remove("active-modal");
+  }
   const showModal = !modal && "notShown";
 
-  
-  const navigate= useNavigate();
+  const navigate = useNavigate();
 
   const navigateBack = () => {
-    navigate('/createevent/eventdetails/3');
+    navigate("/createevent/eventdetails/3");
   };
 
-const navigateNext = () => {
-  navigate('/createevent/defineaudience/1');
-}
+  const navigateNext = () => {
+    navigate("/createevent/defineaudience/1");
+  };
 
   const handleSubmit = async function (e) {
     e.preventDefault();
 
-
-  const contactInformation = {pryFullName,pryPhoneNumber,pryEmailAddress,secRole,secFullName,secCompanyName,secJobRole,secOfficeAddress,
-                              secPhoneNumber,secEmailAddress,};
-    console.log(contactInformation);};
+    const contactInformation = {
+      pryFullName,
+      pryPhoneNumber,
+      pryEmailAddress,
+      secRole,
+      secFullName,
+      secCompanyName,
+      secJobRole,
+      secOfficeAddress,
+      secPhoneNumber,
+      secEmailAddress,
+    };
+    console.log(contactInformation);
+  };
 
   return (
     <>
-    {modal && <PopUpOverlay></PopUpOverlay>}
+      {modal && <PopUpOverlay></PopUpOverlay>}
       <ContactInfoContainer>
         <ContactInfoHeader>
           <ContactInfoTitle1>Create Event</ContactInfoTitle1>
@@ -201,19 +242,20 @@ const navigateNext = () => {
                         // width: "70px",
                         // height: "30px",
                         // fontSize: "10px",
-                        color: "#FF2957",// fontWeight: "600",
-                      }}>
+                        color: "#FF2957", // fontWeight: "600",
+                      }}
+                    >
                       Cancel
                     </AlternativeButton2>
                   </BtnHolderLink>
 
-                  <BtnHolderLink to="/home">
+                  <BtnHolderLink to="/dashboard">
                     <ModalPrimaryButton>Yes, Discard</ModalPrimaryButton>
                   </BtnHolderLink>
                 </ModalButtonContainer>
               </PopUpComponent>
             </div>
-{/* 
+            {/* 
             <ButtonContainer>
               <AlternativeButton2
               onClick={() => setModal(!modal)}
@@ -232,15 +274,16 @@ const navigateNext = () => {
                 Submit & Preview
               </PrimaryButton>
             </ButtonContainer> */}
-             
           </ContactInfoUpload>
         </ContactInfoSection>
       </ContactInfoContainer>
       <DownButtonBox>
-              <DownBtn>
-                <DownButtonOutline onClick={navigateBack}>Back</DownButtonOutline>
-                <DownButtonFull onClick={navigateNext}>Save & Continue</DownButtonFull>
-              </DownBtn>
+        <DownBtn>
+          <DownButtonOutline onClick={navigateBack}>Back</DownButtonOutline>
+          <DownButtonFull onClick={navigateNext}>
+            Save & Continue
+          </DownButtonFull>
+        </DownBtn>
       </DownButtonBox>
     </>
   );

@@ -8,9 +8,9 @@ import Twitter from "../../images/Vector2.svg";
 import Instagram from "../../images/Vector4.svg";
 import Lottie from "lottie-react";
 import animationData from "../../lotties/lf30_editor_meubo9a6.json";
-// import Gif from '../../images/Rectangle.gif';
 import {
   ContactBody,
+  NoDecorationLink,
   ContactRight,
   ContainerBox,
   Wrapper,
@@ -57,7 +57,9 @@ const ContactUs = () => {
               <EmailIcon>
                 <HiOutlineMail size={25} />
               </EmailIcon>
-              <EmailText>Email: info@kingcabana.com</EmailText>
+              <NoDecorationLink href="mailto:info@kingcabana.com">
+                <EmailText>Email: info@kingcabana.com</EmailText>
+              </NoDecorationLink>
               <EmailIconArrow>
                 <HiChevronRight size={25} />
               </EmailIconArrow>
@@ -67,7 +69,9 @@ const ContactUs = () => {
                 {" "}
                 <HiOutlinePhone size={25} />{" "}
               </PhoneLogo>
-              <PhoneText>Phone: (+234) 808 831 118 8</PhoneText>
+              <NoDecorationLink href="tel:+2348088311188">
+                <PhoneText>Phone: (+234) 808 831 118 8</PhoneText>
+              </NoDecorationLink>
               <PhoneIconArrow>
                 <HiChevronRight size={25} />
               </PhoneIconArrow>

@@ -109,10 +109,11 @@ const EventPlanPreview = () => {
         <Space />
         {renderArrow("left")}
         {renderArrow("right")}
-
         <ButtonContainer display={"flex"}>
-          <AbsolutePrimaryButton onClick={handleSubmit} >
-          {/* disabled={isDisabled} */}
+          <AbsolutePrimaryButton
+            onClick={handleSubmit}
+            // disabled={isDisabled}
+          >
             Done
           </AbsolutePrimaryButton>
         </ButtonContainer>

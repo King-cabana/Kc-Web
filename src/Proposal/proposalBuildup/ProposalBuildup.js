@@ -37,7 +37,7 @@ import { createProposal } from "../../redux/slices/proposalSlice";
 import { useParams } from "react-router-dom";
 
 
-const Proposal = () => {
+const ProposalBuildup = () => {
   const [file, setFile] = useState("");
   const [isSuccess, setIsSuccess] = useState(false);
   const [errorMsg, setErrorMsg] = useState(false);
@@ -389,4 +389,4 @@ const Proposal = () => {
   );
 };
 
-export default Proposal;
+export default ProposalBuildup;

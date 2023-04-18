@@ -116,3 +116,14 @@ export const Container = styled.section`
     gap: 0rem;
   }
 `;
+
+export const IconsContainer = styled.section`
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0.5rem;
+
+  @media screen and (max-width: 550px) {
+    gap: 0rem;
+  }
+`;
