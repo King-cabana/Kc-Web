@@ -43,12 +43,8 @@ const GuestContact = () => {
     const fetchEvent = async () => {
       const token = localStorage.getItem("bearerToken");
       try {
-        // const headers = {
-        //   'Authorization': `Bearer ${token}`,
-        // };
         const { data } = await axios.get(
           API_URL_2 + `events/${id}`
-          // , { headers }
         );
         setEvent(data);
       } catch (error) {

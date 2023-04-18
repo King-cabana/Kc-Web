@@ -29,18 +29,26 @@ import {
   TagsWrapper,
 } from "../createEvent/TimeLineEventsStyled";
 import { AiOutlineClose } from "react-icons/ai";
-import { addTag, removeTag } from "../../redux/slices/createEventSlice";
-import { AbsolutePrimaryButton, AlternativeButton2 } from "../../components/button/button";
+import {
+  AbsolutePrimaryButton,
+  AlternativeButton2,
+} from "../../components/button/button";
+import { createProposal } from "../../redux/slices/proposalSlice";
+import { useParams } from "react-router-dom";
+
 
 const Proposal = () => {
   const [file, setFile] = useState("");
   const [isSuccess, setIsSuccess] = useState(false);
   const [errorMsg, setErrorMsg] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [newTagBenefit, setNewTagBenefit] = useState("");
-  const [newTagImpact, setNewTagImpact] = useState("");
-  
+  const [benefitTags, setBenefitTags] = useState([]);
+  const [impactTags, setImpactTags] = useState([]);
+  const [newBenefitTag, setNewBenefitTag] = useState("");
+  const [newImpactTag, setNewImpactTag] = useState("");
+
   const state = useSelector((state) => state.createEvent);
+  const user = useSelector((state) => state.userDetails);
 
   //   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -81,7 +89,6 @@ const Proposal = () => {
       } catch (error) {
         setLoading(false);
         setErrorMsg("**ERROR UPLOADING IMAGE!**");
-        console.log(error);
       }
     }
   };
@@ -95,22 +102,37 @@ const Proposal = () => {
     setIsSuccess(true);
   }, [file]);
 
-  const addTag = (tag, state, dispatch) => {
-    const alreadyExists = state?.tags?.some((t) => t === tag);
-    if (!alreadyExists && state?.tags?.length < 5) {
-      dispatch(addTag(tag));
-    }
-  }
-  
-  const handleAddTag = (tag, setTag, state, dispatch) => {
+  const handleAddTag = (tag, setTag, tags, setTags) => {
     if (tag !== "") {
-      addTag(tag, state, dispatch);
+      const alreadyExists = tags.some((t) => t === tag);
+      if (!alreadyExists && tags.length < 5) {
+        setTags([...tags, tag]);
+      }
       setTag("");
     }
   };
-  
-  const handleRemoveTag = (tag, dispatch) => {
-    dispatch(removeTag(tag));
+
+  const handleRemoveTag = (tag, tags, setTags) => {
+    setTags(tags.filter((t) => t !== tag));
+  };
+
+  const { eventId } = useParams();
+
+  const handleProposalPreview = (event) => {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    formData.append('impact', impactTags.join(','));
+    formData.append('benefit', benefitTags.join(','));
+    formData.append('eventId', eventId);
+    const data = Object.fromEntries(formData.entries());
+    console.log(data);
+    try {
+        dispatch(createProposal(data , user.token))
+    } catch (error) {
+        console.log(error)
+    }
+    // console.log(store.getState())
+
   };
   
   return (
@@ -129,7 +151,7 @@ const Proposal = () => {
         </ProposalContainer>
 
         <ProposalBackground>
-          <ProposalInner>
+          <ProposalInner onSubmit={handleProposalPreview} >
             <InputSeg>
               <Txt>Event Banner</Txt>
               <FormContainer>
@@ -190,103 +212,178 @@ const Proposal = () => {
             </InputSeg>
             <Txt>Sponsorship Request</Txt>
 
-            <InputSeg style={{ marginTop: "2%" }}>
-              <Txt>Name of Sponsor’s Organization</Txt>
-              <Input
-                type="text"
-                name="state"
-                //   onChange={change}
-                //   defaultValue={state.state}
-                //   required
-              />
-            </InputSeg>
+    <InputSeg style={{ marginTop: "2%" }}>
+        <Txt>Name of Sponsor’s Organization</Txt>
+        <Input
+            type="text"
+            name="sponsorOrganizationName"
+            onChange={(e) =>
+            dispatch(
+                editProfile({
+                name: e.target.name,
+                value: e.target.value,
+                })
+            )
+            }
+            defaultValue={state.sponsorOrganizationName}
+        />
+    </InputSeg>
 
-            <EventSubSection style={{padding:'0'}}>
+            <EventSubSection style={{ padding: "0" }}>
               <Txt>Benefits of sponsoring this event</Txt>
               <InputTagBox>
                 <Input
                   placeholder="List all benefits"
                   type="text"
-                  value={newTagBenefit}
-                  onChange={(event) => setNewTagBenefit(event.target.value)}
+                  value={newBenefitTag}
+                  onChange={(event) => setNewBenefitTag(event.target.value)}
                 />
-                <AddButton onClick={() => handleAddTag(newTagBenefit, setNewTagBenefit, state, dispatch)}>Add</AddButton>
+                <AddButton
+                  onClick={() =>
+                    handleAddTag(
+                      newBenefitTag,
+                      setNewBenefitTag,
+                      benefitTags,
+                      setBenefitTags,
+                      state,
+                      dispatch
+                    )
+                  }
+                >
+                  Add
+                </AddButton>
               </InputTagBox>
-              {/* <ErrorText>
-              *{state?.tags?.length ? state.tags.length : "0"}/5 Tags
-            </ErrorText> */}
               <TagsWrapper>
-                {state?.tags?.map((tag, index) => (
-                    <div key={index}>
-                    <BenefitsTag style={{ marginTop: "5%", marginBottom: "0.5rem", width: "max-content", border: "1px solid black", color: "black" }}>
-                        {tag}
-                        <Delete onClick={() => handleRemoveTag(tag, dispatch)} style={{ display: "flex", alignItems: "center", justifyContent: "center", color: "#ff2957" }}>
+                {benefitTags?.map((tag, index) => (
+                  <div key={index}>
+                    <BenefitsTag
+                      style={{
+                        marginTop: "5%",
+                        marginBottom: "0.5rem",
+                        width: "max-content",
+                        border: "1px solid black",
+                        color: "black",
+                      }}
+                    >
+                      {tag}
+                      <Delete
+                        onClick={() =>
+                          handleRemoveTag(
+                            tag,
+                            benefitTags,
+                            setBenefitTags,
+                            dispatch
+                          )
+                        }
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          color: "#ff2957",
+                        }}
+                      >
                         <AiOutlineClose />
-                        </Delete>
+                      </Delete>
                     </BenefitsTag>
-                    </div>
+                  </div>
                 ))}
-            </TagsWrapper>
+              </TagsWrapper>
             </EventSubSection>
 
-            
-            <EventSubSection style={{padding:'0'}}>
+            <EventSubSection style={{ padding: "0", marginTop: "3%" }}>
               <Txt>Impact of the event on the community</Txt>
               <InputTagBox>
                 <Input
                   placeholder="List any and all potential impacts of the event on the community"
                   type="text"
-                  value={newTagImpact}
-                  onChange={(event) => setNewTagImpact(event.target.value)}
+                  value={newImpactTag}
+                  onChange={(event) => setNewImpactTag(event.target.value)}
                 />
-                <AddButton onClick={() => handleAddTag(newTagImpact, setNewTagImpact, state, dispatch)}>Add</AddButton>
+                <AddButton
+                  onClick={() =>
+                    handleAddTag(
+                      newImpactTag,
+                      setNewImpactTag,
+                      impactTags,
+                      setImpactTags,
+                      state,
+                      dispatch
+                    )
+                  }
+                >
+                  Add
+                </AddButton>
               </InputTagBox>
-              {/* <ErrorText>
-              *{state?.tags?.length ? state.tags.length : "0"}/5 Tags
-            </ErrorText> */}
               <TagsWrapper>
-                {state?.tags?.map((tag, index) => (
-                    <div key={index}>
-                    <BenefitsTag style={{ marginTop: "5%", marginBottom: "0.5rem", width: "max-content", border: "1px solid black", color: "black" }}>
-                        {tag}
-                        <Delete onClick={() => handleRemoveTag(tag, dispatch)} style={{ display: "flex", alignItems: "center", justifyContent: "center", color: "#ff2957" }}>
+                {impactTags?.map((tag, index) => (
+                  <div key={index}>
+                    <BenefitsTag
+                      style={{
+                        marginTop: "5%",
+                        marginBottom: "0.5rem",
+                        width: "max-content",
+                        border: "1px solid black",
+                        color: "black",
+                      }}
+                    >
+                      {tag}
+                      <Delete
+                        onClick={() =>
+                          handleRemoveTag(
+                            tag,
+                            impactTags,
+                            setImpactTags,
+                            dispatch
+                          )
+                        }
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          color: "#ff2957",
+                        }}
+                      >
                         <AiOutlineClose />
-                        </Delete>
+                      </Delete>
                     </BenefitsTag>
-                    </div>
+                  </div>
                 ))}
-            </TagsWrapper>
+              </TagsWrapper>
             </EventSubSection>
 
-            <InputSeg style={{ marginTop: "2%" }}>
-              <Txt>Event Budget</Txt>
-              <Input
-                type="text"
-                name="state"
-                placeholder="Add the estimated total of what you need and amount required (optional) "
-                //   onChange={change}
-                //   defaultValue={state.state}
-                //   required
-              />
+            <InputSeg style={{ marginTop: "3%" }}>
+                <Txt>Event Budget</Txt>
+                <Input
+                    type="text"
+                    name="eventBudget"
+                    placeholder="Add the estimated total of what you need and amount required (optional) "
+                    onChange={(e) =>
+                    dispatch(
+                        editProfile({
+                        name: e.target.name,
+                        value: e.target.value,
+                        })
+                    )
+                    }
+                    defaultValue={state.eventBudget}
+                />
             </InputSeg>
-          </ProposalInner>
-         
-        </ProposalBackground>
-        <ButtonContainer style={{ margin: "0rem" }}>
-            <AlternativeButton2
+            <ButtonContainer style={{ margin: "0rem" }}>
+          <AlternativeButton2
             //   onClick={navigateBack}
-              style={{
-                color: "#FF2957",
-                fontWeight: "600",
-                marginRight: "2rem",
-              }}
-            >
-              Back
-            </AlternativeButton2>
-            <AbsolutePrimaryButton>
-              Preview Proposal 
-            </AbsolutePrimaryButton>
-          </ButtonContainer>
+            style={{
+              color: "#FF2957",
+              fontWeight: "600",
+              marginRight: "2rem",
+            }}
+          >
+            Back
+          </AlternativeButton2>
+          <AbsolutePrimaryButton type="submit">Preview Proposal</AbsolutePrimaryButton>
+        </ButtonContainer>
+          </ProposalInner>
+        </ProposalBackground>
+        
       </OverallContainer>
     </>
   );

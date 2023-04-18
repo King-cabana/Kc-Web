@@ -23,7 +23,6 @@ import { ImSpinner6 } from "react-icons/im";
 import { setUserDetails } from "../../redux/slices/userDetailsSlice";
 import { useDispatch } from "react-redux";
 import { setUserToken } from "../../redux/slices/userDetailsSlice";
-import { setUserProfile } from "../../redux/slices/userProfileSlice";
 import axios from "axios";
 import { setEventOrganizerProfile } from "../../redux/slices/eventOrganizerProfileSlice";
 
@@ -33,6 +32,7 @@ const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+
   const user = useSelector((state) => state.userDetails);
 
   const handleClick = () => {
@@ -64,7 +64,6 @@ const SignIn = () => {
       return {state : Boolean(data?.myProfile?.id) , value : data?.myProfile }
     } catch (error) {
       throw error;
-      // navigate("/createProfile");
     }
   };
 

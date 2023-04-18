@@ -58,7 +58,7 @@ export const ProposalBackground = styled.div`
   }
 `;
 
-export const ProposalInner = styled.div`
+export const ProposalInner = styled.form`
     width:100%;
     background-color:white;
     padding:1rem;
