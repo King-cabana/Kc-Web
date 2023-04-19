@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 import EventPlanning from "../eventPlanning/EventPlanning";
 import EmptyEvent from "../emptyEvent/EmptyEvent";
 import axios from "axios";
@@ -25,6 +26,9 @@ const Event = () => {
         );
         setActive(data?.map((data) => ({ ...data, selected: false })));
       } catch (error) {
+        if (error?.message === "Network Error") {
+          toast.error("Error retrieving data, reload page.");
+        }
         console.log(error);
       } finally {
         setIsLoading(false);

@@ -55,22 +55,22 @@ const EventHome = () => {
   useEffect(() => {
     const fetchOrganizerProfile = async () => {
       try {
-        const { data } = await axios.get(API_URL_2 + `profiles/${8}`, {
+        const { data } = await axios.get(API_URL_2 + `profiles/${state?.id}`, {
           headers: {
-            Authorization: `Bearer ${user.token}`,
+            Authorization: `Bearer ${user?.token}`,
           },
         });
         // console.log(data);
         // console.log(user);
         dispatch(setEventOrganizerProfile(data));
       } catch (error) {
+        if (error?.message === "Network Error") {
+          toast.error("Error retrieving data, reload page.");
+        }
         console.log(error);
       }
     };
     fetchOrganizerProfile();
-    return () => {
-      // cleanup code here
-    };
   }, [state?.id]);
 
   const navitgateToEditOrganiserProfile = () => {
@@ -87,7 +87,9 @@ const EventHome = () => {
   const showModal = !modal && "notShown";
 
   return (
-    <EventOrganizerContext.Provider value={{ state }}>
+    <EventOrganizerContext.Provider
+      value={{ state, axios, user, API_URL_2, navigate }}
+    >
       {modal && <PopUpOverlay onClick={toggleModal}></PopUpOverlay>}
       <OverallContainer>
         <HeaderContainer>

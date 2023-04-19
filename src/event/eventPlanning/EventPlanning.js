@@ -17,7 +17,6 @@ import { API_URL_2 } from "../../redux/service/authService";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { setEventCreated } from "../../redux/slices/eventCreatedSlice";
-import EmptyEvent from "../emptyEvent/EmptyEvent";
 
 export const EventContext = createContext();
 
@@ -44,8 +43,8 @@ const EventPlanning = () => {
   };
 
   useEffect(() => {
-    console.log(organizer);
-    console.log(event);
+    // console.log(organizer);
+    // console.log(event);
     const fetchOrganizerEvents = async () => {
       try {
         const { data } = await axios.get(
@@ -127,9 +126,6 @@ const EventPlanning = () => {
 
         {popUpVisibility.includes(true) && <EventDetailsSidebar />}
       </OverallContainer>
-      {/* ) : (
-        <EmptyEvent />
-      )} */}
     </EventContext.Provider>
   );
 };

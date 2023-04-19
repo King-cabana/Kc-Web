@@ -154,7 +154,7 @@ function App() {
               }
             />
             <Route
-              path="/event/proposal/proposal-buildup"
+              path="/event/proposal/proposal-buildup/:id"
               element={
                 <Sidebar>
                   <ProposalBuildup />
