@@ -30,6 +30,7 @@ import {
   AbsolutePrimaryButton,
   AlternativeButton2,
 } from "../../components/button/button";
+import { API_URL_2 } from "../../redux/service/authService";
 
 const SocialProfile = () => {
   const [visibility, setVisibility] = useState(false);
@@ -75,23 +76,19 @@ const SocialProfile = () => {
     setSending(true);
     setIsDisabled(true);
     try {
-      const { data } = await axios.post(
-        "http://localhost:8080/profiles/create/",
-        state,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${user.token}`,
-          },
-        }
-      );
+      const { data } = await axios.post(API_URL_2 + "profiles/create/", state, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${user.token}`,
+        },
+      });
       // console.log(data);
       dispatch(setEventOrganizerProfile(data));
-      navigate("/home");
+      navigate("/dashboard");
       toast.success("Form Submitted Successfully");
       dispatch(clearProfile());
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       if (error.response.data === "Profile already exists") {
         navigate("/createProfile");
         toast.error("Profile already exists");

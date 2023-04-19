@@ -8,8 +8,6 @@ import {
   AlternativeButton2,
 } from "../../components/button/button";
 import { editGenerally } from "../../redux/slices/createEventSlice";
-// import ProgressBar from "../progressBar/ProgressBar";
-// import CreateEventTopBar from "../topBar/CreateEventTopBar/CreateEventTopBar";
 import {
   BudgetInventoryContainer,
   BudgetInventoryHeader,
@@ -61,7 +59,7 @@ const Budget = ({ padding }) => {
           data
         );
         const uploadedFile = response.data;
-        console.log(uploadedFile.secure_url);
+        // console.log(uploadedFile.secure_url);
         if (uploadedFile.secure_url) {
           setFile(uploadedFile.secure_url);
           setLoading(false);
@@ -88,7 +86,7 @@ const Budget = ({ padding }) => {
     }
   }, []);
   useEffect(() => {
-    console.log(state);
+    // console.log(state);
     const MAX_FILE_SIZE = 1024; // 1MB
     if (!state?.eventBudgetTemplateUrl) {
       setErrorMsg("*Please a choose file*");

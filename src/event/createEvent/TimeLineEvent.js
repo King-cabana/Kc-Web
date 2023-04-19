@@ -61,9 +61,7 @@ const TimeLineEvent = ({ padding }) => {
   // Render the list of tags
   const tagList = state?.tags.map((tag, index) => (
     <div key={index}>
-      <EventButton
-        style={{ marginRight: "1rem", marginBottom: "0.2rem", width: "auto" }}
-      >
+      <EventButton style={{ marginBottom: "0.5rem", width: "auto" }}>
         {tag}
         <Delete onClick={() => handleRemoveTag(tag)}>
           <AiOutlineClose />
@@ -82,7 +80,7 @@ const TimeLineEvent = ({ padding }) => {
 
   const navigateNext = () => {
     navigate("/createevent/defineaudience/1");
-    console.log(state);
+    // console.log(state);
   };
 
   return (
@@ -144,7 +142,7 @@ const TimeLineEvent = ({ padding }) => {
           <EventSubSection>
             <InputText>Guest registration</InputText>
             <BudgetInventorySubtitle>
-              Give a start and end date for the setting up of the event
+              Give a start and end date of registration of attendees
             </BudgetInventorySubtitle>
             <InputBox>
               <InputDate
@@ -159,7 +157,7 @@ const TimeLineEvent = ({ padding }) => {
                 name="guestRegEndDate"
                 pattern="\d{4}-\d{2}-\d{2}"
                 onChange={change}
-                defaultValue={state.guestRegStartDate}
+                defaultValue={state.guestRegEndDate}
               />
             </InputBox>
             {/* <AddOtherBox>

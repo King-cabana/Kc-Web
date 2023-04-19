@@ -1,40 +1,136 @@
+import React, { createContext, useState, useEffect } from "react";
+import axios from "axios";
+import { Heading, ButtonContainer } from "./EventPlanningStyled";
+import EventDetailsSidebar from "./EventDetailsSidebar";
 import {
-  TableDiv,
-  EventPlanningDiv,
-  CreateEventButton,
-} from "./EventPlanningStyled";
-import Event from "./Event";
-import rightarrow from "../../images/right-arrow.svg";
+  NoEventContainer,
+  WelcomeHeader,
+  Txt,
+  OverallContainer,
+  ButtonLink,
+} from "../emptyEvent/EmptyEventStyled";
+import { BsChevronRight } from "react-icons/bs";
+import EventDetails from "./EventDetails";
+import { PopUpOverlay } from "../eventHome/EventHomeStyled";
+import { AbsolutePrimaryButton } from "../../components/button/button";
+import { API_URL_2 } from "../../redux/service/authService";
+import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
+import { setEventCreated } from "../../redux/slices/eventCreatedSlice";
+import EmptyEvent from "../emptyEvent/EmptyEvent";
+
+export const EventContext = createContext();
+
 const EventPlanning = () => {
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.userDetails);
+  const event = useSelector((state) => state.eventCreated);
+  const organizer = useSelector((state) => state.eventOrganizerProfile);
+  const [modal, setModal] = useState(false);
+  const [active, setActive] = useState([]);
+  const [popUpVisibility, setPopUpVisibility] = useState([]);
+  const [selectedEvent, setSelectedEvent] = useState(null);
+  const [loading, setLoading] = useState(true);
+  // Modal Contitions
+  if (modal) {
+    document.body.classList.add("active-modal");
+  } else {
+    document.body.classList.remove("active-modal");
+  }
+  const shareDetails = {
+    title: selectedEvent?.eventName,
+    url: `/guestView/${selectedEvent?.id}`,
+    text: selectedEvent?.eventTheme,
+  };
+
+  useEffect(() => {
+    console.log(organizer);
+    console.log(event);
+    const fetchOrganizerEvents = async () => {
+      try {
+        const { data } = await axios.get(
+          API_URL_2 + `events/organizer-profile/${organizer?.id}`,
+          {
+            headers: {
+              Authorization: `Bearer ${user?.token}`,
+            },
+          }
+        );
+        dispatch(setEventCreated(data));
+        setActive(data?.map((data) => ({ ...data, selected: false })));
+        setPopUpVisibility(data?.map(() => false));
+      } catch (error) {
+        console.log(error);
+        toast.error(error.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchOrganizerEvents();
+  }, [organizer?.id]);
+
+  const handleApiClick = (data, index) => {
+    // Passing a single data from active?.map((data, index)) into selectedEvent state
+    setModal(true);
+    setSelectedEvent(data);
+    // Update the selected state of the clicked div
+    setActive((prevActive) =>
+      prevActive?.map((data, i) => {
+        if (i === index) {
+          return { ...data, selected: true };
+        } else {
+          return { ...data, selected: false };
+        }
+      })
+    );
+    // Show sidebar of the selevted div
+    setPopUpVisibility((prevPopUpVisibility) =>
+      prevPopUpVisibility.map((visibility, i) => index === i && !visibility)
+    );
+  };
+
+  const handleOutsideClick = (e) => {
+    if (
+      popUpVisibility?.includes(true) &&
+      !e?.target?.closest("#event-details-container")
+    ) {
+      setPopUpVisibility(active?.map(() => false));
+      setModal(false);
+    }
+  };
+
   return (
-    <>
-      <h2 style={{ display: "inline" }}>Event</h2>
-      <img src={rightarrow} style={{ width: "25px", height: "25px" }} />
-      <h3 style={{ color: "red", fontWeight: "700", display: "inline" }}>
-        Planning
-      </h3>
-      <EventPlanningDiv>
-        <h2>Event details</h2>
-        <TableDiv>
-          <h3>Name and Date</h3>
-          <h3>Last updated</h3>
-          <h3>Status</h3>
-        </TableDiv>
-        <Event
-          name="Peter Enumah and Co."
-          updateDate="Tuesday, January 22, 2023 or 7pm WAT"
-          updateTime="14 hours ago"
-          status="Draft"
-        />
-        <Event
-          name="Peter's friends and family hangout"
-          updateDate="Tuesday, January 22, 2023 or 7pm WAT"
-          updateTime="14 hours ago"
-          status="Completed"
-        />
-      </EventPlanningDiv>
-      <CreateEventButton>Create Event</CreateEventButton>
-    </>
+    <EventContext.Provider
+      value={{ active, selectedEvent, handleApiClick, shareDetails, loading }}
+    >
+      {modal && <PopUpOverlay onClick={handleOutsideClick} />}
+      {/* {active?.length > 0 ? ( */}
+      <OverallContainer onClick={handleOutsideClick}>
+        <NoEventContainer>
+          <WelcomeHeader>
+            <Txt>Event</Txt>
+            <BsChevronRight style={{ marginRight: "0.5rem" }} />
+            <Txt fontWeight="400" color="#FF2957">
+              Planning
+            </Txt>
+          </WelcomeHeader>
+
+          <Heading>Event details</Heading>
+          <EventDetails />
+
+          <ButtonContainer>
+            <ButtonLink to="/createevent/eventdetails/1">
+              <AbsolutePrimaryButton>Create event</AbsolutePrimaryButton>
+            </ButtonLink>
+          </ButtonContainer>
+        </NoEventContainer>
+
+        {popUpVisibility.includes(true) && <EventDetailsSidebar />}
+      </OverallContainer>
+      {/* ) : (
+        <EmptyEvent />
+      )} */}
+    </EventContext.Provider>
   );
 };
 export default EventPlanning;

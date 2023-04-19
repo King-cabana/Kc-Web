@@ -55,14 +55,13 @@ const SignUp = () => {
 
   function handleValidation(e) {
     setErrors(Validation(inputs));
-    // setDisabledButton(Object.keys(errors).length > 0);
   }
 
   const navigate = useNavigate();
 
   const handleSignUp = async (e) => {
     e.preventDefault();
-    setLoading(true);
+    // setLoading(true);
     try {
       await register(inputs);
       toast.success("Success, An Otp as been sent to your inbox.")

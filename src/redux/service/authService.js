@@ -1,7 +1,8 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:8080/eventuser/";
-const API_URL_2 = "http://localhost:8080/";
+const API_URL = "https://api.kingcabana.com/eventuser/";
+export const API_URL_2 = "https://api.kingcabana.com/";
+// export const API_URL_2 = "http://localhost:8080/";
 const register = async (payload) => {
   try {
     const response = await axios.post(
@@ -28,6 +29,7 @@ const verifyEmail = async (otp) => {
       { headers: { "Content-Type": "application/json" } }
     );
     if (otp === response.data.otp) {
+      return response.data;
     }
     return response.data;
   } catch (error) {

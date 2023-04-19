@@ -8,11 +8,12 @@ import Twitter from "../../images/Vector2.svg";
 import Instagram from "../../images/Vector4.svg";
 import Lottie from "lottie-react";
 import animationData from "../../lotties/lf30_editor_meubo9a6.json";
-// import Gif from '../../images/Rectangle.gif';
 import {
   ContactBody,
+  NoDecorationLink,
   ContactRight,
   ContainerBox,
+  Wrapper,
   ContactHeader,
   AnimationContainer,
   ContactParagraph,
@@ -48,16 +49,17 @@ const ContactUs = () => {
         <ContactRight>
           <ContactHeader>Get in touch</ContactHeader>
           <ContactParagraph>
-            We'd be thrilled to hear from you. Our staff is always available to
-            <br />
-            ease your journey.
+            We'd be thrilled to hear from you. Our staffs are always available
+            to ease your journey.
           </ContactParagraph>
           <ContactLogoBody>
             <EmailBody>
               <EmailIcon>
                 <HiOutlineMail size={25} />
               </EmailIcon>
-              <EmailText>Email: info@kingcabana.com</EmailText>
+              <NoDecorationLink href="mailto:info@kingcabana.com">
+                <EmailText>Email: info@kingcabana.com</EmailText>
+              </NoDecorationLink>
               <EmailIconArrow>
                 <HiChevronRight size={25} />
               </EmailIconArrow>
@@ -67,7 +69,9 @@ const ContactUs = () => {
                 {" "}
                 <HiOutlinePhone size={25} />{" "}
               </PhoneLogo>
-              <PhoneText>Phone: (+234) 808 831 118 8</PhoneText>
+              <NoDecorationLink href="tel:+2348088311188">
+                <PhoneText>Phone: (+234) 808 831 118 8</PhoneText>
+              </NoDecorationLink>
               <PhoneIconArrow>
                 <HiChevronRight size={25} />
               </PhoneIconArrow>
@@ -75,18 +79,21 @@ const ContactUs = () => {
           </ContactLogoBody>
         </ContactRight>
         <AnimationContainer>
-        <Lottie 
-        animationData={animationData} 
-        loop={true}  style={{width:'400px', height:'400px', paddingRight: '15px'}}
-        />
-      </AnimationContainer>
+          <Lottie
+            animationData={animationData}
+            loop={true}
+            style={{ width: "300px", height: "300px" }}
+          />
+        </AnimationContainer>
       </ContactBody>
       <ContainerBox>
         <ContactInput />
       </ContainerBox>
       <Box>
         <BoxContainer>
-          <img src={Rectangle} alt="Rectangle" />
+          <Wrapper>
+            <img src={Rectangle} alt="Rectangle" />
+          </Wrapper>
           <BoxBody>
             <BoxHeader>Join Our Online Community</BoxHeader>
             <BoxParagraph>

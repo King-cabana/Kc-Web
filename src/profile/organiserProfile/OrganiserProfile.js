@@ -79,7 +79,7 @@ const OrganiserProfile = () => {
           }
         );
         const backgroundPicture = await response.json();
-        console.log(backgroundPicture.secure_url);
+        // console.log(backgroundPicture.secure_url);
         if (backgroundPicture.secure_url) {
           setFile(backgroundPicture.secure_url);
           setLoading(false);
@@ -106,6 +106,7 @@ const OrganiserProfile = () => {
     setErrorMsg("");
     setIsSuccess(true);
   }, [file]);
+  
   const handleLogoFileChange = async (e) => {
     const MAX_FILE_SIZE = 1024; // 1MB
     const logoFile = e.target.files[0];
@@ -129,7 +130,7 @@ const OrganiserProfile = () => {
           }
         );
         const logoPicture = await response.json();
-        console.log(logoPicture.secure_url);
+        // console.log(logoPicture.secure_url);
         if (logoPicture.secure_url) {
           setLogoFile(logoPicture.secure_url);
           setLogoLoading(false);

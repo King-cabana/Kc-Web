@@ -1,33 +1,81 @@
+// import { createSlice } from "@reduxjs/toolkit";
+
+// const initialState = { isSignedIn: false, details: {} };
+
+// const userDetailsSlice = createSlice({
+//   name: "userdetails",
+//   initialState,
+//   reducers: {
+//     setUserDetails: (state, action) => {
+//       // state = action.payload
+//       Object.assign(state, {
+//         isSignedIn: true,
+//         details: action.payload,
+//       });
+//       // return { message: action.payload };
+//     },
+//     setUserToken: (state, { payload }) => {
+//       Object.assign(state, { [payload.name]: payload.value });
+//     },
+//     clearUserDetails: (state, action) => {
+//       Object.assign(state, {
+//         isSignedIn: false,
+//         details: {},
+//       });
+//     },
+//   },
+// });
+
+// export const { setUserDetails, clearUserDetails, setUserToken } =
+//   userDetailsSlice.actions;
+// export default userDetailsSlice.reducer;
+
+
+
+
+
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = { isSignedIn: false, details: {} };
+
+export const fetchUserDetails = (email) => async (dispatch) => {
+  const token = localStorage.getItem("accessToken");
+  try {
+    const response = await fetch(`http://localhost:8081/eventuser/email?email=${email}`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },  
+    });
+    const data = await response.json();
+    dispatch(setUserDetails(data));
+    console.log(data)
+  } catch (error) {
+    console.error("Failed to fetch user details: ", error);
+    throw error;
+  }
+};
 
 const userDetailsSlice = createSlice({
   name: "userdetails",
   initialState,
   reducers: {
     setUserDetails: (state, action) => {
-      // state = action.payload
-      Object.assign(state, {
-        isSignedIn: true,
-        details: action.payload,
-      });
-      // return { message: action.payload };
+      state.isSignedIn = true;
+      state.details = action.payload;
     },
     setUserToken: (state, { payload }) => {
-      Object.assign(state, { [payload.name]: payload.value });
+      state[payload.name] = payload.value;
     },
     clearUserDetails: (state, action) => {
-      Object.assign(state, {
-        isSignedIn: false,
-        details: {},
-      });
+      state.isSignedIn = false;
+      state.details = {};
     },
   },
 });
 
-// const { reducer, actions } = userDetailsSlice;
-
 export const { setUserDetails, clearUserDetails, setUserToken } =
   userDetailsSlice.actions;
 export default userDetailsSlice.reducer;
+

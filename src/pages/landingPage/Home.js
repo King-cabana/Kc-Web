@@ -28,7 +28,7 @@ import {
   SponsorCard,
   ASSectionInner,
   ASContentInner,
-  TestimonialSection,
+  // TestimonialSection,
   ReadySection,
 } from "./HomeStyled";
 import Search from "../../images/search.svg";
@@ -204,7 +204,7 @@ const Home = () => {
           </NavButtonLink>
         </div>
       </SponsorSection>
-
+      {/* 
       <TestimonialSection>
         <KBDisplayM
           style={{
@@ -216,8 +216,8 @@ const Home = () => {
         >
           Testimonials
         </KBDisplayM>
-        {/* <Testimonial /> */}
-      </TestimonialSection>
+        <Testimonial />
+      </TestimonialSection> */}
 
       <ReadySection>
         <ASImage img={Subscribe}>

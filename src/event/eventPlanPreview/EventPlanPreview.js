@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { useSelector } from "react-redux";
 import SwipeableViews from "react-swipeable-views";
@@ -31,6 +31,7 @@ const styles = {
 
 const EventPlanPreview = () => {
   const [index, setIndex] = useState(0);
+  const [isDisabled, setIsDisabled] = useState(true);
   const navigate = useNavigate();
   const state = useSelector((state) => state.createEvent);
   const handleChangeIndex = (newIndex) => {
@@ -61,9 +62,16 @@ const EventPlanPreview = () => {
       </div>
     );
   };
+
+  useEffect(() => {
+    if (!state?.eventName) {
+      // setIsDisabled(true);
+    }
+  }, [state?.eventName]);
+
   const handleSubmit = async function (e) {
     e.preventDefault();
-    console.log(state);
+    // console.log(state);
     navigate("/guest");
   };
   return (
@@ -95,13 +103,17 @@ const EventPlanPreview = () => {
           <Pagination
             dots={6}
             index={index}
-            onChangeIndex={handleChangeIndex}/>
+            onChangeIndex={handleChangeIndex}
+          />
         </div>
         <Space />
         {renderArrow("left")}
         {renderArrow("right")}
         <ButtonContainer display={"flex"}>
-          <AbsolutePrimaryButton onClick={handleSubmit}>
+          <AbsolutePrimaryButton
+            onClick={handleSubmit}
+            // disabled={isDisabled}
+          >
             Done
           </AbsolutePrimaryButton>
         </ButtonContainer>

@@ -23,7 +23,6 @@ export const SidebarNav = styled.nav`
   /* padding-top: 1%; */
   position: fixed;
   top: 62px;
-  
 
   @media screen and (max-width: 480px) {
     width: 100%;
@@ -55,7 +54,6 @@ export const ContentBody = styled.div`
   margin-left: 20%;
   top: 62px;
 
-
   @media screen and (max-width: 960px) {
     width: 100%;
     margin-left: 0;
@@ -70,15 +68,15 @@ export const Nav = styled.div`
   position: absolute;
   top: 0;
   left: 0;
-  margin-left: -4%;
+  /* margin-left: 2; */
 
   @media screen and (max-width: "960px") {
-    margin-left: 0;
+    /* margin-left: 0; */
   }
 `;
 
 export const NavIcon = styled(Link)`
-  margin-left: 2rem;
+  margin-left: 1rem;
   font-size: 2rem;
   height: 20px;
   justify-content: flex-start;
@@ -87,7 +85,7 @@ export const NavIcon = styled(Link)`
   color: black;
   z-index: 10;
 
-  @media screen and (max-width: 480px) {
+  @media screen and (max-width: 960px) {
     font-size: 1rem;
     display: flex;
   }

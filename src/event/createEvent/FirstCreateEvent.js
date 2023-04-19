@@ -37,6 +37,7 @@ const FirstCreateEvent = ({ padding }) => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [loading, setLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [isDisabled, setIsDisabled] = useState(true);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -70,7 +71,7 @@ const FirstCreateEvent = ({ padding }) => {
           data
         );
         const uploadedBanner = response.data;
-        console.log(uploadedBanner.secure_url);
+        // console.log(uploadedBanner.secure_url);
         if (uploadedBanner.secure_url) {
           setFile(uploadedBanner.secure_url);
           setLoading(false);
@@ -97,7 +98,24 @@ const FirstCreateEvent = ({ padding }) => {
     }
   }, []);
   useEffect(() => {
-    console.log(state);
+    if (
+      state.eventName &&
+      state.eventTheme &&
+      state.estimatedAttendance &&
+      state.eventDescription
+    ) {
+      setIsDisabled(false);
+    } else {
+      setIsDisabled(true);
+    }
+  }, [
+    state.eventName,
+    state.eventTheme,
+    state.estimatedAttendance,
+    state.eventDescription,
+  ]);
+  useEffect(() => {
+    // console.log(state);
     const MAX_FILE_SIZE = 1024; // 1MB
     if (!state?.eventBannerUrl) {
       setErrorMsg("*Please a choose file*");
@@ -116,7 +134,7 @@ const FirstCreateEvent = ({ padding }) => {
   const handleSubmit = async function (e) {
     e.preventDefault();
     navigate("/createevent/eventdetails/2");
-    console.log(state);
+    // console.log(state);
   };
 
   return (
@@ -149,6 +167,7 @@ const FirstCreateEvent = ({ padding }) => {
                     onChange={handleFileChange}
                     name="eventBannerUrl"
                     defaultValue={file}
+                    // defaultValue={state?.eventBannerUrl}
                   />
                 </CustomWrapper>
                 <PrimaryButton3>Upload</PrimaryButton3>
@@ -215,7 +234,7 @@ const FirstCreateEvent = ({ padding }) => {
                 placeholder="Enter your Event Theme"
                 name="eventTheme"
                 onChange={change}
-                defaultValue={state.eventTheme}
+                defaultValue={state?.eventTheme}
               />
             </EventSubSection>
             {/* input section  */}
@@ -263,7 +282,7 @@ const FirstCreateEvent = ({ padding }) => {
                 placeholder="IN FIGURES: Estimated attendance to be present"
                 name="estimatedAttendance"
                 onChange={change}
-                defaultValue={state.estimatedAttendance}
+                defaultValue={state?.estimatedAttendance}
               />
             </EventSubSection>
             {/* input section  */}
@@ -285,7 +304,7 @@ const FirstCreateEvent = ({ padding }) => {
                 name="eventDescription"
                 maxLength={250}
                 onChange={change}
-                defaultValue={state.eventDescription}
+                defaultValue={state?.eventDescription}
               />
             </EventSubSection>
           </BudgetUpload>
@@ -293,7 +312,7 @@ const FirstCreateEvent = ({ padding }) => {
 
         {location.pathname === "/eventPlanPreview" ? null : (
           <ButtonContainer style={{ margin: "0rem" }}>
-            <AbsolutePrimaryButton onClick={handleSubmit}>
+            <AbsolutePrimaryButton onClick={handleSubmit} disabled={isDisabled}>
               Save & Continue
             </AbsolutePrimaryButton>
           </ButtonContainer>

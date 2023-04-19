@@ -23,6 +23,25 @@ export const PopUpOverlay = styled.div`
   background: rgba(49, 49, 49, 0.8);
 `;
 
+// export const PopUpOptions = styled(PopUpComponent)`
+//   margin-left: -4rem;
+//   @media screen and (max-width: 960px) {
+//     /* margin-left: -3rem; */
+//   }
+//   @media screen and (max-width: 769px) {
+//     margin-left: -8rem;
+//     width: 200px;
+//   }
+//   /* @media screen and (max-width: 650px) {
+//     margin-left: -10rem;
+//     /* width: 200px; */
+//   }
+//   @media screen and (max-width: 620px) {
+//     /* margin-left: -15rem; */
+//     /* width: 200px; */
+//   }
+// `;
+
 export const PopUpComponent = styled.div`
   position: absolute;
   margin-top: 0.1rem;
@@ -318,8 +337,13 @@ export const EventReportContainer = styled.div`
   }
 `;
 export const InnerWrapper = styled.section`
-  display: flex;
-  justify-content: space-between;
+  /* display: flex;
+  justify-content: space-between; */
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
+  /* justify-content: center;
+  align-items: center; */
 
   &:nth-child(1) {
     margin-bottom: 2rem;
@@ -330,11 +354,13 @@ export const InnerWrapper = styled.section`
   }
 
   @media screen and (max-width: 960px) {
-    flex-direction: column;
+    /* flex-direction: column; */
+    grid-template-columns: 1fr 1fr;
   }
 `;
 export const InnerContainer = styled.div`
-  width: 30%;
+  /* width: 30%; */
+  width: 100%;
   height: 110px;
   border-radius: 6px;
   padding: 10px 10px 0px 10px;
@@ -346,9 +372,12 @@ export const InnerContainer = styled.div`
   border-image: linear-gradient(to right, red, rgba(0, 0, 0, 0)) 1;
 
   @media screen and (max-width: 960px) {
-    width: 250px;
+    width: 380px;
     height: 150px;
     margin-bottom: 2rem;
+  }
+  @media screen and (max-width: 520px) {
+    width: 250px;
   }
 `;
 

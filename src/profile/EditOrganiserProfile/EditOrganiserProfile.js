@@ -49,13 +49,13 @@ import {
 import backgroundPicture from "../../images/dashboardBackgroundPicture.png";
 import logo from "../../images/dashboardLogo.png";
 import {
-  PrimaryButton,
   ModalPrimaryButton,
   AlternativeButton2,
   AbsolutePrimaryButton,
 } from "../../components/button/button";
 import { useNavigate } from "react-router";
 import { toast } from "react-toastify";
+import { API_URL_2 } from "../../redux/service/authService";
 
 const EditOrganiserProfile = () => {
   const [modal, setModal] = useState(false);
@@ -92,14 +92,11 @@ const EditOrganiserProfile = () => {
   useEffect(() => {
     const fetchOrganizerProfile = async () => {
       try {
-        const { data } = await axios.get(
-          `http://localhost:8080/profiles/${state?.id}`,
-          {
-            headers: {
-              Authorization: `Bearer ${user.token}`,
-            },
-          }
-        );
+        const { data } = await axios.get(API_URL_2 + `profiles/${state?.id}`, {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+          },
+        });
         dispatch(setEventOrganizerProfile(data));
         setIncomingData(data);
       } catch (error) {
@@ -261,7 +258,7 @@ const EditOrganiserProfile = () => {
     }
   };
   const discardNavigate = () => {
-    navigate("/home");
+    navigate("/dashboard");
   };
 
   const saveNavigate = async (e) => {
@@ -384,7 +381,7 @@ const EditOrganiserProfile = () => {
     ];
     try {
       const { data } = await axios.patch(
-        `http://localhost:8080/profiles/${state?.id}`,
+        API_URL_2 + `profiles/${state?.id}`,
         patchData,
         {
           headers: {
@@ -396,7 +393,7 @@ const EditOrganiserProfile = () => {
       console.log(data);
       dispatch(setEventOrganizerProfile(data));
       toast.success("Profile Updated Successfully");
-      navigate("/home");
+      navigate("/dashboard");
     } catch (error) {
       console.log(error);
       toast.error("Failed to update Profile");

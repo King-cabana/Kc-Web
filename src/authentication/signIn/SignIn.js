@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
+import { useSelector } from "react-redux";
 import {
   AuthBackground,
   Div,
@@ -22,6 +23,9 @@ import { ImSpinner6 } from "react-icons/im";
 import { setUserDetails } from "../../redux/slices/userDetailsSlice";
 import { useDispatch } from "react-redux";
 import { setUserToken } from "../../redux/slices/userDetailsSlice";
+import { setUserProfile } from "../../redux/slices/userProfileSlice";
+import axios from "axios";
+import { setEventOrganizerProfile } from "../../redux/slices/eventOrganizerProfileSlice";
 
 const SignIn = () => {
   const [click, setClick] = useState(false);
@@ -29,14 +33,12 @@ const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const user = useSelector((state) => state.userDetails);
 
   const handleClick = () => {
     setClick(!click);
     setVisibility(!visible);
   };
-
-  const token = localStorage.getItem("token");
-  const isAuthenticated = !!token;
 
   const InputType = visible ? "text" : "password";
 
@@ -48,24 +50,43 @@ const SignIn = () => {
 
   const dispatch = useDispatch();
 
+  const checkProfile = async (email, token) => {
+    try {
+      const { data } = await axios(
+        `https://api.kingcabana.com/eventuser/email?email=${email}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      console.log(data?.myProfile);
+      return {state : Boolean(data?.myProfile?.id) , value : data?.myProfile }
+    } catch (error) {
+      throw error;
+      // navigate("/createProfile");
+    }
+  };
+
   const handleLogin = async (e) => {
     e.preventDefault();
     setLoading(true);
     try {
-      const response = await login(email, password);
-      dispatch(setUserDetails(response?.data));
+      const { data } = await login(email, password);
+      dispatch(setUserDetails(data?.data));
+      console.log(data?.data);
+      console.log(user);
       toast.success("login successfully!");
-
       const userToken = localStorage.getItem("bearerToken") || "{}";
       dispatch(setUserToken({ name: "token", value: userToken }));
-      console.log(userToken);
-      // return a cleanup function
-      navigate("/createProfile");
-      // if (isAuthenticated) {
-      //   navigate("/dashboard");
-      // } else {
+      const hasProfile = await checkProfile(email, userToken);
+      console.log(hasProfile)
+      if (hasProfile?.state) {
+        dispatch(setEventOrganizerProfile(hasProfile?.value))
+        navigate("/dashboard");
+      } else {
         navigate("/createProfile");
-      // }
+      }
     } catch (error) {
       setLoading(false);
       if (error?.response?.status === 401) {
