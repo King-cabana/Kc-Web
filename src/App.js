@@ -114,49 +114,37 @@ function App() {
               element={
                 <Sidebar>
                   <DashboardHome />
-                </Sidebar>
-              }
-            />
+                </Sidebar>}/>
             <Route
               path="/event/noEvent"
               element={
                 <Sidebar>
                   <EmptyEvent />
-                </Sidebar>
-              }
-            />
+                </Sidebar>}/>
             <Route
               path="/event/history"
               element={
                 <Sidebar>
                   <SponsorEvent />
-                </Sidebar>
-              }
-            />
+                </Sidebar>}/>
             <Route
               path="/sponsor/proposal"
               element={
                 <Sidebar>
                   <EventHistory />
-                </Sidebar>
-              }
-            />
+                </Sidebar>}/>
             <Route
               path="/sponsor/matching"
               element={
                 <Sidebar>
                   <EventAnalytics />
-                </Sidebar>
-              }
-            />
+                </Sidebar>} />
             <Route
               path="/settings"
               element={
                 <Sidebar>
                   <Settings />
-                </Sidebar>
-              }
-            />
+                </Sidebar>}/>
             <Route path="/firstCreateEvent" element={<FirstCreateEvent />} />
             <Route path="/secondCreateEvent" element={<SecondCreateEvent />} />
             {/* <Route path="/contactInfo" element={<ContactInfo />} /> */}
@@ -165,7 +153,6 @@ function App() {
               path="/home"
               element={
                 <Sidebar>
-                  {" "}
                   <DashboardHome />{" "}
                 </Sidebar>
               }
@@ -174,7 +161,6 @@ function App() {
               path="/event/create"
               element={
                 <Sidebar>
-                  {" "}
                   <Event />{" "}
                 </Sidebar>
               }
@@ -183,7 +169,6 @@ function App() {
               path="/event/sponsor"
               element={
                 <Sidebar>
-                  {" "}
                   <SponsorEvent />{" "}
                 </Sidebar>
               }
