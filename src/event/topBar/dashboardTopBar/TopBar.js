@@ -83,7 +83,7 @@ const TopBar = () => {
             <img src={Logo} alt="King Cabana Logo" />
           </LogoLink>
         </TopBarLogo>
-        <SearchBar />
+        {/* <SearchBar /> */}
         <TopBarItemHolder>
           <ItemsHolder>
             <ItemsHolderInner>

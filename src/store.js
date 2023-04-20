@@ -10,6 +10,7 @@ import otpSlice from "./redux/slices/otpSlice";
 import userDetailsSlice from "./redux/slices/userDetailsSlice";
 import userProfileSlice from './redux/slices/userProfileSlice';
 import proposalSlice from './redux/slices/proposalSlice';
+import proposalPreviewSlice from "./redux/slices/proposalPreviewSlice";
 
 const persistConfig = {
   key: "kingCabana",
@@ -26,6 +27,7 @@ const reducer = combineReducers({
   userDetails: userDetailsSlice,
   userProfile: userProfileSlice,
   proposal: proposalSlice,
+  proposalPreview: proposalPreviewSlice,
 });
 
 const persistedReducer = persistReducer(persistConfig, reducer);

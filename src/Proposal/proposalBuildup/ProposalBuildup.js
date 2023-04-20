@@ -46,6 +46,7 @@ const ProposalBuildup = () => {
   const [impactTags, setImpactTags] = useState([]);
   const [newBenefitTag, setNewBenefitTag] = useState("");
   const [newImpactTag, setNewImpactTag] = useState("");
+  const { id } = useParams();
 
   const state = useSelector((state) => state.createEvent);
   const user = useSelector((state) => state.userDetails);
@@ -116,23 +117,21 @@ const ProposalBuildup = () => {
     setTags(tags.filter((t) => t !== tag));
   };
 
-  const { eventId } = useParams();
 
   const handleProposalPreview = (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);
     formData.append('impact', impactTags.join(','));
     formData.append('benefit', benefitTags.join(','));
-    formData.append('eventId', eventId);
+    formData.append('eventId', id);
     const data = Object.fromEntries(formData.entries());
     console.log(data);
     try {
         dispatch(createProposal(data , user.token))
+        navigate("/event/proposal/proposal-buildup/proposal-preview")
     } catch (error) {
         console.log(error)
     }
-    // console.log(store.getState())
-
   };
   
   return (
@@ -239,6 +238,7 @@ const ProposalBuildup = () => {
                   onChange={(event) => setNewBenefitTag(event.target.value)}
                 />
                 <AddButton
+                  type='submit'
                   onClick={() =>
                     handleAddTag(
                       newBenefitTag,
@@ -299,6 +299,7 @@ const ProposalBuildup = () => {
                   onChange={(event) => setNewImpactTag(event.target.value)}
                 />
                 <AddButton
+                  type='submit'
                   onClick={() =>
                     handleAddTag(
                       newImpactTag,

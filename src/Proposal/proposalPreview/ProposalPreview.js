@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   ProposalDetails,
   Detail,
@@ -12,64 +12,93 @@ import clock from "../../images/Clock.svg";
 import calendar from "../../images/calendar.svg";
 import Vector from "../../images/Vector-proposal.svg";
 import drummer from "../../images/drummer-proposal.png";
+import TopBar from "../../event/topBar/dashboardTopBar/TopBar";
+import LoadingScreen from "../../LoadingScreen";
+import { useNavigate, useParams } from "react-router";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 const ProposalPreview = () => {
+
+  const { id } = useParams();
+  const [preview, setPreview] = useState();
+  const [loading, setLoading] = useState(true);
+
+  const navigate = useNavigate();
+
+  useEffect(() =>{
+    const API_URL_2 = "https://api.kingcabana.com/proposals/event/";
+    const fetchProposalPreview = () => async () => {
+    try {
+      const {data} = await axios.get(API_URL_2 + `${id}`);
+      setPreview(data);
+    } catch (error) {
+      if (error?.response?.status === 400) {
+        navigate("/proposal-generated");
+        toast.error("Proposal Does Not Exist");
+        console.log("Proposal Does Not Exist");
+      }
+      throw error;
+    } finally {
+      setLoading(false);
+    }
+  };
+  fetchProposalPreview();
+}, [preview?.id]);
+
   return (
+    <>
+    <TopBar marginBottom="1rem" />
+      {/* {loading ? (
+        <LoadingScreen />
+      ) : ( */}
     <ProposalDetails>
       <h3>Proposal Preview</h3>
       <h3 className="header">
-        Sponsorship Proposal for Kofoworola Ademola Hall Week “23
+        Sponsorship Proposal for {preview?.eventName ? preview?.eventName : "Event Name"}
       </h3>
-      <img src={drummer} alt="" />
+      <img src={preview?.eventBannerUrl ? preview.eventBannerUrl : drummer} alt="drummer" />
       <Detail>
         <h4>Prepared By</h4>
-        <p>Kofoworola Ademola Hall</p>
-        <p>Lanisa Fayomika</p>
-        <p>ademolakohall@gmail.com</p>
-        <p>+2348025500567</p>
+        <p>{preview?.eventOrganizerName ? preview?.eventOrganizerName : "Event organizer's Name"}</p>
+        <p>{preview?.profileEmailAddress ? preview?.profileEmailAddress : "Event organizer's E-mail"}</p>
+        <p>{preview?.profilePhoneNumber ? preview?.profilePhoneNumber : "Phone number" }</p>
       </Detail>
       <Detail>
         <h4>To</h4>
-        <p>First Bank Plc</p>
+        <p>{preview?.eventSponsor ? preview?.eventSponsor : "Event Sponsor" }</p>
       </Detail>
       <Detail>
         <h4>Event Name</h4>
-        <p>Kofoworala Ademola Hall Week.</p>
+        <p>{preview?.eventName ? preview?.eventName : "Event Name" }</p>
       </Detail>
       <Detail>
         <h4>Event Theme</h4>
         <p>
-          Lorem ipsum dolor sit amet consectetur. Sapien volutpat id nulla id
-          viverra.
+          {preview?.eventTheme ? preview?.eventTheme : "Event Theme"}
         </p>
       </Detail>
       <SubDetail>
         <Detail>
           <h4>Event Time</h4>
-          <img src={clock} alt="" />
-          <p>11:30 - 3:30pm</p>
+          <img src={clock} alt="time" />
+          <p>{preview?.eventStartTime ? preview?.eventStartTime : "Event Time"}</p>
         </Detail>
         <Detail>
           <h4>Event Date</h4>
-          <img src={calendar} alt="" />
-          <p>20th, April, 2023.</p>
+          <img src={calendar} alt="date" />
+          <p>{preview?.eventStartDate ? preview?.eventStartDate : "Event Date" }</p>
         </Detail>
       </SubDetail>
       <Detail>
         <h4>Event description</h4>
         <p>
-          Lorem ipsum dolor sit amet consectetur. Vulputate ullamcorper lobortis
-          est amet proin diam. Velit ut in augue maecenas. Malesuada nam
-          molestie donec morbi. Amet sed sed id quis ut dictum diam. Enim
-          rhoncus morbi nisl ut nunc. Ornare ipsum venenatis viverra sit leo ut
-          rutrum amet pellentesque. Elit nullam leo sit pellentesque. Sed nunc
-          risus nulla nisi. Interdum malesuada viverra adipiscing parturient nam
-          sem egestas aliquet.
+          {preview?.eventDescription ? preview?.eventDescription : "Event Description" }
         </p>
       </Detail>
       <Detail>
         <h4>Estimated Attendance</h4>
-        <p>4000-5000 Students</p>
+        <p>{preview?.estimatedAttendance ? preview?.estimatedAttendance : "Estimated"}</p>
       </Detail>
       <Detail>
         <h4>Benefits of sponsoring this event</h4>
@@ -131,6 +160,8 @@ const ProposalPreview = () => {
         </ButtonDiv>
       </Detail>
     </ProposalDetails>
+      {/* )} */}
+    </>
   );
 };
 
