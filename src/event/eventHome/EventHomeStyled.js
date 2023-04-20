@@ -360,6 +360,7 @@ export const InnerWrapper = styled.section`
 `;
 export const InnerContainer = styled.div`
   /* width: 30%; */
+  cursor: pointer;
   width: 100%;
   height: 110px;
   border-radius: 6px;

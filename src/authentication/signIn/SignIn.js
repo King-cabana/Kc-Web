@@ -61,7 +61,7 @@ const SignIn = () => {
         }
       );
       console.log(data?.myProfile);
-      return {state : Boolean(data?.myProfile?.id) , value : data?.myProfile }
+      return { state: Boolean(data?.myProfile?.id), value: data?.myProfile };
     } catch (error) {
       throw error;
     }
@@ -79,9 +79,9 @@ const SignIn = () => {
       const userToken = localStorage.getItem("bearerToken") || "{}";
       dispatch(setUserToken({ name: "token", value: userToken }));
       const hasProfile = await checkProfile(email, userToken);
-      console.log(hasProfile)
+      console.log(hasProfile);
       if (hasProfile?.state) {
-        dispatch(setEventOrganizerProfile(hasProfile?.value))
+        dispatch(setEventOrganizerProfile(hasProfile?.value));
         navigate("/dashboard");
       } else {
         navigate("/createProfile");
