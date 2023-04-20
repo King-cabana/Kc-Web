@@ -8,12 +8,13 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import Event from "./event/pages/Event";
-import EmptyEvent from "./event/pages/NoEvent";
-// import EventPlanning from "./event/eventPlanning/EventPlanning";
 import SponsorEvent from "./event/pages/SponsorEvent";
 import EventHistory from "./event/pages/EventHistory";
-import EventAnalytics from "./event/pages/Analytics";
 import Settings from "./event/pages/Settings";
+import Messaging from "./event/pages/Messaging";
+import Notifications from "./event/pages/Notifications";
+import VendorsMgt from "./event/pages/VendorsMgt";
+import AttendeesMgt from "./event/pages/AttendeesMgt";
 
 import EventPlanPreview from "./event/eventPlanPreview/EventPlanPreview";
 import Submitted from "./event/budgetInventory/Submitted";
@@ -159,7 +160,7 @@ function App() {
               path="/event/history"
               element={
                 <Sidebar>
-                  <SponsorEvent />
+                   <EventHistory />
                 </Sidebar>
               }
             />
@@ -167,7 +168,7 @@ function App() {
               path="/sponsor/proposal"
               element={
                 <Sidebar>
-                  <EventHistory />
+                  <SponsorEvent />
                 </Sidebar>
               }
             />
@@ -176,6 +177,47 @@ function App() {
               element={
                 <Sidebar>
                   <Analytics />
+                </Sidebar>
+              }
+            />
+
+            <Route
+              path="/vendorsmanagement"
+              element={
+                <Sidebar>
+                  <VendorsMgt />
+                </Sidebar>
+              }
+            />
+            <Route
+              path="/attendeesmanagement"
+              element={
+                <Sidebar>
+                  <AttendeesMgt />
+                </Sidebar>
+              }
+            />
+             <Route
+              path="/analytics"
+              element={
+                <Sidebar>
+                  <Analytics />
+                </Sidebar>
+              }
+            />
+            <Route
+              path="/messaging"
+              element={
+                <Sidebar>
+                  <Messaging />
+                </Sidebar>
+              }
+            />
+            <Route
+              path="/notifications"
+              element={
+                <Sidebar>
+                  <Notifications />
                 </Sidebar>
               }
             />
@@ -226,14 +268,6 @@ function App() {
               element={
                 <Sidebar>
                   <Analytics />
-                </Sidebar>
-              }
-            />
-            <Route
-              path="/settings"
-              element={
-                <Sidebar>
-                  <Settings />
                 </Sidebar>
               }
             />

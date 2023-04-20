@@ -55,7 +55,7 @@ const EventHome = () => {
   useEffect(() => {
     const fetchOrganizerProfile = async () => {
       try {
-        const { data } = await axios.get(API_URL_2 + `profiles/${8}`, {
+        const { data } = await axios.get(API_URL_2 + `profiles/${state?.id}`, {
           headers: {
             Authorization: `Bearer ${user.token}`,
           },

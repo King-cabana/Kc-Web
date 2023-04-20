@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { LogoLink } from "../../../components/navbar/Navbar.styled";
 import {
   TopBarContainer,
@@ -19,7 +19,7 @@ import { SlBell } from "react-icons/sl";
 import { RiArrowDownSLine } from "react-icons/ri";
 import { KBTextM } from "../../../components/fonts/fontSize";
 import { useDispatch, useSelector } from "react-redux";
-import { clearUserDetails, fetchUserDetails, setUserDetails } from "../../../redux/slices/userDetailsSlice";
+import { clearUserDetails} from "../../../redux/slices/userDetailsSlice";
 import { clearEventOrganizerProfile } from "../../../redux/slices/eventOrganizerProfileSlice";
 // import { useNavigate } from "react-router";
 import { toast } from "react-toastify";
@@ -106,8 +106,11 @@ const TopBar = () => {
                 <KBTextM>{user?.details?.fullName}</KBTextM>
 
                 <Dropdown>
-                  <DropDownBtn onClick={showDropDown} className="dropbtn">
+                  {/* <DropDownBtn onClick={showDropDown} className="dropbtn">
                     <RiArrowDownSLine />
+                  </DropDownBtn> */}
+                  <DropDownBtn onClick={showDropDown} className="dropbtn">
+                        <RiArrowDownSLine />
                   </DropDownBtn>
                   <DropdownContent id="myDropdown" className="dropdown-content">
                     <div

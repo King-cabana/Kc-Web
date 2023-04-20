@@ -8,6 +8,7 @@ import {
   ProposalBackground,
   ProposalInner,
   BenefitsTag,
+  ProposalTagsWrapper,
 } from "./ProposalBuildupStyled";
 import { BsChevronRight } from "react-icons/bs";
 import { InputSeg } from "../../profile/organiserProfile/OrganiserProfileStyled";
@@ -26,7 +27,6 @@ import {
   Delete,
   EventSubSection,
   InputTagBox,
-  TagsWrapper,
 } from "../../event/createEvent/TimeLineEventsStyled";
 import { AiOutlineClose } from "react-icons/ai";
 import {
@@ -253,13 +253,12 @@ const ProposalBuildup = () => {
                   Add
                 </AddButton>
               </InputTagBox>
-              <TagsWrapper>
+              <ProposalTagsWrapper>
                 {benefitTags?.map((tag, index) => (
                   <div key={index}>
                     <BenefitsTag
                       style={{
-                        marginTop: "5%",
-                        marginBottom: "0.5rem",
+                        marginTop: "2%",
                         width: "max-content",
                         border: "1px solid black",
                         color: "black",
@@ -287,7 +286,7 @@ const ProposalBuildup = () => {
                     </BenefitsTag>
                   </div>
                 ))}
-              </TagsWrapper>
+              </ProposalTagsWrapper>
             </EventSubSection>
 
             <EventSubSection style={{ padding: "0", marginTop: "3%" }}>
@@ -314,13 +313,12 @@ const ProposalBuildup = () => {
                   Add
                 </AddButton>
               </InputTagBox>
-              <TagsWrapper>
+              <ProposalTagsWrapper>
                 {impactTags?.map((tag, index) => (
                   <div key={index}>
                     <BenefitsTag
                       style={{
-                        marginTop: "5%",
-                        marginBottom: "0.5rem",
+                        marginTop: "2%",
                         width: "max-content",
                         border: "1px solid black",
                         color: "black",
@@ -348,7 +346,7 @@ const ProposalBuildup = () => {
                     </BenefitsTag>
                   </div>
                 ))}
-              </TagsWrapper>
+              </ProposalTagsWrapper>
             </EventSubSection>
 
             <InputSeg style={{ marginTop: "3%" }}>
@@ -374,7 +372,7 @@ const ProposalBuildup = () => {
             style={{
               color: "#FF2957",
               fontWeight: "600",
-              marginRight: "2rem",
+              marginRight: "15px",
             }}
           >
             Back

@@ -25,6 +25,7 @@ export const SidebarData = [
 
   {
     title: "Event",
+    path: "/event/planning",
     icon: (
       <CalendarIcon
         className="h-6 h-6 text-gray-500"
@@ -59,6 +60,7 @@ export const SidebarData = [
 
   {
     title: "Sponsor",
+    path: "/sponsor/matching",
     icon: (
       <BanknotesIcon
         className="h-6 h-6 text-gray-500"
@@ -70,11 +72,11 @@ export const SidebarData = [
     iconOpened: <MdIcons.MdKeyboardArrowDown />,
 
     subNav: [
-      {
-        title: "Proposal",
-        path: "/sponsor/proposal",
-        icon: <BsIcons.BsDot />,
-      },
+      // {
+      //   title: "Proposal",
+      //   path: "/sponsor/proposal",
+      //   icon: <BsIcons.BsDot />,
+      // },
       {
         title: "Matching",
         path: "/sponsor/matching",
@@ -105,14 +107,14 @@ export const SidebarData = [
   },
   {
     title: "Notifications",
-    path: "/notification",
+    path: "/notifications",
     icon: (
       <BellIcon className="h-6 h-6 text-gray-500" style={{ width: "20px" }} />
     ),
   },
   {
     title: "Attendees Mgt",
-    path: "/attendeesmgt",
+    path: "/attendeesmanagement",
     icon: (
       <UserGroupIcon
         className="h-6 h-6 text-gray-500"
@@ -122,7 +124,7 @@ export const SidebarData = [
   },
   {
     title: "Vendors Mgt",
-    path: "/vendorsmgt",
+    path: "/vendorsmanagement",
     icon: (
       <UserPlusIcon
         className="h-6 h-6 text-gray-500"

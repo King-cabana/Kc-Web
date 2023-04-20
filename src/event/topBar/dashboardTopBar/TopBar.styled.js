@@ -40,13 +40,13 @@ export const TopBarLogo = styled.div`
 
 export const TopBarItemHolder = styled.div`
   height: inherit;
-  width: 20%;
+  width: 25%;
   display: flex;
   justify-content: space-between;
   align-items: center;
 
   @media screen and (max-width: 480px) {
-    width: 30%;
+    width: 40%;
   }
 `;
 
@@ -64,7 +64,7 @@ export const ItemsHolder = styled.div`
 
 export const ItemsHolderInner = styled.div`
   height: inherit;
-  width: fit-content;
+  width: inherit;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -118,17 +118,45 @@ export const ProfilePicture = styled.div`
 export const Dropdown = styled.div`
   position: relative;
   display: inline-block;
+
+  @media screen and (max-width: 670px) {
+    width: 40px;
+  }
+  @media screen and (max-width: 375px) {
+    width: 35px;
+  }
+  @media screen and (max-width: 320px) {
+    width: 35px;
+  }
 `;
 
-export const DropDownBtn = styled.button`
-  padding: 6px;
-  /* font-size: 16px; */
-  border: none;
-  cursor: pointer;
+// export const DropDownBtn = styled.button`
+//   padding: 6px;
+//   /* font-size: 16px; */
+//   border: none;
+//   cursor: pointer;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+// `;
+
+export const DropDownBtn = styled.div`
+  padding: 10px;
   display: flex;
   align-items: center;
-  justify-content: center;
+  cursor: pointer;
+  border-radius: 100px;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #F1F1F1;
+  }
+
+  &:active {
+    background-color: #bfbfbf;
+  }
 `;
+
 
 export const DropdownContent = styled.div`
   display: none;
