@@ -12,8 +12,10 @@ export const ProposalPlanningDiv = styled.div`
   color: #484848;
   margin-top: 2rem;
   margin-bottom: 3.2rem;
-  text-align: center;`
-
+  text-align: center
+  
+  ;`
+  
 export const CreateEventButton = styled.button`
   background-color: #ff2957;
   text-align: center;
@@ -23,5 +25,5 @@ export const CreateEventButton = styled.button`
   margin: 40px 0 40px 80px;
   color: #fff;
   font-size: 1rem;
-  
+
 `;

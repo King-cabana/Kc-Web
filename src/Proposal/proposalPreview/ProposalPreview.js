@@ -4,18 +4,19 @@ import {
   Detail,
   SubDetail,
   Budget,
-  CreateEditButton,
-  CreatePlanningButton,
-  ButtonDiv,
-} from "./ProposalPreviewStyled";
+  EditBackgroundPicture,
+  
+ } from "./ProposalPreviewStyled";
+
 import clock from "../../images/Clock.svg";
-import calendar from "../../images/calendar.svg";
-import Vector from "../../images/Vector-proposal.svg";
+import Vector from "../../images/VectorNew.svg";
 import drummer from "../../images/drummer-proposal.png";
 import TopBar from "../../event/topBar/dashboardTopBar/TopBar";
 import LoadingScreen from "../../LoadingScreen";
 import { useNavigate, useParams } from "react-router";
 import axios from "axios";
+import { AbsolutePrimaryButton, AlternativeButton2 } from "../../components/button/button";
+import { ButtonContainer } from "../../event/pages/DefineAudienceStyled";
 import { toast } from "react-toastify";
 
 const ProposalPreview = () => {
@@ -25,6 +26,15 @@ const ProposalPreview = () => {
   const [loading, setLoading] = useState(true);
 
   const navigate = useNavigate();
+
+  const navigateBack = () => {
+    navigate(`/event/proposal/proposal-buildup/${id}`);
+  };
+
+  const navigateNext = () => {
+    navigate("");
+  };
+
 
   useEffect(() =>{
     const API_URL_2 = "https://api.kingcabana.com/proposals/event/";
@@ -45,6 +55,9 @@ const ProposalPreview = () => {
   };
   fetchProposalPreview();
 }, [preview?.id]);
+
+
+ 
 
   return (
     <>
@@ -86,7 +99,7 @@ const ProposalPreview = () => {
         </Detail>
         <Detail>
           <h4>Event Date</h4>
-          <img src={calendar} alt="date" />
+          <img src={Vector} alt="date" />
           <p>{preview?.eventStartDate ? preview?.eventStartDate : "Event Date" }</p>
         </Detail>
       </SubDetail>
@@ -145,7 +158,7 @@ const ProposalPreview = () => {
       <Detail>
         <h4>Event Budget</h4>
         <Budget>
-          <img src={Vector} alt="" />
+          {/* <img src={Vector} alt="" /> */}
           <div>
             <p>The total cost of the event is #4,000,000.00</p>
             <p>
@@ -154,10 +167,20 @@ const ProposalPreview = () => {
             </p>
           </div>
         </Budget>
-        <ButtonDiv>
-          <CreateEditButton>Edit</CreateEditButton>
-          <CreatePlanningButton>Generate</CreatePlanningButton>
-        </ButtonDiv>
+        <ButtonContainer style={{ margin: "0rem" }}>
+            <AlternativeButton2
+              onClick={navigateBack}
+              style={{
+                color: "#FF2957",
+                fontWeight: "600",
+                marginRight: "15px",
+              }}>
+              Edit
+            </AlternativeButton2>
+            <AbsolutePrimaryButton onClick={navigateNext}>
+              Generate
+            </AbsolutePrimaryButton>
+          </ButtonContainer>
       </Detail>
     </ProposalDetails>
       {/* )} */}

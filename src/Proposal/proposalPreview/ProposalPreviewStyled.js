@@ -1,7 +1,8 @@
 import styled from "styled-components";
+import { BackgroundPicture } from "../../event/eventHome/EventHomeStyled";
 
 export const ProposalDetails = styled.div`
-  padding: 2%;
+  padding: 1rem 1rem;
   h3 {
     color: #484848;
   }
@@ -9,16 +10,21 @@ export const ProposalDetails = styled.div`
     color: #ff9e00;
     text-align: center;
     margin: 20px 0;
-  }
+
+  }`;
+  
+  export const EditBackgroundPicture = styled(BackgroundPicture)`
+  /* height: 150px; */
 `;
 export const Detail = styled.div`
   h4 {
     font-weight: 500;
     font-size: 20px;
+    line-height: 60px;
   }
   p {
     font-size: 16px;
-    width: 1064px;
+    /* width: 1064px; */
   }
   h4,
   p {
@@ -31,6 +37,7 @@ export const Detail = styled.div`
   }
   margin-top: 10px;
   margin-bottom: 10px;
+
 `;
 export const SubDetail = styled.div`
   p {
@@ -39,7 +46,12 @@ export const SubDetail = styled.div`
   }
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 10px;
+
+  @media screen and (max-width: 768px){
+    display:block;.add
+
+  }
 `;
 
 export const CreatePlanningButton = styled.button`
@@ -57,6 +69,26 @@ export const CreatePlanningButton = styled.button`
 export const Budget = styled.div`
   display: flex;
   gap: 20px;
+  margin-bottom: 100px;
+  width: 100%;
+  background: #FFFFFF;
+  border: 1px solid rgba(0, 104, 255, 0.1);
+  border-radius: 20px;
+ flex: none;
+ order: 1;
+ flex-grow: 0;
+ box-sizing: border-box;
+ display: flex;
+ flex-direction: row;
+ align-items: center;
+ padding: 15px;
+ gap: 10px;
+ width: 1064px;
+ height: 131px;
+
+
+
+  
 `;
 
 export const CreateEditButton = styled.button`
