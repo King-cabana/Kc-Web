@@ -39,6 +39,8 @@ import { useParams } from "react-router-dom";
 
 const ProposalBuildup = () => {
   const [file, setFile] = useState("");
+  const [sponsorsOrg, setSponsorsOrg] = useState("");
+  const [eventBudget, setEventBudget] = useState("");
   const [isSuccess, setIsSuccess] = useState(false);
   const [errorMsg, setErrorMsg] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -80,12 +82,12 @@ const ProposalBuildup = () => {
         if (backgroundPicture.secure_url) {
           setFile(backgroundPicture.secure_url);
           setLoading(false);
-          dispatch(
-            editProfile({
-              name: e.target.name,
-              value: backgroundPicture.secure_url,
-            })
-          );
+          // dispatch(
+          //   editProfile({
+          //     name: e.target.name,
+          //     value: backgroundPicture.secure_url,
+          //   })
+          // );
         }
       } catch (error) {
         setLoading(false);
@@ -128,10 +130,12 @@ const ProposalBuildup = () => {
     console.log(data);
     try {
         dispatch(createProposal(data , user.token))
-        navigate("/event/proposal/proposal-buildup/proposal-preview")
+        navigate(`/event/proposal/proposal-buildup/proposal-preview/${id}`)
     } catch (error) {
         console.log(error)
     }
+    // console.log(store.getState())
+
   };
   
   return (
@@ -216,15 +220,8 @@ const ProposalBuildup = () => {
         <Input
             type="text"
             name="sponsorOrganizationName"
-            onChange={(e) =>
-            dispatch(
-                editProfile({
-                name: e.target.name,
-                value: e.target.value,
-                })
-            )
-            }
-            defaultValue={state.sponsorOrganizationName}
+            value={sponsorsOrg}
+            onChange={(e) => setSponsorsOrg(e.target.value)}
         />
     </InputSeg>
 
@@ -238,7 +235,7 @@ const ProposalBuildup = () => {
                   onChange={(event) => setNewBenefitTag(event.target.value)}
                 />
                 <AddButton
-                  type='submit'
+                  type="button"
                   onClick={() =>
                     handleAddTag(
                       newBenefitTag,
@@ -299,7 +296,7 @@ const ProposalBuildup = () => {
                   onChange={(event) => setNewImpactTag(event.target.value)}
                 />
                 <AddButton
-                  type='submit'
+                  type="button" 
                   onClick={() =>
                     handleAddTag(
                       newImpactTag,
@@ -356,15 +353,8 @@ const ProposalBuildup = () => {
                     type="text"
                     name="eventBudget"
                     placeholder="Add the estimated total of what you need and amount required (optional) "
-                    onChange={(e) =>
-                    dispatch(
-                        editProfile({
-                        name: e.target.name,
-                        value: e.target.value,
-                        })
-                    )
-                    }
-                    defaultValue={state.eventBudget}
+                    value={eventBudget}
+                    onChange={(e) => setEventBudget(e.target.value)}
                 />
             </InputSeg>
             <ButtonContainer style={{ margin: "0rem" }}>

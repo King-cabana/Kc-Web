@@ -110,7 +110,7 @@ function App() {
 
             {/* <Route path="/event/proposal" element={<Proposal />} /> */}
             <Route
-              path="/event/proposal/proposal-buildup/proposal-preview"
+              path="/event/proposal/proposal-buildup/proposal-preview/:id"
               element={<ProposalPreview />}
             />
             <Route path="/guestView" element={<GuestView />} />

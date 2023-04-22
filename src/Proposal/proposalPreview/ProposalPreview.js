@@ -5,9 +5,7 @@ import {
   SubDetail,
   Budget,
   EditBackgroundPicture,
-  
- } from "./ProposalPreviewStyled";
-
+} from "./ProposalPreviewStyled";
 import clock from "../../images/Clock.svg";
 import Vector from "../../images/VectorNew.svg";
 import drummer from "../../images/drummer-proposal.png";
@@ -18,14 +16,19 @@ import axios from "axios";
 import { AbsolutePrimaryButton, AlternativeButton2 } from "../../components/button/button";
 import { ButtonContainer } from "../../event/pages/DefineAudienceStyled";
 import { toast } from "react-toastify";
+import { setProposalPreview } from "../../redux/slices/proposalPreviewSlice";
+import { useDispatch, useSelector } from "react-redux";
+
+const API_URL = "https://api.kingcabana.com/proposals/event/";
 
 const ProposalPreview = () => {
-
   const { id } = useParams();
   const [preview, setPreview] = useState();
   const [loading, setLoading] = useState(true);
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.userDetails);
 
   const navigateBack = () => {
     navigate(`/event/proposal/proposal-buildup/${id}`);
@@ -36,29 +39,35 @@ const ProposalPreview = () => {
   };
 
 
-  useEffect(() =>{
+  useEffect(() => {
     const API_URL_2 = "https://api.kingcabana.com/proposals/event/";
-    const fetchProposalPreview = () => async () => {
-    try {
-      const {data} = await axios.get(API_URL_2 + `${id}`);
-      setPreview(data);
-    } catch (error) {
-      if (error?.response?.status === 400) {
-        navigate("/proposal-generated");
-        toast.error("Proposal Does Not Exist");
-        console.log("Proposal Does Not Exist");
+    const fetchProposalPreview = async () => {
+      try {
+        const response = await axios.get(API_URL_2 + id, {
+          headers: {
+            Authorization: `Bearer ${user?.token}`,
+          },
+        });
+        setPreview(response.data);
+      } catch (error) {
+        if (error?.response?.status === 400) {
+          navigate("/proposal-generated");
+          toast.error("Proposal Does Not Exist");
+          console.log("Proposal Does Not Exist");
+        } else {
+          toast.error("Failed to fetch proposal preview");
+          console.log(error);
+        }
+      } finally {
+        setLoading(false);
       }
-      throw error;
-    } finally {
-      setLoading(false);
+    };
+    if (id && user?.token) {
+      fetchProposalPreview();
     }
-  };
-  fetchProposalPreview();
-}, [preview?.id]);
-
-
- 
-
+  }, [id, user?.token]);
+  
+  
   return (
     <>
     <TopBar marginBottom="1rem" />
