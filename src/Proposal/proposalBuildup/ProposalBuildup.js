@@ -23,7 +23,7 @@ import {
   FileWrapper,
 } from "../../event/budgetInventory/BudgetStyled";
 import { editProfile } from "../../redux/slices/profileSlice";
-import { useNavigate } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import {
   AddButton,
   Delete,
@@ -40,11 +40,13 @@ import {
 
 const ProposalBuildup = () => {
   const [file, setFile] = useState("");
+  const { id } = useParams();
   const [isSuccess, setIsSuccess] = useState(false);
   const [errorMsg, setErrorMsg] = useState(false);
   const [loading, setLoading] = useState(false);
   const [newTagBenefit, setNewTagBenefit] = useState("");
   const [newTagImpact, setNewTagImpact] = useState("");
+  console.log(id);
 
   const state = useSelector((state) => state.createEvent);
 
