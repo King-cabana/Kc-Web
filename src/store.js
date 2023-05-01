@@ -28,7 +28,6 @@ const reducer = combineReducers({
   userDetails: userDetailsSlice,
   userProfile: userProfileSlice,
   proposal: proposalSlice,
-  proposalCreated: proposalCreatedSlice,
   proposalPreview: proposalPreviewSlice,
 });
 
