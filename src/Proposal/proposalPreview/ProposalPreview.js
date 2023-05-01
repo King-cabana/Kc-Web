@@ -4,7 +4,6 @@ import {
   Detail,
   SubDetail,
   Budget,
-  EditBackgroundPicture,
 } from "./ProposalPreviewStyled";
 import clock from "../../images/Clock.svg";
 import Vector from "../../images/VectorNew.svg";
@@ -16,10 +15,9 @@ import axios from "axios";
 import { AbsolutePrimaryButton, AlternativeButton2 } from "../../components/button/button";
 import { ButtonContainer } from "../../event/pages/DefineAudienceStyled";
 import { toast } from "react-toastify";
-import { setProposalPreview } from "../../redux/slices/proposalPreviewSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { BackgroundPicture, ImagesContainer } from "../../event/eventHome/EventHomeStyled";
 
-const API_URL = "https://api.kingcabana.com/proposals/event/";
 
 const ProposalPreview = () => {
   const { id } = useParams();
@@ -29,6 +27,7 @@ const ProposalPreview = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.userDetails);
+  const proposalId = sessionStorage.getItem('proposalId');
 
   const navigateBack = () => {
     navigate(`/event/proposal/proposal-buildup/${id}`);
@@ -38,22 +37,21 @@ const ProposalPreview = () => {
     navigate("");
   };
 
-
+console.log(proposalId)
   useEffect(() => {
-    const API_URL_2 = "https://api.kingcabana.com/proposals/event/";
+    const API_URL_2 = "https://api.kingcabana.com/proposals/";
     const fetchProposalPreview = async () => {
       try {
-        const response = await axios.get(API_URL_2 + id, {
+        const {data} = await axios.get(API_URL_2 + proposalId, {
           headers: {
             Authorization: `Bearer ${user?.token}`,
           },
         });
-        setPreview(response.data);
+        setPreview(data);
+      
       } catch (error) {
         if (error?.response?.status === 400) {
-          navigate("/proposal-generated");
-          toast.error("Proposal Does Not Exist");
-          console.log("Proposal Does Not Exist");
+          // toast.error("Proposal Does Not Exist");
         } else {
           toast.error("Failed to fetch proposal preview");
           console.log(error);
@@ -71,15 +69,20 @@ const ProposalPreview = () => {
   return (
     <>
     <TopBar marginBottom="1rem" />
-      {/* {loading ? (
+      {loading ? (
         <LoadingScreen />
-      ) : ( */}
+      ) : (
     <ProposalDetails>
       <h3>Proposal Preview</h3>
       <h3 className="header">
         Sponsorship Proposal for {preview?.eventName ? preview?.eventName : "Event Name"}
       </h3>
-      <img src={preview?.eventBannerUrl ? preview.eventBannerUrl : drummer} alt="drummer" />
+      <ImagesContainer>
+            <BackgroundPicture
+              src={preview?.eventBannerUrl ? preview.eventBannerUrl : drummer}
+              alt="Background Picture"
+            />
+          </ImagesContainer>
       <Detail>
         <h4>Prepared By</h4>
         <p>{preview?.eventOrganizerName ? preview?.eventOrganizerName : "Event organizer's Name"}</p>
@@ -123,57 +126,35 @@ const ProposalPreview = () => {
         <p>{preview?.estimatedAttendance ? preview?.estimatedAttendance : "Estimated"}</p>
       </Detail>
       <Detail>
-        <h4>Benefits of sponsoring this event</h4>
-        <ul>
-          <li>
-            Lorem ipsum dolor sit amet consectetur. In aliquet elit pellentesque
-            sapien scelerisque in.
-          </li>
-          <li>
-            Amet platea pharetra et ac lectus ac sed dictum. Nulla in laoreet
-            sem enim.
-          </li>
-          <li>
-            Lorem ipsum dolor sit amet consectetur. In aliquet elit pellentesque
-            sapien scelerisque in.
-          </li>
-          <li>
-            Amet platea pharetra et ac lectus ac sed dictum. Nulla in laoreet
-            sem enim.
-          </li>
-        </ul>
+          <h4>Benefits of sponsoring this event</h4>
+          {preview?.benefitList ? (
+            <ul>
+              {preview.benefitList.map((benefit) => (
+                <li key={benefit}>{benefit}</li>
+              ))}
+            </ul>
+          ) : (
+            "Benefit List"
+          )}
       </Detail>
+
       <Detail>
         <h4>Impact of the event on the community</h4>
-        <ul>
-          <li>
-            Lorem ipsum dolor sit amet consectetur. In aliquet elit pellentesque
-            sapien scelerisque in.
-          </li>
-          <li>
-            Amet platea pharetra et ac lectus ac sed dictum. Nulla in laoreet
-            sem enim.
-          </li>
-          <li>
-            Lorem ipsum dolor sit amet consectetur. In aliquet elit pellentesque
-            sapien scelerisque in.
-          </li>
-          <li>
-            Amet platea pharetra et ac lectus ac sed dictum. Nulla in laoreet
-            sem enim.
-          </li>
-        </ul>
+          {preview?.potentialImpacts ? (
+            <ul>
+              {preview.potentialImpacts.map((impacts) => (
+                <li key={impacts}>{impacts}</li>
+              ))}
+            </ul>
+          ) : (
+            "Potential Impact List"
+          )}
       </Detail>
       <Detail>
         <h4>Event Budget</h4>
         <Budget>
-          {/* <img src={Vector} alt="" /> */}
           <div>
-            <p>The total cost of the event is #4,000,000.00</p>
-            <p>
-              We would require #3,000,000.00 worth of sponsorship from your
-              organization
-            </p>
+            <p>{preview?.eventBudgetAddOn ? preview?.eventBudgetAddOn : "Event Budget"}</p>
           </div>
         </Budget>
         <ButtonContainer style={{ margin: "0rem" }}>
@@ -192,7 +173,7 @@ const ProposalPreview = () => {
           </ButtonContainer>
       </Detail>
     </ProposalDetails>
-      {/* )} */}
+     )}
     </>
   );
 };

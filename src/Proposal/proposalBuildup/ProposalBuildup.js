@@ -19,9 +19,11 @@ import {
   Supported,
   UploadBtn,
 } from "../../event/createEvent/FirstCreateEventStyled";
-import { ButtonContainer, FileWrapper } from "../../event/budgetInventory/BudgetStyled";
-import { editProfile } from "../../redux/slices/profileSlice";
-import {useNavigate } from "react-router";
+import {
+  ButtonContainer,
+  FileWrapper,
+} from "../../event/budgetInventory/BudgetStyled";
+import { useNavigate } from "react-router";
 import {
   AddButton,
   Delete,
@@ -33,24 +35,27 @@ import {
   AbsolutePrimaryButton,
   AlternativeButton2,
 } from "../../components/button/button";
-import { createProposal } from "../../redux/slices/proposalSlice";
+import createProposal from "../../redux/service/createProposal";
 import { useParams } from "react-router-dom";
-
+import {
+  addBenefitList,
+  addFields,
+  addPotentialImpact,
+  removeBLTag,
+  removePITag,
+} from "../../redux/slices/proposalSlice";
 
 const ProposalBuildup = () => {
   const [file, setFile] = useState("");
-  const [sponsorsOrg, setSponsorsOrg] = useState("");
-  const [eventBudget, setEventBudget] = useState("");
   const [isSuccess, setIsSuccess] = useState(false);
   const [errorMsg, setErrorMsg] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [benefitTags, setBenefitTags] = useState([]);
-  const [impactTags, setImpactTags] = useState([]);
-  const [newBenefitTag, setNewBenefitTag] = useState("");
-  const [newImpactTag, setNewImpactTag] = useState("");
+  const [benefitList, setNewBenefitTag] = useState("");
+  const [potentialImpacts, setPotentialImpacts] = useState("");
   const { id } = useParams();
 
-  const state = useSelector((state) => state.createEvent);
+  const eventId = id;
+  const state = useSelector((state) => state.proposal);
   const user = useSelector((state) => state.userDetails);
 
   const navigate = useNavigate();
@@ -82,19 +87,21 @@ const ProposalBuildup = () => {
         if (backgroundPicture.secure_url) {
           setFile(backgroundPicture.secure_url);
           setLoading(false);
-          // dispatch(
-          //   editProfile({
-          //     name: e.target.name,
-          //     value: backgroundPicture.secure_url,
-          //   })
-          // );
+          dispatch(
+            addFields({
+              name: e.target.name,
+              value: backgroundPicture.secure_url,
+            })
+          );
         }
       } catch (error) {
         setLoading(false);
         setErrorMsg("**ERROR UPLOADING IMAGE!**");
+        return null;
       }
     }
   };
+
   useEffect(() => {
     if (!file) {
       setErrorMsg("*Please choose an image*");
@@ -105,39 +112,113 @@ const ProposalBuildup = () => {
     setIsSuccess(true);
   }, [file]);
 
-  const handleAddTag = (tag, setTag, tags, setTags) => {
-    if (tag !== "") {
-      const alreadyExists = tags.some((t) => t === tag);
-      if (!alreadyExists && tags.length < 5) {
-        setTags([...tags, tag]);
+  const handleTag = () => {
+    if (benefitList !== "") {
+      const alreadyExists = state?.benefitList?.some(
+        (tag) => tag === benefitList
+      );
+      if (!alreadyExists && state?.benefitList?.length < 5) {
+        dispatch(addBenefitList(benefitList));
       }
-      setTag("");
+      setNewBenefitTag("");
     }
   };
-
-  const handleRemoveTag = (tag, tags, setTags) => {
-    setTags(tags.filter((t) => t !== tag));
+  const handleRemoveTag = (tag) => {
+    dispatch(removeBLTag(tag));
   };
 
+  const handlePITag = () => {
+    if (potentialImpacts !== "") {
+      const alreadyExists = state?.potentialImpacts?.some(
+        (tag) => tag === potentialImpacts
+      );
+      if (!alreadyExists && state?.potentialImpacts?.length < 5) {
+        dispatch(addPotentialImpact(potentialImpacts));
+      }
+      setPotentialImpacts("");
+    }
+  };
+  const handleRemovePITag = (tag) => {
+    dispatch(removePITag(tag));
+  };
 
-  const handleProposalPreview = (event) => {
+  const otherFields = (e) => {
+    dispatch(addFields({ name: e.target.name, value: e.target.value }));
+  };
+
+  const benefitTags = state?.benefitList?.map((tag, index) => (
+    <div key={index}>
+      <BenefitsTag
+        style={{
+          marginTop: "2%",
+          width: "max-content",
+          border: "1px solid black",
+          color: "black",
+        }}
+      >
+        {tag}
+        <Delete
+          onClick={() => handleRemoveTag(tag)}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            color: "#ff2957",
+          }}
+        >
+          <AiOutlineClose />
+        </Delete>
+      </BenefitsTag>
+    </div>
+  ));
+
+  const impactTags = state?.potentialImpacts?.map((tag, index) => (
+    <div key={index}>
+      <BenefitsTag
+        style={{
+          marginTop: "2%",
+          width: "max-content",
+          border: "1px solid black",
+          color: "black",
+        }}
+      >
+        {tag}
+        <Delete
+          onClick={() => handleRemovePITag(tag)}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            color: "#ff2957",
+          }}
+        >
+          <AiOutlineClose />
+        </Delete>
+      </BenefitsTag>
+    </div>
+  ));
+
+ 
+  const handleProposalPreview = async (event) => {
     event.preventDefault();
-    const formData = new FormData(event.target);
-    formData.append('impact', impactTags.join(','));
-    formData.append('benefit', benefitTags.join(','));
-    formData.append('eventId', id);
-    const data = Object.fromEntries(formData.entries());
-    console.log(data);
     try {
-        dispatch(createProposal(data , user.token))
-        navigate(`/event/proposal/proposal-buildup/proposal-preview/${id}`)
+      if (!eventId) {
+        throw new Error('ID is not defined');
+      }
+      const stateWithId = { ...state, eventId: parseInt(eventId)}
+      const proposal = await createProposal( stateWithId, user.token);
+      sessionStorage.setItem('proposalId', proposal.id);
+      navigate(`/event/proposal/proposal-buildup/proposal-preview/${id}`)
     } catch (error) {
-        console.log(error)
+      console.log(error)
     }
-    // console.log(store.getState())
-
   };
   
+
+  const navigateBack = () => {
+    navigate("/event/proposal");
+  };
+
   return (
     <>
       <OverallContainer>
@@ -145,7 +226,13 @@ const ProposalBuildup = () => {
           <WelcomeHeader>
             <Txt>Event</Txt>
             <BsChevronRight style={{ marginRight: "0.5rem" }} />
-            <Txt fontWeight="400">Proposal</Txt>
+            <Txt
+              style={{ cursor: "pointer" }}
+              onclick={navigateBack}
+              fontWeight="400"
+            >
+              Proposal
+            </Txt>
             <BsChevronRight style={{ marginRight: "0.5rem" }} />
             <Txt fontWeight="400" color="#FF2957">
               Proposal Buildup
@@ -154,7 +241,7 @@ const ProposalBuildup = () => {
         </ProposalContainer>
 
         <ProposalBackground>
-          <ProposalInner onSubmit={handleProposalPreview} >
+          <ProposalInner onSubmit={handleProposalPreview}>
             <InputSeg>
               <Txt>Event Banner</Txt>
               <FormContainer>
@@ -167,7 +254,8 @@ const ProposalBuildup = () => {
                       hidden
                       id="file"
                       accept="image/png, image/jpeg, image/jpg"
-                      name="backgroundPictureUrl"
+                      name="proposalBannerUrl"
+                      // defaultValue={file}
                     />
                   </CustomWrapper>
                   <UploadBtn htmlFor="file">Upload</UploadBtn>
@@ -215,15 +303,16 @@ const ProposalBuildup = () => {
             </InputSeg>
             <Txt>Sponsorship Request</Txt>
 
-    <InputSeg style={{ marginTop: "2%" }}>
-        <Txt>Name of Sponsor’s Organization</Txt>
-        <Input
-            type="text"
-            name="sponsorOrganizationName"
-            value={sponsorsOrg}
-            onChange={(e) => setSponsorsOrg(e.target.value)}
-        />
-    </InputSeg>
+            <InputSeg style={{ marginTop: "2%" }}>
+              <Txt>Name of Sponsor’s Organization</Txt>
+              <Input
+                type="text"
+                name="eventSponsor"
+                onChange={otherFields}
+                defaultValue={state?.eventSponsor}
+                // defaultValue={state.}
+              />
+            </InputSeg>
 
             <EventSubSection style={{ padding: "0" }}>
               <Txt>Benefits of sponsoring this event</Txt>
@@ -231,148 +320,60 @@ const ProposalBuildup = () => {
                 <Input
                   placeholder="List all benefits"
                   type="text"
-                  value={newBenefitTag}
+                  value={benefitList}
                   onChange={(event) => setNewBenefitTag(event.target.value)}
                 />
-                <AddButton
-                  type="button"
-                  onClick={() =>
-                    handleAddTag(
-                      newBenefitTag,
-                      setNewBenefitTag,
-                      benefitTags,
-                      setBenefitTags,
-                      state,
-                      dispatch
-                    )
-                  }
-                >
+                <AddButton type="button" onClick={handleTag}>
                   Add
                 </AddButton>
               </InputTagBox>
-              <ProposalTagsWrapper>
-                {benefitTags?.map((tag, index) => (
-                  <div key={index}>
-                    <BenefitsTag
-                      style={{
-                        marginTop: "2%",
-                        width: "max-content",
-                        border: "1px solid black",
-                        color: "black",
-                      }}
-                    >
-                      {tag}
-                      <Delete
-                        onClick={() =>
-                          handleRemoveTag(
-                            tag,
-                            benefitTags,
-                            setBenefitTags,
-                            dispatch
-                          )
-                        }
-                        style={{
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                          color: "#ff2957",
-                        }}
-                      >
-                        <AiOutlineClose />
-                      </Delete>
-                    </BenefitsTag>
-                  </div>
-                ))}
-              </ProposalTagsWrapper>
+              <ProposalTagsWrapper>{benefitTags}</ProposalTagsWrapper>
             </EventSubSection>
 
-            <EventSubSection style={{ padding: "0", marginTop: "3%" }}>
+            <EventSubSection style={{ padding: "0" }}>
               <Txt>Impact of the event on the community</Txt>
               <InputTagBox>
                 <Input
                   placeholder="List any and all potential impacts of the event on the community"
                   type="text"
-                  value={newImpactTag}
-                  onChange={(event) => setNewImpactTag(event.target.value)}
+                  value={potentialImpacts}
+                  onChange={(event) => setPotentialImpacts(event.target.value)}
                 />
-                <AddButton
-                  type="button" 
-                  onClick={() =>
-                    handleAddTag(
-                      newImpactTag,
-                      setNewImpactTag,
-                      impactTags,
-                      setImpactTags,
-                      state,
-                      dispatch
-                    )
-                  }
-                >
+                <AddButton type="button" onClick={handlePITag}>
                   Add
                 </AddButton>
               </InputTagBox>
-              <ProposalTagsWrapper>
-                {impactTags?.map((tag, index) => (
-                  <div key={index}>
-                    <BenefitsTag
-                      style={{
-                        marginTop: "2%",
-                        width: "max-content",
-                        border: "1px solid black",
-                        color: "black",
-                      }}
-                    >
-                      {tag}
-                      <Delete
-                        onClick={() =>
-                          handleRemoveTag(
-                            tag,
-                            impactTags,
-                            setImpactTags,
-                            dispatch
-                          )
-                        }
-                        style={{
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                          color: "#ff2957",
-                        }}
-                      >
-                        <AiOutlineClose />
-                      </Delete>
-                    </BenefitsTag>
-                  </div>
-                ))}
-              </ProposalTagsWrapper>
+              <ProposalTagsWrapper>{impactTags}</ProposalTagsWrapper>
             </EventSubSection>
 
             <InputSeg style={{ marginTop: "3%" }}>
-                <Txt>Event Budget</Txt>
-                <Input
-                    type="text"
-                    name="eventBudget"
-                    placeholder="Add the estimated total of what you need and amount required (optional) "
-                    value={eventBudget}
-                    onChange={(e) => setEventBudget(e.target.value)}
-                />
+              <Txt>Event Budget</Txt>
+              <Input
+                type="text"
+                name="eventBudgetAddOn"
+                placeholder="Add the estimated total of what you need and amount required (optional) "
+                onChange={otherFields}
+                defaultValue={state?.eventBudgetAddOn}
+                // defaultValue
+              />
             </InputSeg>
             <ButtonContainer style={{ margin: "0rem" }}>
-          <AlternativeButton2
-              onClick={()=> navigate("/event/proposal")}
-            style={{
-              color: "#FF2957",
-              fontWeight: "600",
-              marginRight: "15px",
-            }}
-          >
-            Back
-          </AlternativeButton2>
-          <AbsolutePrimaryButton type="submit">Preview Proposal</AbsolutePrimaryButton>
-        </ButtonContainer>
+              <AlternativeButton2
+                onClick={() => navigate("/event/proposal")}
+                style={{
+                  color: "#FF2957",
+                  fontWeight: "600",
+                  marginRight: "15px",
+                }}
+              >
+                Back
+              </AlternativeButton2>
+              <AbsolutePrimaryButton type="submit">
+                Preview Proposal
+              </AbsolutePrimaryButton>
+            </ButtonContainer>
           </ProposalInner>
         </ProposalBackground>
-        
       </OverallContainer>
     </>
   );
