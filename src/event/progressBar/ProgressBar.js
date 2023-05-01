@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import {
   KCProgressBarHolder,
   KCProgressBar,
@@ -16,7 +15,6 @@ import {
 import { IoIosCheckmarkCircle } from "react-icons/io";
 
 const ProgressBar = ({ setActive, name, number }) => {
-  const [activeColor, setActiveColor] = useState(false);
   const [progress, setProgress] = useState({
     eventdetails: 0,
     defineaudience: 0,
@@ -25,19 +23,23 @@ const ProgressBar = ({ setActive, name, number }) => {
 
   useEffect(() => {
     if (name === "eventdetails") {
-      setProgress({ ...progress, eventdetails: number });
-      setActiveColor(name);
-    }
-    if (name === "defineaudience") {
-      setProgress({ ...progress, eventdetails: 3, defineaudience: number });
-    }
-    if (name === "budget&inventory") {
-      setProgress({
-        ...progress,
+      setProgress((prevProgress) => ({
+        ...prevProgress,
+        eventdetails: number,
+      }));
+    } else if (name === "defineaudience") {
+      setProgress((prevProgress) => ({
+        ...prevProgress,
+        eventdetails: 3,
+        defineaudience: number,
+      }));
+    } else if (name === "budget&inventory") {
+      setProgress((prevProgress) => ({
+        ...prevProgress,
         eventdetails: 3,
         defineaudience: 1,
         "budget&inventory": number,
-      });
+      }));
     }
   }, [number, name]);
 
@@ -47,13 +49,16 @@ const ProgressBar = ({ setActive, name, number }) => {
         <ProgressStagesOutter>
           <ProgressStages onClick={() => setActive("details")}>
             <ProgressStageInner
-              color={(name === "eventdetails" || number ) && "#FFBC15"}
-              // fontWeight={activeColor? (true && "500"): false}
+              color={(name === "eventdetails" || number) && "#FFBC15"}
             >
               <div>
                 <ProgressStageCounter>
                   <NumberHolder>
-                    {progress.eventdetails === 3  ? <IoIosCheckmarkCircle /> : 1}
+                    {progress.eventdetails === 3 ? (
+                      <IoIosCheckmarkCircle />
+                    ) : (
+                      1
+                    )}
                   </NumberHolder>
                   Event Details
                 </ProgressStageCounter>
@@ -67,7 +72,6 @@ const ProgressBar = ({ setActive, name, number }) => {
           <ProgressStages2 onClick={() => setActive("audience")}>
             <ProgressStageInner
               color={(name === "defineaudience" || number) && "#FFBC15"}
-              // fontWeight={activeColor? (true && "500"): false}
             >
               <div>
                 <ProgressStageCounter>
@@ -85,12 +89,10 @@ const ProgressBar = ({ setActive, name, number }) => {
             </ProgressStageInner>
           </ProgressStages2>
         </ProgressStages2Outter>
-
         <ProgressStages3Outter>
           <ProgressStages3 onClick={() => setActive("budget")}>
             <ProgressStageInner
               color={(name === "budget&inventory" || number) && "#FFBC15"}
-              // fontWeight={activeColor? (true && "500"): false}
             >
               <div>
                 <ProgressStageCounter>

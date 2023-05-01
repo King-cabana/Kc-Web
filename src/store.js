@@ -8,12 +8,15 @@ import eventOrganizerProfileSlice from "./redux/slices/eventOrganizerProfileSlic
 import messageSlice from "./redux/slices/userDetailsSlice";
 import otpSlice from "./redux/slices/otpSlice";
 import userDetailsSlice from "./redux/slices/userDetailsSlice";
-import userProfileSlice from "./redux/slices/userProfileSlice";
+import userProfileSlice from './redux/slices/userProfileSlice';
+import proposalSlice from './redux/slices/proposalSlice';
+import proposalPreviewSlice from "./redux/slices/proposalPreviewSlice";
 
 const persistConfig = {
   key: "kingCabana",
   storage,
 };
+
 const reducer = combineReducers({
   message: messageSlice,
   profile: profileSlice,
@@ -23,6 +26,8 @@ const reducer = combineReducers({
   eventCreated: eventCreatedSlice,
   userDetails: userDetailsSlice,
   userProfile: userProfileSlice,
+  proposal: proposalSlice,
+  proposalPreview: proposalPreviewSlice,
 });
 
 const persistedReducer = persistReducer(persistConfig, reducer);
@@ -34,5 +39,7 @@ const store = configureStore({
       serializableCheck: false,
     }),
 });
+
 const persistor = persistStore(store);
+
 export { store, persistor };

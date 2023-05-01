@@ -61,14 +61,13 @@ const SignUp = () => {
 
   const handleSignUp = async (e) => {
     e.preventDefault();
-    // setLoading(true);
+    setLoading(true);
     try {
       await register(inputs);
       toast.success("Success, An Otp as been sent to your inbox.")
       navigate("/verifyemail");
     } catch (error) {
       setLoading(false);
-      // toast.error(error?.response?.data);
       error?.response? toast.error(error?.response?.data?.message): 
       toast.error(error.message)
     } finally{

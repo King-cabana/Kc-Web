@@ -8,12 +8,13 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import Event from "./event/pages/Event";
-import EmptyEvent from "./event/pages/NoEvent";
-// import EventPlanning from "./event/eventPlanning/EventPlanning";
 import SponsorEvent from "./event/pages/SponsorEvent";
 import EventHistory from "./event/pages/EventHistory";
-import EventAnalytics from "./event/pages/EventAnalytics";
 import Settings from "./event/pages/Settings";
+import Messaging from "./event/pages/Messaging";
+import Notifications from "./event/pages/Notifications";
+import VendorsMgt from "./event/pages/VendorsMgt";
+import AttendeesMgt from "./event/pages/AttendeesMgt";
 
 import EventPlanPreview from "./event/eventPlanPreview/EventPlanPreview";
 import Submitted from "./event/budgetInventory/Submitted";
@@ -37,6 +38,7 @@ import GuestRegistration from "./event/guestRegistration/GuestRegistration";
 import Registered from "./event/guestRegistration/Registered";
 import GuestContact from "./event/guestRegistration/GuestContact";
 import VerifyEmail from "./authentication/signup/VerifyEmail";
+import Analytics from "./event/pages/Analytics";
 
 //Authentication
 const Signup = lazy(() => import("./authentication/signup/SignUp"));
@@ -108,7 +110,7 @@ function App() {
 
             {/* <Route path="/event/proposal" element={<Proposal />} /> */}
             <Route
-              path="/event/proposal/proposal-buildup/proposal-preview"
+              path="/event/proposal/proposal-buildup/proposal-preview/:id"
               element={<ProposalPreview />}
             />
             <Route path="/guestView" element={<GuestView />} />
@@ -129,14 +131,7 @@ function App() {
                 </Sidebar>
               }
             />
-            {/* <Route
-              path="/event/create"
-              element={
-                <Sidebar>
-                  <DashboardHome />
-                </Sidebar>
-              }
-            /> */}
+
             <Route
               path="/event/no-proposal"
               element={
@@ -165,7 +160,7 @@ function App() {
               path="/event/history"
               element={
                 <Sidebar>
-                  <SponsorEvent />
+                  <EventHistory />
                 </Sidebar>
               }
             />
@@ -173,7 +168,7 @@ function App() {
               path="/sponsor/proposal"
               element={
                 <Sidebar>
-                  <EventHistory />
+                  <SponsorEvent />
                 </Sidebar>
               }
             />
@@ -181,7 +176,48 @@ function App() {
               path="/sponsor/matching"
               element={
                 <Sidebar>
-                  <EventAnalytics />
+                  <Analytics />
+                </Sidebar>
+              }
+            />
+
+            <Route
+              path="/vendorsmanagement"
+              element={
+                <Sidebar>
+                  <VendorsMgt />
+                </Sidebar>
+              }
+            />
+            <Route
+              path="/attendeesmanagement"
+              element={
+                <Sidebar>
+                  <AttendeesMgt />
+                </Sidebar>
+              }
+            />
+            <Route
+              path="/analytics"
+              element={
+                <Sidebar>
+                  <Analytics />
+                </Sidebar>
+              }
+            />
+            <Route
+              path="/messaging"
+              element={
+                <Sidebar>
+                  <Messaging />
+                </Sidebar>
+              }
+            />
+            <Route
+              path="/notifications"
+              element={
+                <Sidebar>
+                  <Notifications />
                 </Sidebar>
               }
             />
@@ -195,10 +231,6 @@ function App() {
             />
             <Route path="/proposal-generated" element={<Generated />} />
 
-            {/* <Route path="/firstCreateEvent" element={<FirstCreateEvent />} /> */}
-            {/* <Route path="/secondCreateEvent" element={<SecondCreateEvent />} /> */}
-            {/* <Route path="/contactInfo" element={<ContactInfo />} /> */}
-            {/* <Route path="/timeLineEvent" element={<TimeLineEvent />} /> */}
             <Route
               path="/event/planning"
               element={
@@ -235,15 +267,7 @@ function App() {
               path="/report/eventanalytics"
               element={
                 <Sidebar>
-                  <EventAnalytics />
-                </Sidebar>
-              }
-            />
-            <Route
-              path="/settings"
-              element={
-                <Sidebar>
-                  <Settings />
+                  <Analytics />
                 </Sidebar>
               }
             />

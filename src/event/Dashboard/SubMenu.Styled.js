@@ -12,14 +12,20 @@ export const SidebarLink = styled(Link)`
   text-decoration: none;
   font-size: 18px;
 
-  &:hover {
+  &.hover {
     background: #fef5f7;
     color: #ff2957;
     cursor: pointer;
     font-weight: 500;
   }
 
-  &:active {
+  &.active {
+    background-color: white;
+    border-right: 4px solid #ff2957;
+    color: #ff2957;
+  }
+
+  &.active-parent {
     background-color: white;
     border-right: 4px solid #ff2957;
     color: #ff2957;
@@ -40,12 +46,12 @@ export const DropdownLink = styled(Link)`
   color: black;
   font-size: 18px;
 
-  &:hover {
+  &.hover {
     color: #ff2957;
     cursor: pointer;
   }
 
-  &:active {
+  &.active {
     color: #ff2957;
     cursor: pointer;
   }

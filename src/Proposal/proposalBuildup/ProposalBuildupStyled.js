@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import Background from "../../images/budgetBackground.png";
-import { Link } from "react-router-dom";
-
+ 
 export const OverallContainer = styled.section`
   width: 100%;
   height: 100%;
@@ -58,7 +57,7 @@ export const ProposalBackground = styled.div`
   }
 `;
 
-export const ProposalInner = styled.div`
+export const ProposalInner = styled.form`
     width:100%;
     background-color:white;
     padding:1rem;
@@ -82,5 +81,17 @@ export const BenefitsTag = styled.button`
     height: 28px;
     font-size: 12px;
     padding: 1px 10px;
+  }
+`;
+
+export const ProposalTagsWrapper = styled.section`
+  display: grid;
+  grid-template-columns: 1fr;
+  row-gap: 10px; 
+  
+
+  @media screen and (max-width: 960px) {
+    /* flex-direction: column; */
+    grid-template-columns: 1fr;
   }
 `;
