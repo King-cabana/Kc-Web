@@ -11,7 +11,6 @@ import userDetailsSlice from "./redux/slices/userDetailsSlice";
 import userProfileSlice from './redux/slices/userProfileSlice';
 import proposalSlice from './redux/slices/proposalSlice';
 import proposalPreviewSlice from "./redux/slices/proposalPreviewSlice";
-import proposalCreatedSlice from "./redux/slices/proposalCreatedSlice";
 
 const persistConfig = {
   key: "kingCabana",
