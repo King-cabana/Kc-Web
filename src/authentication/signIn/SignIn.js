@@ -53,7 +53,8 @@ const SignIn = () => {
   const checkProfile = async (email, token) => {
     try {
       const { data } = await axios(
-        `https://api.kingcabana.com/eventuser/email?email=${email}`,
+        // `https://api.kingcabana.com/eventuser/email?email=${email}`,
+        `http://localhost:8080/eventuser/email?email=${email}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

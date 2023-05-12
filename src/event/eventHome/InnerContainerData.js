@@ -15,6 +15,7 @@ const InnerContainerData = () => {
   const dispatch = useDispatch();
   const [eventListLength, setEventListLength] = useState(0);
   const [attendees, setAttendees] = useState(0);
+  const [proposals, setProposals] = useState([]);
   const { state } = useContext(EventOrganizerContext) || { state: {} };
   const { axios, user, API_URL_2, navigate } = useContext(
     EventOrganizerContext
@@ -22,7 +23,7 @@ const InnerContainerData = () => {
 
   useEffect(() => {
     setEventListLength(state?.eventList?.length || 0);
-    // console.log(state);
+    console.log(state);
     // console.log(state?.profileEmail);
 
     const fetchAttendees = async () => {
@@ -41,6 +42,24 @@ const InnerContainerData = () => {
         console.log(error);
       }
     };
+
+    const fetchProposals = async () => {
+      try {
+        const { data } = await axios.get(
+          API_URL_2 + `proposals/profile?id=${state?.id}`,
+          {
+            headers: {
+              Authorization: `Bearer ${user?.token}`,
+            },
+          }
+        );
+        setProposals(data);
+        console.log(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchProposals();
     fetchAttendees();
   }, [state]);
 
@@ -53,7 +72,7 @@ const InnerContainerData = () => {
     },
     {
       title: "Proposals generated",
-      counter: 0,
+      counter: proposals.length,
       to: "/event/proposal",
     },
     {

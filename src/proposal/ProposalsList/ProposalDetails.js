@@ -29,18 +29,33 @@ import { setEventCreated } from "../../redux/slices/eventCreatedSlice";
 const ProposalDetails = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [options, setOptions] = useState(false);
+
   const [active, setActive] = useState([]);
   const [loading, setLoading] = useState(true);
   const user = useSelector((state) => state.userDetails);
   const organizer = useSelector((state) => state.eventOrganizerProfile);
   const [createdProposal, setCreatedProposal] = useState([]);
+  const [fresh, setFresh] = useState([]);
+  const [optionsArr, setOptionsArr] = useState([]);
 
-  const filteredProposals = createdProposal.filter((proposal) =>
-    active.some((event) => event.id === proposal.eventId)
-  );
-  const toggleOptions = () => {
-    setOptions(!options);
+  const toggleOptions = (proposalId) => {
+    setOptionsArr((prevOptionsArr) => {
+      const index = prevOptionsArr.findIndex(
+        (options) => options.id === proposalId
+      );
+      if (index === -1) {
+        // options state for this proposal not found, create new options state
+        return [...prevOptionsArr, { id: proposalId, open: true }];
+      } else {
+        // options state for this proposal found, toggle the open property
+        const newOptionsArr = [...prevOptionsArr];
+        newOptionsArr[index] = {
+          ...newOptionsArr[index],
+          open: !newOptionsArr[index].open,
+        };
+        return newOptionsArr;
+      }
+    });
   };
 
   useEffect(() => {
@@ -56,52 +71,9 @@ const ProposalDetails = () => {
             },
           }
         );
+        console.log(data);
+        setActive(data);
         dispatch(setEventCreated(data));
-
-        setCreatedProposal([
-          // {
-          //   id: 1,
-          //   eventId: 6,
-          //   eventSponsor: "Coca Cola",
-          //   eventBudgetAddOn: "#40million for entertainment",
-          // },
-          // {
-          //   id: 2,
-          //   eventId: 10,
-          //   eventSponsor: "Pepsi",
-          //   eventBudgetAddOn: "2 billion for entertainment",
-          // },
-          // {
-          //   id: 3,
-          //   eventId: 15,
-          //   eventSponsor: "Pepsi",
-          //   eventBudgetAddOn: "2 billion for entertainment",
-          // },
-        ]);
-
-        // Filter createdProposal for events that are active
-        // const filteredProposals = createdProposal.filter((proposal) =>
-        //   data.some((event) => event.id === proposal.eventId)
-        // );
-
-        // Push the matching id and eventId into active
-        const updatedActive = data.map((event) => {
-          const matchingProposal = filteredProposals.find(
-            (proposal) => proposal.eventId === event.id
-          );
-          if (matchingProposal) {
-            return {
-              ...event,
-              proposalId: matchingProposal.id,
-              proposalEventId: matchingProposal.eventId,
-              eventSponsor: matchingProposal.eventSponsor,
-              eventBudgetAddOn: matchingProposal.eventBudgetAddOn,
-            };
-          }
-          return event;
-        });
-        setActive(updatedActive);
-        // console.log(active);
       } catch (error) {
         console.log(error);
         toast.error(error.message);
@@ -109,13 +81,54 @@ const ProposalDetails = () => {
         setLoading(false);
       }
     };
+
+    const fetchProposals = async () => {
+      try {
+        const { data } = await axios.get(
+          API_URL_2 + `proposals/profile?id=${organizer?.id}`,
+          {
+            headers: {
+              Authorization: `Bearer ${user?.token}`,
+            },
+          }
+        );
+        setCreatedProposal(data);
+        // console.log(createdProposal);
+        console.log(data);
+
+        // Filter createdProposal for events that are active
+        // const filteredProposals = createdProposal.filter((proposal) =>
+        //   data.some((event) => event.id === proposal.eventId)
+        // );
+
+        // Push the matching id and eventId into active
+        //     const updatedActive = filteredProposals.map((proposal) => {
+        //       const matchingEvent = data.find(
+        //         (event) => event.id === proposal.eventId
+        //       );
+        //       return {
+        //         ...matchingEvent,
+        //         proposalId: proposal.id,
+        //         proposalEventId: proposal.eventId,
+        //       };
+        //     });
+        //     setFresh(updatedActive);
+        //     console.log(fresh);
+      } catch (error) {
+        console.log(error);
+        toast.error(error.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchProposals();
     fetchOrganizerEvents();
-  }, [createdProposal, organizer?.id, user?.token]);
+  }, [organizer?.id, user?.token]);
 
   return (
     <div
       style={{ overflowX: "auto" }}
-      onClick={() => options === true && setOptions(false)}
+      // onClick={() => options === true && setOptions(false)}
     >
       {loading ? (
         <LoadingSection style={{ width: "100vw" }}>
@@ -145,10 +158,12 @@ const ProposalDetails = () => {
                     </AbsolutePrimaryButton>
                   </TdMedium>
                 </TableHead>
-                {data.eventSponsors && (
+
+                {createdProposal?.map((proposal, index) => (
                   <TableTr
-                  // backgroundColor={data.selected ? "#f9e6ea" : "white"}
-                  //   onClick={() => handleApiClick(data, index)}
+                    key={index}
+                    // backgroundColor={data.selected ? "#f9e6ea" : "white"}
+                    // onClick={() => handleApiClick(data, index)}
                   >
                     <TdLarge style={{ padding: "1rem 0.5rem" }}>
                       <AlignCenter>
@@ -156,7 +171,7 @@ const ProposalDetails = () => {
                           style={{ marginRight: "0.5rem" }}
                           size="1.5rem"
                         />
-                        To {data.eventSponsor}
+                        To {proposal.eventSponsor}
                       </AlignCenter>
                     </TdLarge>
 
@@ -170,14 +185,18 @@ const ProposalDetails = () => {
                         }}
                       >
                         <ViewButton
-                        // onClick={(event) => handleViewButtonClick(event, data)}
+                          onClick={() =>
+                            navigate(
+                              `/event/proposal/proposal-buildup/proposal-preview/${proposal.id}`
+                            )
+                          }
                         >
                           View
                         </ViewButton>
                       </div>
                       <div>
                         <SlOptionsVertical
-                          onClick={toggleOptions}
+                          onClick={() => toggleOptions(proposal.id)}
                           style={{
                             position: "absolute",
                             right: "1rem",
@@ -186,8 +205,9 @@ const ProposalDetails = () => {
                           }}
                         />
                       </div>
-
-                      {options && (
+                      {optionsArr.some(
+                        (options) => options.id === proposal.id && options.open
+                      ) && (
                         <OptionsContainer>
                           <OptionsText>Edit</OptionsText>
                           <OptionsText color="#FF4646">Delete</OptionsText>
@@ -195,7 +215,7 @@ const ProposalDetails = () => {
                       )}
                     </TdSmall>
                   </TableTr>
-                )}
+                ))}
               </tbody>
             </EventPlanningTable>
           ))}

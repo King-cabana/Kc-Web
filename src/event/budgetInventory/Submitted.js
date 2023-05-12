@@ -60,7 +60,7 @@ const Submitted = () => {
             </AbsolutePrimaryButton>
           ) : null}
           {location.pathname === "/proposal-generated" ? (
-            <AbsolutePrimaryButton onClick={() => navigate("/dashboard")}>
+            <AbsolutePrimaryButton onClick={() => navigate("/event/proposal")}>
               Done
             </AbsolutePrimaryButton>
           ) : null}

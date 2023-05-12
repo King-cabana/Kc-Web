@@ -1,41 +1,65 @@
 import { createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
 
-const API_URL_2 = "https://api.kingcabana.com/proposals/";
-export const createProposal = (data, token) => async (dispatch) => {
-  try {
-    const response = await axios.post(
-        API_URL_2 + "create",
-      data,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
-    dispatch(addProposal(response.data));
-  } catch (error) {
-    console.log(error);
+const initialState = {
+  potentialImpacts: [],
+  benefitList: [],
+};
+
+const clearObject = (obj) => {
+  const newObj = {};
+  for (const key in obj) {
+    if (Array.isArray(obj[key])) {
+      newObj[key] = [];
+    } else if (typeof obj[key] === "string") {
+      newObj[key] = "";
+    } else {
+      newObj[key] = obj[key];
+    }
   }
+  return newObj;
 };
 
 const proposalSlice = createSlice({
   name: "proposal",
-  initialState: { proposals: [] },
+  initialState,
   reducers: {
-    addProposal: (state, action) => {
-      state.proposals.push(action.payload);
+    addFields: (state, { payload }) => {
+      Object.assign(state, { [payload.name]: payload.value });
     },
-    removeProposal: (state, action) => {
-      const index = state.proposals.findIndex(
-        (proposal) => proposal.id === action.payload.id
-      );
-      if (index !== -1) {
-        state.proposals.splice(index, 1);
+    addPotentialImpact: (state, {payload}) => {
+      if (state.potentialImpacts.length < 5) {
+        state.potentialImpacts.push(payload);
       }
+    },
+    removePITag: (state, action) => {
+      const index = state.potentialImpacts.findIndex((tag) => tag === action.payload);
+      if (index !== -1) {
+        state.potentialImpacts.splice(index, 1);
+      }
+    }, 
+    addBenefitList: (state, {payload}) => {
+      if (state.benefitList.length < 5) {
+        state.benefitList.push(payload);
+      }
+    },
+    removeBLTag: (state, action) => {
+      const index = state.benefitList.findIndex((tag) => tag === action.payload);
+      if (index !== -1) {
+        state.benefitList.splice(index, 1);
+      }
+    },
+    clearAllFields: (state) => {
+      return clearObject(initialState);
     },
   },
 });
 
-export const { addProposal, removeProposal } = proposalSlice.actions;
+export const {
+  addFields,
+  addBenefitList,
+  addPotentialImpact,
+  removeBLTag,
+  removePITag,
+  clearAllFields,
+} = proposalSlice.actions;
 export default proposalSlice.reducer;
